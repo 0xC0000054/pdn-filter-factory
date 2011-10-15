@@ -3779,12 +3779,14 @@ namespace PdnFF
 					sw.WriteLine("com.SetupFilterEnviromentData(base.EnvironmentParameters.SourceSurface); \n com.SetupFilterData(data.ControlValue, data.Source);");
 				}
 				sw.WriteLine("base.OnSetRenderInfo(parameters, dstArgs, srcArgs); \n } \n");
+
+                sw.WriteLine("private bool Cancel() \n{ \n return base.IsCancelRequested; \n }");
+
 				// Render
 				sw.WriteLine("public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length) \n { \n");
 				sw.WriteLine("for (int i = startIndex; i < startIndex + length; ++i) \n { \n");
 				sw.WriteLine("Rectangle rect = rois[i];");
-				sw.WriteLine("if (IsCancelRequested) return;");
-				sw.WriteLine("com.Render(dstArgs.Surface, rect); \n } \n }");
+                sw.WriteLine("com.Render(dstArgs.Surface, rect, new Func<bool>(Cancel)); \n } \n }");
 				sw.WriteLine("}\n }"); // end the class and the namespace
 
 				ret = sw.ToString();
@@ -3795,7 +3797,7 @@ namespace PdnFF
 		
 		private static void SetupCompilerParameters(string FileName, CompilerParameters cparm)
 		{
-			String loc = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+			String installDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
 			cparm.GenerateInMemory = true;
 			cparm.GenerateExecutable = false;
@@ -3807,17 +3809,20 @@ namespace PdnFF
 #else
 			cparm.CompilerOptions = string.Format("/debug- /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
 #endif
-			cparm.ReferencedAssemblies.Add("System.dll");
-			string corepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Reference Assemblies\Microsoft\Framework\");
-			cparm.ReferencedAssemblies.Add(Path.Combine(corepath + "v3.5", "System.Core.dll"));
-			cparm.ReferencedAssemblies.Add(Path.Combine(corepath + "v3.0", "WindowsBase.dll"));
-			cparm.ReferencedAssemblies.Add("System.Drawing.dll");
-			cparm.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-			
-			cparm.ReferencedAssemblies.Add(Path.Combine(loc, "PaintDotNet.Base.dll"));
-			cparm.ReferencedAssemblies.Add(Path.Combine(loc, "PaintDotNet.Core.dll"));
-			cparm.ReferencedAssemblies.Add(Path.Combine(loc, "PaintDotNet.Effects.dll"));
-			cparm.OutputAssembly = Path.Combine(loc + Path.DirectorySeparatorChar + "Effects", FileName);
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            string effectsDir = Path.Combine(installDir, "Effects");
+            string fileTypesDir = Path.Combine(installDir, "FileTypes");
+
+            foreach (var asm in assemblies)
+            {
+                if (!asm.Location.StartsWith(effectsDir) && !asm.Location.StartsWith(fileTypesDir))
+                {
+                    cparm.ReferencedAssemblies.Add(asm.Location);
+                }
+            }
+
+			cparm.OutputAssembly = Path.Combine(effectsDir, FileName);
 		}
 		static string dir = string.Empty;
 
