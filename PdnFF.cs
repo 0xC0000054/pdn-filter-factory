@@ -7,7 +7,7 @@ using PaintDotNet.Effects;
 
 namespace PdnFF
 {
-    public class PdnFF_Effect : PaintDotNet.Effects.Effect
+    public sealed class PdnFF_Effect : PaintDotNet.Effects.Effect
     {
         
         public static string StaticName
@@ -117,30 +117,32 @@ namespace PdnFF
         public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length)
         {
             Surface dest = dstArgs.Surface;
-            ColorBgra clr = new ColorBgra();
             if (filterparsed && !ffparse.datafreed())
             {
-                for (int i = startIndex; i < startIndex + length; ++i)
+                unsafe
                 {
-                    Rectangle rect = rois[i];
-                    for (int y = rect.Top; y < rect.Bottom; ++y)
+                    for (int i = startIndex; i < startIndex + length; ++i)
                     {
-                        for (int x = rect.Left; x < rect.Right; ++x)
+                        Rectangle rect = rois[i];
+                        for (int y = rect.Top; y < rect.Bottom; ++y)
                         {
-                            if (IsCancelRequested) return; // stop if a cancel is requested
-                            
-                            ffparse.UpdateEnvir(x, y); // update the (x, y) position in the unmanaged ffparse data
+                            ColorBgra *p = dest.GetPointAddressUnchecked(rect.Left, y);
+                            for (int x = rect.Left; x < rect.Right; ++x)
+                            {
+                                if (IsCancelRequested) return; // stop if a cancel is requested
 
-                            clr.R = (byte)ffparse.CalcColor(0); // red channel
-                            clr.G = (byte)ffparse.CalcColor(1); // green channel 
-                            clr.B = (byte)ffparse.CalcColor(2); // blue channel 
-                            clr.A = (byte)ffparse.CalcColor(3); // alpha channel
-                            
+                                ffparse.UpdateEnvir(x, y); // update the (x, y) position in the unmanaged ffparse data
 
-                            dest[x, y] = clr; 
+                                p->R = (byte)ffparse.CalcColor(0); // red channel
+                                p->G = (byte)ffparse.CalcColor(1); // green channel 
+                                p->B = (byte)ffparse.CalcColor(2); // blue channel 
+                                p->A = (byte)ffparse.CalcColor(3); // alpha channel
+
+                                p++;
+                            }
                         }
-                    }
 
+                    } 
                 }
 
             }
