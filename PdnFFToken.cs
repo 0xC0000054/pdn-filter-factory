@@ -3,7 +3,7 @@ using PaintDotNet;
 
 namespace PdnFF
 {
-    public class PdnFFConfigToken : PaintDotNet.Effects.EffectConfigToken
+    public sealed class PdnFFConfigToken : PaintDotNet.Effects.EffectConfigToken
     {
         internal filter_data data;
         internal string lastFileName;
@@ -16,7 +16,7 @@ namespace PdnFF
             this.lastFFL = lastffl;
             this.fflOfs = fflofs;
         }
-
+#pragma warning disable 0628
         protected PdnFFConfigToken(PdnFFConfigToken copyMe) : base(copyMe)
         {
             this.data = copyMe.data;
@@ -24,6 +24,7 @@ namespace PdnFF
             this.lastFFL = copyMe.lastFFL;
             this.fflOfs = copyMe.fflOfs;
         }
+#pragma warning restore 0628
 
         public override object Clone()
         {
