@@ -1012,13 +1012,13 @@ namespace PdnFF
 
             for (int i = 0; i < 4; i++)
             {
-                bool val = data.MapEnable[i] == 1 ? true : false;
+                bool val = data.MapEnable[i] == 1;
                 mapused.Add(val);
             }
 
             for (int i = 0; i < 8; i++)
             {
-                bool val = data.ControlEnable[i] == 1 ? true : false;
+                bool val = data.ControlEnable[i] == 1;
                 ctlused.Add(val);
             }
 
