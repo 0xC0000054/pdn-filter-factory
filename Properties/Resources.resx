@@ -134,4 +134,7 @@
     <value>channel must be between the values of 0 and 3</value>
     <comment>ChannelMustBeBetweenTheValuesOf0And3 description</comment>
   </data>
+  <data name="BuildFilterFileAlreadyExists" xml:space="preserve">
+    <value>Unable to build Filter, File already exists?</value>
+  </data>
 </root>
