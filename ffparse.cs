@@ -48,6 +48,7 @@ namespace PdnFF
             public static extern bool datafreed();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
         private static bool Is64Bit
         {
             get
@@ -76,7 +77,7 @@ namespace PdnFF
             }
         }
         /// <summary>
-        /// Sets up the unmanaged access to the Bitmap data 
+        /// Sets up the unmanaged access to the Bitmap Data 
         /// </summary>
         /// <param name="pixelData">The pointer to the start of the pixeldata, Scan0</param>
         /// <param name="width">The width of the image in Pixels</param>
@@ -147,7 +148,7 @@ namespace PdnFF
         }
 
         /// <summary>
-        /// Frees the unmanaged data and cleans up
+        /// Frees the unmanaged Data and cleans up
         /// </summary>
         public static void FreeData()
         {
@@ -184,9 +185,9 @@ namespace PdnFF
         }
 
         /// <summary>
-        /// Gets if the unmanaged data has been freed
+        /// Gets if the unmanaged Data has been freed
         /// </summary>
-        /// <returns>True if the data has been freed, otherwise false.</returns>
+        /// <returns>True if the Data has been freed, otherwise false.</returns>
         public static bool datafreed()
         {
             if (Is64Bit)
