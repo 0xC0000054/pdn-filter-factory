@@ -67,15 +67,18 @@
   </Target>
   -->
   <ItemGroup>
-    <Reference Include="PaintDotNet.Base, Version=3.51.3610.35016, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Paint.NET\PaintDotNet.Base.dll</HintPath>
+    <Reference Include="PaintDotNet.Base, Version=3.510.4297.28957, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.Base.dll</HintPath>
     </Reference>
-    <Reference Include="PaintDotNet.Core, Version=3.51.3610.35022, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Paint.NET\PaintDotNet.Core.dll</HintPath>
+    <Reference Include="PaintDotNet.Core, Version=3.510.4297.28965, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="PaintDotNet.Effects, Version=3.58.4081.24585, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="PaintDotNet.Effects, Version=3.510.4297.28970, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.Effects.dll</HintPath>
+    </Reference>
+    <Reference Include="PaintDotNet.SystemLayer, Version=3.510.4297.28964, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.SystemLayer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -141,6 +144,7 @@ if "$(ConfigurationName)" == "Debug" copy "$(TargetDir)$(TargetName).pdb" "C:\Pr
     <PreBuildEvent>del "C:\Program Files\Paint.NET\Effects\$(TargetName).pdb" /f</PreBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Coderes\Common-comp.bin" />
     <EmbeddedResource Include="PdnFF.xml" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -149,7 +153,6 @@ if "$(ConfigurationName)" == "Debug" copy "$(TargetDir)$(TargetName).pdb" "C:\Pr
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Coderes\Common-comp.bin" />
     <EmbeddedResource Include="Coderes\FFEffect.FFEffectConfigDialog-comp.bin" />
     <EmbeddedResource Include="Coderes\FFEffectConfigDialog-comp.bin" />
     <EmbeddedResource Include="Coderes\FFEffectConfigToken-comp.bin" />
