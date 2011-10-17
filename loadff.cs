@@ -548,18 +548,18 @@ namespace PdnFF
                 throw new ArgumentNullException("data", "data is null.");
             try
             {
+                infile.Position = 9L; // we have already read the signature skip it
                 string line = string.Empty;
                 bool ctlread = false;
-                bool inforead = false;
                 bool srcread = false;
 
-                using (BinaryReader br = new BinaryReader(infile, Encoding.Default))
+                using (StreamReader br = new StreamReader(infile, Encoding.Default))
                 {
                     if (!ctlread)
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            line = ReadAfsString(br, 4);
+                            line = br.ReadLine();
                             if (!string.IsNullOrEmpty(line) && line.Length <= 3)
                             {
                                 data.ControlValue[i] = int.Parse(line, CultureInfo.InvariantCulture);
@@ -573,7 +573,7 @@ namespace PdnFF
                         int i = 0;
                         while (i < 4)
                         {
-                            line = ReadAfsString(br, 1024);
+                            line = br.ReadLine();
                             if (!string.IsNullOrEmpty(line))
                             {
                                 if (!string.IsNullOrEmpty(data.Source[i]) && (data.Source[i].Length + line.Length) < 1024)
@@ -598,36 +598,31 @@ namespace PdnFF
                     
                 }
 
-                if (!inforead)
+                data.Category = "Filter Factory";
+                FileStream fs = infile as FileStream;
+                string Title;
+                if (fs != null)
                 {
-                    data.Category = "Filter Factory";
-                    FileStream fs = infile as FileStream;
-                    string Title;
-                    if (fs != null)
-                    {
-                        Title = Path.GetFileName(fs.Name);
-                    }
-                    else
-                    {
-                        Title = "Untitled";
-                    }
-                    data.Title = Title;
-                    data.Author = "Unknown";
-                    data.Copyright = "Copyright © Unknown";
-                    for (int i = 0; i < 4; i++)
-                    {
-                        data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-                        data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
-                    }
-                    for (int i = 0; i < 8; i++)
-                    {
-                        data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-                        data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
-                    }
-                    SetPopDialog(data);
-
+                    Title = Path.GetFileName(fs.Name);
                 }
-
+                else
+                {
+                    Title = "Untitled";
+                }
+                data.Title = Title;
+                data.Author = "Unknown";
+                data.Copyright = "Copyright © Unknown";
+                for (int i = 0; i < 4; i++)
+                {
+                    data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
+                    data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
+                    data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
+                }
+                SetPopDialog(data);
                 
             }
             catch (Exception)
