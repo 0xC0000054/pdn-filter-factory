@@ -158,16 +158,16 @@ namespace PdnFF
             return loaded;
         }
 
-        private static bool LoadBinFile(String FileName, filter_data data)
+        private static bool LoadBinFile(String fileName, filter_data data)
         {
-            if (String.IsNullOrEmpty(FileName))
-                throw new ArgumentException("FileName is null or empty.", "FileName");
+            if (String.IsNullOrEmpty(fileName))
+                throw new ArgumentException("fileName is null or empty.", "fileName");
             if (data == null)
                 throw new ArgumentNullException("data", "data is null.");
             bool result = false;
             try
             {
-                IntPtr hm = NativeMethods.LoadLibraryEx(FileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE);
+                IntPtr hm = NativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE);
                 if (hm != IntPtr.Zero)
                 {
                     IntPtr hres = IntPtr.Zero;
@@ -255,12 +255,19 @@ namespace PdnFF
                 throw new ArgumentNullException("data", "data is null.");
             if (parmbytes == null || parmbytes.Length == 0)
                 throw new ArgumentException("parmbytes is null or empty.", "parmbytes");
-            using (MemoryStream ms = new MemoryStream(parmbytes))
+            MemoryStream ms = null;
+
+            try
             {
+                ms = new MemoryStream(parmbytes);
                 using (BinaryReader br = new BinaryReader(ms, Encoding.Default))
                 {
+#if false
                     int cbsize = br.ReadInt32();
-                    int standalone = br.ReadInt32();
+                    int standalone = br.ReadInt32(); 
+#else
+                    br.BaseStream.Position += 8L;
+#endif
 
                     for (int i = 0; i < 8; i++)
                     {
@@ -282,8 +289,11 @@ namespace PdnFF
                     data.Category = StringFromChar(br.ReadChars(252)); // read the Category
 
                     //Michael Johannhanwahr's protect flag...
+#if false
                     int iProtected = br.ReadInt32(); // 1 means protected
-
+#else
+                    br.BaseStream.Position += 4L;
+#endif
                     data.Title = StringFromChar(br.ReadChars(256));
                     data.Copyright = StringFromChar(br.ReadChars(256));
                     data.Author = StringFromChar(br.ReadChars(256));
@@ -304,7 +314,16 @@ namespace PdnFF
                     }
 
                 }
+                ms = null;
             }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Close();
+                }
+            }
+            
         }
         private static void LoadTxt(Stream infile, filter_data data)
         {
@@ -529,20 +548,13 @@ namespace PdnFF
                 throw new ArgumentNullException("data", "data is null.");
             try
             {
-                infile.Position = 0L;
                 string line = string.Empty;
-                bool idRead = false;
                 bool ctlread = false;
                 bool inforead = false;
                 bool srcread = false;
 
                 using (BinaryReader br = new BinaryReader(infile, Encoding.Default))
                 {
-                    if (!idRead)
-	                {
-                        string id = ReadAfsString(br, 10);
-                        idRead = true;
-	                }                  
                     if (!ctlread)
                     {
                         for (int i = 0; i < 8; i++)
@@ -840,6 +852,7 @@ namespace PdnFF
         public static bool LoadFFL(string fn, List<TreeNode> items)
         {                
             bool loaded = false;
+            FileStream fs = null;
             try
             {
                 if (fn == null)
@@ -851,66 +864,73 @@ namespace PdnFF
                 if (items == null)
                     throw new ArgumentNullException("items");
 
-            
+
                 filter_data data = new filter_data();
-                using (FileStream fs = new FileStream(fn, FileMode.Open, FileAccess.Read))
+                fs = new FileStream(fn, FileMode.Open, FileAccess.Read, FileShare.None);
+
+                using (BinaryReader br = new BinaryReader(fs))
                 {
-
-                    using (BinaryReader br = new BinaryReader(fs))
+                    string id = ReadString(br, 10);
+                    if (id != null && id == "FFL1.0")
                     {
-                        string id = ReadString(br, 10);
-                        if (id != null && id == "FFL1.0")
+                        string num = ReadString(br, 10);
+                        if (!string.IsNullOrEmpty(num))
                         {
-                            string num = ReadString(br, 10);
-                            if (!string.IsNullOrEmpty(num))
+                            int len = int.Parse(num, CultureInfo.InvariantCulture);
+                            Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
+                            for (int i = 0; i < len - 1; i++)
                             {
-                                int len = int.Parse(num, CultureInfo.InvariantCulture);
-                                Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>(); 
-                                for (int i = 0; i < len - 1; i++)
+                                try
                                 {
-                                    try
+                                    long pos = br.BaseStream.Position;
+                                    if (GetFilterfromFFL(br, pos, data))
                                     {
-                                        long pos = br.BaseStream.Position;
-                                        if (GetFilterfromFFL(br, pos, data))
+                                        if (nodes.ContainsKey(data.Category))
                                         {
-                                            if (nodes.ContainsKey(data.Category))
-                                            {
-                                                TreeNode node = nodes[data.Category];
+                                            TreeNode node = nodes[data.Category];
 
-                                                TreeNode subnode = new TreeNode(data.Title) { Name = data.FileName, Tag = pos }; // Title
-                                                node.Nodes.Add(subnode);
-                                            }
-                                            else
-                                            {
-                                                TreeNode node = new TreeNode(data.Category);
-                                                TreeNode subnode = new TreeNode(data.Title) { Name = data.FileName, Tag = pos }; // Title
-                                                node.Nodes.Add(subnode);
-
-                                                nodes.Add(data.Category, node);
-                                            }
-
+                                            TreeNode subnode = new TreeNode(data.Title) { Name = data.FileName, Tag = pos }; // Title
+                                            node.Nodes.Add(subnode);
                                         }
-                                    }
-                                    catch (EndOfStreamException)
-                                    {
-                                        // ignore it
-                                    }
+                                        else
+                                        {
+                                            TreeNode node = new TreeNode(data.Category);
+                                            TreeNode subnode = new TreeNode(data.Title) { Name = data.FileName, Tag = pos }; // Title
+                                            node.Nodes.Add(subnode);
 
+                                            nodes.Add(data.Category, node);
+                                        }
+
+                                    }
+                                }
+                                catch (EndOfStreamException)
+                                {
+                                    // ignore it
                                 }
 
-                                items.AddRange(nodes.Values);
-
-                                loaded = true;
                             }
 
+                            items.AddRange(nodes.Values);
+
+                            loaded = true;
                         }
+
                     }
 
                 }
+                fs = null;
+
             }
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                if (fs != null)
+                {
+                    fs.Close();
+                }
             }
             return loaded;
         }
