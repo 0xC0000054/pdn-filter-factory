@@ -2620,58 +2620,77 @@ namespace PdnFF
 			}
 
 		}
-		private void LoadFFLbtn_Click(object sender, EventArgs e)
-		{
-			
-			try 
-			{
-				OpenFileDialog ffldlg = new OpenFileDialog { Multiselect = false, Filter = Resources.ConfigDialog_LoadFFLDialog_Filter };
-				if (ffldlg.ShowDialog() == DialogResult.OK)
-				{
-					LoadFFL(ffldlg.FileName, string.Empty);
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+        private void LoadFFLbtn_Click(object sender, EventArgs e)
+        {
 
-		}
-		private void GetFilterfromFFLOffset(long offset, bool uselastvalues)
-		{ 
-			using (BinaryReader br = new BinaryReader(new FileStream(lastffl, FileMode.Open, FileAccess.Read),Encoding.Default))
-			{
-				if (uselastvalues)
-				{
-					filter_data tmpdata = new filter_data();
-					if (FFLoadSave.GetFilterfromFFL(br, offset, tmpdata))
-					{
-						for (int i = 0; i < 8; i++)
-						{
-							resetdata[i] = tmpdata.ControlValue[i];
-						}
-						ResetTokenDataInfo(tmpdata);
-						SetControls(data); // set the controls from the token data
-						SetInfo(data);
-					}
-				}
-				else
-				{
-					data = NewFilterData();
-					if (FFLoadSave.GetFilterfromFFL(br, offset, data))
-					{
-						for (int i = 0; i < 8; i++)
-						{
-							resetdata[i] = data.ControlValue[i];
-						}
-						SetControls(data);
-						SetInfo(data);
-						SetFltrInfoLabels(data);
+            try
+            {
 
-					}
-				}
-			}
-		}
+                using (OpenFileDialog fflDialog = new OpenFileDialog())
+                {
+                    fflDialog.Multiselect = false;
+                    fflDialog.Filter = Resources.ConfigDialog_LoadFFLDialog_Filter;
+                    if (fflDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadFFL(fflDialog.FileName, string.Empty);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void GetFilterfromFFLOffset(long offset, bool uselastvalues)
+        {
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream(lastffl, FileMode.Open, FileAccess.Read, FileShare.None);
+                using (BinaryReader br = new BinaryReader(fs, Encoding.Default))
+                {
+
+                    if (uselastvalues)
+                    {
+                        filter_data tmpdata = new filter_data();
+                        if (FFLoadSave.GetFilterfromFFL(br, offset, tmpdata))
+                        {
+                            for (int i = 0; i < 8; i++)
+                            {
+                                resetdata[i] = tmpdata.ControlValue[i];
+                            }
+                            ResetTokenDataInfo(tmpdata);
+                            SetControls(data); // set the controls from the token Data
+                            SetInfo(data);
+                        }
+                    }
+                    else
+                    {
+                        data = NewFilterData();
+                        if (FFLoadSave.GetFilterfromFFL(br, offset, data))
+                        {
+                            for (int i = 0; i < 8; i++)
+                            {
+                                resetdata[i] = data.ControlValue[i];
+                            }
+                            SetControls(data);
+                            SetInfo(data);
+                            SetFltrInfoLabels(data);
+
+                        }
+                    }
+                }
+                fs = null;
+            }
+            finally
+            {
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+            }
+        }
 		private void FFLtreeView1_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			if (FFLtreeView1.SelectedNode.Tag != null)
@@ -3659,21 +3678,21 @@ namespace PdnFF
 
 			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
 			{
-				sw.WriteLine("data.Author = \"{0}\";", data.Author);
-				sw.WriteLine("data.Category =  \"{0}\";", data.Category);
-				sw.WriteLine("data.Title =  \"{0}\";", data.Title);
-				sw.WriteLine("data.Copyright = \"{0}\";", data.Copyright);
-				sw.WriteLine("data.MapEnable = new int[4] {0},{1},{2},{3}", new object[] { "{ " + data.MapEnable[0].ToString(), data.MapEnable[1].ToString(), data.MapEnable[2].ToString(), data.MapEnable[3].ToString() + "};" });
-				sw.WriteLine("data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
+                sw.WriteLine("Data.Author = \"{0}\";", data.Author);
+                sw.WriteLine("Data.Category =  \"{0}\";", data.Category);
+                sw.WriteLine("Data.Title =  \"{0}\";", data.Title);
+                sw.WriteLine("Data.Copyright = \"{0}\";", data.Copyright);
+                sw.WriteLine("Data.MapEnable = new int[4] {0},{1},{2},{3}", new object[] { "{ " + data.MapEnable[0].ToString(CultureInfo.InvariantCulture), data.MapEnable[1].ToString(CultureInfo.InvariantCulture), data.MapEnable[2].ToString(CultureInfo.InvariantCulture), data.MapEnable[3].ToString(CultureInfo.InvariantCulture) + "};" });
+                sw.WriteLine("Data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
 
-				sw.WriteLine("data.ControlEnable = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlEnable[0].ToString(), data.ControlEnable[1].ToString(), data.ControlEnable[2].ToString(), data.ControlEnable[3].ToString(), data.ControlEnable[4].ToString(), data.ControlEnable[5].ToString(), data.ControlEnable[6].ToString(), data.ControlEnable[7].ToString() + "};" });
-				sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
-				sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(), data.ControlValue[1].ToString(), data.ControlValue[2].ToString(), data.ControlValue[3].ToString(), data.ControlValue[4].ToString(), data.ControlValue[5].ToString(), data.ControlValue[6].ToString(), data.ControlValue[7].ToString() + "};" });
-				sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
-				sw.WriteLine("data.PopDialog = {0};", data.PopDialog.ToString());
-				sw.WriteLine("filterDataset = true;");
+                sw.WriteLine("Data.ControlEnable = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlEnable[0].ToString(CultureInfo.InvariantCulture), data.ControlEnable[1].ToString(CultureInfo.InvariantCulture), data.ControlEnable[2].ToString(CultureInfo.InvariantCulture), data.ControlEnable[3].ToString(CultureInfo.InvariantCulture), data.ControlEnable[4].ToString(CultureInfo.InvariantCulture), data.ControlEnable[5].ToString(CultureInfo.InvariantCulture), data.ControlEnable[6].ToString(CultureInfo.InvariantCulture), data.ControlEnable[7].ToString(CultureInfo.InvariantCulture) + "};" });
+                sw.WriteLine("Data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
+                sw.WriteLine("Data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
+                sw.WriteLine("Data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
+                sw.WriteLine("Data.PopDialog = {0};", data.PopDialog.ToString());
+                sw.WriteLine("filterDataset = true;");
 
-				ret = sw.ToString();
+                ret = sw.ToString();
 			}
 			return ret;
 		}
