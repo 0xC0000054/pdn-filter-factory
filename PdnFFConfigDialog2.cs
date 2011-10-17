@@ -209,19 +209,19 @@ namespace PdnFF
 		private string lastFileName = string.Empty;
 		protected override void InitTokenFromDialog()
 		{
-			((PdnFFConfigToken)theEffectToken).data = data;
-			((PdnFFConfigToken)theEffectToken).lastFileName = lastFileName;
-			((PdnFFConfigToken)theEffectToken).lastFFL = lastffl;
-			((PdnFFConfigToken)theEffectToken).fflOfs = fflofs;
+			((PdnFFConfigToken)theEffectToken).Data = data;
+			((PdnFFConfigToken)theEffectToken).LastFileName = lastFileName;
+			((PdnFFConfigToken)theEffectToken).LastFFL = lastffl;
+			((PdnFFConfigToken)theEffectToken).FFLOffset = fflofs;
 		}
 
 		protected override void InitDialogFromToken(EffectConfigToken effectToken)
 		{
 			 PdnFFConfigToken token = (PdnFFConfigToken)effectToken;
-			 this.data = token.data;
-			 this.lastFileName = token.lastFileName;
-			 this.lastffl = token.lastFFL;
-			 this.fflofs = token.fflOfs;
+			 this.data = token.Data;
+			 this.lastFileName = token.LastFileName;
+			 this.lastffl = token.LastFFL;
+			 this.fflofs = token.FFLOffset;
 		}
 
 		private void InitializeComponent()
@@ -2403,9 +2403,9 @@ namespace PdnFF
 		}
 		private void SetTokenData()
 		{
-			if (((PdnFFConfigToken)theEffectToken).data != null && this.data == null)
+			if (((PdnFFConfigToken)theEffectToken).Data != null && this.data == null)
 			{
-			   this.data = ((PdnFFConfigToken)theEffectToken).data;
+			   this.data = ((PdnFFConfigToken)theEffectToken).Data;
 			}
 		}
 		private void default_fltr_Click(object sender, EventArgs e)
