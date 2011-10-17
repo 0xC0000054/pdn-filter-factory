@@ -77,7 +77,7 @@ namespace PdnFF
         /// <summary>
         /// Sets the Filter source code and Control values 
         /// </summary>
-        private void SetupFilterData(filter_data data)
+        private static void SetupFilterData(filter_data data)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -89,7 +89,6 @@ namespace PdnFF
                 ffparse.SetupTree(s, i);
                 Marshal.FreeHGlobal(s);
             }
-
         }
     
         private bool filterparsed = false;
@@ -105,15 +104,14 @@ namespace PdnFF
             Debug.WriteLine(string.Format("BitmapEnvirSetup = {0}", envdata.BmpEnvirSetup.ToString()));
             Debug.WriteLine(string.Format("datafreed = {0}", ffparse.datafreed().ToString()));
 #endif
-            if (token.data != null && !string.IsNullOrEmpty(token.data.Author) && envdata.BmpEnvirSetup && !ffparse.datafreed())
+            if (token.Data != null && !string.IsNullOrEmpty(token.Data.Author) && envdata.BmpEnvirSetup && !ffparse.datafreed())
             {
-                SetupFilterData(token.data); // Setup the filter data
+                SetupFilterData(token.Data); 
                 filterparsed = true;
             }
             
             base.OnSetRenderInfo(parameters, dstArgs, srcArgs);
         }
-        private object sync = new object();
         public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length)
         {
             Surface dest = dstArgs.Surface;
