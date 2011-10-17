@@ -3678,18 +3678,18 @@ namespace PdnFF
 
 			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
 			{
-                sw.WriteLine("Data.Author = \"{0}\";", data.Author);
-                sw.WriteLine("Data.Category =  \"{0}\";", data.Category);
-                sw.WriteLine("Data.Title =  \"{0}\";", data.Title);
-                sw.WriteLine("Data.Copyright = \"{0}\";", data.Copyright);
-                sw.WriteLine("Data.MapEnable = new int[4] {0},{1},{2},{3}", new object[] { "{ " + data.MapEnable[0].ToString(CultureInfo.InvariantCulture), data.MapEnable[1].ToString(CultureInfo.InvariantCulture), data.MapEnable[2].ToString(CultureInfo.InvariantCulture), data.MapEnable[3].ToString(CultureInfo.InvariantCulture) + "};" });
-                sw.WriteLine("Data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
+                sw.WriteLine("data.Author = \"{0}\";", data.Author);
+                sw.WriteLine("data.Category =  \"{0}\";", data.Category);
+                sw.WriteLine("data.Title =  \"{0}\";", data.Title);
+                sw.WriteLine("data.Copyright = \"{0}\";", data.Copyright);
+                sw.WriteLine("data.MapEnable = new int[4] {0},{1},{2},{3}", new object[] { "{ " + data.MapEnable[0].ToString(CultureInfo.InvariantCulture), data.MapEnable[1].ToString(CultureInfo.InvariantCulture), data.MapEnable[2].ToString(CultureInfo.InvariantCulture), data.MapEnable[3].ToString(CultureInfo.InvariantCulture) + "};" });
+                sw.WriteLine("data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
 
-                sw.WriteLine("Data.ControlEnable = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlEnable[0].ToString(CultureInfo.InvariantCulture), data.ControlEnable[1].ToString(CultureInfo.InvariantCulture), data.ControlEnable[2].ToString(CultureInfo.InvariantCulture), data.ControlEnable[3].ToString(CultureInfo.InvariantCulture), data.ControlEnable[4].ToString(CultureInfo.InvariantCulture), data.ControlEnable[5].ToString(CultureInfo.InvariantCulture), data.ControlEnable[6].ToString(CultureInfo.InvariantCulture), data.ControlEnable[7].ToString(CultureInfo.InvariantCulture) + "};" });
-                sw.WriteLine("Data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
-                sw.WriteLine("Data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
-                sw.WriteLine("Data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
-                sw.WriteLine("Data.PopDialog = {0};", data.PopDialog.ToString());
+                sw.WriteLine("data.ControlEnable = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlEnable[0].ToString(CultureInfo.InvariantCulture), data.ControlEnable[1].ToString(CultureInfo.InvariantCulture), data.ControlEnable[2].ToString(CultureInfo.InvariantCulture), data.ControlEnable[3].ToString(CultureInfo.InvariantCulture), data.ControlEnable[4].ToString(CultureInfo.InvariantCulture), data.ControlEnable[5].ToString(CultureInfo.InvariantCulture), data.ControlEnable[6].ToString(CultureInfo.InvariantCulture), data.ControlEnable[7].ToString(CultureInfo.InvariantCulture) + "};" });
+                sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
+                sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
+                sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
+                sw.WriteLine("data.PopDialog = {0};", data.PopDialog.ToString());
                 sw.WriteLine("filterDataset = true;");
 
                 ret = sw.ToString();
@@ -3985,6 +3985,10 @@ namespace PdnFF
 							}
 						}
 					}
+                    else
+                    {
+                        MessageBox.Show(this, Resources.BuildFilterFileAlreadyExists, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 				   
 				}
 				catch (Exception ex)
