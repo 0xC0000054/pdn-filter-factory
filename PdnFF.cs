@@ -125,12 +125,12 @@ namespace PdnFF
                     {
                         Rectangle rect = rois[i];
                         for (int y = rect.Top; y < rect.Bottom; ++y)
-                        {
+                        {                                
+                            if (IsCancelRequested) return; // stop if a cancel is requested
+
                             ColorBgra *p = dest.GetPointAddressUnchecked(rect.Left, y);
                             for (int x = rect.Left; x < rect.Right; ++x)
                             {
-                                if (IsCancelRequested) return; // stop if a cancel is requested
-
                                 ffparse.UpdateEnvir(x, y); // update the (x, y) position in the unmanaged ffparse data
 
                                 p->R = (byte)ffparse.CalcColor(0); // red channel
