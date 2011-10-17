@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 using System.Globalization;
 
-namespace ns
+namespace PdnFF
 {
     internal sealed class StringLogicalComparer : IComparer
     {
