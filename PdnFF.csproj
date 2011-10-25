@@ -95,6 +95,7 @@
     <Compile Include="ffparse.cs" />
     <Compile Include="filterdata.cs" />
     <Compile Include="FilterEnviromentData.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="PdnFFConfigDialog2.cs">
       <SubType>Form</SubType>
     </Compile>
