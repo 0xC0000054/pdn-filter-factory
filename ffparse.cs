@@ -171,15 +171,21 @@ namespace PdnFF
         {
             int ret = 1;
             IntPtr s = Marshal.StringToHGlobalAnsi(src);
-            if (Is64Bit)
+            try
             {
-               ret = ffeval64.ValidateSrc(s);
+                if (Is64Bit)
+                {
+                    ret = ffeval64.ValidateSrc(s);
+                }
+                else
+                {
+                    ret = ffeval32.ValidateSrc(s);
+                }
             }
-            else
+            finally
             {
-               ret = ffeval32.ValidateSrc(s);
+                Marshal.FreeHGlobal(s);
             }
-            Marshal.FreeHGlobal(s);
 
             return ret;
         }
