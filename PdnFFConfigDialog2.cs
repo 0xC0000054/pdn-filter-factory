@@ -1,18 +1,17 @@
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.CSharp;
 using PaintDotNet;
 using PaintDotNet.Effects;
 using PdnFF.Properties;
-using Microsoft.CSharp;
-using System.CodeDom.Compiler;
-using System.Globalization;
 
 namespace PdnFF
 {
@@ -2540,14 +2539,14 @@ namespace PdnFF
 				if (ValidateApplybtn(tb.Text))
 				{
 					ep.ContainerControl = this;
-					ep.SetError((TextBox)sender, string.Empty);
+					ep.SetError(tb, string.Empty);
 					data.Source[ch] = tb.Text;
 					FinishTokenUpdate();
 				}
 				else
 				{
 					ep.ContainerControl = this;
-					ep.SetError((TextBox)sender, Resources.ConfigDialog_FormulaSyntaxError_Text);
+					ep.SetError(tb, Resources.ConfigDialog_FormulaSyntaxError_Text);
 				}
 			}
 		}
@@ -3424,7 +3423,7 @@ namespace PdnFF
 					fltrmgrprogress.Maximum = uflp.dirlist.Length;
 					fltrmgrprogress.Step = 1;
 					filtermgrprogresspanel.Visible = true;
-					folderloadcountlbl.Text = string.Format("({0} of {1})", "0", DirlistView1.Items.Count.ToString());
+					folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", "0", DirlistView1.Items.Count.ToString(CultureInfo.InvariantCulture));
 					filtertreeview.Nodes.Clear();
 					filterlistcnttxt.Text = string.Empty;
 					UpdateFilterListbw_Done = false;
@@ -3564,7 +3563,7 @@ namespace PdnFF
 			//Debug.WriteLine(string.Format("progresschanged isbackground = {0}", Thread.CurrentThread.IsBackground.ToString())); 
 
 			folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", (e.ProgressPercentage + 1).ToString(CultureInfo.InvariantCulture), DirlistView1.Items.Count.ToString(CultureInfo.InvariantCulture));
-			folderloadnamelbl.Text = string.Format("({0})", e.UserState.ToString());
+            folderloadnamelbl.Text = string.Format(CultureInfo.InvariantCulture, "({0})", e.UserState.ToString());
 			fltrmgrprogress.PerformStep();
 		}
 
@@ -3592,7 +3591,7 @@ namespace PdnFF
 				{
 					TreeNode child = item.Key;
 					string Title = child.Text;
-					if ((string.IsNullOrEmpty(filtertext)) || Title.ToLowerInvariant().Contains(filtertext.ToLowerInvariant()))
+					if ((string.IsNullOrEmpty(filtertext)) || Title.ToUpperInvariant().Contains(filtertext.ToUpperInvariant()))
 					{
 						if (nodes.ContainsKey(item.Value))
 						{
@@ -3689,7 +3688,7 @@ namespace PdnFF
                 sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
                 sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
                 sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
-                sw.WriteLine("data.PopDialog = {0};", data.PopDialog.ToString());
+                sw.WriteLine("data.PopDialog = {0};", data.PopDialog.ToString(CultureInfo.InvariantCulture));
                 sw.WriteLine("filterDataset = true;");
 
                 ret = sw.ToString();
@@ -3701,27 +3700,27 @@ namespace PdnFF
 		{
 			string cat = string.Empty;
 
-			switch (data.Category.ToLowerInvariant())
+			switch (data.Category.ToUpperInvariant())
 			{
-				case "artistic":
+				case "ARTISTIC":
 					cat = "SubmenuNames.Artistic";
 					break;
-				case "blurs":
+				case "BLURS":
 					cat = "SubmenuNames.Blurs";
 					break;
-				case "distort":
+				case "DISTORT":
 					cat = "SubmenuNames.Distort";
 					break;
-				case "noise":
+				case "NOISE":
 					cat = "SubmenuNames.Noise";
 					break;
-				case "photo":
+				case "PHOTO":
 					cat = "SubmenuNames.Photo";
 					break;
-				case "render":
+				case "RENDER":
 					cat = "SubmenuNames.Render";
 					break;
-				case "stylize":
+				case "STYLIZE":
 					cat = "SubmenuNames.Stylize";
 					break;
 
@@ -3824,9 +3823,9 @@ namespace PdnFF
 
 #if DEBUG
 			cparm.IncludeDebugInformation = true;
-			cparm.CompilerOptions = string.Format("/debug:full /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
+			cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug:full /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
 #else
-			cparm.CompilerOptions = string.Format("/debug- /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
+            cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug- /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
 #endif
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -3835,7 +3834,8 @@ namespace PdnFF
 
             foreach (var asm in assemblies)
             {
-                if (!asm.Location.StartsWith(effectsDir) && !asm.Location.StartsWith(fileTypesDir))
+                if (!asm.Location.StartsWith(effectsDir, StringComparison.OrdinalIgnoreCase) &&
+                    !asm.Location.StartsWith(fileTypesDir, StringComparison.OrdinalIgnoreCase))
                 {
                     cparm.ReferencedAssemblies.Add(asm.Location);
                 }
@@ -3872,7 +3872,7 @@ namespace PdnFF
 
 					fn = fn.Substring(14, (fn.Length - 14));
 
-					fn = fn.Substring(0, fn.IndexOf("-"));
+					fn = fn.Substring(0, fn.IndexOf("-", StringComparison.Ordinal));
 
 					if (i == 0)
 					{
