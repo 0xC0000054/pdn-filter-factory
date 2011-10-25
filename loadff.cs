@@ -553,13 +553,13 @@ namespace PdnFF
                 bool ctlread = false;
                 bool srcread = false;
 
-                using (StreamReader br = new StreamReader(infile, Encoding.Default))
+                using (BinaryReader br = new BinaryReader(infile, Encoding.Default))
                 {
                     if (!ctlread)
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            line = br.ReadLine();
+                            line = ReadAfsString(br, 256);
                             if (!string.IsNullOrEmpty(line) && line.Length <= 3)
                             {
                                 data.ControlValue[i] = int.Parse(line, CultureInfo.InvariantCulture);
@@ -573,7 +573,7 @@ namespace PdnFF
                         int i = 0;
                         while (i < 4)
                         {
-                            line = br.ReadLine();
+                            line = ReadAfsString(br, 1024);
                             if (!string.IsNullOrEmpty(line))
                             {
                                 if (!string.IsNullOrEmpty(data.Source[i]) && (data.Source[i].Length + line.Length) < 1024)
