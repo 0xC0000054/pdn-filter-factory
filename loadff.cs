@@ -756,7 +756,7 @@ namespace PdnFF
 
                 using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    if (Path.GetExtension(FileName).ToLowerInvariant().Equals(".afs"))
+                    if (Path.GetExtension(FileName).Equals(".afs", StringComparison.OrdinalIgnoreCase))
                     {
                         SaveAfs(fs, data);
                     }
