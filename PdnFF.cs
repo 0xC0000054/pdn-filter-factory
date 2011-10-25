@@ -115,7 +115,7 @@ namespace PdnFF
         public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length)
         {
             Surface dest = dstArgs.Surface;
-            if (filterparsed && !ffparse.datafreed())
+            if (filterparsed)
             {
                 unsafe
                 {
