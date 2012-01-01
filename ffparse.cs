@@ -5,6 +5,7 @@ namespace PdnFF
 {
     internal static class ffparse
     {
+        [System.Security.SuppressUnmanagedCodeSecurity]
         private static class ffeval32
         {
             [DllImport("ffparse_x86.dll", EntryPoint = "SetupBitmap")]
@@ -26,7 +27,7 @@ namespace PdnFF
             public static extern bool datafreed();
 
         }
-
+        [System.Security.SuppressUnmanagedCodeSecurity]
         private static class ffeval64
         {
             [DllImport("ffparse_x64.dll", EntryPoint = "SetupBitmap")]
