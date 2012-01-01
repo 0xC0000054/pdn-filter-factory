@@ -3374,7 +3374,7 @@ namespace PdnFF
 			}
 
 #if DEBUG
-			Debug.WriteLine(string.Format("node count = {0}", nodes.Values.Count.ToString())); 
+			System.Diagnostics.Debug.WriteLine(string.Format("node count = {0}", nodes.Values.Count.ToString())); 
 #endif
 			parm.itemarr = new TreeNode[nodes.Values.Count];
 			nodes.Values.CopyTo(parm.itemarr, 0); 
@@ -3408,7 +3408,7 @@ namespace PdnFF
 			{
 				InitilizeUpdateFilterListbw();
 	#if DEBUG
-				Debug.WriteLine(string.Format("UpdateFilterListbw.IsBusy = {0}", UpdateFilterListbw.IsBusy.ToString()));
+				System.Diagnostics.Debug.WriteLine(string.Format("UpdateFilterListbw.IsBusy = {0}", UpdateFilterListbw.IsBusy.ToString()));
 	#endif           
 				if (!UpdateFilterListbw.IsBusy)
 				{
@@ -3541,7 +3541,7 @@ namespace PdnFF
 				else
 				{
 
-					Debug.WriteLine("canceled");
+					System.Diagnostics.Debug.WriteLine("canceled");
 
 				}
 #endif
