@@ -49,14 +49,6 @@ namespace PdnFF
             public static extern bool datafreed();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
-        private static bool Is64Bit
-        {
-            get
-            {
-                return (Marshal.SizeOf(IntPtr.Zero) == 8);
-            }
-        }
         /// <summary>
         /// The number channels in the image, always 4 in Paint.NET   
         /// </summary>
@@ -68,7 +60,7 @@ namespace PdnFF
         /// <param name="ctl">The number of the control to set</param>
         public static void SetControls(int val, int ctl)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.SetControls(val, ctl);
             }
@@ -87,7 +79,7 @@ namespace PdnFF
         /// <returns>1 on Success, negitive on failure</returns>
         public static int SetupBitmap(IntPtr pixelData, int width, int height, int stride)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 return ffeval64.SetupBitmap(pixelData, width, height, stride, pixelSize);
             }
@@ -105,7 +97,7 @@ namespace PdnFF
         /// <param name="c">The channel that the source code belongs to (0 - 3 in RGBA order).</param>
         public static void SetupTree(IntPtr src, int c)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.SetupTree(src, c);
             }
@@ -122,7 +114,7 @@ namespace PdnFF
         /// <param name="y">The y pixel position</param>
         public static void UpdateEnvir(int x, int y)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.UpdateEnvir(x, y);
             }
@@ -138,7 +130,7 @@ namespace PdnFF
         /// <returns>The resulting pixel color</returns>
         public static int CalcColor(int channel)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 return ffeval64.CalcColor(channel);
             }
@@ -153,7 +145,7 @@ namespace PdnFF
         /// </summary>
         public static void FreeData()
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.FreeData();
             }
@@ -174,7 +166,7 @@ namespace PdnFF
             IntPtr s = Marshal.StringToHGlobalAnsi(src);
             try
             {
-                if (Is64Bit)
+                if (IntPtr.Size == 8)
                 {
                     ret = ffeval64.ValidateSrc(s);
                 }
@@ -197,7 +189,7 @@ namespace PdnFF
         /// <returns>True if the Data has been freed, otherwise false.</returns>
         public static bool datafreed()
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                return ffeval64.datafreed();
             }
