@@ -8,21 +8,21 @@ namespace PdnFF
         [System.Security.SuppressUnmanagedCodeSecurity]
         private static class ffeval32
         {
-            [DllImport("ffparse_x86.dll", EntryPoint = "SetupBitmap")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern int SetupBitmap(IntPtr pixelData, int width, int height, int stride, int pixelSize);
-            [DllImport("ffparse_x86.dll", EntryPoint = "SetControls")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern void SetControls(int val, int ctl);
-            [DllImport("ffparse_x86.dll", EntryPoint = "UpdateEnvir")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern void UpdateEnvir(int x, int y);
-            [DllImport("ffparse_x86.dll", EntryPoint = "SetupTree")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern void SetupTree(System.IntPtr src, int c);
-            [DllImport("ffparse_x86.dll", EntryPoint = "CalcColor")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern int CalcColor(int c);
-            [DllImport("ffparse_x86.dll", EntryPoint = "FreeData")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern void FreeData();
-            [DllImport("ffparse_x86.dll", EntryPoint = "ValidateSrc")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern int ValidateSrc(IntPtr src);
-            [DllImport("ffparse_x86.dll", EntryPoint = "datafreed")]
+            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.I1)]
             public static extern bool datafreed();
 
@@ -30,21 +30,21 @@ namespace PdnFF
         [System.Security.SuppressUnmanagedCodeSecurity]
         private static class ffeval64
         {
-            [DllImport("ffparse_x64.dll", EntryPoint = "SetupBitmap")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern int SetupBitmap(IntPtr pixelData, int width, int height, int stride, int pixelSize);
-            [DllImport("ffparse_x64.dll", EntryPoint = "SetControls")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern void SetControls(int val, int ctl);
-            [DllImport("ffparse_x64.dll", EntryPoint = "UpdateEnvir")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern void UpdateEnvir(int x, int y);
-            [DllImport("ffparse_x64.dll", EntryPoint = "SetupTree")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern void SetupTree(System.IntPtr src, int c);
-            [DllImport("ffparse_x64.dll", EntryPoint = "CalcColor")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern int CalcColor(int c);
-            [DllImport("ffparse_x64.dll", EntryPoint = "FreeData")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern void FreeData();
-            [DllImport("ffparse_x64.dll", EntryPoint = "ValidateSrc")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern int ValidateSrc(IntPtr src);
-            [DllImport("ffparse_x64.dll", EntryPoint = "datafreed")]
+            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.I1)]
             public static extern bool datafreed();
         }
