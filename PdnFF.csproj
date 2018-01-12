@@ -67,17 +67,14 @@
   </Target>
   -->
   <ItemGroup>
-    <Reference Include="PaintDotNet.Base, Version=3.510.4297.28957, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.Base.dll</HintPath>
+    <Reference Include="PaintDotNet.Base">
+      <HintPath>C:\Dev_projects\PSFilterPdn\References\PaintDotNet.Base.dll</HintPath>
     </Reference>
-    <Reference Include="PaintDotNet.Core, Version=3.510.4297.28965, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.Core.dll</HintPath>
+    <Reference Include="PaintDotNet.Core">
+      <HintPath>C:\Dev_projects\PSFilterPdn\References\PaintDotNet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="PaintDotNet.Effects, Version=3.510.4297.28970, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.Effects.dll</HintPath>
-    </Reference>
-    <Reference Include="PaintDotNet.SystemLayer, Version=3.510.4297.28964, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\Dev_projects\PSFilterPdn\Refrences\PaintDotNet.SystemLayer.dll</HintPath>
+    <Reference Include="PaintDotNet.Effects">
+      <HintPath>C:\Dev_projects\PSFilterPdn\References\PaintDotNet.Effects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -140,9 +137,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Program Files\Paint.NET\Effects" /y
-if "$(ConfigurationName)" == "Debug" copy "$(TargetDir)$(TargetName).pdb" "C:\Program Files\Paint.NET\Effects" /y</PostBuildEvent>
-    <PreBuildEvent>del "C:\Program Files\Paint.NET\Effects\$(TargetName).pdb" /f</PreBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "D:\Program Files\Paint.NET\Effects" /y
+if "$(ConfigurationName)" == "Debug" copy "$(TargetDir)$(TargetName).pdb" "D:\Program Files\Paint.NET\Effects" /y</PostBuildEvent>
+    <PreBuildEvent>del "D:\Program Files\Paint.NET\Effects\$(TargetName).pdb" /f</PreBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Coderes\Common-comp.bin" />
