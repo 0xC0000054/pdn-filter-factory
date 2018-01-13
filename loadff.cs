@@ -34,7 +34,7 @@ namespace PdnFF
 	internal static class FFLoadSave
 	{
 
-
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		private static class UnsafeNativeMethods
 		{
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
