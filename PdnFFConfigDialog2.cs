@@ -425,97 +425,97 @@ namespace PdnFF
             ((System.ComponentModel.ISupportInitialize)(this.ctl0)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // buttonCancel
-            // 
+            //
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
+            //
             // buttonOK
-            // 
+            //
             resources.ApplyResources(this.buttonOK, "buttonOK");
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
+            //
             // bluelbl
-            // 
+            //
             resources.ApplyResources(this.bluelbl, "bluelbl");
             this.bluelbl.Name = "bluelbl";
-            // 
+            //
             // alphalbl
-            // 
+            //
             resources.ApplyResources(this.alphalbl, "alphalbl");
             this.alphalbl.Name = "alphalbl";
-            // 
+            //
             // greenlbl
-            // 
+            //
             resources.ApplyResources(this.greenlbl, "greenlbl");
             this.greenlbl.Name = "greenlbl";
-            // 
+            //
             // Redlbl
-            // 
+            //
             resources.ApplyResources(this.Redlbl, "Redlbl");
             this.Redlbl.Name = "Redlbl";
-            // 
+            //
             // Savebtn2
-            // 
+            //
             resources.ApplyResources(this.Savebtn2, "Savebtn2");
             this.Savebtn2.Name = "Savebtn2";
             this.Savebtn2.UseVisualStyleBackColor = true;
             this.Savebtn2.Click += new System.EventHandler(this.Savebtn_Click);
-            // 
+            //
             // Loadbtn2
-            // 
+            //
             resources.ApplyResources(this.Loadbtn2, "Loadbtn2");
             this.Loadbtn2.Name = "Loadbtn2";
             this.Loadbtn2.UseVisualStyleBackColor = true;
             this.Loadbtn2.Click += new System.EventHandler(this.Loadbtn_Click);
-            // 
+            //
             // Filenamelbl
-            // 
+            //
             resources.ApplyResources(this.Filenamelbl, "Filenamelbl");
             this.Filenamelbl.Name = "Filenamelbl";
-            // 
+            //
             // Filenametxt
-            // 
+            //
             resources.ApplyResources(this.Filenametxt, "Filenametxt");
             this.Filenametxt.Name = "Filenametxt";
-            // 
+            //
             // button3
-            // 
+            //
             resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = true;
-            // 
+            //
             // openFileDialog1
-            // 
+            //
             resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
-            // 
+            //
             // saveFileDialog1
-            // 
+            //
             this.saveFileDialog1.DefaultExt = "txt";
             resources.ApplyResources(this.saveFileDialog1, "saveFileDialog1");
-            // 
+            //
             // default_fltr
-            // 
+            //
             resources.ApplyResources(this.default_fltr, "default_fltr");
             this.default_fltr.Name = "default_fltr";
             this.default_fltr.UseVisualStyleBackColor = true;
             this.default_fltr.Click += new System.EventHandler(this.default_fltr_Click);
-            // 
+            //
             // UpdateFilterListbw
-            // 
+            //
             this.UpdateFilterListbw.WorkerReportsProgress = true;
             this.UpdateFilterListbw.WorkerSupportsCancellation = true;
             this.UpdateFilterListbw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.UpdateFilterListbw_DoWork);
             this.UpdateFilterListbw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.UpdateFilterListbw_ProgressChanged);
             this.UpdateFilterListbw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.UpdateFilterListbw_RunWorkerCompleted);
-            // 
+            //
             // FilterDirtab
-            // 
+            //
             this.FilterDirtab.BackColor = System.Drawing.SystemColors.Control;
             this.FilterDirtab.Controls.Add(this.subdirSearchcb);
             this.FilterDirtab.Controls.Add(this.remdirbtn);
@@ -523,23 +523,23 @@ namespace PdnFF
             this.FilterDirtab.Controls.Add(this.adddirbtn);
             resources.ApplyResources(this.FilterDirtab, "FilterDirtab");
             this.FilterDirtab.Name = "FilterDirtab";
-            // 
+            //
             // subdirSearchcb
-            // 
+            //
             resources.ApplyResources(this.subdirSearchcb, "subdirSearchcb");
             this.subdirSearchcb.Name = "subdirSearchcb";
             this.subdirSearchcb.UseVisualStyleBackColor = true;
             this.subdirSearchcb.Click += new System.EventHandler(this.subdirSearchcb_CheckedChanged);
-            // 
+            //
             // remdirbtn
-            // 
+            //
             resources.ApplyResources(this.remdirbtn, "remdirbtn");
             this.remdirbtn.Name = "remdirbtn";
             this.remdirbtn.UseVisualStyleBackColor = true;
             this.remdirbtn.Click += new System.EventHandler(this.remdirbtn_Click);
-            // 
+            //
             // DirlistView1
-            // 
+            //
             this.DirlistView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.pathColHeader});
             this.DirlistView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -549,20 +549,20 @@ namespace PdnFF
             this.DirlistView1.Name = "DirlistView1";
             this.DirlistView1.UseCompatibleStateImageBehavior = false;
             this.DirlistView1.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // pathColHeader
-            // 
+            //
             resources.ApplyResources(this.pathColHeader, "pathColHeader");
-            // 
+            //
             // adddirbtn
-            // 
+            //
             resources.ApplyResources(this.adddirbtn, "adddirbtn");
             this.adddirbtn.Name = "adddirbtn";
             this.adddirbtn.UseVisualStyleBackColor = true;
             this.adddirbtn.Click += new System.EventHandler(this.adddirbtn_Click);
-            // 
+            //
             // FilterManagertab
-            // 
+            //
             this.FilterManagertab.BackColor = System.Drawing.SystemColors.Control;
             this.FilterManagertab.Controls.Add(this.filterSearchBox);
             this.FilterManagertab.Controls.Add(this.treefltrcopytxt);
@@ -575,85 +575,85 @@ namespace PdnFF
             this.FilterManagertab.Controls.Add(this.filterlistcntlbl);
             resources.ApplyResources(this.FilterManagertab, "FilterManagertab");
             this.FilterManagertab.Name = "FilterManagertab";
-            // 
+            //
             // filterSearchBox
-            // 
+            //
             resources.ApplyResources(this.filterSearchBox, "filterSearchBox");
             this.filterSearchBox.ForeColor = System.Drawing.SystemColors.GrayText;
             this.filterSearchBox.Name = "filterSearchBox";
             this.filterSearchBox.TextChanged += new System.EventHandler(this.filterSearchBox_TextChanged);
             this.filterSearchBox.Enter += new System.EventHandler(this.filterSearchBox_Enter);
             this.filterSearchBox.Leave += new System.EventHandler(this.filterSearchBox_Leave);
-            // 
+            //
             // treefltrcopytxt
-            // 
+            //
             resources.ApplyResources(this.treefltrcopytxt, "treefltrcopytxt");
             this.treefltrcopytxt.Name = "treefltrcopytxt";
-            // 
+            //
             // treefltrauthtxt
-            // 
+            //
             resources.ApplyResources(this.treefltrauthtxt, "treefltrauthtxt");
             this.treefltrauthtxt.Name = "treefltrauthtxt";
-            // 
+            //
             // treefltrcopylbl
-            // 
+            //
             resources.ApplyResources(this.treefltrcopylbl, "treefltrcopylbl");
             this.treefltrcopylbl.Name = "treefltrcopylbl";
-            // 
+            //
             // treefltrauthlbl
-            // 
+            //
             resources.ApplyResources(this.treefltrauthlbl, "treefltrauthlbl");
             this.treefltrauthlbl.Name = "treefltrauthlbl";
-            // 
+            //
             // filtertreeview
-            // 
+            //
             this.filtertreeview.HideSelection = false;
             resources.ApplyResources(this.filtertreeview, "filtertreeview");
             this.filtertreeview.Name = "filtertreeview";
             this.filtertreeview.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.filtertreeview_AfterSelect);
-            // 
+            //
             // filtermgrprogresspanel
-            // 
+            //
             this.filtermgrprogresspanel.Controls.Add(this.folderloadnamelbl);
             this.filtermgrprogresspanel.Controls.Add(this.folderloadcountlbl);
             this.filtermgrprogresspanel.Controls.Add(this.folderldprolbl);
             this.filtermgrprogresspanel.Controls.Add(this.fltrmgrprogress);
             resources.ApplyResources(this.filtermgrprogresspanel, "filtermgrprogresspanel");
             this.filtermgrprogresspanel.Name = "filtermgrprogresspanel";
-            // 
+            //
             // folderloadnamelbl
-            // 
+            //
             resources.ApplyResources(this.folderloadnamelbl, "folderloadnamelbl");
             this.folderloadnamelbl.Name = "folderloadnamelbl";
-            // 
+            //
             // folderloadcountlbl
-            // 
+            //
             resources.ApplyResources(this.folderloadcountlbl, "folderloadcountlbl");
             this.folderloadcountlbl.Name = "folderloadcountlbl";
-            // 
+            //
             // folderldprolbl
-            // 
+            //
             resources.ApplyResources(this.folderldprolbl, "folderldprolbl");
             this.folderldprolbl.Name = "folderldprolbl";
-            // 
+            //
             // fltrmgrprogress
-            // 
+            //
             resources.ApplyResources(this.fltrmgrprogress, "fltrmgrprogress");
             this.fltrmgrprogress.Name = "fltrmgrprogress";
             this.fltrmgrprogress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // 
+            //
             // filterlistcnttxt
-            // 
+            //
             resources.ApplyResources(this.filterlistcnttxt, "filterlistcnttxt");
             this.filterlistcnttxt.Name = "filterlistcnttxt";
-            // 
+            //
             // filterlistcntlbl
-            // 
+            //
             resources.ApplyResources(this.filterlistcntlbl, "filterlistcntlbl");
             this.filterlistcntlbl.Name = "filterlistcntlbl";
-            // 
+            //
             // FFLtab
-            // 
+            //
             this.FFLtab.BackColor = System.Drawing.SystemColors.Control;
             this.FFLtab.Controls.Add(this.ffltreecopytxt);
             this.FFLtab.Controls.Add(this.ffltreeauthtxt);
@@ -668,70 +668,70 @@ namespace PdnFF
             this.FFLtab.Controls.Add(this.LoadFFLbtn);
             resources.ApplyResources(this.FFLtab, "FFLtab");
             this.FFLtab.Name = "FFLtab";
-            // 
+            //
             // ffltreecopytxt
-            // 
+            //
             resources.ApplyResources(this.ffltreecopytxt, "ffltreecopytxt");
             this.ffltreecopytxt.Name = "ffltreecopytxt";
-            // 
+            //
             // ffltreeauthtxt
-            // 
+            //
             resources.ApplyResources(this.ffltreeauthtxt, "ffltreeauthtxt");
             this.ffltreeauthtxt.Name = "ffltreeauthtxt";
-            // 
+            //
             // ffltreecopylbl
-            // 
+            //
             resources.ApplyResources(this.ffltreecopylbl, "ffltreecopylbl");
             this.ffltreecopylbl.Name = "ffltreecopylbl";
-            // 
+            //
             // ffltreeauthlbl
-            // 
+            //
             resources.ApplyResources(this.ffltreeauthlbl, "ffltreeauthlbl");
             this.ffltreeauthlbl.Name = "ffltreeauthlbl";
-            // 
+            //
             // FFLtreeView1
-            // 
+            //
             this.FFLtreeView1.HideSelection = false;
             resources.ApplyResources(this.FFLtreeView1, "FFLtreeView1");
             this.FFLtreeView1.Name = "FFLtreeView1";
             this.FFLtreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.FFLtreeView1_AfterSelect);
-            // 
+            //
             // FFLfltrnumtxt
-            // 
+            //
             resources.ApplyResources(this.FFLfltrnumtxt, "FFLfltrnumtxt");
             this.FFLfltrnumtxt.Name = "FFLfltrnumtxt";
-            // 
+            //
             // FFLfltrnumlbl
-            // 
+            //
             resources.ApplyResources(this.FFLfltrnumlbl, "FFLfltrnumlbl");
             this.FFLfltrnumlbl.Name = "FFLfltrnumlbl";
-            // 
+            //
             // fflnametxt
-            // 
+            //
             resources.ApplyResources(this.fflnametxt, "fflnametxt");
             this.fflnametxt.Name = "fflnametxt";
-            // 
+            //
             // FFLnamelbl
-            // 
+            //
             resources.ApplyResources(this.FFLnamelbl, "FFLnamelbl");
             this.FFLnamelbl.Name = "FFLnamelbl";
-            // 
+            //
             // clearFFLbtn
-            // 
+            //
             resources.ApplyResources(this.clearFFLbtn, "clearFFLbtn");
             this.clearFFLbtn.Name = "clearFFLbtn";
             this.clearFFLbtn.UseVisualStyleBackColor = true;
             this.clearFFLbtn.Click += new System.EventHandler(this.clearFFLbtn_Click);
-            // 
+            //
             // LoadFFLbtn
-            // 
+            //
             resources.ApplyResources(this.LoadFFLbtn, "LoadFFLbtn");
             this.LoadFFLbtn.Name = "LoadFFLbtn";
             this.LoadFFLbtn.UseVisualStyleBackColor = true;
             this.LoadFFLbtn.Click += new System.EventHandler(this.LoadFFLbtn_Click);
-            // 
+            //
             // editorTab
-            // 
+            //
             this.editorTab.BackColor = System.Drawing.SystemColors.Control;
             this.editorTab.Controls.Add(this.Interfacegb);
             this.editorTab.Controls.Add(this.label1);
@@ -748,9 +748,9 @@ namespace PdnFF
             this.editorTab.Controls.Add(this.button1);
             resources.ApplyResources(this.editorTab, "editorTab");
             this.editorTab.Name = "editorTab";
-            // 
+            //
             // Interfacegb
-            // 
+            //
             this.Interfacegb.Controls.Add(this.ctl5num);
             this.Interfacegb.Controls.Add(this.ctl4num);
             this.Interfacegb.Controls.Add(this.ctl6num);
@@ -798,9 +798,9 @@ namespace PdnFF
             resources.ApplyResources(this.Interfacegb, "Interfacegb");
             this.Interfacegb.Name = "Interfacegb";
             this.Interfacegb.TabStop = false;
-            // 
+            //
             // ctl5num
-            // 
+            //
             resources.ApplyResources(this.ctl5num, "ctl5num");
             this.ctl5num.Maximum = new decimal(new int[] {
             255,
@@ -809,9 +809,9 @@ namespace PdnFF
             0});
             this.ctl5num.Name = "ctl5num";
             this.ctl5num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // ctl4num
-            // 
+            //
             resources.ApplyResources(this.ctl4num, "ctl4num");
             this.ctl4num.Maximum = new decimal(new int[] {
             255,
@@ -820,9 +820,9 @@ namespace PdnFF
             0});
             this.ctl4num.Name = "ctl4num";
             this.ctl4num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // ctl6num
-            // 
+            //
             resources.ApplyResources(this.ctl6num, "ctl6num");
             this.ctl6num.Maximum = new decimal(new int[] {
             255,
@@ -831,9 +831,9 @@ namespace PdnFF
             0});
             this.ctl6num.Name = "ctl6num";
             this.ctl6num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // ctl7num
-            // 
+            //
             resources.ApplyResources(this.ctl7num, "ctl7num");
             this.ctl7num.Maximum = new decimal(new int[] {
             255,
@@ -842,9 +842,9 @@ namespace PdnFF
             0});
             this.ctl7num.Name = "ctl7num";
             this.ctl7num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // ctl3num
-            // 
+            //
             resources.ApplyResources(this.ctl3num, "ctl3num");
             this.ctl3num.Maximum = new decimal(new int[] {
             255,
@@ -853,9 +853,9 @@ namespace PdnFF
             0});
             this.ctl3num.Name = "ctl3num";
             this.ctl3num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // ctl2num
-            // 
+            //
             resources.ApplyResources(this.ctl2num, "ctl2num");
             this.ctl2num.Maximum = new decimal(new int[] {
             255,
@@ -864,9 +864,9 @@ namespace PdnFF
             0});
             this.ctl2num.Name = "ctl2num";
             this.ctl2num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // ctl1num
-            // 
+            //
             resources.ApplyResources(this.ctl1num, "ctl1num");
             this.ctl1num.Maximum = new decimal(new int[] {
             255,
@@ -875,225 +875,225 @@ namespace PdnFF
             0});
             this.ctl1num.Name = "ctl1num";
             this.ctl1num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // ctl7txt
-            // 
+            //
             resources.ApplyResources(this.ctl7txt, "ctl7txt");
             this.ctl7txt.Name = "ctl7txt";
             this.ctl7txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // ctl7cb
-            // 
+            //
             resources.ApplyResources(this.ctl7cb, "ctl7cb");
             this.ctl7cb.Name = "ctl7cb";
             this.ctl7cb.UseVisualStyleBackColor = true;
             this.ctl7cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label18
-            // 
+            //
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
-            // 
+            //
             // ctl6txt
-            // 
+            //
             resources.ApplyResources(this.ctl6txt, "ctl6txt");
             this.ctl6txt.Name = "ctl6txt";
             this.ctl6txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // ctl6cb
-            // 
+            //
             resources.ApplyResources(this.ctl6cb, "ctl6cb");
             this.ctl6cb.Name = "ctl6cb";
             this.ctl6cb.UseVisualStyleBackColor = true;
             this.ctl6cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // ctl3txt
-            // 
+            //
             resources.ApplyResources(this.ctl3txt, "ctl3txt");
             this.ctl3txt.Name = "ctl3txt";
             this.ctl3txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // label17
-            // 
+            //
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            // 
+            //
             // ctl3cb
-            // 
+            //
             resources.ApplyResources(this.ctl3cb, "ctl3cb");
             this.ctl3cb.Name = "ctl3cb";
             this.ctl3cb.UseVisualStyleBackColor = true;
             this.ctl3cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label16
-            // 
+            //
             resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
-            // 
+            //
             // ctl2txt
-            // 
+            //
             resources.ApplyResources(this.ctl2txt, "ctl2txt");
             this.ctl2txt.Name = "ctl2txt";
             this.ctl2txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // ctl2cb
-            // 
+            //
             resources.ApplyResources(this.ctl2cb, "ctl2cb");
             this.ctl2cb.Name = "ctl2cb";
             this.ctl2cb.UseVisualStyleBackColor = true;
             this.ctl2cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label15
-            // 
+            //
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
-            // 
+            //
             // ctl5txt
-            // 
+            //
             resources.ApplyResources(this.ctl5txt, "ctl5txt");
             this.ctl5txt.Name = "ctl5txt";
             this.ctl5txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // ctl5cb
-            // 
+            //
             resources.ApplyResources(this.ctl5cb, "ctl5cb");
             this.ctl5cb.Name = "ctl5cb";
             this.ctl5cb.UseVisualStyleBackColor = true;
             this.ctl5cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label14
-            // 
+            //
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            // 
+            //
             // ctl1txt
-            // 
+            //
             resources.ApplyResources(this.ctl1txt, "ctl1txt");
             this.ctl1txt.Name = "ctl1txt";
             this.ctl1txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // ctl1cb
-            // 
+            //
             resources.ApplyResources(this.ctl1cb, "ctl1cb");
             this.ctl1cb.Name = "ctl1cb";
             this.ctl1cb.UseVisualStyleBackColor = true;
             this.ctl1cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label13
-            // 
+            //
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            // 
+            //
             // ctl4txt
-            // 
+            //
             resources.ApplyResources(this.ctl4txt, "ctl4txt");
             this.ctl4txt.Name = "ctl4txt";
             this.ctl4txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // ctl4cb
-            // 
+            //
             resources.ApplyResources(this.ctl4cb, "ctl4cb");
             this.ctl4cb.Name = "ctl4cb";
             this.ctl4cb.UseVisualStyleBackColor = true;
             this.ctl4cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label12
-            // 
+            //
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            // 
+            //
             // ctl0txt
-            // 
+            //
             resources.ApplyResources(this.ctl0txt, "ctl0txt");
             this.ctl0txt.Name = "ctl0txt";
             this.ctl0txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // ctl0cb
-            // 
+            //
             resources.ApplyResources(this.ctl0cb, "ctl0cb");
             this.ctl0cb.Name = "ctl0cb";
             this.ctl0cb.UseVisualStyleBackColor = true;
             this.ctl0cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label11
-            // 
+            //
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            // 
+            //
             // map2txt
-            // 
+            //
             resources.ApplyResources(this.map2txt, "map2txt");
             this.map2txt.Name = "map2txt";
             this.map2txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // map2cb
-            // 
+            //
             resources.ApplyResources(this.map2cb, "map2cb");
             this.map2cb.Name = "map2cb";
             this.map2cb.UseVisualStyleBackColor = true;
             this.map2cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // map2lbl
-            // 
+            //
             resources.ApplyResources(this.map2lbl, "map2lbl");
             this.map2lbl.Name = "map2lbl";
-            // 
+            //
             // map1txt
-            // 
+            //
             resources.ApplyResources(this.map1txt, "map1txt");
             this.map1txt.Name = "map1txt";
             this.map1txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // map1cb
-            // 
+            //
             resources.ApplyResources(this.map1cb, "map1cb");
             this.map1cb.Name = "map1cb";
             this.map1cb.UseVisualStyleBackColor = true;
             this.map1cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // map1lbl
-            // 
+            //
             resources.ApplyResources(this.map1lbl, "map1lbl");
             this.map1lbl.Name = "map1lbl";
-            // 
+            //
             // map3txt
-            // 
+            //
             resources.ApplyResources(this.map3txt, "map3txt");
             this.map3txt.Name = "map3txt";
             this.map3txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // map3cb
-            // 
+            //
             resources.ApplyResources(this.map3cb, "map3cb");
             this.map3cb.Name = "map3cb";
             this.map3cb.UseVisualStyleBackColor = true;
             this.map3cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // map3lbl
-            // 
+            //
             resources.ApplyResources(this.map3lbl, "map3lbl");
             this.map3lbl.Name = "map3lbl";
-            // 
+            //
             // map0txt
-            // 
+            //
             resources.ApplyResources(this.map0txt, "map0txt");
             this.map0txt.Name = "map0txt";
             this.map0txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            // 
+            //
             // map0cb
-            // 
+            //
             resources.ApplyResources(this.map0cb, "map0cb");
             this.map0cb.Name = "map0cb";
             this.map0cb.UseVisualStyleBackColor = true;
             this.map0cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            // 
+            //
             // label10
-            // 
+            //
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            // 
+            //
             // ctl0num
-            // 
+            //
             resources.ApplyResources(this.ctl0num, "ctl0num");
             this.ctl0num.Maximum = new decimal(new int[] {
             255,
@@ -1102,29 +1102,29 @@ namespace PdnFF
             0});
             this.ctl0num.Name = "ctl0num";
             this.ctl0num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            // 
+            //
             // label1
-            // 
+            //
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
+            //
             // label2
-            // 
+            //
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
+            //
             // label4
-            // 
+            //
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            // 
+            //
             // label5
-            // 
+            //
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            // 
+            //
             // Infogb
-            // 
+            //
             this.Infogb.BackColor = System.Drawing.Color.Transparent;
             this.Infogb.Controls.Add(this.infofilterlbl);
             this.Infogb.Controls.Add(this.infocatlbl);
@@ -1137,101 +1137,101 @@ namespace PdnFF
             resources.ApplyResources(this.Infogb, "Infogb");
             this.Infogb.Name = "Infogb";
             this.Infogb.TabStop = false;
-            // 
+            //
             // infofilterlbl
-            // 
+            //
             resources.ApplyResources(this.infofilterlbl, "infofilterlbl");
             this.infofilterlbl.Name = "infofilterlbl";
-            // 
+            //
             // infocatlbl
-            // 
+            //
             resources.ApplyResources(this.infocatlbl, "infocatlbl");
             this.infocatlbl.Name = "infocatlbl";
-            // 
+            //
             // infoauthlbl
-            // 
+            //
             resources.ApplyResources(this.infoauthlbl, "infoauthlbl");
             this.infoauthlbl.Name = "infoauthlbl";
-            // 
+            //
             // infocopylbl
-            // 
+            //
             resources.ApplyResources(this.infocopylbl, "infocopylbl");
             this.infocopylbl.Name = "infocopylbl";
-            // 
+            //
             // CategoryBox
-            // 
+            //
             resources.ApplyResources(this.CategoryBox, "CategoryBox");
             this.CategoryBox.Name = "CategoryBox";
             this.CategoryBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            // 
+            //
             // CopyrightBox
-            // 
+            //
             resources.ApplyResources(this.CopyrightBox, "CopyrightBox");
             this.CopyrightBox.Name = "CopyrightBox";
             this.CopyrightBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            // 
+            //
             // AuthorBox
-            // 
+            //
             resources.ApplyResources(this.AuthorBox, "AuthorBox");
             this.AuthorBox.Name = "AuthorBox";
             this.AuthorBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            // 
+            //
             // TitleBox
-            // 
+            //
             resources.ApplyResources(this.TitleBox, "TitleBox");
             this.TitleBox.Name = "TitleBox";
             this.TitleBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            // 
+            //
             // AlphaBox
-            // 
+            //
             resources.ApplyResources(this.AlphaBox, "AlphaBox");
             this.AlphaBox.Name = "AlphaBox";
             this.AlphaBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
             this.AlphaBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AlphaBox_KeyDown);
-            // 
+            //
             // BlueBox
-            // 
+            //
             resources.ApplyResources(this.BlueBox, "BlueBox");
             this.BlueBox.Name = "BlueBox";
             this.BlueBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
             this.BlueBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BlueBox_KeyDown);
-            // 
+            //
             // GreenBox
-            // 
+            //
             resources.ApplyResources(this.GreenBox, "GreenBox");
             this.GreenBox.Name = "GreenBox";
             this.GreenBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
             this.GreenBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GreenBox_KeyDown);
-            // 
+            //
             // RedBox
-            // 
+            //
             resources.ApplyResources(this.RedBox, "RedBox");
             this.RedBox.Name = "RedBox";
             this.RedBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
             this.RedBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RedBox_KeyDown);
-            // 
+            //
             // Savebtn
-            // 
+            //
             resources.ApplyResources(this.Savebtn, "Savebtn");
             this.Savebtn.Name = "Savebtn";
             this.Savebtn.UseVisualStyleBackColor = true;
-            // 
+            //
             // button2
-            // 
+            //
             resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
+            //
             // button1
-            // 
+            //
             resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
+            //
             // controlsTab
-            // 
+            //
             this.controlsTab.BackColor = System.Drawing.SystemColors.Control;
             this.controlsTab.Controls.Add(this.fltrAuthorTxt);
             this.controlsTab.Controls.Add(this.fltrTitletxt);
@@ -1244,49 +1244,49 @@ namespace PdnFF
             this.controlsTab.Controls.Add(this.ctlpanel);
             resources.ApplyResources(this.controlsTab, "controlsTab");
             this.controlsTab.Name = "controlsTab";
-            // 
+            //
             // fltrAuthorTxt
-            // 
+            //
             resources.ApplyResources(this.fltrAuthorTxt, "fltrAuthorTxt");
             this.fltrAuthorTxt.Name = "fltrAuthorTxt";
-            // 
+            //
             // fltrTitletxt
-            // 
+            //
             resources.ApplyResources(this.fltrTitletxt, "fltrTitletxt");
             this.fltrTitletxt.Name = "fltrTitletxt";
-            // 
+            //
             // fltrTitlelbl
-            // 
+            //
             resources.ApplyResources(this.fltrTitlelbl, "fltrTitlelbl");
             this.fltrTitlelbl.Name = "fltrTitlelbl";
-            // 
+            //
             // copylbl
-            // 
+            //
             resources.ApplyResources(this.copylbl, "copylbl");
             this.copylbl.Name = "copylbl";
-            // 
+            //
             // authlbl
-            // 
+            //
             resources.ApplyResources(this.authlbl, "authlbl");
             this.authlbl.Name = "authlbl";
-            // 
+            //
             // catlbl
-            // 
+            //
             resources.ApplyResources(this.catlbl, "catlbl");
             this.catlbl.Name = "catlbl";
-            // 
+            //
             // fltrCopyTxt
-            // 
+            //
             resources.ApplyResources(this.fltrCopyTxt, "fltrCopyTxt");
             this.fltrCopyTxt.Name = "fltrCopyTxt";
-            // 
+            //
             // fltrCatTxt
-            // 
+            //
             resources.ApplyResources(this.fltrCatTxt, "fltrCatTxt");
             this.fltrCatTxt.Name = "fltrCatTxt";
-            // 
+            //
             // ctlpanel
-            // 
+            //
             this.ctlpanel.BackColor = System.Drawing.SystemColors.Control;
             this.ctlpanel.Controls.Add(this.ctllbl2);
             this.ctlpanel.Controls.Add(this.resetbtn1);
@@ -1326,150 +1326,150 @@ namespace PdnFF
             this.ctlpanel.Controls.Add(this.map1_lbl);
             resources.ApplyResources(this.ctlpanel, "ctlpanel");
             this.ctlpanel.Name = "ctlpanel";
-            // 
+            //
             // ctllbl2
-            // 
+            //
             resources.ApplyResources(this.ctllbl2, "ctllbl2");
             this.ctllbl2.Name = "ctllbl2";
-            // 
+            //
             // resetbtn1
-            // 
+            //
             resources.ApplyResources(this.resetbtn1, "resetbtn1");
             this.resetbtn1.Name = "resetbtn1";
             this.resetbtn1.UseVisualStyleBackColor = true;
             this.resetbtn1.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // resetbtn7
-            // 
+            //
             resources.ApplyResources(this.resetbtn7, "resetbtn7");
             this.resetbtn7.Name = "resetbtn7";
             this.resetbtn7.UseVisualStyleBackColor = true;
             this.resetbtn7.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // resetbtn6
-            // 
+            //
             resources.ApplyResources(this.resetbtn6, "resetbtn6");
             this.resetbtn6.Name = "resetbtn6";
             this.resetbtn6.UseVisualStyleBackColor = true;
             this.resetbtn6.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // resetbtn5
-            // 
+            //
             resources.ApplyResources(this.resetbtn5, "resetbtn5");
             this.resetbtn5.Name = "resetbtn5";
             this.resetbtn5.UseVisualStyleBackColor = true;
             this.resetbtn5.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // resetbtn4
-            // 
+            //
             resources.ApplyResources(this.resetbtn4, "resetbtn4");
             this.resetbtn4.Name = "resetbtn4";
             this.resetbtn4.UseVisualStyleBackColor = true;
             this.resetbtn4.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // resetbtn3
-            // 
+            //
             resources.ApplyResources(this.resetbtn3, "resetbtn3");
             this.resetbtn3.Name = "resetbtn3";
             this.resetbtn3.UseVisualStyleBackColor = true;
             this.resetbtn3.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // resetbtn2
-            // 
+            //
             resources.ApplyResources(this.resetbtn2, "resetbtn2");
             this.resetbtn2.Name = "resetbtn2";
             this.resetbtn2.UseVisualStyleBackColor = true;
             this.resetbtn2.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // ctllbl7
-            // 
+            //
             resources.ApplyResources(this.ctllbl7, "ctllbl7");
             this.ctllbl7.Name = "ctllbl7";
-            // 
+            //
             // ctllbl6
-            // 
+            //
             resources.ApplyResources(this.ctllbl6, "ctllbl6");
             this.ctllbl6.Name = "ctllbl6";
-            // 
+            //
             // resetbtn0
-            // 
+            //
             resources.ApplyResources(this.resetbtn0, "resetbtn0");
             this.resetbtn0.Name = "resetbtn0";
             this.resetbtn0.UseVisualStyleBackColor = true;
             this.resetbtn0.Click += new System.EventHandler(this.resetbtn_Click);
-            // 
+            //
             // ctllbl5
-            // 
+            //
             resources.ApplyResources(this.ctllbl5, "ctllbl5");
             this.ctllbl5.Name = "ctllbl5";
-            // 
+            //
             // ctl7
-            // 
+            //
             resources.ApplyResources(this.ctl7, "ctl7");
             this.ctl7.Maximum = 255;
             this.ctl7.Name = "ctl7";
             this.ctl7.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl7.Scroll += new System.EventHandler(this.ctl7_ValueChanged);
             this.ctl7.ValueChanged += new System.EventHandler(this.ctl7_ValueChanged);
-            // 
+            //
             // ctllbl4
-            // 
+            //
             resources.ApplyResources(this.ctllbl4, "ctllbl4");
             this.ctllbl4.Name = "ctllbl4";
-            // 
+            //
             // ctl6
-            // 
+            //
             resources.ApplyResources(this.ctl6, "ctl6");
             this.ctl6.Maximum = 255;
             this.ctl6.Name = "ctl6";
             this.ctl6.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl6.Scroll += new System.EventHandler(this.ctl6_ValueChanged);
             this.ctl6.ValueChanged += new System.EventHandler(this.ctl6_ValueChanged);
-            // 
+            //
             // ctllbl3
-            // 
+            //
             resources.ApplyResources(this.ctllbl3, "ctllbl3");
             this.ctllbl3.Name = "ctllbl3";
-            // 
+            //
             // ctl5
-            // 
+            //
             resources.ApplyResources(this.ctl5, "ctl5");
             this.ctl5.Maximum = 255;
             this.ctl5.Name = "ctl5";
             this.ctl5.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl5.Scroll += new System.EventHandler(this.ctl5_ValueChanged);
             this.ctl5.ValueChanged += new System.EventHandler(this.ctl5_ValueChanged);
-            // 
+            //
             // ctl4
-            // 
+            //
             resources.ApplyResources(this.ctl4, "ctl4");
             this.ctl4.Maximum = 255;
             this.ctl4.Name = "ctl4";
             this.ctl4.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl4.Scroll += new System.EventHandler(this.ctl4_ValueChanged);
             this.ctl4.ValueChanged += new System.EventHandler(this.ctl4_ValueChanged);
-            // 
+            //
             // ctllbl1
-            // 
+            //
             resources.ApplyResources(this.ctllbl1, "ctllbl1");
             this.ctllbl1.Name = "ctllbl1";
-            // 
+            //
             // ctl3
-            // 
+            //
             resources.ApplyResources(this.ctl3, "ctl3");
             this.ctl3.Maximum = 255;
             this.ctl3.Name = "ctl3";
             this.ctl3.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl3.Scroll += new System.EventHandler(this.ctl3_ValueChanged);
             this.ctl3.ValueChanged += new System.EventHandler(this.ctl3_ValueChanged);
-            // 
+            //
             // ctllbl0
-            // 
+            //
             resources.ApplyResources(this.ctllbl0, "ctllbl0");
             this.ctllbl0.Name = "ctllbl0";
-            // 
+            //
             // ctl7_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl7_UpDown, "ctl7_UpDown");
             this.ctl7_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1478,14 +1478,14 @@ namespace PdnFF
             0});
             this.ctl7_UpDown.Name = "ctl7_UpDown";
             this.ctl7_UpDown.ValueChanged += new System.EventHandler(this.ctl7_UpDown_ValueChanged);
-            // 
+            //
             // map3_lbl
-            // 
+            //
             resources.ApplyResources(this.map3_lbl, "map3_lbl");
             this.map3_lbl.Name = "map3_lbl";
-            // 
+            //
             // ctl6_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl6_UpDown, "ctl6_UpDown");
             this.ctl6_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1494,14 +1494,14 @@ namespace PdnFF
             0});
             this.ctl6_UpDown.Name = "ctl6_UpDown";
             this.ctl6_UpDown.ValueChanged += new System.EventHandler(this.ctl6_UpDown_ValueChanged);
-            // 
+            //
             // map2_lbl
-            // 
+            //
             resources.ApplyResources(this.map2_lbl, "map2_lbl");
             this.map2_lbl.Name = "map2_lbl";
-            // 
+            //
             // ctl4_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl4_UpDown, "ctl4_UpDown");
             this.ctl4_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1510,9 +1510,9 @@ namespace PdnFF
             0});
             this.ctl4_UpDown.Name = "ctl4_UpDown";
             this.ctl4_UpDown.ValueChanged += new System.EventHandler(this.ctl4_UpDown_ValueChanged);
-            // 
+            //
             // ctl5_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl5_UpDown, "ctl5_UpDown");
             this.ctl5_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1521,14 +1521,14 @@ namespace PdnFF
             0});
             this.ctl5_UpDown.Name = "ctl5_UpDown";
             this.ctl5_UpDown.ValueChanged += new System.EventHandler(this.ctl5_UpDown_ValueChanged);
-            // 
+            //
             // map0_lbl
-            // 
+            //
             resources.ApplyResources(this.map0_lbl, "map0_lbl");
             this.map0_lbl.Name = "map0_lbl";
-            // 
+            //
             // ctl3_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl3_UpDown, "ctl3_UpDown");
             this.ctl3_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1537,9 +1537,9 @@ namespace PdnFF
             0});
             this.ctl3_UpDown.Name = "ctl3_UpDown";
             this.ctl3_UpDown.ValueChanged += new System.EventHandler(this.ctl3_UpDown_ValueChanged);
-            // 
+            //
             // ctl2_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl2_UpDown, "ctl2_UpDown");
             this.ctl2_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1548,9 +1548,9 @@ namespace PdnFF
             0});
             this.ctl2_UpDown.Name = "ctl2_UpDown";
             this.ctl2_UpDown.ValueChanged += new System.EventHandler(this.ctl2_UpDown_ValueChanged);
-            // 
+            //
             // ctl1_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl1_UpDown, "ctl1_UpDown");
             this.ctl1_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1559,9 +1559,9 @@ namespace PdnFF
             0});
             this.ctl1_UpDown.Name = "ctl1_UpDown";
             this.ctl1_UpDown.ValueChanged += new System.EventHandler(this.ctl1_UpDown_ValueChanged);
-            // 
+            //
             // ctl0_UpDown
-            // 
+            //
             resources.ApplyResources(this.ctl0_UpDown, "ctl0_UpDown");
             this.ctl0_UpDown.Maximum = new decimal(new int[] {
             255,
@@ -1570,41 +1570,41 @@ namespace PdnFF
             0});
             this.ctl0_UpDown.Name = "ctl0_UpDown";
             this.ctl0_UpDown.ValueChanged += new System.EventHandler(this.ctl0_UpDown_ValueChanged);
-            // 
+            //
             // ctl2
-            // 
+            //
             resources.ApplyResources(this.ctl2, "ctl2");
             this.ctl2.Maximum = 255;
             this.ctl2.Name = "ctl2";
             this.ctl2.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl2.Scroll += new System.EventHandler(this.ctl2_ValueChanged);
             this.ctl2.ValueChanged += new System.EventHandler(this.ctl2_ValueChanged);
-            // 
+            //
             // ctl1
-            // 
+            //
             resources.ApplyResources(this.ctl1, "ctl1");
             this.ctl1.Maximum = 255;
             this.ctl1.Name = "ctl1";
             this.ctl1.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl1.Scroll += new System.EventHandler(this.ctl1_ValueChanged);
             this.ctl1.ValueChanged += new System.EventHandler(this.ctl1_ValueChanged);
-            // 
+            //
             // ctl0
-            // 
+            //
             resources.ApplyResources(this.ctl0, "ctl0");
             this.ctl0.Maximum = 255;
             this.ctl0.Name = "ctl0";
             this.ctl0.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ctl0.Scroll += new System.EventHandler(this.ctl0_ValueChanged);
             this.ctl0.ValueChanged += new System.EventHandler(this.ctl0_ValueChanged);
-            // 
+            //
             // map1_lbl
-            // 
+            //
             resources.ApplyResources(this.map1_lbl, "map1_lbl");
             this.map1_lbl.Name = "map1_lbl";
-            // 
+            //
             // tabControl1
-            // 
+            //
             this.tabControl1.Controls.Add(this.controlsTab);
             this.tabControl1.Controls.Add(this.editorTab);
             this.tabControl1.Controls.Add(this.FFLtab);
@@ -1613,23 +1613,23 @@ namespace PdnFF
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            // 
+            //
             // buildfilterbtn
-            // 
+            //
             resources.ApplyResources(this.buildfilterbtn, "buildfilterbtn");
             this.buildfilterbtn.Name = "buildfilterbtn";
             this.buildfilterbtn.UseVisualStyleBackColor = true;
             this.buildfilterbtn.Click += new System.EventHandler(this.buildfilterbtn_Click);
-            // 
+            //
             // imageList1
-            // 
+            //
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "VSFolder_open.bmp");
             this.imageList1.Images.SetKeyName(1, "VSFolder_closed.bmp");
-            // 
+            //
             // PdnFFConfigDialog
-            // 
+            //
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.buildfilterbtn);
             this.Controls.Add(this.default_fltr);
@@ -1730,7 +1730,7 @@ namespace PdnFF
 			for (int i = 0; i < 8; i++)
 			{
 				// set the reset values but keep the last control values
-				resetdata[i] = tmpdata.ControlValue[i]; 
+				resetdata[i] = tmpdata.ControlValue[i];
 				data.ControlLabel[i] = tmpdata.ControlLabel[i];
 				data.ControlEnable[i] = tmpdata.ControlEnable[i];
 			}
@@ -1753,13 +1753,13 @@ namespace PdnFF
 			fltrAuthorTxt.Text = data.Author;
 			fltrCopyTxt.Text = data.Copyright;
 		}
-		
+
 		private void LoadFilter(string FileName, bool uselastvalues)
 		{
 			try
 			{
 				if (uselastvalues)
-				{                        
+				{
 					ClearEditControls();
 					filter_data tmpdata = new filter_data();
 					if (FFLoadSave.LoadFile(FileName, tmpdata))
@@ -1775,11 +1775,11 @@ namespace PdnFF
 					}
 				}
 				else
-				{                          
-					 
+				{
+
 					data = NewFilterData();
 					SetControls(data); // set the edit controls to the empty data to force all the checkboxes to be unchecked
-					ClearEditControls();     
+					ClearEditControls();
 					if (FFLoadSave.LoadFile(FileName, data))
 					{
 						this.Filenametxt.Text = Path.GetFileName(FileName);
@@ -1806,20 +1806,20 @@ namespace PdnFF
 #else
 				MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 #endif
-				
+
 				default_fltr_Click(null, null);
 			}
 		}
 		private ErrorProvider ep = new ErrorProvider();
 		/// <summary>
-		/// Validates the syntax of the Source code 
+		/// Validates the syntax of the Source code
 		/// </summary>
 		/// <param name="src">The Source code to check</param>
 		/// <returns>True if valid otherwise false</returns>
 		private static bool ValidateApplybtn(string src)
 		{
 			bool valid = false;
-		   
+
 			if (src.Length > 0)
 			{
 				if (ffparse.ValidateSrc(src) == 1)
@@ -1942,12 +1942,12 @@ namespace PdnFF
 			if (this.ctl4_UpDown.Value > this.ctl4_UpDown.Maximum) this.ctl4_UpDown.Value = (int)this.ctl4_UpDown.Maximum;
 			this.ctl4.Value = (int)this.ctl4_UpDown.Value;
 		}
-		
+
 		private void ctl4_ValueChanged(object sender, EventArgs e)
 		{
 			if (this.ctl4.Value < this.ctl4.Minimum) this.ctl4.Value = (int)this.ctl4.Minimum;
 			if (this.ctl4.Value > this.ctl4.Maximum) this.ctl4.Value = (int)this.ctl4.Maximum;
-			
+
 			if ((int)this.ctl4_UpDown.Value != this.ctl4.Value)
 			{
 				this.ctl4_UpDown.Value = this.ctl4.Value;
@@ -2032,7 +2032,7 @@ namespace PdnFF
 			}
 		}
 
-	   
+
 		/// <summary>
 		/// Set the visability of the controls tab based on the filter_data PopDialog
 		/// </summary>
@@ -2091,7 +2091,7 @@ namespace PdnFF
 			RedBox.Text = data.Source[0];
 			GreenBox.Text = data.Source[1];
 			BlueBox.Text = data.Source[2];
-			AlphaBox.Text = data.Source[3]; 
+			AlphaBox.Text = data.Source[3];
 			#endregion
 			#region filter info
 			AuthorBox.Text = data.Author;
@@ -2134,7 +2134,7 @@ namespace PdnFF
 				{
 					map0cb.Checked = false;
 				}
-			   
+
 				if (data.ControlEnable[0] > 0)
 				{
 					ctl0cb.Checked = true;
@@ -2250,7 +2250,7 @@ namespace PdnFF
 				{
 					map2cb.Checked = false;
 				}
-			   
+
 				if (data.ControlEnable[4] > 0)
 				{
 					ctl4cb.Checked = true;
@@ -2283,7 +2283,7 @@ namespace PdnFF
 					ctl5_UpDown.Visible = false;
 					ctllbl5.Visible = false;
 					resetbtn5.Visible = false;
-				} 
+				}
 				this.ctllbl4.Text = this.ctl4txt.Text = data.ControlLabel[4];
 				this.ctllbl5.Text = this.ctl5txt.Text = data.ControlLabel[5];
 			}
@@ -2309,7 +2309,7 @@ namespace PdnFF
 				{
 					map3cb.Checked = false;
 				}
-			   
+
 				if (data.ControlEnable[6] > 0)
 				{
 					ctl6cb.Checked = true;
@@ -2346,11 +2346,11 @@ namespace PdnFF
 				this.ctllbl6.Text = this.ctl6txt.Text = data.ControlLabel[6];
 				this.ctllbl7.Text = this.ctl7txt.Text = data.ControlLabel[7];
 			}
-		
-			#endregion 
-			
+
+			#endregion
+
 			#region ctl values
-			// set the default editor control values 
+			// set the default editor control values
 			this.ctl0num.Value = this.ctl0.Value = data.ControlValue[0];
 			this.ctl1num.Value = this.ctl1.Value = data.ControlValue[1];
 			this.ctl2num.Value = this.ctl2.Value = data.ControlValue[2];
@@ -2395,9 +2395,9 @@ namespace PdnFF
 						ctl7.Value = resetdata[7];
 						break;
 				}
-			   
 
-			   
+
+
 			}
 		}
 		private void SetTokenData()
@@ -2428,11 +2428,11 @@ namespace PdnFF
 			Filenametxt.Text = this.lastFileName = string.Empty;
 			clearFFLbtn_Click(null, null);
 		}
-	   
+
 		private void LoadSettings()
 		{
 			if (settings == null)
-			{   
+			{
 				string dir = this.Services.GetService<PaintDotNet.AppModel.IAppInfoService>().UserDataDirectory;
 
 				try
@@ -2444,7 +2444,7 @@ namespace PdnFF
 				}
 				catch (Exception)
 				{
-					// Ignore it 
+					// Ignore it
 				}
 
 				string path = Path.Combine(dir, @"PdnFF.xml");
@@ -2477,7 +2477,7 @@ namespace PdnFF
 				}
 			}
 		}
-	   
+
 		private void PdnFFConfigDialog_Load(object sender, EventArgs e)
 		{
 			SetTokenData();
@@ -2511,10 +2511,10 @@ namespace PdnFF
 				default_fltr_Click(null, null);
 			}
 		}
-		
+
 		private void SrcTextBoxes_TextChanged(object sender, EventArgs e)
 		{
-			
+
 			TextBox tb = sender as TextBox;
 			string name = tb.Name.Substring(0, 1);
 
@@ -2582,7 +2582,7 @@ namespace PdnFF
 		/// <param name="FileName">The FileName to load</param>
 		/// <param name="index">The item name of the filter to select</param>
 		private void LoadFFL(string FileName, string itemname)
-		{ 
+		{
 			if (FFLtreeView1.Nodes.Count > 0)
 			{
 				FFLtreeView1.Nodes.Clear();
@@ -2614,7 +2614,7 @@ namespace PdnFF
 					long ofs = (long)FFLtreeView1.Nodes[index].Tag;
 					GetFilterfromFFLOffset(ofs, true);
 				}
-				
+
 				SetFltrInfoLabels(data);
 			}
 
@@ -2698,7 +2698,7 @@ namespace PdnFF
 				fflofs = lvi.Name; // the item's FileName in the FFL
 				long offset = (long)lvi.Tag;
 				GetFilterfromFFLOffset(offset, false);
-				
+
 				ffltreeauthtxt.Text = data.Author;
 				ffltreecopytxt.Text = data.Copyright;
 			}
@@ -2860,7 +2860,7 @@ namespace PdnFF
 			{
 				map1_lbl.Visible = false;
 				/*data.MapEnable[1] = 0;*/
-		   
+
 				if (string.IsNullOrEmpty(map1txt.Text))
 				{
 					map1txt.Text = data.MapLabel[1];
@@ -2949,7 +2949,7 @@ namespace PdnFF
 							data.ControlEnable[3] = 0;
 							data.ControlValue[3] = 0;
 						}
-					} 
+					}
 				}
 			}
 			#endregion
@@ -2983,7 +2983,7 @@ namespace PdnFF
 			{
 				map2_lbl.Visible = false;
 				/* data.MapEnable[2] = 0;*/
-			   
+
 				if (string.IsNullOrEmpty(map2txt.Text))
 				{
 					map2txt.Text = data.MapLabel[2];
@@ -3070,7 +3070,7 @@ namespace PdnFF
 							data.ControlEnable[5] = 0;
 							data.ControlValue[5] = 0;
 						}
-					} 
+					}
 				}
 
 			}
@@ -3105,7 +3105,7 @@ namespace PdnFF
 			else
 			{
 				map3_lbl.Visible = false;
-				
+
 				// data.MapEnable[3] = 0;
 				if (string.IsNullOrEmpty(map3txt.Text))
 				{
@@ -3194,7 +3194,7 @@ namespace PdnFF
 							data.ControlValue[7] = 0;
 						}
 					}
-					
+
 				}
 			}
 			#endregion
@@ -3239,7 +3239,7 @@ namespace PdnFF
 
 						break;
 					case "CategoryBox":
-					   
+
 							if (tb.Text != data.Category)
 							{
 								data.Category = tb.Text;
@@ -3264,7 +3264,7 @@ namespace PdnFF
 						break;
 				}
 			}
-		   
+
 		}
 
 		private Settings settings;
@@ -3325,12 +3325,12 @@ namespace PdnFF
 			{
 				string path = parm.dirlist[i];
 				if (Directory.Exists(path))
-				{                    
+				{
 
 					DirectoryInfo dir = new DirectoryInfo(path);
 					FileInfo[] files = dir.GetFiles("*.8bf", parm.options);
 				   // Debug.WriteLine(string.Format("File Count = {0}", files.Length.ToString()));
-					
+
 					worker.ReportProgress(i, dir.Name);
 
 					foreach (FileInfo fi in files)
@@ -3374,15 +3374,15 @@ namespace PdnFF
 			}
 
 #if DEBUG
-			System.Diagnostics.Debug.WriteLine(string.Format("node count = {0}", nodes.Values.Count.ToString())); 
+			System.Diagnostics.Debug.WriteLine(string.Format("node count = {0}", nodes.Values.Count.ToString()));
 #endif
 			parm.itemarr = new TreeNode[nodes.Values.Count];
-			nodes.Values.CopyTo(parm.itemarr, 0); 
+			nodes.Values.CopyTo(parm.itemarr, 0);
 			parm.itemcount = count;
-			Array.Sort(parm.itemarr, new TreeNodeItemComparer()); // sort the treenode items 
+			Array.Sort(parm.itemarr, new TreeNodeItemComparer()); // sort the treenode items
 
 			e.Result = parm;
-			
+
 		}
 
 		/// <summary>
@@ -3409,7 +3409,7 @@ namespace PdnFF
 				InitilizeUpdateFilterListbw();
 	#if DEBUG
 				System.Diagnostics.Debug.WriteLine(string.Format("UpdateFilterListbw.IsBusy = {0}", UpdateFilterListbw.IsBusy.ToString()));
-	#endif           
+	#endif
 				if (!UpdateFilterListbw.IsBusy)
 				{
 					UpdateFilterListParm uflp = new UpdateFilterListParm();
@@ -3431,7 +3431,7 @@ namespace PdnFF
 					UpdateFilterListbw.RunWorkerAsync(uflp);
 				}
 			}
-		  
+
 		}
 
 		private void adddirbtn_Click(object sender, EventArgs e)
@@ -3457,14 +3457,14 @@ namespace PdnFF
 			{
 				if (!string.IsNullOrEmpty(Filenametxt.Text))
 				{
-					default_fltr_Click(null, null); 
+					default_fltr_Click(null, null);
 				}
 				DirlistView1.Items.Remove(DirlistView1.SelectedItems[0]);
 				UpdateSearchList();
 				UpdateFilterList();
 			}
 		}
-	   
+
 		private void clearFFLbtn_Click(object sender, EventArgs e)
 		{
 			if (FFLtreeView1.Nodes.Count > 0)
@@ -3489,8 +3489,8 @@ namespace PdnFF
 		/// Clear all the Edit label textboxes
 		/// </summary>
 		private void ClearEditControls()
-		{ 
-			ctl0txt.Text = ctl1txt.Text = ctl2txt.Text = ctl3txt.Text = ctl4txt.Text = 
+		{
+			ctl0txt.Text = ctl1txt.Text = ctl2txt.Text = ctl3txt.Text = ctl4txt.Text =
 			ctl5txt.Text = ctl6txt.Text = ctl7txt.Text = string.Empty;
 		}
 
@@ -3535,7 +3535,7 @@ namespace PdnFF
 						fltrmgrprogress.Value = 0;
 						//Debug.WriteLine(string.Format("Thread isbackground = {0}", Thread.CurrentThread.IsBackground.ToString()));
 						filtermgrprogresspanel.Visible = false;
-					} 
+					}
 				}
 #if DEBUG
 				else
@@ -3560,7 +3560,7 @@ namespace PdnFF
 
 		private void UpdateFilterListbw_ProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
-			//Debug.WriteLine(string.Format("progresschanged isbackground = {0}", Thread.CurrentThread.IsBackground.ToString())); 
+			//Debug.WriteLine(string.Format("progresschanged isbackground = {0}", Thread.CurrentThread.IsBackground.ToString()));
 
 			folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", (e.ProgressPercentage + 1).ToString(CultureInfo.InvariantCulture), DirlistView1.Items.Count.ToString(CultureInfo.InvariantCulture));
             folderloadnamelbl.Text = string.Format(CultureInfo.InvariantCulture, "({0})", e.UserState.ToString());
@@ -3583,11 +3583,11 @@ namespace PdnFF
 		/// </summary>
 		/// <param name="filtertext">The keyword text to filter by</param>
 		private void FilterTreeView(string filtertext)
-		{ 
+		{
 			if (FiltertreeviewItems.Count  > 0)
 			{
 				Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
-				foreach (KeyValuePair<TreeNode,string> item in FiltertreeviewItems)             
+				foreach (KeyValuePair<TreeNode,string> item in FiltertreeviewItems)
 				{
 					TreeNode child = item.Key;
 					string Title = child.Text;
@@ -3600,7 +3600,7 @@ namespace PdnFF
 							node.Nodes.Add(subnode);
 						}
 						else
-						{                   
+						{
 							TreeNode node = new TreeNode(item.Value);
 							TreeNode subnode = new TreeNode(Title) { Name = child.Name, Tag = child.Tag }; // Title
 							node.Nodes.Add(subnode);
@@ -3610,22 +3610,22 @@ namespace PdnFF
 
 					}
 				}
-				
-				filtertreeview.BeginUpdate();    
+
+				filtertreeview.BeginUpdate();
 				filtertreeview.Nodes.Clear();
 				filtertreeview.TreeViewNodeSorter = null;
 				foreach (var item in nodes)
 				{
 					int index = filtertreeview.Nodes.Add(item.Value);
-					
+
 					if (!string.IsNullOrEmpty(filtertext))
-					{ 
+					{
 						filtertreeview.Nodes[index].Expand();
 					}
 				}
 				filtertreeview.TreeViewNodeSorter = new TreeNodeItemComparer();
 				filtertreeview.EndUpdate();
-				
+
 			}
 		}
 
@@ -3648,8 +3648,8 @@ namespace PdnFF
 
 		private void filterSearchBox_TextChanged(object sender, EventArgs e)
 		{
-			string filtertext = filterSearchBox.Focused ? filterSearchBox.Text : string.Empty; 
-			FilterTreeView(filtertext); // pass an empty string if the textbox is not focused 
+			string filtertext = filterSearchBox.Focused ? filterSearchBox.Text : string.Empty;
+			FilterTreeView(filtertext); // pass an empty string if the textbox is not focused
 		}
 		private void filterSearchBox_Enter(object sender, EventArgs e)
 		{
@@ -3757,7 +3757,7 @@ namespace PdnFF
 				sw.WriteLine("[assembly: AssemblyCompany(\""+ data.Author +"\")]");
 				sw.WriteLine("[assembly: AssemblyProduct(\"" + FileName + " Plugin (Compiled by PdnFF)\")]");
 				sw.WriteLine("[assembly: AssemblyCopyright(\"" + data.Copyright + "\")]");
-				// namespace and class 
+				// namespace and class
 				sw.WriteLine("namespace FFEffect_" + classname+ " \n{\n");
 				sw.WriteLine("public class " + classname + " : PaintDotNet.Effects.Effect \n{\n");
 
@@ -3812,7 +3812,7 @@ namespace PdnFF
 
 			return ret;
 		}
-		
+
 		private static void SetupCompilerParameters(string FileName, CompilerParameters cparm)
 		{
 			String installDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
@@ -3866,7 +3866,7 @@ namespace PdnFF
 			{
 				using (Stream res = Assembly.GetAssembly(typeof(PdnFF_Effect)).GetManifestResourceStream(embeddedfiles[i]))
 				{
-					
+
 
 					string fn = embeddedfiles[i];
 
@@ -3882,13 +3882,13 @@ namespace PdnFF
 					{
 						fn += ".cs";
 					}
-					
+
 					string outfile = Path.Combine(dir, fn);
 
 					using (FileStream fs = new FileStream(outfile,FileMode.Create, FileAccess.Write))
 					{
 						System.IO.Compression.GZipStream gz = new System.IO.Compression.GZipStream(res, System.IO.Compression.CompressionMode.Decompress, true);
-						
+
 						res.Position = (res.Length - 4L);
 						byte[] writeBuf = new byte[4];
 						res.Read(writeBuf, 0, 4);
@@ -3945,7 +3945,7 @@ namespace PdnFF
 					if (!File.Exists(filepath))
 					{
 						CompilerParameters cparm = new CompilerParameters();
-						
+
 						string classname = Path.GetFileNameWithoutExtension(FileName);
 
 						for (int i = 0; i < classname.Length; i++)
@@ -3960,16 +3960,16 @@ namespace PdnFF
 
 						if (char.IsDigit(classname[0]))
 						{
-							classname = string.Concat("FF_", classname); 
+							classname = string.Concat("FF_", classname);
 						}
 
-						// Setup the source code files after setting up the effect classname  
+						// Setup the source code files after setting up the effect classname
 						string[] files = this.SetupSourceCodeFiles(FileName, classname);
 
-						SetupCompilerParameters(FileName, cparm); 
+						SetupCompilerParameters(FileName, cparm);
 
 
-						
+
 
 						using (CSharpCodeProvider cscp = new CSharpCodeProvider())
 						{
@@ -3989,7 +3989,7 @@ namespace PdnFF
                     {
                         MessageBox.Show(this, Resources.BuildFilterFileAlreadyExists, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-				   
+
 				}
 				catch (Exception ex)
 				{
@@ -3998,16 +3998,16 @@ namespace PdnFF
 #else
 					MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 #endif
-					
+
 				}
 				finally
 				{
 					if (Directory.Exists(dir))
 					{
-						DirectoryInfo di = new DirectoryInfo(dir); 
-						di.Delete(true); // delete the temp files 
+						DirectoryInfo di = new DirectoryInfo(dir);
+						di.Delete(true); // delete the temp files
 					}
-				} 
+				}
 			}
 
 		}
@@ -4016,7 +4016,7 @@ namespace PdnFF
         {
             switch (e.KeyCode)
             {
-                case Keys.Up:         
+                case Keys.Up:
                     e.Handled = true;
 
                     AlphaBox.Focus();

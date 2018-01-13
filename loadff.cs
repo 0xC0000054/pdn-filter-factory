@@ -13,7 +13,7 @@ namespace PdnFF
     internal static class FFLoadSave
     {
 
-       
+
         private static class NativeMethods
         {
             [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
@@ -69,7 +69,7 @@ namespace PdnFF
                 return true;
             }
             return false;
-        } 
+        }
         #endregion
 
         /// <summary>
@@ -144,17 +144,17 @@ namespace PdnFF
                             LoadTxt(fs, data);
                             loaded = true;
                         }
-                       
+
                     }
                 }
-                
+
 
             }
             catch (Exception)
             {
                 throw;
             }
-          
+
             return loaded;
         }
 
@@ -264,7 +264,7 @@ namespace PdnFF
                 {
 #if false
                     int cbsize = br.ReadInt32();
-                    int standalone = br.ReadInt32(); 
+                    int standalone = br.ReadInt32();
 #else
                     br.BaseStream.Position += 8L;
 #endif
@@ -323,7 +323,7 @@ namespace PdnFF
                     ms.Close();
                 }
             }
-            
+
         }
         private static void LoadTxt(Stream infile, filter_data data)
         {
@@ -506,18 +506,18 @@ namespace PdnFF
                 try
                 {
                     char newChar = br.ReadChar();
-                    bool isLineBreak = (lastChar == 0x5c && newChar == 'r'); 
+                    bool isLineBreak = (lastChar == 0x5c && newChar == 'r');
 
 
                     if (lastChar == '\r')
                     {
-                        
+
 		                br.BaseStream.Position -= 1L;
                         break;
                     }
 
                     if (lastChar != 0x5c || !isLineBreak)
-                    { 
+                    {
                         sb.Append(lastChar);
                     }
 
@@ -527,9 +527,9 @@ namespace PdnFF
                     }
                     else
                     {
-                        lastChar = ' '; 
+                        lastChar = ' ';
                     }
-                   
+
                 }
                 catch (EndOfStreamException)
                 {
@@ -567,7 +567,7 @@ namespace PdnFF
                         }
                         ctlread = true;
                     }
-                   
+
                     if (!srcread)
                     {
                         int i = 0;
@@ -578,7 +578,7 @@ namespace PdnFF
                             {
                                 if (!string.IsNullOrEmpty(data.Source[i]) && (data.Source[i].Length + line.Length) < 1024)
                                 {
-                                    data.Source[i] += line; // append the line to te existing Source 
+                                    data.Source[i] += line; // append the line to te existing Source
                                 }
                                 else
                                 {
@@ -595,7 +595,7 @@ namespace PdnFF
                         srcread = true;
                     }
 
-                    
+
                 }
 
                 data.Category = "Filter Factory";
@@ -623,7 +623,7 @@ namespace PdnFF
                     data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
                 }
                 SetPopDialog(data);
-                
+
             }
             catch (Exception)
             {
@@ -641,7 +641,7 @@ namespace PdnFF
             {
                 using (StreamWriter sw = new StreamWriter(output, Encoding.Default))
                 {
-                    sw.NewLine = "\r"; // Filter factory uses the Mac end of line format  
+                    sw.NewLine = "\r"; // Filter factory uses the Mac end of line format
                     sw.WriteLine("%RGB-1.0");
                     for (int i = 0; i < 8; i++)
                     {
@@ -741,7 +741,7 @@ namespace PdnFF
 
         }
         /// <summary>
-        /// Saves a filter_data Source as either an .afs or .txt Source code 
+        /// Saves a filter_data Source as either an .afs or .txt Source code
         /// </summary>
         /// <param name="FileName">The output FileName to save as</param>
         /// <param name="data">The filter_data to save</param>
@@ -776,14 +776,14 @@ namespace PdnFF
         /// Sets the filter_data to default values.
         /// </summary>
         /// <param name="data">The filter_data to set.</param>
-        public static void DefaultFilter(filter_data data) 
+        public static void DefaultFilter(filter_data data)
         {
             string[] src = new string[] { "r", "g", "b", "a" };
             data.Category = "Untitled";
             data.Title = "Untitled";
             data.Author = Environment.UserName;
             data.Copyright = string.Format(CultureInfo.InvariantCulture, "Copyright © {0} {1}", DateTime.Now.Year.ToString(CultureInfo.CurrentCulture), Environment.UserName);
-                        
+
             data.PopDialog = 1;
             for (int i = 0; i < 4; i++)
             {
@@ -836,7 +836,7 @@ namespace PdnFF
             return sb.ToString().Trim();
         }
         /// <summary>
-        /// Loads A Filter Factory Library file 
+        /// Loads A Filter Factory Library file
         /// </summary>
         /// <param name="fn">The FileName to load.</param>
         /// <param name="items">The output TreeNode list of items in the file.</param>
@@ -845,7 +845,7 @@ namespace PdnFF
         /// <exception cref="System.ArgumentNullException">The list of items is null.</exception>
         /// cref="System.ArgumentException">The Filename is empty.</exception>
         public static bool LoadFFL(string fn, List<TreeNode> items)
-        {                
+        {
             bool loaded = false;
             FileStream fs = null;
             try

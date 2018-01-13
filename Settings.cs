@@ -7,12 +7,12 @@ namespace PdnFF
     internal class Settings
     {
         XmlDocument xmlDocument = new XmlDocument();
-                
+
         string documentPath = null;
 
         public Settings(string path)
         {
-            try 
+            try
             {
                 documentPath = path;
                 xmlDocument.Load(documentPath);

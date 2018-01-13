@@ -50,7 +50,7 @@ namespace PdnFF
         }
 
         /// <summary>
-        /// The number channels in the image, always 4 in Paint.NET   
+        /// The number channels in the image, always 4 in Paint.NET
         /// </summary>
         private const int pixelSize = 4;
         /// <summary>
@@ -70,7 +70,7 @@ namespace PdnFF
             }
         }
         /// <summary>
-        /// Sets up the unmanaged access to the Bitmap Data 
+        /// Sets up the unmanaged access to the Bitmap Data
         /// </summary>
         /// <param name="pixelData">The pointer to the start of the pixeldata, Scan0</param>
         /// <param name="width">The width of the image in Pixels</param>
@@ -108,7 +108,7 @@ namespace PdnFF
         }
 
         /// <summary>
-        /// Updates the filter enviroment's pixel location to x,y 
+        /// Updates the filter enviroment's pixel location to x,y
         /// </summary>
         /// <param name="x">The x pixel position</param>
         /// <param name="y">The y pixel position</param>

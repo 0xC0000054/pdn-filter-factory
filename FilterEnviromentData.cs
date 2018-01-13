@@ -15,13 +15,13 @@ namespace PdnFF
         {
             if (source == null)
                 throw new ArgumentNullException("source");
-           
+
             this.SourceSurface = new Surface(source.Size);
             this.SourceSurface.CopySurface(source);
         }
 
         private Surface SourceSurface = null;
-       
+
         private bool bmpenvirsetup;
         /// <summary>
         /// Is the unmanaged Source Bitmap setup
@@ -40,7 +40,7 @@ namespace PdnFF
         /// </summary>
         /// <returns>1 on sucess negative number on error</returns>
         private int ResetEnviroment()
-        {                
+        {
             int ret = 0;
             if (!bmpenvirsetup)
             {
@@ -54,25 +54,25 @@ namespace PdnFF
 #if DEBUG
                 Debug.WriteLine(string.Format("ffparse.SetupBitmap returned {0}", ret.ToString()));
 #endif
-                
+
                 bmpenvirsetup  = (ret == 1);
 
             }
             return ret;
         }
         /// <summary>
-        /// Resets the Filter Enviroment 
+        /// Resets the Filter Enviroment
         /// </summary>
         /// <returns>True if successful otherwise false</returns>
         public bool ResetEnvir()
         {
-            return (ResetEnviroment() >= 0); // is the result greater than or equal to zero?  
+            return (ResetEnviroment() >= 0); // is the result greater than or equal to zero?
         }
 
 
 
         #region IDisposable Members
-        private bool disposed = false; 
+        private bool disposed = false;
         public void Dispose()
         {
             Dispose(true);

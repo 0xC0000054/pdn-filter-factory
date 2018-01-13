@@ -10,8 +10,8 @@
 
 namespace PdnFF.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace PdnFF.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace PdnFF.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace PdnFF.Properties {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Unable to build Filter, File already exists?.
         /// </summary>
@@ -68,7 +68,7 @@ namespace PdnFF.Properties {
                 return ResourceManager.GetString("BuildFilterFileAlreadyExists", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to channel must be between the values of 0 and 3.
         /// </summary>
@@ -77,7 +77,7 @@ namespace PdnFF.Properties {
                 return ResourceManager.GetString("ChannelValuesOutofRangeError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Search Filters.
         /// </summary>
@@ -86,7 +86,7 @@ namespace PdnFF.Properties {
                 return ResourceManager.GetString("ConfigDialog_FilterSearchBox_BackText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Syntax error in formula.
         /// </summary>
@@ -95,7 +95,7 @@ namespace PdnFF.Properties {
                 return ResourceManager.GetString("ConfigDialog_FormulaSyntaxError_Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to FFL files (*.ffl)|*.ffl.
         /// </summary>
@@ -104,7 +104,7 @@ namespace PdnFF.Properties {
                 return ResourceManager.GetString("ConfigDialog_LoadFFLDialog_Filter", resourceCulture);
             }
         }
-        
+
         internal static System.Drawing.Bitmap ConfigDialog_Resetbtn_Image {
             get {
                 object obj = ResourceManager.GetObject("ConfigDialog_Resetbtn_Image", resourceCulture);

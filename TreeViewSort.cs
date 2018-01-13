@@ -9,11 +9,11 @@ namespace PdnFF
     class TreeNodeItemComparer : IComparer
     {
         private SortOrder order;
-        public TreeNodeItemComparer() 
+        public TreeNodeItemComparer()
         {
             this.order = SortOrder.Ascending;
         }
-       
+
         public int Compare(object x, object y)
         {
             int returnVal = -1;

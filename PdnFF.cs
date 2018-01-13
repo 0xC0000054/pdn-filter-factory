@@ -9,7 +9,7 @@ namespace PdnFF
 {
     public sealed class PdnFF_Effect : PaintDotNet.Effects.Effect
     {
-        
+
         public static string StaticName
         {
             get
@@ -75,7 +75,7 @@ namespace PdnFF
         FilterEnviromentData envdata = null;
 
         /// <summary>
-        /// Sets the Filter source code and Control values 
+        /// Sets the Filter source code and Control values
         /// </summary>
         private static void SetupFilterData(filter_data data)
         {
@@ -90,7 +90,7 @@ namespace PdnFF
                 Marshal.FreeHGlobal(s);
             }
         }
-    
+
         private bool filterparsed = false;
         protected override void OnSetRenderInfo(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs)
         {
@@ -106,10 +106,10 @@ namespace PdnFF
 #endif
             if (token.Data != null && !string.IsNullOrEmpty(token.Data.Author) && envdata.BmpEnvirSetup && !ffparse.datafreed())
             {
-                SetupFilterData(token.Data); 
+                SetupFilterData(token.Data);
                 filterparsed = true;
             }
-            
+
             base.OnSetRenderInfo(parameters, dstArgs, srcArgs);
         }
         public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length)
@@ -123,7 +123,7 @@ namespace PdnFF
                     {
                         Rectangle rect = rois[i];
                         for (int y = rect.Top; y < rect.Bottom; ++y)
-                        {                                
+                        {
                             if (IsCancelRequested) return; // stop if a cancel is requested
 
                             ColorBgra *p = dest.GetPointAddressUnchecked(rect.Left, y);
@@ -132,15 +132,15 @@ namespace PdnFF
                                 ffparse.UpdateEnvir(x, y); // update the (x, y) position in the unmanaged ffparse data
 
                                 p->R = (byte)ffparse.CalcColor(0); // red channel
-                                p->G = (byte)ffparse.CalcColor(1); // green channel 
-                                p->B = (byte)ffparse.CalcColor(2); // blue channel 
+                                p->G = (byte)ffparse.CalcColor(1); // green channel
+                                p->B = (byte)ffparse.CalcColor(2); // blue channel
                                 p->A = (byte)ffparse.CalcColor(3); // alpha channel
 
                                 p++;
                             }
                         }
 
-                    } 
+                    }
                 }
 
             }

@@ -14,12 +14,12 @@ namespace PdnFF
         private string[] controlLabel = new string[8];
         private int[] controlValue = new int[8];
         private string[] source = new string[4];
-        private int popDialog; // display parameter sliders 
-        private string fileName; // filename for the FFL filters 
+        private int popDialog; // display parameter sliders
+        private string fileName; // filename for the FFL filters
 
         public string Title
         {
-            get 
+            get
             {
                 return title;
             }
@@ -154,7 +154,7 @@ namespace PdnFF
             }
         }
         /// <summary>
-        /// The FileName for the FFL filters 
+        /// The FileName for the FFL filters
         /// </summary>
         public string FileName
         {
@@ -168,5 +168,5 @@ namespace PdnFF
             }
         }
     }
-  
+
 }
