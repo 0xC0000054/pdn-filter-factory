@@ -89,6 +89,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Coderes\Common.cs" />
+    <EmbeddedResource Include="Coderes\FFEffectConfigDialog.cs">
+      <SubType>Form</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Coderes\FFEffectConfigToken.cs" />
+    <EmbeddedResource Include="Coderes\ffparse.cs" />
+    <EmbeddedResource Include="Coderes\FilterEnviromentData.cs" />
+    <EmbeddedResource Include="Coderes\filter_data.cs" />
     <Compile Include="ffparse.cs" />
     <Compile Include="filterdata.cs" />
     <Compile Include="FilterEnviromentData.cs" />
@@ -142,7 +150,7 @@ if "$(ConfigurationName)" == "Debug" copy "$(TargetDir)$(TargetName).pdb" "D:\Pr
     <PreBuildEvent>del "D:\Program Files\Paint.NET\Effects\$(TargetName).pdb" /f</PreBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Coderes\Common-comp.bin" />
+    <EmbeddedResource Include="Coderes\FFEffect.FFEffectConfigDialog.resources" />
     <EmbeddedResource Include="PdnFF.xml" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -151,12 +159,6 @@ if "$(ConfigurationName)" == "Debug" copy "$(TargetDir)$(TargetName).pdb" "D:\Pr
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Coderes\FFEffect.FFEffectConfigDialog-comp.bin" />
-    <EmbeddedResource Include="Coderes\FFEffectConfigDialog-comp.bin" />
-    <EmbeddedResource Include="Coderes\FFEffectConfigToken-comp.bin" />
-    <EmbeddedResource Include="Coderes\ffparse-comp.bin" />
-    <EmbeddedResource Include="Coderes\FilterEnviromentData-comp.bin" />
-    <EmbeddedResource Include="Coderes\filter_data-comp.bin" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PdnFFConfigDialog2.resx">

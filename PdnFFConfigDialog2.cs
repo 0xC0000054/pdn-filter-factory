@@ -3879,59 +3879,36 @@ namespace PdnFF
 			if (!Directory.Exists(dir))
 				Directory.CreateDirectory(dir);
 
-			string[] embeddedfiles = new string[7] {"PdnFF.Coderes.FFEffect.FFEffectConfigDialog-comp.bin","PdnFF.Coderes.Common-comp.bin",
-			"PdnFF.Coderes.FFEffectConfigDialog-comp.bin","PdnFF.Coderes.FFEffectConfigToken-comp.bin","PdnFF.Coderes.ffparse-comp.bin","PdnFF.Coderes.filter_data-comp.bin"
-			,"PdnFF.Coderes.FilterEnviromentData-comp.bin"};
+			string[] embeddedfiles = new string[7] {"PdnFF.Coderes.FFEffect.FFEffectConfigDialog.resources","PdnFF.Coderes.Common.cs",
+			"PdnFF.Coderes.FFEffectConfigDialog.cs","PdnFF.Coderes.FFEffectConfigToken.cs","PdnFF.Coderes.ffparse.cs","PdnFF.Coderes.filter_data.cs"
+			,"PdnFF.Coderes.FilterEnviromentData.cs"};
 
 			for (int i = 0; i < embeddedfiles.Length; i++)
 			{
-				using (Stream res = Assembly.GetAssembly(typeof(PdnFF_Effect)).GetManifestResourceStream(embeddedfiles[i]))
+				string resourceName = embeddedfiles[i];
+
+				using (Stream res = Assembly.GetAssembly(typeof(PdnFF_Effect)).GetManifestResourceStream(resourceName))
 				{
+					// Remove the 'PdnFF.Coderes.' name space prefix.
+					string fileName = resourceName.Substring(14, resourceName.Length - 14);
 
-
-					string fn = embeddedfiles[i];
-
-					fn = fn.Substring(14, (fn.Length - 14));
-
-					fn = fn.Substring(0, fn.IndexOf("-", StringComparison.Ordinal));
-
-					if (i == 0)
-					{
-						fn += ".resources";
-					}
-					else
-					{
-						fn += ".cs";
-					}
-
-					string outfile = Path.Combine(dir, fn);
+					string outfile = Path.Combine(dir, fileName);
 
 					using (FileStream fs = new FileStream(outfile,FileMode.Create, FileAccess.Write))
 					{
-						System.IO.Compression.GZipStream gz = new System.IO.Compression.GZipStream(res, System.IO.Compression.CompressionMode.Decompress, true);
-
-						res.Position = (res.Length - 4L);
-						byte[] writeBuf = new byte[4];
-						res.Read(writeBuf, 0, 4);
-						int len = BitConverter.ToInt32(writeBuf, 0);
-
-						res.Position = 0L;
-
-
-						byte[] bytes = new byte[len];
-						int numBytesToRead = len;
+						byte[] bytes = new byte[res.Length];
+						int numBytesToRead = (int)res.Length;
 						int numBytesRead = 0;
 						while (numBytesToRead > 0)
 						{
 							// Read may return anything from 0 to numBytesToRead.
-							int n = gz.Read(bytes, numBytesRead, numBytesToRead);
+							int n = res.Read(bytes, numBytesRead, numBytesToRead);
 							// The end of the file is reached.
 							if (n == 0)
 								break;
 							numBytesRead += n;
 							numBytesToRead -= n;
 						}
-						gz.Close();
 
 						fs.Write(bytes, 0, bytes.Length);
 					}
