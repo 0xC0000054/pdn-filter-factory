@@ -59,11 +59,6 @@ namespace PdnFF
 			[DllImport("kernel32.dll", SetLastError = true)]
 			[return: MarshalAs(UnmanagedType.Bool)]
 			public static extern bool FreeLibrary(IntPtr hModule);
-
-			[DllImport("kernel32.dll", EntryPoint = "FreeResource")]
-			[return: MarshalAs(UnmanagedType.Bool)]
-			public static extern bool FreeResource([In()]System.IntPtr hResData);
-
 		}
 
 		private const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
@@ -217,7 +212,6 @@ namespace PdnFF
 											GetFilterDataFromParmBytes(data, ffdata);
 											result = true;
 										}
-										NativeMethods.FreeResource(hres);
 										NativeMethods.FreeLibrary(hm);
 									}
 									else
