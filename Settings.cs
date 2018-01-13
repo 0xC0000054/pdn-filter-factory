@@ -4,6 +4,8 @@ using System.Xml;
 
 namespace PdnFF
 {
+    // Adapted from https://www.codeproject.com/Articles/15530/Quick-and-Dirty-Settings-Persistence-with-XML
+
     internal class Settings
     {
         XmlDocument xmlDocument = new XmlDocument();
