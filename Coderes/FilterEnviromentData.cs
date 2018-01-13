@@ -87,7 +87,7 @@ namespace FFEffect
         /// <returns>True if successful otherwise false</returns>
         public bool ResetEnvir()
         {
-            return (ResetEnviroment() >= 0); // is the result greater than or equal to zero?
+            return (ResetEnviroment() >= 0);
         }
 
 
