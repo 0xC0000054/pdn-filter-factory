@@ -35,7 +35,7 @@ namespace PdnFF
 	{
 
 
-		private static class NativeMethods
+		private static class UnsafeNativeMethods
 		{
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
 			public static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
@@ -78,7 +78,7 @@ namespace PdnFF
 			GCHandle gch = GCHandle.FromIntPtr(lParam);
 			if (IS_INTRESOURCE(lpszName))
 			{
-				IntPtr fr = NativeMethods.FindResource(hModule, lpszName, lpszType);
+				IntPtr fr = UnsafeNativeMethods.FindResource(hModule, lpszName, lpszType);
 
 				gch.Target = fr;
 
@@ -183,7 +183,7 @@ namespace PdnFF
 			bool result = false;
 			try
 			{
-				IntPtr hm = NativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE);
+				IntPtr hm = UnsafeNativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE);
 				if (hm != IntPtr.Zero)
 				{
 					IntPtr hres = IntPtr.Zero;
@@ -192,18 +192,18 @@ namespace PdnFF
 					try
 					{
 
-						if (NativeMethods.EnumResourceNames(hm, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
+						if (UnsafeNativeMethods.EnumResourceNames(hm, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
 						{
 							hres = (IntPtr)gch.Target;
 							if (hres != IntPtr.Zero)
 							{
-								IntPtr loadres = NativeMethods.LoadResource(hm, hres);
+								IntPtr loadres = UnsafeNativeMethods.LoadResource(hm, hres);
 								if (loadres != IntPtr.Zero)
 								{
-									IntPtr reslock = NativeMethods.LockResource(loadres);
+									IntPtr reslock = UnsafeNativeMethods.LockResource(loadres);
 									if (reslock != IntPtr.Zero)
 									{
-										uint ds = NativeMethods.SizeofResource(hm, hres);
+										uint ds = UnsafeNativeMethods.SizeofResource(hm, hres);
 
 										if (ds == 8296) // All valid Filter Factory reSources are this size
 										{
@@ -212,29 +212,29 @@ namespace PdnFF
 											GetFilterDataFromParmBytes(data, ffdata);
 											result = true;
 										}
-										NativeMethods.FreeLibrary(hm);
+										UnsafeNativeMethods.FreeLibrary(hm);
 									}
 									else
 									{
-										NativeMethods.FreeLibrary(hm);
+										UnsafeNativeMethods.FreeLibrary(hm);
 										throw new Win32Exception(Marshal.GetLastWin32Error());
 									}
 								}
 								else
 								{
-									NativeMethods.FreeLibrary(hm);
+									UnsafeNativeMethods.FreeLibrary(hm);
 									throw new Win32Exception(Marshal.GetLastWin32Error());
 								}
 							}
 							else
 							{
-								NativeMethods.FreeLibrary(hm);
+								UnsafeNativeMethods.FreeLibrary(hm);
 								throw new Win32Exception(Marshal.GetLastWin32Error());
 							}
 						}
 						else // Not a Filter Factory Filter
 						{
-							NativeMethods.FreeLibrary(hm);
+							UnsafeNativeMethods.FreeLibrary(hm);
 						}
 
 					}
