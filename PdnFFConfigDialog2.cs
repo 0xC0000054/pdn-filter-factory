@@ -2670,7 +2670,7 @@ namespace PdnFF
 				fs = new FileStream(lastffl, FileMode.Open, FileAccess.Read, FileShare.None);
 				using (BinaryReader br = new BinaryReader(fs, Encoding.Default))
 				{
-
+					fs = null;
 					if (uselastvalues)
 					{
 						filter_data tmpdata = new filter_data();
@@ -2701,7 +2701,6 @@ namespace PdnFF
 						}
 					}
 				}
-				fs = null;
 			}
 			finally
 			{

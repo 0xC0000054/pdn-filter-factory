@@ -837,6 +837,7 @@ namespace PdnFF
 
 				using (BinaryReader br = new BinaryReader(fs))
 				{
+					fs = null;
 					string id = ReadString(br, 10);
 					if (id != null && id == "FFL1.0")
 					{
@@ -885,7 +886,6 @@ namespace PdnFF
 					}
 
 				}
-				fs = null;
 
 			}
 			catch (Exception)
