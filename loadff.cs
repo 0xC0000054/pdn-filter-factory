@@ -140,47 +140,39 @@ namespace PdnFF
 		public static bool LoadFile(string fileName, filter_data data)
 		{
 			bool loaded = false;
-			try
+
+			if (fileName == null)
+				throw new ArgumentNullException("fileName");
+
+			if (string.IsNullOrEmpty(fileName))
+				throw new ArgumentException("fileName must not be empty", "fileName");
+
+			if (data == null)
+				throw new ArgumentNullException("data");
+
+			if (Path.GetExtension(fileName).ToUpperInvariant() == ".8BF")
 			{
-				if (fileName == null)
-					throw new ArgumentNullException("fileName");
-
-				if (string.IsNullOrEmpty(fileName))
-					throw new ArgumentException("fileName must not be empty", "fileName");
-
-				if (data == null)
-					throw new ArgumentNullException("data");
-
-				if (Path.GetExtension(fileName).ToUpperInvariant() == ".8BF")
-				{
-				   loaded = LoadBinFile(fileName, data);
-				}
-				else
-				{
-					using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-					{
-						byte[] buf = new byte[32];
-
-						fs.Read(buf, 0, 16);
-						if (Encoding.ASCII.GetString(buf, 0, 4).Equals("%RGB"))
-						{
-							LoadAfs(fs, data);
-							loaded = true;
-						}
-						else if (Encoding.ASCII.GetString(buf, 0, 8).Equals("Category"))
-						{
-							LoadTxt(fs, data);
-							loaded = true;
-						}
-
-					}
-				}
-
-
+				loaded = LoadBinFile(fileName, data);
 			}
-			catch (Exception)
+			else
 			{
-				throw;
+				using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+				{
+					byte[] buf = new byte[32];
+
+					fs.Read(buf, 0, 16);
+					if (Encoding.ASCII.GetString(buf, 0, 4).Equals("%RGB"))
+					{
+						LoadAfs(fs, data);
+						loaded = true;
+					}
+					else if (Encoding.ASCII.GetString(buf, 0, 8).Equals("Category"))
+					{
+						LoadTxt(fs, data);
+						loaded = true;
+					}
+
+				}
 			}
 
 			return loaded;
@@ -197,44 +189,38 @@ namespace PdnFF
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
 			bool result = false;
-			try
+
+			using (SafeLibraryHandle hm = UnsafeNativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE))
 			{
-				using (SafeLibraryHandle hm = UnsafeNativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE))
+				if (!hm.IsInvalid)
 				{
-					if (!hm.IsInvalid)
+					IntPtr hres = IntPtr.Zero;
+
+					GCHandle gch = GCHandle.Alloc(hres);
+					bool needsRelease = false;
+					try
 					{
-						IntPtr hres = IntPtr.Zero;
-
-						GCHandle gch = GCHandle.Alloc(hres);
-						bool needsRelease = false;
-						try
+						hm.DangerousAddRef(ref needsRelease);
+						IntPtr hMod = hm.DangerousGetHandle();
+						if (UnsafeNativeMethods.EnumResourceNames(hMod, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
 						{
-							hm.DangerousAddRef(ref needsRelease);
-							IntPtr hMod = hm.DangerousGetHandle();
-							if (UnsafeNativeMethods.EnumResourceNames(hMod, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
+							hres = (IntPtr)gch.Target;
+							if (hres != IntPtr.Zero)
 							{
-								hres = (IntPtr)gch.Target;
-								if (hres != IntPtr.Zero)
+								IntPtr loadres = UnsafeNativeMethods.LoadResource(hMod, hres);
+								if (loadres != IntPtr.Zero)
 								{
-									IntPtr loadres = UnsafeNativeMethods.LoadResource(hMod, hres);
-									if (loadres != IntPtr.Zero)
+									IntPtr reslock = UnsafeNativeMethods.LockResource(loadres);
+									if (reslock != IntPtr.Zero)
 									{
-										IntPtr reslock = UnsafeNativeMethods.LockResource(loadres);
-										if (reslock != IntPtr.Zero)
-										{
-											uint ds = UnsafeNativeMethods.SizeofResource(hMod, hres);
+										uint ds = UnsafeNativeMethods.SizeofResource(hMod, hres);
 
-											if (ds == 8296) // All valid Filter Factory reSources are this size
-											{
-												byte[] ffdata = new byte[ds];
-												Marshal.Copy(reslock, ffdata, 0, (int)ds);
-												GetFilterDataFromParmBytes(data, ffdata);
-												result = true;
-											}
-										}
-										else
+										if (ds == 8296) // All valid Filter Factory reSources are this size
 										{
-											throw new Win32Exception(Marshal.GetLastWin32Error());
+											byte[] ffdata = new byte[ds];
+											Marshal.Copy(reslock, ffdata, 0, (int)ds);
+											GetFilterDataFromParmBytes(data, ffdata);
+											result = true;
 										}
 									}
 									else
@@ -242,29 +228,29 @@ namespace PdnFF
 										throw new Win32Exception(Marshal.GetLastWin32Error());
 									}
 								}
+								else
+								{
+									throw new Win32Exception(Marshal.GetLastWin32Error());
+								}
 							}
 						}
-						finally
-						{
-							gch.Free();
-							if (needsRelease)
-							{
-								hm.DangerousRelease();
-							}
-						}
-
 					}
-					else
+					finally
 					{
-						throw new Win32Exception(Marshal.GetLastWin32Error());
+						gch.Free();
+						if (needsRelease)
+						{
+							hm.DangerousRelease();
+						}
 					}
-				}
 
+				}
+				else
+				{
+					throw new Win32Exception(Marshal.GetLastWin32Error());
+				}
 			}
-			catch (Exception)
-			{
-				throw;
-			}
+
 
 			return result;
 
@@ -357,168 +343,159 @@ namespace PdnFF
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
 			infile.Position = 0L;
-			try
+
+			string line = string.Empty;
+			bool ctlread = false;
+			bool inforead = false;
+			bool srcread = false;
+			bool valread = false;
+			using (StreamReader sr = new StreamReader(infile, Encoding.Default))
 			{
-				string line = string.Empty;
-				bool ctlread = false;
-				bool inforead = false;
-				bool srcread = false;
-				bool valread = false;
-				using (StreamReader sr = new StreamReader(infile, Encoding.Default))
+				while ((line = sr.ReadLine()) != null)
 				{
-					while ((line = sr.ReadLine()) != null)
+					if (!string.IsNullOrEmpty(line))
 					{
-						if (!string.IsNullOrEmpty(line))
+						if (!inforead)
 						{
-							if (!inforead)
+							for (int i = 0; i < 4; i++)
+							{
+								if (!string.IsNullOrEmpty(line))
+								{
+									string[] split = line.Split(new char[] { ':' }, StringSplitOptions.None);
+
+									if (!string.IsNullOrEmpty(split[1]))
+									{
+										switch (split[0])
+										{
+											case "Category":
+												data.Category = split[1].Trim();
+												break;
+											case "Title":
+												data.Title = split[1].Trim();
+												break;
+											case "Copyright":
+												data.Copyright = split[1].Trim();
+												break;
+											case "Author":
+												data.Author = split[1].Trim();
+												break;
+										}
+									}
+									line = sr.ReadLine();
+
+								}
+								else
+								{
+									i = (i - 1);
+								}
+							}
+							inforead = true;
+						}
+						else if (line.StartsWith("Filename", StringComparison.Ordinal))
+						{
+							continue;
+						}
+						else
+						{
+							if (!srcread)
 							{
 								for (int i = 0; i < 4; i++)
 								{
 									if (!string.IsNullOrEmpty(line))
 									{
-										string[] split = line.Split(new char[] { ':' }, StringSplitOptions.None);
+										string id = line.Substring(0, 1).ToUpperInvariant();
+										string src = line.Substring(2, (line.Length - 2)).Trim();
 
-										if (!string.IsNullOrEmpty(split[1]))
+										if (!string.IsNullOrEmpty(src))
 										{
-											switch (split[0])
+											switch (id)
 											{
-												case "Category":
-													data.Category = split[1].Trim();
+												case "R":
+													data.Source[0] = src;
 													break;
-												case "Title":
-													data.Title = split[1].Trim();
+												case "G":
+													data.Source[1] = src;
 													break;
-												case "Copyright":
-													data.Copyright = split[1].Trim();
+												case "B":
+													data.Source[2] = src;
 													break;
-												case "Author":
-													data.Author = split[1].Trim();
+												case "A":
+													data.Source[3] = src;
 													break;
 											}
 										}
-										line = sr.ReadLine();
+
 
 									}
 									else
 									{
 										i = (i - 1);
 									}
+									line = sr.ReadLine();
 								}
-								inforead = true;
-							}
-							else if (line.StartsWith("Filename", StringComparison.Ordinal))
-							{
-								continue;
+								srcread = true;
 							}
 							else
 							{
-								if (!srcread)
+								if (!ctlread)
 								{
-									for (int i = 0; i < 4; i++)
+
+									while (!string.IsNullOrEmpty(line) && line.StartsWith("ctl", StringComparison.Ordinal))
 									{
-										if (!string.IsNullOrEmpty(line))
+										string lbl = line.Substring(7, (line.Length - 7)).Trim();
+										int cn = int.Parse(line[4].ToString(), CultureInfo.InvariantCulture); // get the control number
+										if (!string.IsNullOrEmpty(lbl))
 										{
-											string id = line.Substring(0, 1).ToUpperInvariant();
-											string src = line.Substring(2, (line.Length - 2)).Trim();
-
-											if (!string.IsNullOrEmpty(src))
-											{
-												switch (id)
-												{
-													case "R":
-														data.Source[0] = src;
-														break;
-													case "G":
-														data.Source[1] = src;
-														break;
-													case "B":
-														data.Source[2] = src;
-														break;
-													case "A":
-														data.Source[3] = src;
-														break;
-												}
-											}
-
-
-										}
-										else
-										{
-											i = (i - 1);
+											data.ControlLabel[cn] = lbl;
+											data.ControlEnable[cn] = 1;
 										}
 										line = sr.ReadLine();
 									}
-									srcread = true;
+
+									for (int i = 0; i < 4; i++)
+									{
+										data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
+										data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
+									}
+									SetPopDialog(data);
+
+									ctlread = true;
 								}
 								else
 								{
-									if (!ctlread)
+
+									while (!string.IsNullOrEmpty(line) && line.StartsWith("val", StringComparison.Ordinal))
 									{
-
-										while (!string.IsNullOrEmpty(line) && line.StartsWith("ctl", StringComparison.Ordinal))
+										string lbl = line.Substring(7, (line.Length - 7)).Trim();
+										int cn = int.Parse(line[4].ToString(), CultureInfo.InvariantCulture); // get the control number
+										if (!string.IsNullOrEmpty(lbl))
 										{
-											string lbl = line.Substring(7, (line.Length - 7)).Trim();
-											int cn = int.Parse(line[4].ToString(), CultureInfo.InvariantCulture); // get the control number
-											if (!string.IsNullOrEmpty(lbl))
-											{
-												data.ControlLabel[cn] = lbl;
-												data.ControlEnable[cn] = 1;
-											}
-											line = sr.ReadLine();
+											data.ControlValue[cn] = int.Parse(lbl, CultureInfo.InvariantCulture);
 										}
-
-										for (int i = 0; i < 4; i++)
-										{
-											data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
-											data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
-										}
-										SetPopDialog(data);
-
-										ctlread = true;
+										line = sr.ReadLine();
 									}
-									else
-									{
-
-										while (!string.IsNullOrEmpty(line) && line.StartsWith("val", StringComparison.Ordinal))
-										{
-											string lbl = line.Substring(7, (line.Length - 7)).Trim();
-											int cn = int.Parse(line[4].ToString(), CultureInfo.InvariantCulture); // get the control number
-											if (!string.IsNullOrEmpty(lbl))
-											{
-												data.ControlValue[cn] = int.Parse(lbl, CultureInfo.InvariantCulture);
-											}
-											line = sr.ReadLine();
-										}
-										valread = true;
-									}
+									valread = true;
 								}
 							}
-
 						}
+
 					}
 				}
-				if (!ctlread && !valread)
-				{
-					for (int i = 0; i < 4; i++)
-					{
-						data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
-						data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
-					}
-					for (int i = 0; i < 8; i++)
-					{
-						data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
-						data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
-					}
-					SetPopDialog(data);
-				}
-
-
 			}
-			catch (Exception)
+			if (!ctlread && !valread)
 			{
-				throw;
+				for (int i = 0; i < 4; i++)
+				{
+					data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
+					data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
+				}
+				for (int i = 0; i < 8; i++)
+				{
+					data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
+					data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
+				}
+				SetPopDialog(data);
 			}
-
 		}
 
 		private static string ReadAfsString(BinaryReader br, int length)
@@ -571,89 +548,82 @@ namespace PdnFF
 				throw new ArgumentNullException("infile", "infile is null.");
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
-			try
+
+			infile.Position = 9L; // we have already read the signature skip it
+			string line = string.Empty;
+			bool ctlread = false;
+			bool srcread = false;
+
+			using (BinaryReader br = new BinaryReader(infile, Encoding.Default))
 			{
-				infile.Position = 9L; // we have already read the signature skip it
-				string line = string.Empty;
-				bool ctlread = false;
-				bool srcread = false;
-
-				using (BinaryReader br = new BinaryReader(infile, Encoding.Default))
+				if (!ctlread)
 				{
-					if (!ctlread)
+					for (int i = 0; i < 8; i++)
 					{
-						for (int i = 0; i < 8; i++)
+						line = ReadAfsString(br, 256);
+						if (!string.IsNullOrEmpty(line) && line.Length <= 3)
 						{
-							line = ReadAfsString(br, 256);
-							if (!string.IsNullOrEmpty(line) && line.Length <= 3)
-							{
-								data.ControlValue[i] = int.Parse(line, CultureInfo.InvariantCulture);
-							}
+							data.ControlValue[i] = int.Parse(line, CultureInfo.InvariantCulture);
 						}
-						ctlread = true;
 					}
+					ctlread = true;
+				}
 
-					if (!srcread)
+				if (!srcread)
+				{
+					int i = 0;
+					while (i < 4)
 					{
-						int i = 0;
-						while (i < 4)
+						line = ReadAfsString(br, 1024);
+						if (!string.IsNullOrEmpty(line))
 						{
-							line = ReadAfsString(br, 1024);
-							if (!string.IsNullOrEmpty(line))
+							if (!string.IsNullOrEmpty(data.Source[i]) && (data.Source[i].Length + line.Length) < 1024)
 							{
-								if (!string.IsNullOrEmpty(data.Source[i]) && (data.Source[i].Length + line.Length) < 1024)
-								{
-									data.Source[i] += line; // append the line to te existing Source
-								}
-								else
-								{
-									data.Source[i] = line;
-								}
+								data.Source[i] += line; // append the line to te existing Source
 							}
 							else
 							{
-								i++;
+								data.Source[i] = line;
 							}
-
+						}
+						else
+						{
+							i++;
 						}
 
-						srcread = true;
 					}
 
-
+					srcread = true;
 				}
 
-				data.Category = "Filter Factory";
-				FileStream fs = infile as FileStream;
-				string Title;
-				if (fs != null)
-				{
-					Title = Path.GetFileName(fs.Name);
-				}
-				else
-				{
-					Title = "Untitled";
-				}
-				data.Title = Title;
-				data.Author = "Unknown";
-				data.Copyright = "Copyright © Unknown";
-				for (int i = 0; i < 4; i++)
-				{
-					data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-					data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
-				}
-				for (int i = 0; i < 8; i++)
-				{
-					data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-					data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
-				}
-				SetPopDialog(data);
 
 			}
-			catch (Exception)
+
+			data.Category = "Filter Factory";
+			FileStream fs = infile as FileStream;
+			string Title;
+			if (fs != null)
 			{
-				throw;
+				Title = Path.GetFileName(fs.Name);
 			}
+			else
+			{
+				Title = "Untitled";
+			}
+			data.Title = Title;
+			data.Author = "Unknown";
+			data.Copyright = "Copyright © Unknown";
+			for (int i = 0; i < 4; i++)
+			{
+				data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
+				data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
+			}
+			for (int i = 0; i < 8; i++)
+			{
+				data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
+				data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
+			}
+			SetPopDialog(data);
 
 		}
 		private static void SaveAfs(Stream output, filter_data data)
@@ -662,59 +632,52 @@ namespace PdnFF
 				throw new ArgumentNullException("output", "output is null.");
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
-			try
+
+			using (StreamWriter sw = new StreamWriter(output, Encoding.Default))
 			{
-				using (StreamWriter sw = new StreamWriter(output, Encoding.Default))
+				sw.NewLine = "\r"; // Filter factory uses the Mac end of line format
+				sw.WriteLine("%RGB-1.0");
+				for (int i = 0; i < 8; i++)
 				{
-					sw.NewLine = "\r"; // Filter factory uses the Mac end of line format
-					sw.WriteLine("%RGB-1.0");
-					for (int i = 0; i < 8; i++)
+					sw.WriteLine(data.ControlValue[i]);
+				}
+
+				for (int i = 0; i < 4; i++)
+				{
+					if (data.Source[i].Length > 63) // split the items into lines 63 chars long
 					{
-						sw.WriteLine(data.ControlValue[i]);
+						string temp = data.Source[i];
+						int pos = 0;
+						List<string> srcarray = new List<string>();
+						while ((temp.Length - pos) > 63)
+						{
+							string sub = temp.Substring(pos, 63);
+							pos += 63;
+
+							srcarray.Add(sub);
+
+							if ((temp.Length - pos) < 63)
+							{
+								string remain = temp.Substring(pos);
+								remain += "\r"; // add an extra return to write an extra line
+								srcarray.Add(remain);
+							}
+						}
+
+						foreach (var item in srcarray)
+						{
+							sw.WriteLine(item);
+						}
+
 					}
-
-					for (int i = 0; i < 4; i++)
+					else
 					{
-						if (data.Source[i].Length > 63) // split the items into lines 63 chars long
-						{
-							string temp = data.Source[i];
-							int pos = 0;
-							List<string> srcarray = new List<string>();
-							while ((temp.Length - pos) > 63)
-							{
-								string sub = temp.Substring(pos, 63);
-								pos += 63;
-
-								srcarray.Add(sub);
-
-								if ((temp.Length - pos) < 63)
-								{
-									string remain = temp.Substring(pos);
-									remain += "\r"; // add an extra return to write an extra line
-									srcarray.Add(remain);
-								}
-							}
-
-							foreach (var item in srcarray)
-							{
-								sw.WriteLine(item);
-							}
-
-						}
-						else
-						{
-							sw.WriteLine(data.Source[i] + "\r"); // add an extra return to write an extra line
-						}
-
+						sw.WriteLine(data.Source[i] + "\r"); // add an extra return to write an extra line
 					}
 
 				}
-			}
-			catch (Exception)
-			{
-				throw;
-			}
 
+			}
 		}
 		private static void SaveTxt(Stream output, filter_data data)
 		{
@@ -722,48 +685,40 @@ namespace PdnFF
 				throw new ArgumentNullException("output", "output is null.");
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
-			try
+
+			using (StreamWriter sw = new StreamWriter(output, Encoding.Default))
 			{
-				using (StreamWriter sw = new StreamWriter(output, Encoding.Default))
+				sw.WriteLine("{0}: {1}", "Category", data.Category);
+				sw.WriteLine("{0}: {1}", "Title", data.Title);
+				sw.WriteLine("{0}: {1}", "Copyright", data.Copyright);
+				sw.WriteLine("{0}: {1}", "Author", data.Author);
+
+				sw.WriteLine(Environment.NewLine);
+
+				sw.WriteLine("R: {0}", data.Source[0] + Environment.NewLine);
+				sw.WriteLine("G: {0}", data.Source[1] + Environment.NewLine);
+				sw.WriteLine("B: {0}", data.Source[2] + Environment.NewLine);
+				sw.WriteLine("A: {0}", data.Source[3] + Environment.NewLine);
+
+				sw.WriteLine(Environment.NewLine);
+				for (int i = 0; i < 8; i++)
 				{
-					sw.WriteLine("{0}: {1}", "Category", data.Category);
-					sw.WriteLine("{0}: {1}", "Title", data.Title);
-					sw.WriteLine("{0}: {1}", "Copyright", data.Copyright);
-					sw.WriteLine("{0}: {1}", "Author", data.Author);
-
-					sw.WriteLine(Environment.NewLine);
-
-					sw.WriteLine("R: {0}", data.Source[0] + Environment.NewLine);
-					sw.WriteLine("G: {0}", data.Source[1] + Environment.NewLine);
-					sw.WriteLine("B: {0}", data.Source[2] + Environment.NewLine);
-					sw.WriteLine("A: {0}", data.Source[3] + Environment.NewLine);
-
-					sw.WriteLine(Environment.NewLine);
-					for (int i = 0; i < 8; i++)
+					if (data.ControlEnable[i] == 1)
 					{
-						if (data.ControlEnable[i] == 1)
-						{
-							sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "ctl[{0}]: {1}", i.ToString(CultureInfo.InvariantCulture), data.ControlLabel[i]));
-						}
-					}
-
-					sw.WriteLine(Environment.NewLine);
-
-					for (int i = 0; i < 8; i++)
-					{
-						if (data.ControlEnable[i] == 1)
-						{
-							sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "val[{0}]: {1}", i.ToString(CultureInfo.InvariantCulture), data.ControlValue[i]));
-						}
+						sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "ctl[{0}]: {1}", i.ToString(CultureInfo.InvariantCulture), data.ControlLabel[i]));
 					}
 				}
 
-			}
-			catch (Exception)
-			{
-				throw;
-			}
+				sw.WriteLine(Environment.NewLine);
 
+				for (int i = 0; i < 8; i++)
+				{
+					if (data.ControlEnable[i] == 1)
+					{
+						sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "val[{0}]: {1}", i.ToString(CultureInfo.InvariantCulture), data.ControlValue[i]));
+					}
+				}
+			}
 		}
 		/// <summary>
 		/// Saves a filter_data Source as either an .afs or .txt Source code
@@ -776,26 +731,18 @@ namespace PdnFF
 				throw new ArgumentException("FileName is null or empty.", "FileName");
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
-			try
-			{
 
-				using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write))
+			using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write))
+			{
+				if (Path.GetExtension(FileName).Equals(".afs", StringComparison.OrdinalIgnoreCase))
 				{
-					if (Path.GetExtension(FileName).Equals(".afs", StringComparison.OrdinalIgnoreCase))
-					{
-						SaveAfs(fs, data);
-					}
-					else
-					{
-						SaveTxt(fs, data);
-					}
+					SaveAfs(fs, data);
+				}
+				else
+				{
+					SaveTxt(fs, data);
 				}
 			}
-			catch (Exception)
-			{
-				throw;
-			}
-
 		}
 		/// <summary>
 		/// Sets the filter_data to default values.
@@ -972,72 +919,65 @@ namespace PdnFF
 
 			bool loaded = false;
 
-			try
+			br.BaseStream.Seek(offset, SeekOrigin.Begin);
+
+			data.FileName = ReadString(br, 256);
+			data.Category = ReadString(br, 256);
+			data.Title = ReadString(br, 256);
+			data.Author = ReadString(br, 256);
+			data.Copyright = ReadString(br, 256);
+
+			for (int i = 0; i < 4; i++)
 			{
-
-				br.BaseStream.Seek(offset, SeekOrigin.Begin);
-
-				data.FileName = ReadString(br, 256);
-				data.Category = ReadString(br, 256);
-				data.Title = ReadString(br, 256);
-				data.Author = ReadString(br, 256);
-				data.Copyright = ReadString(br, 256);
-
-				for (int i = 0; i < 4; i++)
+				string map = ReadString(br, 256);
+				if (!string.IsNullOrEmpty(map))
 				{
-					string map = ReadString(br, 256);
-					if (!string.IsNullOrEmpty(map))
-					{
-						data.MapLabel[i] = map;
-						data.MapEnable[i] = 1;
-					}
-					else
-					{
-						data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map {0}:", i.ToString(CultureInfo.InvariantCulture));
-						data.MapEnable[i] = 0;
-					}
+					data.MapLabel[i] = map;
+					data.MapEnable[i] = 1;
 				}
-				for (int i = 0; i < 8; i++)
+				else
 				{
-					string ctl = ReadString(br, 256);
-					if (!string.IsNullOrEmpty(ctl))
-					{
-						data.ControlLabel[i] = ctl;
-						data.ControlEnable[i] = 1;
-					}
-					else
-					{
-						data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
-						data.ControlEnable[i] = 0;
-					}
+					data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map {0}:", i.ToString(CultureInfo.InvariantCulture));
+					data.MapEnable[i] = 0;
 				}
-
-				for (int i = 0; i < 8; i++)
-				{
-					string cv = ReadString(br, 10);
-					data.ControlValue[i] = int.Parse(cv, CultureInfo.InvariantCulture);
-				}
-
-				string[] rgba = new string[] { "r", "g", "b", "a" };
-
-				for (int i = 0; i < 4; i++)
-				{
-					string src = ReadString(br, 8192);
-					if (!string.IsNullOrEmpty(src))
-					{
-						data.Source[i] = src;
-					}
-					else
-					{
-						data.Source[i] = rgba[i];
-					}
-				}
-				loaded = true;
 			}
-			catch (Exception)
+			for (int i = 0; i < 8; i++)
 			{
-				throw;
+				string ctl = ReadString(br, 256);
+				if (!string.IsNullOrEmpty(ctl))
+				{
+					data.ControlLabel[i] = ctl;
+					data.ControlEnable[i] = 1;
+				}
+				else
+				{
+					data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
+					data.ControlEnable[i] = 0;
+				}
 			}
+
+			for (int i = 0; i < 8; i++)
+			{
+				string cv = ReadString(br, 10);
+				data.ControlValue[i] = int.Parse(cv, CultureInfo.InvariantCulture);
+			}
+
+			string[] rgba = new string[] { "r", "g", "b", "a" };
+
+			for (int i = 0; i < 4; i++)
+			{
+				string src = ReadString(br, 8192);
+				if (!string.IsNullOrEmpty(src))
+				{
+					data.Source[i] = src;
+				}
+				else
+				{
+					data.Source[i] = rgba[i];
+				}
+			}
+			loaded = true;
+
 
 			return loaded;
 		}
