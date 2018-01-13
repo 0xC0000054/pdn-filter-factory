@@ -273,6 +273,8 @@ namespace PdnFF
 				ms = new MemoryStream(parmbytes);
 				using (BinaryReader br = new BinaryReader(ms, Encoding.Default))
 				{
+					ms = null;
+
 #if false
 					int cbsize = br.ReadInt32();
 					int standalone = br.ReadInt32();
@@ -325,7 +327,6 @@ namespace PdnFF
 					}
 
 				}
-				ms = null;
 			}
 			finally
 			{
