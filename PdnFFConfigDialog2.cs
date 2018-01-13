@@ -225,1479 +225,1479 @@ namespace PdnFF
 
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PdnFFConfigDialog));
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonOK = new System.Windows.Forms.Button();
-            this.bluelbl = new System.Windows.Forms.Label();
-            this.alphalbl = new System.Windows.Forms.Label();
-            this.greenlbl = new System.Windows.Forms.Label();
-            this.Redlbl = new System.Windows.Forms.Label();
-            this.Savebtn2 = new System.Windows.Forms.Button();
-            this.Loadbtn2 = new System.Windows.Forms.Button();
-            this.Filenamelbl = new System.Windows.Forms.Label();
-            this.Filenametxt = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.default_fltr = new System.Windows.Forms.Button();
-            this.DirBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.UpdateFilterListbw = new System.ComponentModel.BackgroundWorker();
-            this.FilterDirtab = new System.Windows.Forms.TabPage();
-            this.subdirSearchcb = new System.Windows.Forms.CheckBox();
-            this.remdirbtn = new System.Windows.Forms.Button();
-            this.DirlistView1 = new System.Windows.Forms.ListView();
-            this.pathColHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.adddirbtn = new System.Windows.Forms.Button();
-            this.FilterManagertab = new System.Windows.Forms.TabPage();
-            this.filterSearchBox = new System.Windows.Forms.TextBox();
-            this.treefltrcopytxt = new System.Windows.Forms.Label();
-            this.treefltrauthtxt = new System.Windows.Forms.Label();
-            this.treefltrcopylbl = new System.Windows.Forms.Label();
-            this.treefltrauthlbl = new System.Windows.Forms.Label();
-            this.filtertreeview = new System.Windows.Forms.TreeView();
-            this.filtermgrprogresspanel = new System.Windows.Forms.Panel();
-            this.folderloadnamelbl = new System.Windows.Forms.Label();
-            this.folderloadcountlbl = new System.Windows.Forms.Label();
-            this.folderldprolbl = new System.Windows.Forms.Label();
-            this.fltrmgrprogress = new System.Windows.Forms.ProgressBar();
-            this.filterlistcnttxt = new System.Windows.Forms.Label();
-            this.filterlistcntlbl = new System.Windows.Forms.Label();
-            this.FFLtab = new System.Windows.Forms.TabPage();
-            this.ffltreecopytxt = new System.Windows.Forms.Label();
-            this.ffltreeauthtxt = new System.Windows.Forms.Label();
-            this.ffltreecopylbl = new System.Windows.Forms.Label();
-            this.ffltreeauthlbl = new System.Windows.Forms.Label();
-            this.FFLtreeView1 = new System.Windows.Forms.TreeView();
-            this.FFLfltrnumtxt = new System.Windows.Forms.Label();
-            this.FFLfltrnumlbl = new System.Windows.Forms.Label();
-            this.fflnametxt = new System.Windows.Forms.Label();
-            this.FFLnamelbl = new System.Windows.Forms.Label();
-            this.clearFFLbtn = new System.Windows.Forms.Button();
-            this.LoadFFLbtn = new System.Windows.Forms.Button();
-            this.editorTab = new System.Windows.Forms.TabPage();
-            this.Interfacegb = new System.Windows.Forms.GroupBox();
-            this.ctl5num = new System.Windows.Forms.NumericUpDown();
-            this.ctl4num = new System.Windows.Forms.NumericUpDown();
-            this.ctl6num = new System.Windows.Forms.NumericUpDown();
-            this.ctl7num = new System.Windows.Forms.NumericUpDown();
-            this.ctl3num = new System.Windows.Forms.NumericUpDown();
-            this.ctl2num = new System.Windows.Forms.NumericUpDown();
-            this.ctl1num = new System.Windows.Forms.NumericUpDown();
-            this.ctl7txt = new System.Windows.Forms.TextBox();
-            this.ctl7cb = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.ctl6txt = new System.Windows.Forms.TextBox();
-            this.ctl6cb = new System.Windows.Forms.CheckBox();
-            this.ctl3txt = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.ctl3cb = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.ctl2txt = new System.Windows.Forms.TextBox();
-            this.ctl2cb = new System.Windows.Forms.CheckBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.ctl5txt = new System.Windows.Forms.TextBox();
-            this.ctl5cb = new System.Windows.Forms.CheckBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.ctl1txt = new System.Windows.Forms.TextBox();
-            this.ctl1cb = new System.Windows.Forms.CheckBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.ctl4txt = new System.Windows.Forms.TextBox();
-            this.ctl4cb = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.ctl0txt = new System.Windows.Forms.TextBox();
-            this.ctl0cb = new System.Windows.Forms.CheckBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.map2txt = new System.Windows.Forms.TextBox();
-            this.map2cb = new System.Windows.Forms.CheckBox();
-            this.map2lbl = new System.Windows.Forms.Label();
-            this.map1txt = new System.Windows.Forms.TextBox();
-            this.map1cb = new System.Windows.Forms.CheckBox();
-            this.map1lbl = new System.Windows.Forms.Label();
-            this.map3txt = new System.Windows.Forms.TextBox();
-            this.map3cb = new System.Windows.Forms.CheckBox();
-            this.map3lbl = new System.Windows.Forms.Label();
-            this.map0txt = new System.Windows.Forms.TextBox();
-            this.map0cb = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.ctl0num = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.Infogb = new System.Windows.Forms.GroupBox();
-            this.infofilterlbl = new System.Windows.Forms.Label();
-            this.infocatlbl = new System.Windows.Forms.Label();
-            this.infoauthlbl = new System.Windows.Forms.Label();
-            this.infocopylbl = new System.Windows.Forms.Label();
-            this.CategoryBox = new System.Windows.Forms.TextBox();
-            this.CopyrightBox = new System.Windows.Forms.TextBox();
-            this.AuthorBox = new System.Windows.Forms.TextBox();
-            this.TitleBox = new System.Windows.Forms.TextBox();
-            this.AlphaBox = new System.Windows.Forms.TextBox();
-            this.BlueBox = new System.Windows.Forms.TextBox();
-            this.GreenBox = new System.Windows.Forms.TextBox();
-            this.RedBox = new System.Windows.Forms.TextBox();
-            this.Savebtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.controlsTab = new System.Windows.Forms.TabPage();
-            this.fltrAuthorTxt = new System.Windows.Forms.Label();
-            this.fltrTitletxt = new System.Windows.Forms.Label();
-            this.fltrTitlelbl = new System.Windows.Forms.Label();
-            this.copylbl = new System.Windows.Forms.Label();
-            this.authlbl = new System.Windows.Forms.Label();
-            this.catlbl = new System.Windows.Forms.Label();
-            this.fltrCopyTxt = new System.Windows.Forms.Label();
-            this.fltrCatTxt = new System.Windows.Forms.Label();
-            this.ctlpanel = new System.Windows.Forms.Panel();
-            this.ctllbl2 = new System.Windows.Forms.Label();
-            this.resetbtn1 = new System.Windows.Forms.Button();
-            this.resetbtn7 = new System.Windows.Forms.Button();
-            this.resetbtn6 = new System.Windows.Forms.Button();
-            this.resetbtn5 = new System.Windows.Forms.Button();
-            this.resetbtn4 = new System.Windows.Forms.Button();
-            this.resetbtn3 = new System.Windows.Forms.Button();
-            this.resetbtn2 = new System.Windows.Forms.Button();
-            this.ctllbl7 = new System.Windows.Forms.Label();
-            this.ctllbl6 = new System.Windows.Forms.Label();
-            this.resetbtn0 = new System.Windows.Forms.Button();
-            this.ctllbl5 = new System.Windows.Forms.Label();
-            this.ctl7 = new System.Windows.Forms.TrackBar();
-            this.ctllbl4 = new System.Windows.Forms.Label();
-            this.ctl6 = new System.Windows.Forms.TrackBar();
-            this.ctllbl3 = new System.Windows.Forms.Label();
-            this.ctl5 = new System.Windows.Forms.TrackBar();
-            this.ctl4 = new System.Windows.Forms.TrackBar();
-            this.ctllbl1 = new System.Windows.Forms.Label();
-            this.ctl3 = new System.Windows.Forms.TrackBar();
-            this.ctllbl0 = new System.Windows.Forms.Label();
-            this.ctl7_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.map3_lbl = new System.Windows.Forms.Label();
-            this.ctl6_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.map2_lbl = new System.Windows.Forms.Label();
-            this.ctl4_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.ctl5_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.map0_lbl = new System.Windows.Forms.Label();
-            this.ctl3_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.ctl2_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.ctl1_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.ctl0_UpDown = new System.Windows.Forms.NumericUpDown();
-            this.ctl2 = new System.Windows.Forms.TrackBar();
-            this.ctl1 = new System.Windows.Forms.TrackBar();
-            this.ctl0 = new System.Windows.Forms.TrackBar();
-            this.map1_lbl = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.buildfilterbtn = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.FilterDirtab.SuspendLayout();
-            this.FilterManagertab.SuspendLayout();
-            this.filtermgrprogresspanel.SuspendLayout();
-            this.FFLtab.SuspendLayout();
-            this.editorTab.SuspendLayout();
-            this.Interfacegb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl5num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl4num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl6num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl7num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl3num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl2num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl1num)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl0num)).BeginInit();
-            this.Infogb.SuspendLayout();
-            this.controlsTab.SuspendLayout();
-            this.ctlpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl7_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl6_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl4_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl5_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl3_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl2_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl1_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl0_UpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl0)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.SuspendLayout();
-            //
-            // buttonCancel
-            //
-            resources.ApplyResources(this.buttonCancel, "buttonCancel");
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            //
-            // buttonOK
-            //
-            resources.ApplyResources(this.buttonOK, "buttonOK");
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            //
-            // bluelbl
-            //
-            resources.ApplyResources(this.bluelbl, "bluelbl");
-            this.bluelbl.Name = "bluelbl";
-            //
-            // alphalbl
-            //
-            resources.ApplyResources(this.alphalbl, "alphalbl");
-            this.alphalbl.Name = "alphalbl";
-            //
-            // greenlbl
-            //
-            resources.ApplyResources(this.greenlbl, "greenlbl");
-            this.greenlbl.Name = "greenlbl";
-            //
-            // Redlbl
-            //
-            resources.ApplyResources(this.Redlbl, "Redlbl");
-            this.Redlbl.Name = "Redlbl";
-            //
-            // Savebtn2
-            //
-            resources.ApplyResources(this.Savebtn2, "Savebtn2");
-            this.Savebtn2.Name = "Savebtn2";
-            this.Savebtn2.UseVisualStyleBackColor = true;
-            this.Savebtn2.Click += new System.EventHandler(this.Savebtn_Click);
-            //
-            // Loadbtn2
-            //
-            resources.ApplyResources(this.Loadbtn2, "Loadbtn2");
-            this.Loadbtn2.Name = "Loadbtn2";
-            this.Loadbtn2.UseVisualStyleBackColor = true;
-            this.Loadbtn2.Click += new System.EventHandler(this.Loadbtn_Click);
-            //
-            // Filenamelbl
-            //
-            resources.ApplyResources(this.Filenamelbl, "Filenamelbl");
-            this.Filenamelbl.Name = "Filenamelbl";
-            //
-            // Filenametxt
-            //
-            resources.ApplyResources(this.Filenametxt, "Filenametxt");
-            this.Filenametxt.Name = "Filenametxt";
-            //
-            // button3
-            //
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            //
-            // openFileDialog1
-            //
-            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
-            //
-            // saveFileDialog1
-            //
-            this.saveFileDialog1.DefaultExt = "txt";
-            resources.ApplyResources(this.saveFileDialog1, "saveFileDialog1");
-            //
-            // default_fltr
-            //
-            resources.ApplyResources(this.default_fltr, "default_fltr");
-            this.default_fltr.Name = "default_fltr";
-            this.default_fltr.UseVisualStyleBackColor = true;
-            this.default_fltr.Click += new System.EventHandler(this.default_fltr_Click);
-            //
-            // UpdateFilterListbw
-            //
-            this.UpdateFilterListbw.WorkerReportsProgress = true;
-            this.UpdateFilterListbw.WorkerSupportsCancellation = true;
-            this.UpdateFilterListbw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.UpdateFilterListbw_DoWork);
-            this.UpdateFilterListbw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.UpdateFilterListbw_ProgressChanged);
-            this.UpdateFilterListbw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.UpdateFilterListbw_RunWorkerCompleted);
-            //
-            // FilterDirtab
-            //
-            this.FilterDirtab.BackColor = System.Drawing.SystemColors.Control;
-            this.FilterDirtab.Controls.Add(this.subdirSearchcb);
-            this.FilterDirtab.Controls.Add(this.remdirbtn);
-            this.FilterDirtab.Controls.Add(this.DirlistView1);
-            this.FilterDirtab.Controls.Add(this.adddirbtn);
-            resources.ApplyResources(this.FilterDirtab, "FilterDirtab");
-            this.FilterDirtab.Name = "FilterDirtab";
-            //
-            // subdirSearchcb
-            //
-            resources.ApplyResources(this.subdirSearchcb, "subdirSearchcb");
-            this.subdirSearchcb.Name = "subdirSearchcb";
-            this.subdirSearchcb.UseVisualStyleBackColor = true;
-            this.subdirSearchcb.Click += new System.EventHandler(this.subdirSearchcb_CheckedChanged);
-            //
-            // remdirbtn
-            //
-            resources.ApplyResources(this.remdirbtn, "remdirbtn");
-            this.remdirbtn.Name = "remdirbtn";
-            this.remdirbtn.UseVisualStyleBackColor = true;
-            this.remdirbtn.Click += new System.EventHandler(this.remdirbtn_Click);
-            //
-            // DirlistView1
-            //
-            this.DirlistView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.pathColHeader});
-            this.DirlistView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.DirlistView1.HideSelection = false;
-            resources.ApplyResources(this.DirlistView1, "DirlistView1");
-            this.DirlistView1.MultiSelect = false;
-            this.DirlistView1.Name = "DirlistView1";
-            this.DirlistView1.UseCompatibleStateImageBehavior = false;
-            this.DirlistView1.View = System.Windows.Forms.View.Details;
-            //
-            // pathColHeader
-            //
-            resources.ApplyResources(this.pathColHeader, "pathColHeader");
-            //
-            // adddirbtn
-            //
-            resources.ApplyResources(this.adddirbtn, "adddirbtn");
-            this.adddirbtn.Name = "adddirbtn";
-            this.adddirbtn.UseVisualStyleBackColor = true;
-            this.adddirbtn.Click += new System.EventHandler(this.adddirbtn_Click);
-            //
-            // FilterManagertab
-            //
-            this.FilterManagertab.BackColor = System.Drawing.SystemColors.Control;
-            this.FilterManagertab.Controls.Add(this.filterSearchBox);
-            this.FilterManagertab.Controls.Add(this.treefltrcopytxt);
-            this.FilterManagertab.Controls.Add(this.treefltrauthtxt);
-            this.FilterManagertab.Controls.Add(this.treefltrcopylbl);
-            this.FilterManagertab.Controls.Add(this.treefltrauthlbl);
-            this.FilterManagertab.Controls.Add(this.filtertreeview);
-            this.FilterManagertab.Controls.Add(this.filtermgrprogresspanel);
-            this.FilterManagertab.Controls.Add(this.filterlistcnttxt);
-            this.FilterManagertab.Controls.Add(this.filterlistcntlbl);
-            resources.ApplyResources(this.FilterManagertab, "FilterManagertab");
-            this.FilterManagertab.Name = "FilterManagertab";
-            //
-            // filterSearchBox
-            //
-            resources.ApplyResources(this.filterSearchBox, "filterSearchBox");
-            this.filterSearchBox.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.filterSearchBox.Name = "filterSearchBox";
-            this.filterSearchBox.TextChanged += new System.EventHandler(this.filterSearchBox_TextChanged);
-            this.filterSearchBox.Enter += new System.EventHandler(this.filterSearchBox_Enter);
-            this.filterSearchBox.Leave += new System.EventHandler(this.filterSearchBox_Leave);
-            //
-            // treefltrcopytxt
-            //
-            resources.ApplyResources(this.treefltrcopytxt, "treefltrcopytxt");
-            this.treefltrcopytxt.Name = "treefltrcopytxt";
-            //
-            // treefltrauthtxt
-            //
-            resources.ApplyResources(this.treefltrauthtxt, "treefltrauthtxt");
-            this.treefltrauthtxt.Name = "treefltrauthtxt";
-            //
-            // treefltrcopylbl
-            //
-            resources.ApplyResources(this.treefltrcopylbl, "treefltrcopylbl");
-            this.treefltrcopylbl.Name = "treefltrcopylbl";
-            //
-            // treefltrauthlbl
-            //
-            resources.ApplyResources(this.treefltrauthlbl, "treefltrauthlbl");
-            this.treefltrauthlbl.Name = "treefltrauthlbl";
-            //
-            // filtertreeview
-            //
-            this.filtertreeview.HideSelection = false;
-            resources.ApplyResources(this.filtertreeview, "filtertreeview");
-            this.filtertreeview.Name = "filtertreeview";
-            this.filtertreeview.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.filtertreeview_AfterSelect);
-            //
-            // filtermgrprogresspanel
-            //
-            this.filtermgrprogresspanel.Controls.Add(this.folderloadnamelbl);
-            this.filtermgrprogresspanel.Controls.Add(this.folderloadcountlbl);
-            this.filtermgrprogresspanel.Controls.Add(this.folderldprolbl);
-            this.filtermgrprogresspanel.Controls.Add(this.fltrmgrprogress);
-            resources.ApplyResources(this.filtermgrprogresspanel, "filtermgrprogresspanel");
-            this.filtermgrprogresspanel.Name = "filtermgrprogresspanel";
-            //
-            // folderloadnamelbl
-            //
-            resources.ApplyResources(this.folderloadnamelbl, "folderloadnamelbl");
-            this.folderloadnamelbl.Name = "folderloadnamelbl";
-            //
-            // folderloadcountlbl
-            //
-            resources.ApplyResources(this.folderloadcountlbl, "folderloadcountlbl");
-            this.folderloadcountlbl.Name = "folderloadcountlbl";
-            //
-            // folderldprolbl
-            //
-            resources.ApplyResources(this.folderldprolbl, "folderldprolbl");
-            this.folderldprolbl.Name = "folderldprolbl";
-            //
-            // fltrmgrprogress
-            //
-            resources.ApplyResources(this.fltrmgrprogress, "fltrmgrprogress");
-            this.fltrmgrprogress.Name = "fltrmgrprogress";
-            this.fltrmgrprogress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            //
-            // filterlistcnttxt
-            //
-            resources.ApplyResources(this.filterlistcnttxt, "filterlistcnttxt");
-            this.filterlistcnttxt.Name = "filterlistcnttxt";
-            //
-            // filterlistcntlbl
-            //
-            resources.ApplyResources(this.filterlistcntlbl, "filterlistcntlbl");
-            this.filterlistcntlbl.Name = "filterlistcntlbl";
-            //
-            // FFLtab
-            //
-            this.FFLtab.BackColor = System.Drawing.SystemColors.Control;
-            this.FFLtab.Controls.Add(this.ffltreecopytxt);
-            this.FFLtab.Controls.Add(this.ffltreeauthtxt);
-            this.FFLtab.Controls.Add(this.ffltreecopylbl);
-            this.FFLtab.Controls.Add(this.ffltreeauthlbl);
-            this.FFLtab.Controls.Add(this.FFLtreeView1);
-            this.FFLtab.Controls.Add(this.FFLfltrnumtxt);
-            this.FFLtab.Controls.Add(this.FFLfltrnumlbl);
-            this.FFLtab.Controls.Add(this.fflnametxt);
-            this.FFLtab.Controls.Add(this.FFLnamelbl);
-            this.FFLtab.Controls.Add(this.clearFFLbtn);
-            this.FFLtab.Controls.Add(this.LoadFFLbtn);
-            resources.ApplyResources(this.FFLtab, "FFLtab");
-            this.FFLtab.Name = "FFLtab";
-            //
-            // ffltreecopytxt
-            //
-            resources.ApplyResources(this.ffltreecopytxt, "ffltreecopytxt");
-            this.ffltreecopytxt.Name = "ffltreecopytxt";
-            //
-            // ffltreeauthtxt
-            //
-            resources.ApplyResources(this.ffltreeauthtxt, "ffltreeauthtxt");
-            this.ffltreeauthtxt.Name = "ffltreeauthtxt";
-            //
-            // ffltreecopylbl
-            //
-            resources.ApplyResources(this.ffltreecopylbl, "ffltreecopylbl");
-            this.ffltreecopylbl.Name = "ffltreecopylbl";
-            //
-            // ffltreeauthlbl
-            //
-            resources.ApplyResources(this.ffltreeauthlbl, "ffltreeauthlbl");
-            this.ffltreeauthlbl.Name = "ffltreeauthlbl";
-            //
-            // FFLtreeView1
-            //
-            this.FFLtreeView1.HideSelection = false;
-            resources.ApplyResources(this.FFLtreeView1, "FFLtreeView1");
-            this.FFLtreeView1.Name = "FFLtreeView1";
-            this.FFLtreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.FFLtreeView1_AfterSelect);
-            //
-            // FFLfltrnumtxt
-            //
-            resources.ApplyResources(this.FFLfltrnumtxt, "FFLfltrnumtxt");
-            this.FFLfltrnumtxt.Name = "FFLfltrnumtxt";
-            //
-            // FFLfltrnumlbl
-            //
-            resources.ApplyResources(this.FFLfltrnumlbl, "FFLfltrnumlbl");
-            this.FFLfltrnumlbl.Name = "FFLfltrnumlbl";
-            //
-            // fflnametxt
-            //
-            resources.ApplyResources(this.fflnametxt, "fflnametxt");
-            this.fflnametxt.Name = "fflnametxt";
-            //
-            // FFLnamelbl
-            //
-            resources.ApplyResources(this.FFLnamelbl, "FFLnamelbl");
-            this.FFLnamelbl.Name = "FFLnamelbl";
-            //
-            // clearFFLbtn
-            //
-            resources.ApplyResources(this.clearFFLbtn, "clearFFLbtn");
-            this.clearFFLbtn.Name = "clearFFLbtn";
-            this.clearFFLbtn.UseVisualStyleBackColor = true;
-            this.clearFFLbtn.Click += new System.EventHandler(this.clearFFLbtn_Click);
-            //
-            // LoadFFLbtn
-            //
-            resources.ApplyResources(this.LoadFFLbtn, "LoadFFLbtn");
-            this.LoadFFLbtn.Name = "LoadFFLbtn";
-            this.LoadFFLbtn.UseVisualStyleBackColor = true;
-            this.LoadFFLbtn.Click += new System.EventHandler(this.LoadFFLbtn_Click);
-            //
-            // editorTab
-            //
-            this.editorTab.BackColor = System.Drawing.SystemColors.Control;
-            this.editorTab.Controls.Add(this.Interfacegb);
-            this.editorTab.Controls.Add(this.label1);
-            this.editorTab.Controls.Add(this.label2);
-            this.editorTab.Controls.Add(this.label4);
-            this.editorTab.Controls.Add(this.label5);
-            this.editorTab.Controls.Add(this.Infogb);
-            this.editorTab.Controls.Add(this.AlphaBox);
-            this.editorTab.Controls.Add(this.BlueBox);
-            this.editorTab.Controls.Add(this.GreenBox);
-            this.editorTab.Controls.Add(this.RedBox);
-            this.editorTab.Controls.Add(this.Savebtn);
-            this.editorTab.Controls.Add(this.button2);
-            this.editorTab.Controls.Add(this.button1);
-            resources.ApplyResources(this.editorTab, "editorTab");
-            this.editorTab.Name = "editorTab";
-            //
-            // Interfacegb
-            //
-            this.Interfacegb.Controls.Add(this.ctl5num);
-            this.Interfacegb.Controls.Add(this.ctl4num);
-            this.Interfacegb.Controls.Add(this.ctl6num);
-            this.Interfacegb.Controls.Add(this.ctl7num);
-            this.Interfacegb.Controls.Add(this.ctl3num);
-            this.Interfacegb.Controls.Add(this.ctl2num);
-            this.Interfacegb.Controls.Add(this.ctl1num);
-            this.Interfacegb.Controls.Add(this.ctl7txt);
-            this.Interfacegb.Controls.Add(this.ctl7cb);
-            this.Interfacegb.Controls.Add(this.label18);
-            this.Interfacegb.Controls.Add(this.ctl6txt);
-            this.Interfacegb.Controls.Add(this.ctl6cb);
-            this.Interfacegb.Controls.Add(this.ctl3txt);
-            this.Interfacegb.Controls.Add(this.label17);
-            this.Interfacegb.Controls.Add(this.ctl3cb);
-            this.Interfacegb.Controls.Add(this.label16);
-            this.Interfacegb.Controls.Add(this.ctl2txt);
-            this.Interfacegb.Controls.Add(this.ctl2cb);
-            this.Interfacegb.Controls.Add(this.label15);
-            this.Interfacegb.Controls.Add(this.ctl5txt);
-            this.Interfacegb.Controls.Add(this.ctl5cb);
-            this.Interfacegb.Controls.Add(this.label14);
-            this.Interfacegb.Controls.Add(this.ctl1txt);
-            this.Interfacegb.Controls.Add(this.ctl1cb);
-            this.Interfacegb.Controls.Add(this.label13);
-            this.Interfacegb.Controls.Add(this.ctl4txt);
-            this.Interfacegb.Controls.Add(this.ctl4cb);
-            this.Interfacegb.Controls.Add(this.label12);
-            this.Interfacegb.Controls.Add(this.ctl0txt);
-            this.Interfacegb.Controls.Add(this.ctl0cb);
-            this.Interfacegb.Controls.Add(this.label11);
-            this.Interfacegb.Controls.Add(this.map2txt);
-            this.Interfacegb.Controls.Add(this.map2cb);
-            this.Interfacegb.Controls.Add(this.map2lbl);
-            this.Interfacegb.Controls.Add(this.map1txt);
-            this.Interfacegb.Controls.Add(this.map1cb);
-            this.Interfacegb.Controls.Add(this.map1lbl);
-            this.Interfacegb.Controls.Add(this.map3txt);
-            this.Interfacegb.Controls.Add(this.map3cb);
-            this.Interfacegb.Controls.Add(this.map3lbl);
-            this.Interfacegb.Controls.Add(this.map0txt);
-            this.Interfacegb.Controls.Add(this.map0cb);
-            this.Interfacegb.Controls.Add(this.label10);
-            this.Interfacegb.Controls.Add(this.ctl0num);
-            resources.ApplyResources(this.Interfacegb, "Interfacegb");
-            this.Interfacegb.Name = "Interfacegb";
-            this.Interfacegb.TabStop = false;
-            //
-            // ctl5num
-            //
-            resources.ApplyResources(this.ctl5num, "ctl5num");
-            this.ctl5num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl5num.Name = "ctl5num";
-            this.ctl5num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // ctl4num
-            //
-            resources.ApplyResources(this.ctl4num, "ctl4num");
-            this.ctl4num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl4num.Name = "ctl4num";
-            this.ctl4num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // ctl6num
-            //
-            resources.ApplyResources(this.ctl6num, "ctl6num");
-            this.ctl6num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl6num.Name = "ctl6num";
-            this.ctl6num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // ctl7num
-            //
-            resources.ApplyResources(this.ctl7num, "ctl7num");
-            this.ctl7num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl7num.Name = "ctl7num";
-            this.ctl7num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // ctl3num
-            //
-            resources.ApplyResources(this.ctl3num, "ctl3num");
-            this.ctl3num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl3num.Name = "ctl3num";
-            this.ctl3num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // ctl2num
-            //
-            resources.ApplyResources(this.ctl2num, "ctl2num");
-            this.ctl2num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl2num.Name = "ctl2num";
-            this.ctl2num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // ctl1num
-            //
-            resources.ApplyResources(this.ctl1num, "ctl1num");
-            this.ctl1num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl1num.Name = "ctl1num";
-            this.ctl1num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // ctl7txt
-            //
-            resources.ApplyResources(this.ctl7txt, "ctl7txt");
-            this.ctl7txt.Name = "ctl7txt";
-            this.ctl7txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // ctl7cb
-            //
-            resources.ApplyResources(this.ctl7cb, "ctl7cb");
-            this.ctl7cb.Name = "ctl7cb";
-            this.ctl7cb.UseVisualStyleBackColor = true;
-            this.ctl7cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label18
-            //
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            //
-            // ctl6txt
-            //
-            resources.ApplyResources(this.ctl6txt, "ctl6txt");
-            this.ctl6txt.Name = "ctl6txt";
-            this.ctl6txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // ctl6cb
-            //
-            resources.ApplyResources(this.ctl6cb, "ctl6cb");
-            this.ctl6cb.Name = "ctl6cb";
-            this.ctl6cb.UseVisualStyleBackColor = true;
-            this.ctl6cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // ctl3txt
-            //
-            resources.ApplyResources(this.ctl3txt, "ctl3txt");
-            this.ctl3txt.Name = "ctl3txt";
-            this.ctl3txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // label17
-            //
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
-            //
-            // ctl3cb
-            //
-            resources.ApplyResources(this.ctl3cb, "ctl3cb");
-            this.ctl3cb.Name = "ctl3cb";
-            this.ctl3cb.UseVisualStyleBackColor = true;
-            this.ctl3cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label16
-            //
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            //
-            // ctl2txt
-            //
-            resources.ApplyResources(this.ctl2txt, "ctl2txt");
-            this.ctl2txt.Name = "ctl2txt";
-            this.ctl2txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // ctl2cb
-            //
-            resources.ApplyResources(this.ctl2cb, "ctl2cb");
-            this.ctl2cb.Name = "ctl2cb";
-            this.ctl2cb.UseVisualStyleBackColor = true;
-            this.ctl2cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label15
-            //
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            //
-            // ctl5txt
-            //
-            resources.ApplyResources(this.ctl5txt, "ctl5txt");
-            this.ctl5txt.Name = "ctl5txt";
-            this.ctl5txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // ctl5cb
-            //
-            resources.ApplyResources(this.ctl5cb, "ctl5cb");
-            this.ctl5cb.Name = "ctl5cb";
-            this.ctl5cb.UseVisualStyleBackColor = true;
-            this.ctl5cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label14
-            //
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            //
-            // ctl1txt
-            //
-            resources.ApplyResources(this.ctl1txt, "ctl1txt");
-            this.ctl1txt.Name = "ctl1txt";
-            this.ctl1txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // ctl1cb
-            //
-            resources.ApplyResources(this.ctl1cb, "ctl1cb");
-            this.ctl1cb.Name = "ctl1cb";
-            this.ctl1cb.UseVisualStyleBackColor = true;
-            this.ctl1cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label13
-            //
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            //
-            // ctl4txt
-            //
-            resources.ApplyResources(this.ctl4txt, "ctl4txt");
-            this.ctl4txt.Name = "ctl4txt";
-            this.ctl4txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // ctl4cb
-            //
-            resources.ApplyResources(this.ctl4cb, "ctl4cb");
-            this.ctl4cb.Name = "ctl4cb";
-            this.ctl4cb.UseVisualStyleBackColor = true;
-            this.ctl4cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label12
-            //
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            //
-            // ctl0txt
-            //
-            resources.ApplyResources(this.ctl0txt, "ctl0txt");
-            this.ctl0txt.Name = "ctl0txt";
-            this.ctl0txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // ctl0cb
-            //
-            resources.ApplyResources(this.ctl0cb, "ctl0cb");
-            this.ctl0cb.Name = "ctl0cb";
-            this.ctl0cb.UseVisualStyleBackColor = true;
-            this.ctl0cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label11
-            //
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            //
-            // map2txt
-            //
-            resources.ApplyResources(this.map2txt, "map2txt");
-            this.map2txt.Name = "map2txt";
-            this.map2txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // map2cb
-            //
-            resources.ApplyResources(this.map2cb, "map2cb");
-            this.map2cb.Name = "map2cb";
-            this.map2cb.UseVisualStyleBackColor = true;
-            this.map2cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // map2lbl
-            //
-            resources.ApplyResources(this.map2lbl, "map2lbl");
-            this.map2lbl.Name = "map2lbl";
-            //
-            // map1txt
-            //
-            resources.ApplyResources(this.map1txt, "map1txt");
-            this.map1txt.Name = "map1txt";
-            this.map1txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // map1cb
-            //
-            resources.ApplyResources(this.map1cb, "map1cb");
-            this.map1cb.Name = "map1cb";
-            this.map1cb.UseVisualStyleBackColor = true;
-            this.map1cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // map1lbl
-            //
-            resources.ApplyResources(this.map1lbl, "map1lbl");
-            this.map1lbl.Name = "map1lbl";
-            //
-            // map3txt
-            //
-            resources.ApplyResources(this.map3txt, "map3txt");
-            this.map3txt.Name = "map3txt";
-            this.map3txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // map3cb
-            //
-            resources.ApplyResources(this.map3cb, "map3cb");
-            this.map3cb.Name = "map3cb";
-            this.map3cb.UseVisualStyleBackColor = true;
-            this.map3cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // map3lbl
-            //
-            resources.ApplyResources(this.map3lbl, "map3lbl");
-            this.map3lbl.Name = "map3lbl";
-            //
-            // map0txt
-            //
-            resources.ApplyResources(this.map0txt, "map0txt");
-            this.map0txt.Name = "map0txt";
-            this.map0txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
-            //
-            // map0cb
-            //
-            resources.ApplyResources(this.map0cb, "map0cb");
-            this.map0cb.Name = "map0cb";
-            this.map0cb.UseVisualStyleBackColor = true;
-            this.map0cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
-            //
-            // label10
-            //
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            //
-            // ctl0num
-            //
-            resources.ApplyResources(this.ctl0num, "ctl0num");
-            this.ctl0num.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl0num.Name = "ctl0num";
-            this.ctl0num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
-            //
-            // label1
-            //
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            //
-            // label2
-            //
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            //
-            // label4
-            //
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            //
-            // label5
-            //
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            //
-            // Infogb
-            //
-            this.Infogb.BackColor = System.Drawing.Color.Transparent;
-            this.Infogb.Controls.Add(this.infofilterlbl);
-            this.Infogb.Controls.Add(this.infocatlbl);
-            this.Infogb.Controls.Add(this.infoauthlbl);
-            this.Infogb.Controls.Add(this.infocopylbl);
-            this.Infogb.Controls.Add(this.CategoryBox);
-            this.Infogb.Controls.Add(this.CopyrightBox);
-            this.Infogb.Controls.Add(this.AuthorBox);
-            this.Infogb.Controls.Add(this.TitleBox);
-            resources.ApplyResources(this.Infogb, "Infogb");
-            this.Infogb.Name = "Infogb";
-            this.Infogb.TabStop = false;
-            //
-            // infofilterlbl
-            //
-            resources.ApplyResources(this.infofilterlbl, "infofilterlbl");
-            this.infofilterlbl.Name = "infofilterlbl";
-            //
-            // infocatlbl
-            //
-            resources.ApplyResources(this.infocatlbl, "infocatlbl");
-            this.infocatlbl.Name = "infocatlbl";
-            //
-            // infoauthlbl
-            //
-            resources.ApplyResources(this.infoauthlbl, "infoauthlbl");
-            this.infoauthlbl.Name = "infoauthlbl";
-            //
-            // infocopylbl
-            //
-            resources.ApplyResources(this.infocopylbl, "infocopylbl");
-            this.infocopylbl.Name = "infocopylbl";
-            //
-            // CategoryBox
-            //
-            resources.ApplyResources(this.CategoryBox, "CategoryBox");
-            this.CategoryBox.Name = "CategoryBox";
-            this.CategoryBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            //
-            // CopyrightBox
-            //
-            resources.ApplyResources(this.CopyrightBox, "CopyrightBox");
-            this.CopyrightBox.Name = "CopyrightBox";
-            this.CopyrightBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            //
-            // AuthorBox
-            //
-            resources.ApplyResources(this.AuthorBox, "AuthorBox");
-            this.AuthorBox.Name = "AuthorBox";
-            this.AuthorBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            //
-            // TitleBox
-            //
-            resources.ApplyResources(this.TitleBox, "TitleBox");
-            this.TitleBox.Name = "TitleBox";
-            this.TitleBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
-            //
-            // AlphaBox
-            //
-            resources.ApplyResources(this.AlphaBox, "AlphaBox");
-            this.AlphaBox.Name = "AlphaBox";
-            this.AlphaBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
-            this.AlphaBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AlphaBox_KeyDown);
-            //
-            // BlueBox
-            //
-            resources.ApplyResources(this.BlueBox, "BlueBox");
-            this.BlueBox.Name = "BlueBox";
-            this.BlueBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
-            this.BlueBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BlueBox_KeyDown);
-            //
-            // GreenBox
-            //
-            resources.ApplyResources(this.GreenBox, "GreenBox");
-            this.GreenBox.Name = "GreenBox";
-            this.GreenBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
-            this.GreenBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GreenBox_KeyDown);
-            //
-            // RedBox
-            //
-            resources.ApplyResources(this.RedBox, "RedBox");
-            this.RedBox.Name = "RedBox";
-            this.RedBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
-            this.RedBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RedBox_KeyDown);
-            //
-            // Savebtn
-            //
-            resources.ApplyResources(this.Savebtn, "Savebtn");
-            this.Savebtn.Name = "Savebtn";
-            this.Savebtn.UseVisualStyleBackColor = true;
-            //
-            // button2
-            //
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonCancel_Click);
-            //
-            // button1
-            //
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonOK_Click);
-            //
-            // controlsTab
-            //
-            this.controlsTab.BackColor = System.Drawing.SystemColors.Control;
-            this.controlsTab.Controls.Add(this.fltrAuthorTxt);
-            this.controlsTab.Controls.Add(this.fltrTitletxt);
-            this.controlsTab.Controls.Add(this.fltrTitlelbl);
-            this.controlsTab.Controls.Add(this.copylbl);
-            this.controlsTab.Controls.Add(this.authlbl);
-            this.controlsTab.Controls.Add(this.catlbl);
-            this.controlsTab.Controls.Add(this.fltrCopyTxt);
-            this.controlsTab.Controls.Add(this.fltrCatTxt);
-            this.controlsTab.Controls.Add(this.ctlpanel);
-            resources.ApplyResources(this.controlsTab, "controlsTab");
-            this.controlsTab.Name = "controlsTab";
-            //
-            // fltrAuthorTxt
-            //
-            resources.ApplyResources(this.fltrAuthorTxt, "fltrAuthorTxt");
-            this.fltrAuthorTxt.Name = "fltrAuthorTxt";
-            //
-            // fltrTitletxt
-            //
-            resources.ApplyResources(this.fltrTitletxt, "fltrTitletxt");
-            this.fltrTitletxt.Name = "fltrTitletxt";
-            //
-            // fltrTitlelbl
-            //
-            resources.ApplyResources(this.fltrTitlelbl, "fltrTitlelbl");
-            this.fltrTitlelbl.Name = "fltrTitlelbl";
-            //
-            // copylbl
-            //
-            resources.ApplyResources(this.copylbl, "copylbl");
-            this.copylbl.Name = "copylbl";
-            //
-            // authlbl
-            //
-            resources.ApplyResources(this.authlbl, "authlbl");
-            this.authlbl.Name = "authlbl";
-            //
-            // catlbl
-            //
-            resources.ApplyResources(this.catlbl, "catlbl");
-            this.catlbl.Name = "catlbl";
-            //
-            // fltrCopyTxt
-            //
-            resources.ApplyResources(this.fltrCopyTxt, "fltrCopyTxt");
-            this.fltrCopyTxt.Name = "fltrCopyTxt";
-            //
-            // fltrCatTxt
-            //
-            resources.ApplyResources(this.fltrCatTxt, "fltrCatTxt");
-            this.fltrCatTxt.Name = "fltrCatTxt";
-            //
-            // ctlpanel
-            //
-            this.ctlpanel.BackColor = System.Drawing.SystemColors.Control;
-            this.ctlpanel.Controls.Add(this.ctllbl2);
-            this.ctlpanel.Controls.Add(this.resetbtn1);
-            this.ctlpanel.Controls.Add(this.resetbtn7);
-            this.ctlpanel.Controls.Add(this.resetbtn6);
-            this.ctlpanel.Controls.Add(this.resetbtn5);
-            this.ctlpanel.Controls.Add(this.resetbtn4);
-            this.ctlpanel.Controls.Add(this.resetbtn3);
-            this.ctlpanel.Controls.Add(this.resetbtn2);
-            this.ctlpanel.Controls.Add(this.ctllbl7);
-            this.ctlpanel.Controls.Add(this.ctllbl6);
-            this.ctlpanel.Controls.Add(this.resetbtn0);
-            this.ctlpanel.Controls.Add(this.ctllbl5);
-            this.ctlpanel.Controls.Add(this.ctl7);
-            this.ctlpanel.Controls.Add(this.ctllbl4);
-            this.ctlpanel.Controls.Add(this.ctl6);
-            this.ctlpanel.Controls.Add(this.ctllbl3);
-            this.ctlpanel.Controls.Add(this.ctl5);
-            this.ctlpanel.Controls.Add(this.ctl4);
-            this.ctlpanel.Controls.Add(this.ctllbl1);
-            this.ctlpanel.Controls.Add(this.ctl3);
-            this.ctlpanel.Controls.Add(this.ctllbl0);
-            this.ctlpanel.Controls.Add(this.ctl7_UpDown);
-            this.ctlpanel.Controls.Add(this.map3_lbl);
-            this.ctlpanel.Controls.Add(this.ctl6_UpDown);
-            this.ctlpanel.Controls.Add(this.map2_lbl);
-            this.ctlpanel.Controls.Add(this.ctl4_UpDown);
-            this.ctlpanel.Controls.Add(this.ctl5_UpDown);
-            this.ctlpanel.Controls.Add(this.map0_lbl);
-            this.ctlpanel.Controls.Add(this.ctl3_UpDown);
-            this.ctlpanel.Controls.Add(this.ctl2_UpDown);
-            this.ctlpanel.Controls.Add(this.ctl1_UpDown);
-            this.ctlpanel.Controls.Add(this.ctl0_UpDown);
-            this.ctlpanel.Controls.Add(this.ctl2);
-            this.ctlpanel.Controls.Add(this.ctl1);
-            this.ctlpanel.Controls.Add(this.ctl0);
-            this.ctlpanel.Controls.Add(this.map1_lbl);
-            resources.ApplyResources(this.ctlpanel, "ctlpanel");
-            this.ctlpanel.Name = "ctlpanel";
-            //
-            // ctllbl2
-            //
-            resources.ApplyResources(this.ctllbl2, "ctllbl2");
-            this.ctllbl2.Name = "ctllbl2";
-            //
-            // resetbtn1
-            //
-            resources.ApplyResources(this.resetbtn1, "resetbtn1");
-            this.resetbtn1.Name = "resetbtn1";
-            this.resetbtn1.UseVisualStyleBackColor = true;
-            this.resetbtn1.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // resetbtn7
-            //
-            resources.ApplyResources(this.resetbtn7, "resetbtn7");
-            this.resetbtn7.Name = "resetbtn7";
-            this.resetbtn7.UseVisualStyleBackColor = true;
-            this.resetbtn7.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // resetbtn6
-            //
-            resources.ApplyResources(this.resetbtn6, "resetbtn6");
-            this.resetbtn6.Name = "resetbtn6";
-            this.resetbtn6.UseVisualStyleBackColor = true;
-            this.resetbtn6.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // resetbtn5
-            //
-            resources.ApplyResources(this.resetbtn5, "resetbtn5");
-            this.resetbtn5.Name = "resetbtn5";
-            this.resetbtn5.UseVisualStyleBackColor = true;
-            this.resetbtn5.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // resetbtn4
-            //
-            resources.ApplyResources(this.resetbtn4, "resetbtn4");
-            this.resetbtn4.Name = "resetbtn4";
-            this.resetbtn4.UseVisualStyleBackColor = true;
-            this.resetbtn4.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // resetbtn3
-            //
-            resources.ApplyResources(this.resetbtn3, "resetbtn3");
-            this.resetbtn3.Name = "resetbtn3";
-            this.resetbtn3.UseVisualStyleBackColor = true;
-            this.resetbtn3.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // resetbtn2
-            //
-            resources.ApplyResources(this.resetbtn2, "resetbtn2");
-            this.resetbtn2.Name = "resetbtn2";
-            this.resetbtn2.UseVisualStyleBackColor = true;
-            this.resetbtn2.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // ctllbl7
-            //
-            resources.ApplyResources(this.ctllbl7, "ctllbl7");
-            this.ctllbl7.Name = "ctllbl7";
-            //
-            // ctllbl6
-            //
-            resources.ApplyResources(this.ctllbl6, "ctllbl6");
-            this.ctllbl6.Name = "ctllbl6";
-            //
-            // resetbtn0
-            //
-            resources.ApplyResources(this.resetbtn0, "resetbtn0");
-            this.resetbtn0.Name = "resetbtn0";
-            this.resetbtn0.UseVisualStyleBackColor = true;
-            this.resetbtn0.Click += new System.EventHandler(this.resetbtn_Click);
-            //
-            // ctllbl5
-            //
-            resources.ApplyResources(this.ctllbl5, "ctllbl5");
-            this.ctllbl5.Name = "ctllbl5";
-            //
-            // ctl7
-            //
-            resources.ApplyResources(this.ctl7, "ctl7");
-            this.ctl7.Maximum = 255;
-            this.ctl7.Name = "ctl7";
-            this.ctl7.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl7.Scroll += new System.EventHandler(this.ctl7_ValueChanged);
-            this.ctl7.ValueChanged += new System.EventHandler(this.ctl7_ValueChanged);
-            //
-            // ctllbl4
-            //
-            resources.ApplyResources(this.ctllbl4, "ctllbl4");
-            this.ctllbl4.Name = "ctllbl4";
-            //
-            // ctl6
-            //
-            resources.ApplyResources(this.ctl6, "ctl6");
-            this.ctl6.Maximum = 255;
-            this.ctl6.Name = "ctl6";
-            this.ctl6.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl6.Scroll += new System.EventHandler(this.ctl6_ValueChanged);
-            this.ctl6.ValueChanged += new System.EventHandler(this.ctl6_ValueChanged);
-            //
-            // ctllbl3
-            //
-            resources.ApplyResources(this.ctllbl3, "ctllbl3");
-            this.ctllbl3.Name = "ctllbl3";
-            //
-            // ctl5
-            //
-            resources.ApplyResources(this.ctl5, "ctl5");
-            this.ctl5.Maximum = 255;
-            this.ctl5.Name = "ctl5";
-            this.ctl5.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl5.Scroll += new System.EventHandler(this.ctl5_ValueChanged);
-            this.ctl5.ValueChanged += new System.EventHandler(this.ctl5_ValueChanged);
-            //
-            // ctl4
-            //
-            resources.ApplyResources(this.ctl4, "ctl4");
-            this.ctl4.Maximum = 255;
-            this.ctl4.Name = "ctl4";
-            this.ctl4.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl4.Scroll += new System.EventHandler(this.ctl4_ValueChanged);
-            this.ctl4.ValueChanged += new System.EventHandler(this.ctl4_ValueChanged);
-            //
-            // ctllbl1
-            //
-            resources.ApplyResources(this.ctllbl1, "ctllbl1");
-            this.ctllbl1.Name = "ctllbl1";
-            //
-            // ctl3
-            //
-            resources.ApplyResources(this.ctl3, "ctl3");
-            this.ctl3.Maximum = 255;
-            this.ctl3.Name = "ctl3";
-            this.ctl3.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl3.Scroll += new System.EventHandler(this.ctl3_ValueChanged);
-            this.ctl3.ValueChanged += new System.EventHandler(this.ctl3_ValueChanged);
-            //
-            // ctllbl0
-            //
-            resources.ApplyResources(this.ctllbl0, "ctllbl0");
-            this.ctllbl0.Name = "ctllbl0";
-            //
-            // ctl7_UpDown
-            //
-            resources.ApplyResources(this.ctl7_UpDown, "ctl7_UpDown");
-            this.ctl7_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl7_UpDown.Name = "ctl7_UpDown";
-            this.ctl7_UpDown.ValueChanged += new System.EventHandler(this.ctl7_UpDown_ValueChanged);
-            //
-            // map3_lbl
-            //
-            resources.ApplyResources(this.map3_lbl, "map3_lbl");
-            this.map3_lbl.Name = "map3_lbl";
-            //
-            // ctl6_UpDown
-            //
-            resources.ApplyResources(this.ctl6_UpDown, "ctl6_UpDown");
-            this.ctl6_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl6_UpDown.Name = "ctl6_UpDown";
-            this.ctl6_UpDown.ValueChanged += new System.EventHandler(this.ctl6_UpDown_ValueChanged);
-            //
-            // map2_lbl
-            //
-            resources.ApplyResources(this.map2_lbl, "map2_lbl");
-            this.map2_lbl.Name = "map2_lbl";
-            //
-            // ctl4_UpDown
-            //
-            resources.ApplyResources(this.ctl4_UpDown, "ctl4_UpDown");
-            this.ctl4_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl4_UpDown.Name = "ctl4_UpDown";
-            this.ctl4_UpDown.ValueChanged += new System.EventHandler(this.ctl4_UpDown_ValueChanged);
-            //
-            // ctl5_UpDown
-            //
-            resources.ApplyResources(this.ctl5_UpDown, "ctl5_UpDown");
-            this.ctl5_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl5_UpDown.Name = "ctl5_UpDown";
-            this.ctl5_UpDown.ValueChanged += new System.EventHandler(this.ctl5_UpDown_ValueChanged);
-            //
-            // map0_lbl
-            //
-            resources.ApplyResources(this.map0_lbl, "map0_lbl");
-            this.map0_lbl.Name = "map0_lbl";
-            //
-            // ctl3_UpDown
-            //
-            resources.ApplyResources(this.ctl3_UpDown, "ctl3_UpDown");
-            this.ctl3_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl3_UpDown.Name = "ctl3_UpDown";
-            this.ctl3_UpDown.ValueChanged += new System.EventHandler(this.ctl3_UpDown_ValueChanged);
-            //
-            // ctl2_UpDown
-            //
-            resources.ApplyResources(this.ctl2_UpDown, "ctl2_UpDown");
-            this.ctl2_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl2_UpDown.Name = "ctl2_UpDown";
-            this.ctl2_UpDown.ValueChanged += new System.EventHandler(this.ctl2_UpDown_ValueChanged);
-            //
-            // ctl1_UpDown
-            //
-            resources.ApplyResources(this.ctl1_UpDown, "ctl1_UpDown");
-            this.ctl1_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl1_UpDown.Name = "ctl1_UpDown";
-            this.ctl1_UpDown.ValueChanged += new System.EventHandler(this.ctl1_UpDown_ValueChanged);
-            //
-            // ctl0_UpDown
-            //
-            resources.ApplyResources(this.ctl0_UpDown, "ctl0_UpDown");
-            this.ctl0_UpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ctl0_UpDown.Name = "ctl0_UpDown";
-            this.ctl0_UpDown.ValueChanged += new System.EventHandler(this.ctl0_UpDown_ValueChanged);
-            //
-            // ctl2
-            //
-            resources.ApplyResources(this.ctl2, "ctl2");
-            this.ctl2.Maximum = 255;
-            this.ctl2.Name = "ctl2";
-            this.ctl2.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl2.Scroll += new System.EventHandler(this.ctl2_ValueChanged);
-            this.ctl2.ValueChanged += new System.EventHandler(this.ctl2_ValueChanged);
-            //
-            // ctl1
-            //
-            resources.ApplyResources(this.ctl1, "ctl1");
-            this.ctl1.Maximum = 255;
-            this.ctl1.Name = "ctl1";
-            this.ctl1.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl1.Scroll += new System.EventHandler(this.ctl1_ValueChanged);
-            this.ctl1.ValueChanged += new System.EventHandler(this.ctl1_ValueChanged);
-            //
-            // ctl0
-            //
-            resources.ApplyResources(this.ctl0, "ctl0");
-            this.ctl0.Maximum = 255;
-            this.ctl0.Name = "ctl0";
-            this.ctl0.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ctl0.Scroll += new System.EventHandler(this.ctl0_ValueChanged);
-            this.ctl0.ValueChanged += new System.EventHandler(this.ctl0_ValueChanged);
-            //
-            // map1_lbl
-            //
-            resources.ApplyResources(this.map1_lbl, "map1_lbl");
-            this.map1_lbl.Name = "map1_lbl";
-            //
-            // tabControl1
-            //
-            this.tabControl1.Controls.Add(this.controlsTab);
-            this.tabControl1.Controls.Add(this.editorTab);
-            this.tabControl1.Controls.Add(this.FFLtab);
-            this.tabControl1.Controls.Add(this.FilterManagertab);
-            this.tabControl1.Controls.Add(this.FilterDirtab);
-            resources.ApplyResources(this.tabControl1, "tabControl1");
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            //
-            // buildfilterbtn
-            //
-            resources.ApplyResources(this.buildfilterbtn, "buildfilterbtn");
-            this.buildfilterbtn.Name = "buildfilterbtn";
-            this.buildfilterbtn.UseVisualStyleBackColor = true;
-            this.buildfilterbtn.Click += new System.EventHandler(this.buildfilterbtn_Click);
-            //
-            // imageList1
-            //
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "VSFolder_open.bmp");
-            this.imageList1.Images.SetKeyName(1, "VSFolder_closed.bmp");
-            //
-            // PdnFFConfigDialog
-            //
-            resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.buildfilterbtn);
-            this.Controls.Add(this.default_fltr);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.Savebtn2);
-            this.Controls.Add(this.Filenamelbl);
-            this.Controls.Add(this.buttonOK);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.Loadbtn2);
-            this.Controls.Add(this.Filenametxt);
-            this.Name = "PdnFFConfigDialog";
-            this.Opacity = 0.9D;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PdnFFConfigDialog_FormClosing);
-            this.Load += new System.EventHandler(this.PdnFFConfigDialog_Load);
-            this.Controls.SetChildIndex(this.Filenametxt, 0);
-            this.Controls.SetChildIndex(this.Loadbtn2, 0);
-            this.Controls.SetChildIndex(this.tabControl1, 0);
-            this.Controls.SetChildIndex(this.buttonOK, 0);
-            this.Controls.SetChildIndex(this.Filenamelbl, 0);
-            this.Controls.SetChildIndex(this.Savebtn2, 0);
-            this.Controls.SetChildIndex(this.buttonCancel, 0);
-            this.Controls.SetChildIndex(this.default_fltr, 0);
-            this.Controls.SetChildIndex(this.buildfilterbtn, 0);
-            this.FilterDirtab.ResumeLayout(false);
-            this.FilterDirtab.PerformLayout();
-            this.FilterManagertab.ResumeLayout(false);
-            this.FilterManagertab.PerformLayout();
-            this.filtermgrprogresspanel.ResumeLayout(false);
-            this.filtermgrprogresspanel.PerformLayout();
-            this.FFLtab.ResumeLayout(false);
-            this.FFLtab.PerformLayout();
-            this.editorTab.ResumeLayout(false);
-            this.editorTab.PerformLayout();
-            this.Interfacegb.ResumeLayout(false);
-            this.Interfacegb.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl5num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl4num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl6num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl7num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl3num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl2num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl1num)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl0num)).EndInit();
-            this.Infogb.ResumeLayout(false);
-            this.Infogb.PerformLayout();
-            this.controlsTab.ResumeLayout(false);
-            this.controlsTab.PerformLayout();
-            this.ctlpanel.ResumeLayout(false);
-            this.ctlpanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl7_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl6_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl4_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl5_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl3_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl2_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl1_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl0_UpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctl0)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PdnFFConfigDialog));
+			this.buttonCancel = new System.Windows.Forms.Button();
+			this.buttonOK = new System.Windows.Forms.Button();
+			this.bluelbl = new System.Windows.Forms.Label();
+			this.alphalbl = new System.Windows.Forms.Label();
+			this.greenlbl = new System.Windows.Forms.Label();
+			this.Redlbl = new System.Windows.Forms.Label();
+			this.Savebtn2 = new System.Windows.Forms.Button();
+			this.Loadbtn2 = new System.Windows.Forms.Button();
+			this.Filenamelbl = new System.Windows.Forms.Label();
+			this.Filenametxt = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+			this.default_fltr = new System.Windows.Forms.Button();
+			this.DirBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+			this.UpdateFilterListbw = new System.ComponentModel.BackgroundWorker();
+			this.FilterDirtab = new System.Windows.Forms.TabPage();
+			this.subdirSearchcb = new System.Windows.Forms.CheckBox();
+			this.remdirbtn = new System.Windows.Forms.Button();
+			this.DirlistView1 = new System.Windows.Forms.ListView();
+			this.pathColHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.adddirbtn = new System.Windows.Forms.Button();
+			this.FilterManagertab = new System.Windows.Forms.TabPage();
+			this.filterSearchBox = new System.Windows.Forms.TextBox();
+			this.treefltrcopytxt = new System.Windows.Forms.Label();
+			this.treefltrauthtxt = new System.Windows.Forms.Label();
+			this.treefltrcopylbl = new System.Windows.Forms.Label();
+			this.treefltrauthlbl = new System.Windows.Forms.Label();
+			this.filtertreeview = new System.Windows.Forms.TreeView();
+			this.filtermgrprogresspanel = new System.Windows.Forms.Panel();
+			this.folderloadnamelbl = new System.Windows.Forms.Label();
+			this.folderloadcountlbl = new System.Windows.Forms.Label();
+			this.folderldprolbl = new System.Windows.Forms.Label();
+			this.fltrmgrprogress = new System.Windows.Forms.ProgressBar();
+			this.filterlistcnttxt = new System.Windows.Forms.Label();
+			this.filterlistcntlbl = new System.Windows.Forms.Label();
+			this.FFLtab = new System.Windows.Forms.TabPage();
+			this.ffltreecopytxt = new System.Windows.Forms.Label();
+			this.ffltreeauthtxt = new System.Windows.Forms.Label();
+			this.ffltreecopylbl = new System.Windows.Forms.Label();
+			this.ffltreeauthlbl = new System.Windows.Forms.Label();
+			this.FFLtreeView1 = new System.Windows.Forms.TreeView();
+			this.FFLfltrnumtxt = new System.Windows.Forms.Label();
+			this.FFLfltrnumlbl = new System.Windows.Forms.Label();
+			this.fflnametxt = new System.Windows.Forms.Label();
+			this.FFLnamelbl = new System.Windows.Forms.Label();
+			this.clearFFLbtn = new System.Windows.Forms.Button();
+			this.LoadFFLbtn = new System.Windows.Forms.Button();
+			this.editorTab = new System.Windows.Forms.TabPage();
+			this.Interfacegb = new System.Windows.Forms.GroupBox();
+			this.ctl5num = new System.Windows.Forms.NumericUpDown();
+			this.ctl4num = new System.Windows.Forms.NumericUpDown();
+			this.ctl6num = new System.Windows.Forms.NumericUpDown();
+			this.ctl7num = new System.Windows.Forms.NumericUpDown();
+			this.ctl3num = new System.Windows.Forms.NumericUpDown();
+			this.ctl2num = new System.Windows.Forms.NumericUpDown();
+			this.ctl1num = new System.Windows.Forms.NumericUpDown();
+			this.ctl7txt = new System.Windows.Forms.TextBox();
+			this.ctl7cb = new System.Windows.Forms.CheckBox();
+			this.label18 = new System.Windows.Forms.Label();
+			this.ctl6txt = new System.Windows.Forms.TextBox();
+			this.ctl6cb = new System.Windows.Forms.CheckBox();
+			this.ctl3txt = new System.Windows.Forms.TextBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.ctl3cb = new System.Windows.Forms.CheckBox();
+			this.label16 = new System.Windows.Forms.Label();
+			this.ctl2txt = new System.Windows.Forms.TextBox();
+			this.ctl2cb = new System.Windows.Forms.CheckBox();
+			this.label15 = new System.Windows.Forms.Label();
+			this.ctl5txt = new System.Windows.Forms.TextBox();
+			this.ctl5cb = new System.Windows.Forms.CheckBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this.ctl1txt = new System.Windows.Forms.TextBox();
+			this.ctl1cb = new System.Windows.Forms.CheckBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.ctl4txt = new System.Windows.Forms.TextBox();
+			this.ctl4cb = new System.Windows.Forms.CheckBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.ctl0txt = new System.Windows.Forms.TextBox();
+			this.ctl0cb = new System.Windows.Forms.CheckBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.map2txt = new System.Windows.Forms.TextBox();
+			this.map2cb = new System.Windows.Forms.CheckBox();
+			this.map2lbl = new System.Windows.Forms.Label();
+			this.map1txt = new System.Windows.Forms.TextBox();
+			this.map1cb = new System.Windows.Forms.CheckBox();
+			this.map1lbl = new System.Windows.Forms.Label();
+			this.map3txt = new System.Windows.Forms.TextBox();
+			this.map3cb = new System.Windows.Forms.CheckBox();
+			this.map3lbl = new System.Windows.Forms.Label();
+			this.map0txt = new System.Windows.Forms.TextBox();
+			this.map0cb = new System.Windows.Forms.CheckBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.ctl0num = new System.Windows.Forms.NumericUpDown();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.Infogb = new System.Windows.Forms.GroupBox();
+			this.infofilterlbl = new System.Windows.Forms.Label();
+			this.infocatlbl = new System.Windows.Forms.Label();
+			this.infoauthlbl = new System.Windows.Forms.Label();
+			this.infocopylbl = new System.Windows.Forms.Label();
+			this.CategoryBox = new System.Windows.Forms.TextBox();
+			this.CopyrightBox = new System.Windows.Forms.TextBox();
+			this.AuthorBox = new System.Windows.Forms.TextBox();
+			this.TitleBox = new System.Windows.Forms.TextBox();
+			this.AlphaBox = new System.Windows.Forms.TextBox();
+			this.BlueBox = new System.Windows.Forms.TextBox();
+			this.GreenBox = new System.Windows.Forms.TextBox();
+			this.RedBox = new System.Windows.Forms.TextBox();
+			this.Savebtn = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.controlsTab = new System.Windows.Forms.TabPage();
+			this.fltrAuthorTxt = new System.Windows.Forms.Label();
+			this.fltrTitletxt = new System.Windows.Forms.Label();
+			this.fltrTitlelbl = new System.Windows.Forms.Label();
+			this.copylbl = new System.Windows.Forms.Label();
+			this.authlbl = new System.Windows.Forms.Label();
+			this.catlbl = new System.Windows.Forms.Label();
+			this.fltrCopyTxt = new System.Windows.Forms.Label();
+			this.fltrCatTxt = new System.Windows.Forms.Label();
+			this.ctlpanel = new System.Windows.Forms.Panel();
+			this.ctllbl2 = new System.Windows.Forms.Label();
+			this.resetbtn1 = new System.Windows.Forms.Button();
+			this.resetbtn7 = new System.Windows.Forms.Button();
+			this.resetbtn6 = new System.Windows.Forms.Button();
+			this.resetbtn5 = new System.Windows.Forms.Button();
+			this.resetbtn4 = new System.Windows.Forms.Button();
+			this.resetbtn3 = new System.Windows.Forms.Button();
+			this.resetbtn2 = new System.Windows.Forms.Button();
+			this.ctllbl7 = new System.Windows.Forms.Label();
+			this.ctllbl6 = new System.Windows.Forms.Label();
+			this.resetbtn0 = new System.Windows.Forms.Button();
+			this.ctllbl5 = new System.Windows.Forms.Label();
+			this.ctl7 = new System.Windows.Forms.TrackBar();
+			this.ctllbl4 = new System.Windows.Forms.Label();
+			this.ctl6 = new System.Windows.Forms.TrackBar();
+			this.ctllbl3 = new System.Windows.Forms.Label();
+			this.ctl5 = new System.Windows.Forms.TrackBar();
+			this.ctl4 = new System.Windows.Forms.TrackBar();
+			this.ctllbl1 = new System.Windows.Forms.Label();
+			this.ctl3 = new System.Windows.Forms.TrackBar();
+			this.ctllbl0 = new System.Windows.Forms.Label();
+			this.ctl7_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.map3_lbl = new System.Windows.Forms.Label();
+			this.ctl6_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.map2_lbl = new System.Windows.Forms.Label();
+			this.ctl4_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.ctl5_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.map0_lbl = new System.Windows.Forms.Label();
+			this.ctl3_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.ctl2_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.ctl1_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.ctl0_UpDown = new System.Windows.Forms.NumericUpDown();
+			this.ctl2 = new System.Windows.Forms.TrackBar();
+			this.ctl1 = new System.Windows.Forms.TrackBar();
+			this.ctl0 = new System.Windows.Forms.TrackBar();
+			this.map1_lbl = new System.Windows.Forms.Label();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.buildfilterbtn = new System.Windows.Forms.Button();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.FilterDirtab.SuspendLayout();
+			this.FilterManagertab.SuspendLayout();
+			this.filtermgrprogresspanel.SuspendLayout();
+			this.FFLtab.SuspendLayout();
+			this.editorTab.SuspendLayout();
+			this.Interfacegb.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ctl5num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl4num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl6num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl7num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl3num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl2num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl1num)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl0num)).BeginInit();
+			this.Infogb.SuspendLayout();
+			this.controlsTab.SuspendLayout();
+			this.ctlpanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ctl7)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl7_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl6_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl4_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl5_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl3_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl2_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl1_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl0_UpDown)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl0)).BeginInit();
+			this.tabControl1.SuspendLayout();
+			this.SuspendLayout();
+			//
+			// buttonCancel
+			//
+			resources.ApplyResources(this.buttonCancel, "buttonCancel");
+			this.buttonCancel.Name = "buttonCancel";
+			this.buttonCancel.UseVisualStyleBackColor = true;
+			this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+			//
+			// buttonOK
+			//
+			resources.ApplyResources(this.buttonOK, "buttonOK");
+			this.buttonOK.Name = "buttonOK";
+			this.buttonOK.UseVisualStyleBackColor = true;
+			this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+			//
+			// bluelbl
+			//
+			resources.ApplyResources(this.bluelbl, "bluelbl");
+			this.bluelbl.Name = "bluelbl";
+			//
+			// alphalbl
+			//
+			resources.ApplyResources(this.alphalbl, "alphalbl");
+			this.alphalbl.Name = "alphalbl";
+			//
+			// greenlbl
+			//
+			resources.ApplyResources(this.greenlbl, "greenlbl");
+			this.greenlbl.Name = "greenlbl";
+			//
+			// Redlbl
+			//
+			resources.ApplyResources(this.Redlbl, "Redlbl");
+			this.Redlbl.Name = "Redlbl";
+			//
+			// Savebtn2
+			//
+			resources.ApplyResources(this.Savebtn2, "Savebtn2");
+			this.Savebtn2.Name = "Savebtn2";
+			this.Savebtn2.UseVisualStyleBackColor = true;
+			this.Savebtn2.Click += new System.EventHandler(this.Savebtn_Click);
+			//
+			// Loadbtn2
+			//
+			resources.ApplyResources(this.Loadbtn2, "Loadbtn2");
+			this.Loadbtn2.Name = "Loadbtn2";
+			this.Loadbtn2.UseVisualStyleBackColor = true;
+			this.Loadbtn2.Click += new System.EventHandler(this.Loadbtn_Click);
+			//
+			// Filenamelbl
+			//
+			resources.ApplyResources(this.Filenamelbl, "Filenamelbl");
+			this.Filenamelbl.Name = "Filenamelbl";
+			//
+			// Filenametxt
+			//
+			resources.ApplyResources(this.Filenametxt, "Filenametxt");
+			this.Filenametxt.Name = "Filenametxt";
+			//
+			// button3
+			//
+			resources.ApplyResources(this.button3, "button3");
+			this.button3.Name = "button3";
+			this.button3.UseVisualStyleBackColor = true;
+			//
+			// openFileDialog1
+			//
+			resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
+			//
+			// saveFileDialog1
+			//
+			this.saveFileDialog1.DefaultExt = "txt";
+			resources.ApplyResources(this.saveFileDialog1, "saveFileDialog1");
+			//
+			// default_fltr
+			//
+			resources.ApplyResources(this.default_fltr, "default_fltr");
+			this.default_fltr.Name = "default_fltr";
+			this.default_fltr.UseVisualStyleBackColor = true;
+			this.default_fltr.Click += new System.EventHandler(this.default_fltr_Click);
+			//
+			// UpdateFilterListbw
+			//
+			this.UpdateFilterListbw.WorkerReportsProgress = true;
+			this.UpdateFilterListbw.WorkerSupportsCancellation = true;
+			this.UpdateFilterListbw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.UpdateFilterListbw_DoWork);
+			this.UpdateFilterListbw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.UpdateFilterListbw_ProgressChanged);
+			this.UpdateFilterListbw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.UpdateFilterListbw_RunWorkerCompleted);
+			//
+			// FilterDirtab
+			//
+			this.FilterDirtab.BackColor = System.Drawing.SystemColors.Control;
+			this.FilterDirtab.Controls.Add(this.subdirSearchcb);
+			this.FilterDirtab.Controls.Add(this.remdirbtn);
+			this.FilterDirtab.Controls.Add(this.DirlistView1);
+			this.FilterDirtab.Controls.Add(this.adddirbtn);
+			resources.ApplyResources(this.FilterDirtab, "FilterDirtab");
+			this.FilterDirtab.Name = "FilterDirtab";
+			//
+			// subdirSearchcb
+			//
+			resources.ApplyResources(this.subdirSearchcb, "subdirSearchcb");
+			this.subdirSearchcb.Name = "subdirSearchcb";
+			this.subdirSearchcb.UseVisualStyleBackColor = true;
+			this.subdirSearchcb.Click += new System.EventHandler(this.subdirSearchcb_CheckedChanged);
+			//
+			// remdirbtn
+			//
+			resources.ApplyResources(this.remdirbtn, "remdirbtn");
+			this.remdirbtn.Name = "remdirbtn";
+			this.remdirbtn.UseVisualStyleBackColor = true;
+			this.remdirbtn.Click += new System.EventHandler(this.remdirbtn_Click);
+			//
+			// DirlistView1
+			//
+			this.DirlistView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.pathColHeader});
+			this.DirlistView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.DirlistView1.HideSelection = false;
+			resources.ApplyResources(this.DirlistView1, "DirlistView1");
+			this.DirlistView1.MultiSelect = false;
+			this.DirlistView1.Name = "DirlistView1";
+			this.DirlistView1.UseCompatibleStateImageBehavior = false;
+			this.DirlistView1.View = System.Windows.Forms.View.Details;
+			//
+			// pathColHeader
+			//
+			resources.ApplyResources(this.pathColHeader, "pathColHeader");
+			//
+			// adddirbtn
+			//
+			resources.ApplyResources(this.adddirbtn, "adddirbtn");
+			this.adddirbtn.Name = "adddirbtn";
+			this.adddirbtn.UseVisualStyleBackColor = true;
+			this.adddirbtn.Click += new System.EventHandler(this.adddirbtn_Click);
+			//
+			// FilterManagertab
+			//
+			this.FilterManagertab.BackColor = System.Drawing.SystemColors.Control;
+			this.FilterManagertab.Controls.Add(this.filterSearchBox);
+			this.FilterManagertab.Controls.Add(this.treefltrcopytxt);
+			this.FilterManagertab.Controls.Add(this.treefltrauthtxt);
+			this.FilterManagertab.Controls.Add(this.treefltrcopylbl);
+			this.FilterManagertab.Controls.Add(this.treefltrauthlbl);
+			this.FilterManagertab.Controls.Add(this.filtertreeview);
+			this.FilterManagertab.Controls.Add(this.filtermgrprogresspanel);
+			this.FilterManagertab.Controls.Add(this.filterlistcnttxt);
+			this.FilterManagertab.Controls.Add(this.filterlistcntlbl);
+			resources.ApplyResources(this.FilterManagertab, "FilterManagertab");
+			this.FilterManagertab.Name = "FilterManagertab";
+			//
+			// filterSearchBox
+			//
+			resources.ApplyResources(this.filterSearchBox, "filterSearchBox");
+			this.filterSearchBox.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.filterSearchBox.Name = "filterSearchBox";
+			this.filterSearchBox.TextChanged += new System.EventHandler(this.filterSearchBox_TextChanged);
+			this.filterSearchBox.Enter += new System.EventHandler(this.filterSearchBox_Enter);
+			this.filterSearchBox.Leave += new System.EventHandler(this.filterSearchBox_Leave);
+			//
+			// treefltrcopytxt
+			//
+			resources.ApplyResources(this.treefltrcopytxt, "treefltrcopytxt");
+			this.treefltrcopytxt.Name = "treefltrcopytxt";
+			//
+			// treefltrauthtxt
+			//
+			resources.ApplyResources(this.treefltrauthtxt, "treefltrauthtxt");
+			this.treefltrauthtxt.Name = "treefltrauthtxt";
+			//
+			// treefltrcopylbl
+			//
+			resources.ApplyResources(this.treefltrcopylbl, "treefltrcopylbl");
+			this.treefltrcopylbl.Name = "treefltrcopylbl";
+			//
+			// treefltrauthlbl
+			//
+			resources.ApplyResources(this.treefltrauthlbl, "treefltrauthlbl");
+			this.treefltrauthlbl.Name = "treefltrauthlbl";
+			//
+			// filtertreeview
+			//
+			this.filtertreeview.HideSelection = false;
+			resources.ApplyResources(this.filtertreeview, "filtertreeview");
+			this.filtertreeview.Name = "filtertreeview";
+			this.filtertreeview.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.filtertreeview_AfterSelect);
+			//
+			// filtermgrprogresspanel
+			//
+			this.filtermgrprogresspanel.Controls.Add(this.folderloadnamelbl);
+			this.filtermgrprogresspanel.Controls.Add(this.folderloadcountlbl);
+			this.filtermgrprogresspanel.Controls.Add(this.folderldprolbl);
+			this.filtermgrprogresspanel.Controls.Add(this.fltrmgrprogress);
+			resources.ApplyResources(this.filtermgrprogresspanel, "filtermgrprogresspanel");
+			this.filtermgrprogresspanel.Name = "filtermgrprogresspanel";
+			//
+			// folderloadnamelbl
+			//
+			resources.ApplyResources(this.folderloadnamelbl, "folderloadnamelbl");
+			this.folderloadnamelbl.Name = "folderloadnamelbl";
+			//
+			// folderloadcountlbl
+			//
+			resources.ApplyResources(this.folderloadcountlbl, "folderloadcountlbl");
+			this.folderloadcountlbl.Name = "folderloadcountlbl";
+			//
+			// folderldprolbl
+			//
+			resources.ApplyResources(this.folderldprolbl, "folderldprolbl");
+			this.folderldprolbl.Name = "folderldprolbl";
+			//
+			// fltrmgrprogress
+			//
+			resources.ApplyResources(this.fltrmgrprogress, "fltrmgrprogress");
+			this.fltrmgrprogress.Name = "fltrmgrprogress";
+			this.fltrmgrprogress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+			//
+			// filterlistcnttxt
+			//
+			resources.ApplyResources(this.filterlistcnttxt, "filterlistcnttxt");
+			this.filterlistcnttxt.Name = "filterlistcnttxt";
+			//
+			// filterlistcntlbl
+			//
+			resources.ApplyResources(this.filterlistcntlbl, "filterlistcntlbl");
+			this.filterlistcntlbl.Name = "filterlistcntlbl";
+			//
+			// FFLtab
+			//
+			this.FFLtab.BackColor = System.Drawing.SystemColors.Control;
+			this.FFLtab.Controls.Add(this.ffltreecopytxt);
+			this.FFLtab.Controls.Add(this.ffltreeauthtxt);
+			this.FFLtab.Controls.Add(this.ffltreecopylbl);
+			this.FFLtab.Controls.Add(this.ffltreeauthlbl);
+			this.FFLtab.Controls.Add(this.FFLtreeView1);
+			this.FFLtab.Controls.Add(this.FFLfltrnumtxt);
+			this.FFLtab.Controls.Add(this.FFLfltrnumlbl);
+			this.FFLtab.Controls.Add(this.fflnametxt);
+			this.FFLtab.Controls.Add(this.FFLnamelbl);
+			this.FFLtab.Controls.Add(this.clearFFLbtn);
+			this.FFLtab.Controls.Add(this.LoadFFLbtn);
+			resources.ApplyResources(this.FFLtab, "FFLtab");
+			this.FFLtab.Name = "FFLtab";
+			//
+			// ffltreecopytxt
+			//
+			resources.ApplyResources(this.ffltreecopytxt, "ffltreecopytxt");
+			this.ffltreecopytxt.Name = "ffltreecopytxt";
+			//
+			// ffltreeauthtxt
+			//
+			resources.ApplyResources(this.ffltreeauthtxt, "ffltreeauthtxt");
+			this.ffltreeauthtxt.Name = "ffltreeauthtxt";
+			//
+			// ffltreecopylbl
+			//
+			resources.ApplyResources(this.ffltreecopylbl, "ffltreecopylbl");
+			this.ffltreecopylbl.Name = "ffltreecopylbl";
+			//
+			// ffltreeauthlbl
+			//
+			resources.ApplyResources(this.ffltreeauthlbl, "ffltreeauthlbl");
+			this.ffltreeauthlbl.Name = "ffltreeauthlbl";
+			//
+			// FFLtreeView1
+			//
+			this.FFLtreeView1.HideSelection = false;
+			resources.ApplyResources(this.FFLtreeView1, "FFLtreeView1");
+			this.FFLtreeView1.Name = "FFLtreeView1";
+			this.FFLtreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.FFLtreeView1_AfterSelect);
+			//
+			// FFLfltrnumtxt
+			//
+			resources.ApplyResources(this.FFLfltrnumtxt, "FFLfltrnumtxt");
+			this.FFLfltrnumtxt.Name = "FFLfltrnumtxt";
+			//
+			// FFLfltrnumlbl
+			//
+			resources.ApplyResources(this.FFLfltrnumlbl, "FFLfltrnumlbl");
+			this.FFLfltrnumlbl.Name = "FFLfltrnumlbl";
+			//
+			// fflnametxt
+			//
+			resources.ApplyResources(this.fflnametxt, "fflnametxt");
+			this.fflnametxt.Name = "fflnametxt";
+			//
+			// FFLnamelbl
+			//
+			resources.ApplyResources(this.FFLnamelbl, "FFLnamelbl");
+			this.FFLnamelbl.Name = "FFLnamelbl";
+			//
+			// clearFFLbtn
+			//
+			resources.ApplyResources(this.clearFFLbtn, "clearFFLbtn");
+			this.clearFFLbtn.Name = "clearFFLbtn";
+			this.clearFFLbtn.UseVisualStyleBackColor = true;
+			this.clearFFLbtn.Click += new System.EventHandler(this.clearFFLbtn_Click);
+			//
+			// LoadFFLbtn
+			//
+			resources.ApplyResources(this.LoadFFLbtn, "LoadFFLbtn");
+			this.LoadFFLbtn.Name = "LoadFFLbtn";
+			this.LoadFFLbtn.UseVisualStyleBackColor = true;
+			this.LoadFFLbtn.Click += new System.EventHandler(this.LoadFFLbtn_Click);
+			//
+			// editorTab
+			//
+			this.editorTab.BackColor = System.Drawing.SystemColors.Control;
+			this.editorTab.Controls.Add(this.Interfacegb);
+			this.editorTab.Controls.Add(this.label1);
+			this.editorTab.Controls.Add(this.label2);
+			this.editorTab.Controls.Add(this.label4);
+			this.editorTab.Controls.Add(this.label5);
+			this.editorTab.Controls.Add(this.Infogb);
+			this.editorTab.Controls.Add(this.AlphaBox);
+			this.editorTab.Controls.Add(this.BlueBox);
+			this.editorTab.Controls.Add(this.GreenBox);
+			this.editorTab.Controls.Add(this.RedBox);
+			this.editorTab.Controls.Add(this.Savebtn);
+			this.editorTab.Controls.Add(this.button2);
+			this.editorTab.Controls.Add(this.button1);
+			resources.ApplyResources(this.editorTab, "editorTab");
+			this.editorTab.Name = "editorTab";
+			//
+			// Interfacegb
+			//
+			this.Interfacegb.Controls.Add(this.ctl5num);
+			this.Interfacegb.Controls.Add(this.ctl4num);
+			this.Interfacegb.Controls.Add(this.ctl6num);
+			this.Interfacegb.Controls.Add(this.ctl7num);
+			this.Interfacegb.Controls.Add(this.ctl3num);
+			this.Interfacegb.Controls.Add(this.ctl2num);
+			this.Interfacegb.Controls.Add(this.ctl1num);
+			this.Interfacegb.Controls.Add(this.ctl7txt);
+			this.Interfacegb.Controls.Add(this.ctl7cb);
+			this.Interfacegb.Controls.Add(this.label18);
+			this.Interfacegb.Controls.Add(this.ctl6txt);
+			this.Interfacegb.Controls.Add(this.ctl6cb);
+			this.Interfacegb.Controls.Add(this.ctl3txt);
+			this.Interfacegb.Controls.Add(this.label17);
+			this.Interfacegb.Controls.Add(this.ctl3cb);
+			this.Interfacegb.Controls.Add(this.label16);
+			this.Interfacegb.Controls.Add(this.ctl2txt);
+			this.Interfacegb.Controls.Add(this.ctl2cb);
+			this.Interfacegb.Controls.Add(this.label15);
+			this.Interfacegb.Controls.Add(this.ctl5txt);
+			this.Interfacegb.Controls.Add(this.ctl5cb);
+			this.Interfacegb.Controls.Add(this.label14);
+			this.Interfacegb.Controls.Add(this.ctl1txt);
+			this.Interfacegb.Controls.Add(this.ctl1cb);
+			this.Interfacegb.Controls.Add(this.label13);
+			this.Interfacegb.Controls.Add(this.ctl4txt);
+			this.Interfacegb.Controls.Add(this.ctl4cb);
+			this.Interfacegb.Controls.Add(this.label12);
+			this.Interfacegb.Controls.Add(this.ctl0txt);
+			this.Interfacegb.Controls.Add(this.ctl0cb);
+			this.Interfacegb.Controls.Add(this.label11);
+			this.Interfacegb.Controls.Add(this.map2txt);
+			this.Interfacegb.Controls.Add(this.map2cb);
+			this.Interfacegb.Controls.Add(this.map2lbl);
+			this.Interfacegb.Controls.Add(this.map1txt);
+			this.Interfacegb.Controls.Add(this.map1cb);
+			this.Interfacegb.Controls.Add(this.map1lbl);
+			this.Interfacegb.Controls.Add(this.map3txt);
+			this.Interfacegb.Controls.Add(this.map3cb);
+			this.Interfacegb.Controls.Add(this.map3lbl);
+			this.Interfacegb.Controls.Add(this.map0txt);
+			this.Interfacegb.Controls.Add(this.map0cb);
+			this.Interfacegb.Controls.Add(this.label10);
+			this.Interfacegb.Controls.Add(this.ctl0num);
+			resources.ApplyResources(this.Interfacegb, "Interfacegb");
+			this.Interfacegb.Name = "Interfacegb";
+			this.Interfacegb.TabStop = false;
+			//
+			// ctl5num
+			//
+			resources.ApplyResources(this.ctl5num, "ctl5num");
+			this.ctl5num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl5num.Name = "ctl5num";
+			this.ctl5num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// ctl4num
+			//
+			resources.ApplyResources(this.ctl4num, "ctl4num");
+			this.ctl4num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl4num.Name = "ctl4num";
+			this.ctl4num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// ctl6num
+			//
+			resources.ApplyResources(this.ctl6num, "ctl6num");
+			this.ctl6num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl6num.Name = "ctl6num";
+			this.ctl6num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// ctl7num
+			//
+			resources.ApplyResources(this.ctl7num, "ctl7num");
+			this.ctl7num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl7num.Name = "ctl7num";
+			this.ctl7num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// ctl3num
+			//
+			resources.ApplyResources(this.ctl3num, "ctl3num");
+			this.ctl3num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl3num.Name = "ctl3num";
+			this.ctl3num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// ctl2num
+			//
+			resources.ApplyResources(this.ctl2num, "ctl2num");
+			this.ctl2num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl2num.Name = "ctl2num";
+			this.ctl2num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// ctl1num
+			//
+			resources.ApplyResources(this.ctl1num, "ctl1num");
+			this.ctl1num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl1num.Name = "ctl1num";
+			this.ctl1num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// ctl7txt
+			//
+			resources.ApplyResources(this.ctl7txt, "ctl7txt");
+			this.ctl7txt.Name = "ctl7txt";
+			this.ctl7txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// ctl7cb
+			//
+			resources.ApplyResources(this.ctl7cb, "ctl7cb");
+			this.ctl7cb.Name = "ctl7cb";
+			this.ctl7cb.UseVisualStyleBackColor = true;
+			this.ctl7cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label18
+			//
+			resources.ApplyResources(this.label18, "label18");
+			this.label18.Name = "label18";
+			//
+			// ctl6txt
+			//
+			resources.ApplyResources(this.ctl6txt, "ctl6txt");
+			this.ctl6txt.Name = "ctl6txt";
+			this.ctl6txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// ctl6cb
+			//
+			resources.ApplyResources(this.ctl6cb, "ctl6cb");
+			this.ctl6cb.Name = "ctl6cb";
+			this.ctl6cb.UseVisualStyleBackColor = true;
+			this.ctl6cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// ctl3txt
+			//
+			resources.ApplyResources(this.ctl3txt, "ctl3txt");
+			this.ctl3txt.Name = "ctl3txt";
+			this.ctl3txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// label17
+			//
+			resources.ApplyResources(this.label17, "label17");
+			this.label17.Name = "label17";
+			//
+			// ctl3cb
+			//
+			resources.ApplyResources(this.ctl3cb, "ctl3cb");
+			this.ctl3cb.Name = "ctl3cb";
+			this.ctl3cb.UseVisualStyleBackColor = true;
+			this.ctl3cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label16
+			//
+			resources.ApplyResources(this.label16, "label16");
+			this.label16.Name = "label16";
+			//
+			// ctl2txt
+			//
+			resources.ApplyResources(this.ctl2txt, "ctl2txt");
+			this.ctl2txt.Name = "ctl2txt";
+			this.ctl2txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// ctl2cb
+			//
+			resources.ApplyResources(this.ctl2cb, "ctl2cb");
+			this.ctl2cb.Name = "ctl2cb";
+			this.ctl2cb.UseVisualStyleBackColor = true;
+			this.ctl2cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label15
+			//
+			resources.ApplyResources(this.label15, "label15");
+			this.label15.Name = "label15";
+			//
+			// ctl5txt
+			//
+			resources.ApplyResources(this.ctl5txt, "ctl5txt");
+			this.ctl5txt.Name = "ctl5txt";
+			this.ctl5txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// ctl5cb
+			//
+			resources.ApplyResources(this.ctl5cb, "ctl5cb");
+			this.ctl5cb.Name = "ctl5cb";
+			this.ctl5cb.UseVisualStyleBackColor = true;
+			this.ctl5cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label14
+			//
+			resources.ApplyResources(this.label14, "label14");
+			this.label14.Name = "label14";
+			//
+			// ctl1txt
+			//
+			resources.ApplyResources(this.ctl1txt, "ctl1txt");
+			this.ctl1txt.Name = "ctl1txt";
+			this.ctl1txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// ctl1cb
+			//
+			resources.ApplyResources(this.ctl1cb, "ctl1cb");
+			this.ctl1cb.Name = "ctl1cb";
+			this.ctl1cb.UseVisualStyleBackColor = true;
+			this.ctl1cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label13
+			//
+			resources.ApplyResources(this.label13, "label13");
+			this.label13.Name = "label13";
+			//
+			// ctl4txt
+			//
+			resources.ApplyResources(this.ctl4txt, "ctl4txt");
+			this.ctl4txt.Name = "ctl4txt";
+			this.ctl4txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// ctl4cb
+			//
+			resources.ApplyResources(this.ctl4cb, "ctl4cb");
+			this.ctl4cb.Name = "ctl4cb";
+			this.ctl4cb.UseVisualStyleBackColor = true;
+			this.ctl4cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label12
+			//
+			resources.ApplyResources(this.label12, "label12");
+			this.label12.Name = "label12";
+			//
+			// ctl0txt
+			//
+			resources.ApplyResources(this.ctl0txt, "ctl0txt");
+			this.ctl0txt.Name = "ctl0txt";
+			this.ctl0txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// ctl0cb
+			//
+			resources.ApplyResources(this.ctl0cb, "ctl0cb");
+			this.ctl0cb.Name = "ctl0cb";
+			this.ctl0cb.UseVisualStyleBackColor = true;
+			this.ctl0cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label11
+			//
+			resources.ApplyResources(this.label11, "label11");
+			this.label11.Name = "label11";
+			//
+			// map2txt
+			//
+			resources.ApplyResources(this.map2txt, "map2txt");
+			this.map2txt.Name = "map2txt";
+			this.map2txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// map2cb
+			//
+			resources.ApplyResources(this.map2cb, "map2cb");
+			this.map2cb.Name = "map2cb";
+			this.map2cb.UseVisualStyleBackColor = true;
+			this.map2cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// map2lbl
+			//
+			resources.ApplyResources(this.map2lbl, "map2lbl");
+			this.map2lbl.Name = "map2lbl";
+			//
+			// map1txt
+			//
+			resources.ApplyResources(this.map1txt, "map1txt");
+			this.map1txt.Name = "map1txt";
+			this.map1txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// map1cb
+			//
+			resources.ApplyResources(this.map1cb, "map1cb");
+			this.map1cb.Name = "map1cb";
+			this.map1cb.UseVisualStyleBackColor = true;
+			this.map1cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// map1lbl
+			//
+			resources.ApplyResources(this.map1lbl, "map1lbl");
+			this.map1lbl.Name = "map1lbl";
+			//
+			// map3txt
+			//
+			resources.ApplyResources(this.map3txt, "map3txt");
+			this.map3txt.Name = "map3txt";
+			this.map3txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// map3cb
+			//
+			resources.ApplyResources(this.map3cb, "map3cb");
+			this.map3cb.Name = "map3cb";
+			this.map3cb.UseVisualStyleBackColor = true;
+			this.map3cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// map3lbl
+			//
+			resources.ApplyResources(this.map3lbl, "map3lbl");
+			this.map3lbl.Name = "map3lbl";
+			//
+			// map0txt
+			//
+			resources.ApplyResources(this.map0txt, "map0txt");
+			this.map0txt.Name = "map0txt";
+			this.map0txt.TextChanged += new System.EventHandler(this.edittxt_TextChanged);
+			//
+			// map0cb
+			//
+			resources.ApplyResources(this.map0cb, "map0cb");
+			this.map0cb.Name = "map0cb";
+			this.map0cb.UseVisualStyleBackColor = true;
+			this.map0cb.CheckedChanged += new System.EventHandler(this.editcb_CheckedChanged);
+			//
+			// label10
+			//
+			resources.ApplyResources(this.label10, "label10");
+			this.label10.Name = "label10";
+			//
+			// ctl0num
+			//
+			resources.ApplyResources(this.ctl0num, "ctl0num");
+			this.ctl0num.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl0num.Name = "ctl0num";
+			this.ctl0num.ValueChanged += new System.EventHandler(this.ctlnum_ValueChanged);
+			//
+			// label1
+			//
+			resources.ApplyResources(this.label1, "label1");
+			this.label1.Name = "label1";
+			//
+			// label2
+			//
+			resources.ApplyResources(this.label2, "label2");
+			this.label2.Name = "label2";
+			//
+			// label4
+			//
+			resources.ApplyResources(this.label4, "label4");
+			this.label4.Name = "label4";
+			//
+			// label5
+			//
+			resources.ApplyResources(this.label5, "label5");
+			this.label5.Name = "label5";
+			//
+			// Infogb
+			//
+			this.Infogb.BackColor = System.Drawing.Color.Transparent;
+			this.Infogb.Controls.Add(this.infofilterlbl);
+			this.Infogb.Controls.Add(this.infocatlbl);
+			this.Infogb.Controls.Add(this.infoauthlbl);
+			this.Infogb.Controls.Add(this.infocopylbl);
+			this.Infogb.Controls.Add(this.CategoryBox);
+			this.Infogb.Controls.Add(this.CopyrightBox);
+			this.Infogb.Controls.Add(this.AuthorBox);
+			this.Infogb.Controls.Add(this.TitleBox);
+			resources.ApplyResources(this.Infogb, "Infogb");
+			this.Infogb.Name = "Infogb";
+			this.Infogb.TabStop = false;
+			//
+			// infofilterlbl
+			//
+			resources.ApplyResources(this.infofilterlbl, "infofilterlbl");
+			this.infofilterlbl.Name = "infofilterlbl";
+			//
+			// infocatlbl
+			//
+			resources.ApplyResources(this.infocatlbl, "infocatlbl");
+			this.infocatlbl.Name = "infocatlbl";
+			//
+			// infoauthlbl
+			//
+			resources.ApplyResources(this.infoauthlbl, "infoauthlbl");
+			this.infoauthlbl.Name = "infoauthlbl";
+			//
+			// infocopylbl
+			//
+			resources.ApplyResources(this.infocopylbl, "infocopylbl");
+			this.infocopylbl.Name = "infocopylbl";
+			//
+			// CategoryBox
+			//
+			resources.ApplyResources(this.CategoryBox, "CategoryBox");
+			this.CategoryBox.Name = "CategoryBox";
+			this.CategoryBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
+			//
+			// CopyrightBox
+			//
+			resources.ApplyResources(this.CopyrightBox, "CopyrightBox");
+			this.CopyrightBox.Name = "CopyrightBox";
+			this.CopyrightBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
+			//
+			// AuthorBox
+			//
+			resources.ApplyResources(this.AuthorBox, "AuthorBox");
+			this.AuthorBox.Name = "AuthorBox";
+			this.AuthorBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
+			//
+			// TitleBox
+			//
+			resources.ApplyResources(this.TitleBox, "TitleBox");
+			this.TitleBox.Name = "TitleBox";
+			this.TitleBox.TextChanged += new System.EventHandler(this.editInfoTxt_TextChanged);
+			//
+			// AlphaBox
+			//
+			resources.ApplyResources(this.AlphaBox, "AlphaBox");
+			this.AlphaBox.Name = "AlphaBox";
+			this.AlphaBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
+			this.AlphaBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AlphaBox_KeyDown);
+			//
+			// BlueBox
+			//
+			resources.ApplyResources(this.BlueBox, "BlueBox");
+			this.BlueBox.Name = "BlueBox";
+			this.BlueBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
+			this.BlueBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BlueBox_KeyDown);
+			//
+			// GreenBox
+			//
+			resources.ApplyResources(this.GreenBox, "GreenBox");
+			this.GreenBox.Name = "GreenBox";
+			this.GreenBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
+			this.GreenBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GreenBox_KeyDown);
+			//
+			// RedBox
+			//
+			resources.ApplyResources(this.RedBox, "RedBox");
+			this.RedBox.Name = "RedBox";
+			this.RedBox.TextChanged += new System.EventHandler(this.SrcTextBoxes_TextChanged);
+			this.RedBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RedBox_KeyDown);
+			//
+			// Savebtn
+			//
+			resources.ApplyResources(this.Savebtn, "Savebtn");
+			this.Savebtn.Name = "Savebtn";
+			this.Savebtn.UseVisualStyleBackColor = true;
+			//
+			// button2
+			//
+			resources.ApplyResources(this.button2, "button2");
+			this.button2.Name = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.buttonCancel_Click);
+			//
+			// button1
+			//
+			resources.ApplyResources(this.button1, "button1");
+			this.button1.Name = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.buttonOK_Click);
+			//
+			// controlsTab
+			//
+			this.controlsTab.BackColor = System.Drawing.SystemColors.Control;
+			this.controlsTab.Controls.Add(this.fltrAuthorTxt);
+			this.controlsTab.Controls.Add(this.fltrTitletxt);
+			this.controlsTab.Controls.Add(this.fltrTitlelbl);
+			this.controlsTab.Controls.Add(this.copylbl);
+			this.controlsTab.Controls.Add(this.authlbl);
+			this.controlsTab.Controls.Add(this.catlbl);
+			this.controlsTab.Controls.Add(this.fltrCopyTxt);
+			this.controlsTab.Controls.Add(this.fltrCatTxt);
+			this.controlsTab.Controls.Add(this.ctlpanel);
+			resources.ApplyResources(this.controlsTab, "controlsTab");
+			this.controlsTab.Name = "controlsTab";
+			//
+			// fltrAuthorTxt
+			//
+			resources.ApplyResources(this.fltrAuthorTxt, "fltrAuthorTxt");
+			this.fltrAuthorTxt.Name = "fltrAuthorTxt";
+			//
+			// fltrTitletxt
+			//
+			resources.ApplyResources(this.fltrTitletxt, "fltrTitletxt");
+			this.fltrTitletxt.Name = "fltrTitletxt";
+			//
+			// fltrTitlelbl
+			//
+			resources.ApplyResources(this.fltrTitlelbl, "fltrTitlelbl");
+			this.fltrTitlelbl.Name = "fltrTitlelbl";
+			//
+			// copylbl
+			//
+			resources.ApplyResources(this.copylbl, "copylbl");
+			this.copylbl.Name = "copylbl";
+			//
+			// authlbl
+			//
+			resources.ApplyResources(this.authlbl, "authlbl");
+			this.authlbl.Name = "authlbl";
+			//
+			// catlbl
+			//
+			resources.ApplyResources(this.catlbl, "catlbl");
+			this.catlbl.Name = "catlbl";
+			//
+			// fltrCopyTxt
+			//
+			resources.ApplyResources(this.fltrCopyTxt, "fltrCopyTxt");
+			this.fltrCopyTxt.Name = "fltrCopyTxt";
+			//
+			// fltrCatTxt
+			//
+			resources.ApplyResources(this.fltrCatTxt, "fltrCatTxt");
+			this.fltrCatTxt.Name = "fltrCatTxt";
+			//
+			// ctlpanel
+			//
+			this.ctlpanel.BackColor = System.Drawing.SystemColors.Control;
+			this.ctlpanel.Controls.Add(this.ctllbl2);
+			this.ctlpanel.Controls.Add(this.resetbtn1);
+			this.ctlpanel.Controls.Add(this.resetbtn7);
+			this.ctlpanel.Controls.Add(this.resetbtn6);
+			this.ctlpanel.Controls.Add(this.resetbtn5);
+			this.ctlpanel.Controls.Add(this.resetbtn4);
+			this.ctlpanel.Controls.Add(this.resetbtn3);
+			this.ctlpanel.Controls.Add(this.resetbtn2);
+			this.ctlpanel.Controls.Add(this.ctllbl7);
+			this.ctlpanel.Controls.Add(this.ctllbl6);
+			this.ctlpanel.Controls.Add(this.resetbtn0);
+			this.ctlpanel.Controls.Add(this.ctllbl5);
+			this.ctlpanel.Controls.Add(this.ctl7);
+			this.ctlpanel.Controls.Add(this.ctllbl4);
+			this.ctlpanel.Controls.Add(this.ctl6);
+			this.ctlpanel.Controls.Add(this.ctllbl3);
+			this.ctlpanel.Controls.Add(this.ctl5);
+			this.ctlpanel.Controls.Add(this.ctl4);
+			this.ctlpanel.Controls.Add(this.ctllbl1);
+			this.ctlpanel.Controls.Add(this.ctl3);
+			this.ctlpanel.Controls.Add(this.ctllbl0);
+			this.ctlpanel.Controls.Add(this.ctl7_UpDown);
+			this.ctlpanel.Controls.Add(this.map3_lbl);
+			this.ctlpanel.Controls.Add(this.ctl6_UpDown);
+			this.ctlpanel.Controls.Add(this.map2_lbl);
+			this.ctlpanel.Controls.Add(this.ctl4_UpDown);
+			this.ctlpanel.Controls.Add(this.ctl5_UpDown);
+			this.ctlpanel.Controls.Add(this.map0_lbl);
+			this.ctlpanel.Controls.Add(this.ctl3_UpDown);
+			this.ctlpanel.Controls.Add(this.ctl2_UpDown);
+			this.ctlpanel.Controls.Add(this.ctl1_UpDown);
+			this.ctlpanel.Controls.Add(this.ctl0_UpDown);
+			this.ctlpanel.Controls.Add(this.ctl2);
+			this.ctlpanel.Controls.Add(this.ctl1);
+			this.ctlpanel.Controls.Add(this.ctl0);
+			this.ctlpanel.Controls.Add(this.map1_lbl);
+			resources.ApplyResources(this.ctlpanel, "ctlpanel");
+			this.ctlpanel.Name = "ctlpanel";
+			//
+			// ctllbl2
+			//
+			resources.ApplyResources(this.ctllbl2, "ctllbl2");
+			this.ctllbl2.Name = "ctllbl2";
+			//
+			// resetbtn1
+			//
+			resources.ApplyResources(this.resetbtn1, "resetbtn1");
+			this.resetbtn1.Name = "resetbtn1";
+			this.resetbtn1.UseVisualStyleBackColor = true;
+			this.resetbtn1.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// resetbtn7
+			//
+			resources.ApplyResources(this.resetbtn7, "resetbtn7");
+			this.resetbtn7.Name = "resetbtn7";
+			this.resetbtn7.UseVisualStyleBackColor = true;
+			this.resetbtn7.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// resetbtn6
+			//
+			resources.ApplyResources(this.resetbtn6, "resetbtn6");
+			this.resetbtn6.Name = "resetbtn6";
+			this.resetbtn6.UseVisualStyleBackColor = true;
+			this.resetbtn6.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// resetbtn5
+			//
+			resources.ApplyResources(this.resetbtn5, "resetbtn5");
+			this.resetbtn5.Name = "resetbtn5";
+			this.resetbtn5.UseVisualStyleBackColor = true;
+			this.resetbtn5.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// resetbtn4
+			//
+			resources.ApplyResources(this.resetbtn4, "resetbtn4");
+			this.resetbtn4.Name = "resetbtn4";
+			this.resetbtn4.UseVisualStyleBackColor = true;
+			this.resetbtn4.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// resetbtn3
+			//
+			resources.ApplyResources(this.resetbtn3, "resetbtn3");
+			this.resetbtn3.Name = "resetbtn3";
+			this.resetbtn3.UseVisualStyleBackColor = true;
+			this.resetbtn3.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// resetbtn2
+			//
+			resources.ApplyResources(this.resetbtn2, "resetbtn2");
+			this.resetbtn2.Name = "resetbtn2";
+			this.resetbtn2.UseVisualStyleBackColor = true;
+			this.resetbtn2.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// ctllbl7
+			//
+			resources.ApplyResources(this.ctllbl7, "ctllbl7");
+			this.ctllbl7.Name = "ctllbl7";
+			//
+			// ctllbl6
+			//
+			resources.ApplyResources(this.ctllbl6, "ctllbl6");
+			this.ctllbl6.Name = "ctllbl6";
+			//
+			// resetbtn0
+			//
+			resources.ApplyResources(this.resetbtn0, "resetbtn0");
+			this.resetbtn0.Name = "resetbtn0";
+			this.resetbtn0.UseVisualStyleBackColor = true;
+			this.resetbtn0.Click += new System.EventHandler(this.resetbtn_Click);
+			//
+			// ctllbl5
+			//
+			resources.ApplyResources(this.ctllbl5, "ctllbl5");
+			this.ctllbl5.Name = "ctllbl5";
+			//
+			// ctl7
+			//
+			resources.ApplyResources(this.ctl7, "ctl7");
+			this.ctl7.Maximum = 255;
+			this.ctl7.Name = "ctl7";
+			this.ctl7.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl7.Scroll += new System.EventHandler(this.ctl7_ValueChanged);
+			this.ctl7.ValueChanged += new System.EventHandler(this.ctl7_ValueChanged);
+			//
+			// ctllbl4
+			//
+			resources.ApplyResources(this.ctllbl4, "ctllbl4");
+			this.ctllbl4.Name = "ctllbl4";
+			//
+			// ctl6
+			//
+			resources.ApplyResources(this.ctl6, "ctl6");
+			this.ctl6.Maximum = 255;
+			this.ctl6.Name = "ctl6";
+			this.ctl6.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl6.Scroll += new System.EventHandler(this.ctl6_ValueChanged);
+			this.ctl6.ValueChanged += new System.EventHandler(this.ctl6_ValueChanged);
+			//
+			// ctllbl3
+			//
+			resources.ApplyResources(this.ctllbl3, "ctllbl3");
+			this.ctllbl3.Name = "ctllbl3";
+			//
+			// ctl5
+			//
+			resources.ApplyResources(this.ctl5, "ctl5");
+			this.ctl5.Maximum = 255;
+			this.ctl5.Name = "ctl5";
+			this.ctl5.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl5.Scroll += new System.EventHandler(this.ctl5_ValueChanged);
+			this.ctl5.ValueChanged += new System.EventHandler(this.ctl5_ValueChanged);
+			//
+			// ctl4
+			//
+			resources.ApplyResources(this.ctl4, "ctl4");
+			this.ctl4.Maximum = 255;
+			this.ctl4.Name = "ctl4";
+			this.ctl4.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl4.Scroll += new System.EventHandler(this.ctl4_ValueChanged);
+			this.ctl4.ValueChanged += new System.EventHandler(this.ctl4_ValueChanged);
+			//
+			// ctllbl1
+			//
+			resources.ApplyResources(this.ctllbl1, "ctllbl1");
+			this.ctllbl1.Name = "ctllbl1";
+			//
+			// ctl3
+			//
+			resources.ApplyResources(this.ctl3, "ctl3");
+			this.ctl3.Maximum = 255;
+			this.ctl3.Name = "ctl3";
+			this.ctl3.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl3.Scroll += new System.EventHandler(this.ctl3_ValueChanged);
+			this.ctl3.ValueChanged += new System.EventHandler(this.ctl3_ValueChanged);
+			//
+			// ctllbl0
+			//
+			resources.ApplyResources(this.ctllbl0, "ctllbl0");
+			this.ctllbl0.Name = "ctllbl0";
+			//
+			// ctl7_UpDown
+			//
+			resources.ApplyResources(this.ctl7_UpDown, "ctl7_UpDown");
+			this.ctl7_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl7_UpDown.Name = "ctl7_UpDown";
+			this.ctl7_UpDown.ValueChanged += new System.EventHandler(this.ctl7_UpDown_ValueChanged);
+			//
+			// map3_lbl
+			//
+			resources.ApplyResources(this.map3_lbl, "map3_lbl");
+			this.map3_lbl.Name = "map3_lbl";
+			//
+			// ctl6_UpDown
+			//
+			resources.ApplyResources(this.ctl6_UpDown, "ctl6_UpDown");
+			this.ctl6_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl6_UpDown.Name = "ctl6_UpDown";
+			this.ctl6_UpDown.ValueChanged += new System.EventHandler(this.ctl6_UpDown_ValueChanged);
+			//
+			// map2_lbl
+			//
+			resources.ApplyResources(this.map2_lbl, "map2_lbl");
+			this.map2_lbl.Name = "map2_lbl";
+			//
+			// ctl4_UpDown
+			//
+			resources.ApplyResources(this.ctl4_UpDown, "ctl4_UpDown");
+			this.ctl4_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl4_UpDown.Name = "ctl4_UpDown";
+			this.ctl4_UpDown.ValueChanged += new System.EventHandler(this.ctl4_UpDown_ValueChanged);
+			//
+			// ctl5_UpDown
+			//
+			resources.ApplyResources(this.ctl5_UpDown, "ctl5_UpDown");
+			this.ctl5_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl5_UpDown.Name = "ctl5_UpDown";
+			this.ctl5_UpDown.ValueChanged += new System.EventHandler(this.ctl5_UpDown_ValueChanged);
+			//
+			// map0_lbl
+			//
+			resources.ApplyResources(this.map0_lbl, "map0_lbl");
+			this.map0_lbl.Name = "map0_lbl";
+			//
+			// ctl3_UpDown
+			//
+			resources.ApplyResources(this.ctl3_UpDown, "ctl3_UpDown");
+			this.ctl3_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl3_UpDown.Name = "ctl3_UpDown";
+			this.ctl3_UpDown.ValueChanged += new System.EventHandler(this.ctl3_UpDown_ValueChanged);
+			//
+			// ctl2_UpDown
+			//
+			resources.ApplyResources(this.ctl2_UpDown, "ctl2_UpDown");
+			this.ctl2_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl2_UpDown.Name = "ctl2_UpDown";
+			this.ctl2_UpDown.ValueChanged += new System.EventHandler(this.ctl2_UpDown_ValueChanged);
+			//
+			// ctl1_UpDown
+			//
+			resources.ApplyResources(this.ctl1_UpDown, "ctl1_UpDown");
+			this.ctl1_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl1_UpDown.Name = "ctl1_UpDown";
+			this.ctl1_UpDown.ValueChanged += new System.EventHandler(this.ctl1_UpDown_ValueChanged);
+			//
+			// ctl0_UpDown
+			//
+			resources.ApplyResources(this.ctl0_UpDown, "ctl0_UpDown");
+			this.ctl0_UpDown.Maximum = new decimal(new int[] {
+			255,
+			0,
+			0,
+			0});
+			this.ctl0_UpDown.Name = "ctl0_UpDown";
+			this.ctl0_UpDown.ValueChanged += new System.EventHandler(this.ctl0_UpDown_ValueChanged);
+			//
+			// ctl2
+			//
+			resources.ApplyResources(this.ctl2, "ctl2");
+			this.ctl2.Maximum = 255;
+			this.ctl2.Name = "ctl2";
+			this.ctl2.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl2.Scroll += new System.EventHandler(this.ctl2_ValueChanged);
+			this.ctl2.ValueChanged += new System.EventHandler(this.ctl2_ValueChanged);
+			//
+			// ctl1
+			//
+			resources.ApplyResources(this.ctl1, "ctl1");
+			this.ctl1.Maximum = 255;
+			this.ctl1.Name = "ctl1";
+			this.ctl1.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl1.Scroll += new System.EventHandler(this.ctl1_ValueChanged);
+			this.ctl1.ValueChanged += new System.EventHandler(this.ctl1_ValueChanged);
+			//
+			// ctl0
+			//
+			resources.ApplyResources(this.ctl0, "ctl0");
+			this.ctl0.Maximum = 255;
+			this.ctl0.Name = "ctl0";
+			this.ctl0.TickStyle = System.Windows.Forms.TickStyle.None;
+			this.ctl0.Scroll += new System.EventHandler(this.ctl0_ValueChanged);
+			this.ctl0.ValueChanged += new System.EventHandler(this.ctl0_ValueChanged);
+			//
+			// map1_lbl
+			//
+			resources.ApplyResources(this.map1_lbl, "map1_lbl");
+			this.map1_lbl.Name = "map1_lbl";
+			//
+			// tabControl1
+			//
+			this.tabControl1.Controls.Add(this.controlsTab);
+			this.tabControl1.Controls.Add(this.editorTab);
+			this.tabControl1.Controls.Add(this.FFLtab);
+			this.tabControl1.Controls.Add(this.FilterManagertab);
+			this.tabControl1.Controls.Add(this.FilterDirtab);
+			resources.ApplyResources(this.tabControl1, "tabControl1");
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			//
+			// buildfilterbtn
+			//
+			resources.ApplyResources(this.buildfilterbtn, "buildfilterbtn");
+			this.buildfilterbtn.Name = "buildfilterbtn";
+			this.buildfilterbtn.UseVisualStyleBackColor = true;
+			this.buildfilterbtn.Click += new System.EventHandler(this.buildfilterbtn_Click);
+			//
+			// imageList1
+			//
+			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList1.Images.SetKeyName(0, "VSFolder_open.bmp");
+			this.imageList1.Images.SetKeyName(1, "VSFolder_closed.bmp");
+			//
+			// PdnFFConfigDialog
+			//
+			resources.ApplyResources(this, "$this");
+			this.Controls.Add(this.buildfilterbtn);
+			this.Controls.Add(this.default_fltr);
+			this.Controls.Add(this.buttonCancel);
+			this.Controls.Add(this.Savebtn2);
+			this.Controls.Add(this.Filenamelbl);
+			this.Controls.Add(this.buttonOK);
+			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.Loadbtn2);
+			this.Controls.Add(this.Filenametxt);
+			this.Name = "PdnFFConfigDialog";
+			this.Opacity = 0.9D;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PdnFFConfigDialog_FormClosing);
+			this.Load += new System.EventHandler(this.PdnFFConfigDialog_Load);
+			this.Controls.SetChildIndex(this.Filenametxt, 0);
+			this.Controls.SetChildIndex(this.Loadbtn2, 0);
+			this.Controls.SetChildIndex(this.tabControl1, 0);
+			this.Controls.SetChildIndex(this.buttonOK, 0);
+			this.Controls.SetChildIndex(this.Filenamelbl, 0);
+			this.Controls.SetChildIndex(this.Savebtn2, 0);
+			this.Controls.SetChildIndex(this.buttonCancel, 0);
+			this.Controls.SetChildIndex(this.default_fltr, 0);
+			this.Controls.SetChildIndex(this.buildfilterbtn, 0);
+			this.FilterDirtab.ResumeLayout(false);
+			this.FilterDirtab.PerformLayout();
+			this.FilterManagertab.ResumeLayout(false);
+			this.FilterManagertab.PerformLayout();
+			this.filtermgrprogresspanel.ResumeLayout(false);
+			this.filtermgrprogresspanel.PerformLayout();
+			this.FFLtab.ResumeLayout(false);
+			this.FFLtab.PerformLayout();
+			this.editorTab.ResumeLayout(false);
+			this.editorTab.PerformLayout();
+			this.Interfacegb.ResumeLayout(false);
+			this.Interfacegb.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ctl5num)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl4num)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl6num)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl7num)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl3num)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl2num)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl1num)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl0num)).EndInit();
+			this.Infogb.ResumeLayout(false);
+			this.Infogb.PerformLayout();
+			this.controlsTab.ResumeLayout(false);
+			this.controlsTab.PerformLayout();
+			this.ctlpanel.ResumeLayout(false);
+			this.ctlpanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ctl7)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl7_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl6_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl4_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl5_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl3_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl2_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl1_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl0_UpDown)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ctl0)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -2619,77 +2619,77 @@ namespace PdnFF
 			}
 
 		}
-        private void LoadFFLbtn_Click(object sender, EventArgs e)
-        {
+		private void LoadFFLbtn_Click(object sender, EventArgs e)
+		{
 
-            try
-            {
+			try
+			{
 
-                using (OpenFileDialog fflDialog = new OpenFileDialog())
-                {
-                    fflDialog.Multiselect = false;
-                    fflDialog.Filter = Resources.ConfigDialog_LoadFFLDialog_Filter;
-                    if (fflDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadFFL(fflDialog.FileName, string.Empty);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+				using (OpenFileDialog fflDialog = new OpenFileDialog())
+				{
+					fflDialog.Multiselect = false;
+					fflDialog.Filter = Resources.ConfigDialog_LoadFFLDialog_Filter;
+					if (fflDialog.ShowDialog() == DialogResult.OK)
+					{
+						LoadFFL(fflDialog.FileName, string.Empty);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 
-        }
-        private void GetFilterfromFFLOffset(long offset, bool uselastvalues)
-        {
-            FileStream fs = null;
-            try
-            {
-                fs = new FileStream(lastffl, FileMode.Open, FileAccess.Read, FileShare.None);
-                using (BinaryReader br = new BinaryReader(fs, Encoding.Default))
-                {
+		}
+		private void GetFilterfromFFLOffset(long offset, bool uselastvalues)
+		{
+			FileStream fs = null;
+			try
+			{
+				fs = new FileStream(lastffl, FileMode.Open, FileAccess.Read, FileShare.None);
+				using (BinaryReader br = new BinaryReader(fs, Encoding.Default))
+				{
 
-                    if (uselastvalues)
-                    {
-                        filter_data tmpdata = new filter_data();
-                        if (FFLoadSave.GetFilterfromFFL(br, offset, tmpdata))
-                        {
-                            for (int i = 0; i < 8; i++)
-                            {
-                                resetdata[i] = tmpdata.ControlValue[i];
-                            }
-                            ResetTokenDataInfo(tmpdata);
-                            SetControls(data); // set the controls from the token Data
-                            SetInfo(data);
-                        }
-                    }
-                    else
-                    {
-                        data = NewFilterData();
-                        if (FFLoadSave.GetFilterfromFFL(br, offset, data))
-                        {
-                            for (int i = 0; i < 8; i++)
-                            {
-                                resetdata[i] = data.ControlValue[i];
-                            }
-                            SetControls(data);
-                            SetInfo(data);
-                            SetFltrInfoLabels(data);
+					if (uselastvalues)
+					{
+						filter_data tmpdata = new filter_data();
+						if (FFLoadSave.GetFilterfromFFL(br, offset, tmpdata))
+						{
+							for (int i = 0; i < 8; i++)
+							{
+								resetdata[i] = tmpdata.ControlValue[i];
+							}
+							ResetTokenDataInfo(tmpdata);
+							SetControls(data); // set the controls from the token Data
+							SetInfo(data);
+						}
+					}
+					else
+					{
+						data = NewFilterData();
+						if (FFLoadSave.GetFilterfromFFL(br, offset, data))
+						{
+							for (int i = 0; i < 8; i++)
+							{
+								resetdata[i] = data.ControlValue[i];
+							}
+							SetControls(data);
+							SetInfo(data);
+							SetFltrInfoLabels(data);
 
-                        }
-                    }
-                }
-                fs = null;
-            }
-            finally
-            {
-                if (fs != null)
-                {
-                    fs.Close();
-                }
-            }
-        }
+						}
+					}
+				}
+				fs = null;
+			}
+			finally
+			{
+				if (fs != null)
+				{
+					fs.Close();
+				}
+			}
+		}
 		private void FFLtreeView1_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			if (FFLtreeView1.SelectedNode.Tag != null)
@@ -3563,7 +3563,7 @@ namespace PdnFF
 			//Debug.WriteLine(string.Format("progresschanged isbackground = {0}", Thread.CurrentThread.IsBackground.ToString()));
 
 			folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", (e.ProgressPercentage + 1).ToString(CultureInfo.InvariantCulture), DirlistView1.Items.Count.ToString(CultureInfo.InvariantCulture));
-            folderloadnamelbl.Text = string.Format(CultureInfo.InvariantCulture, "({0})", e.UserState.ToString());
+			folderloadnamelbl.Text = string.Format(CultureInfo.InvariantCulture, "({0})", e.UserState.ToString());
 			fltrmgrprogress.PerformStep();
 		}
 
@@ -3677,21 +3677,21 @@ namespace PdnFF
 
 			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
 			{
-                sw.WriteLine("data.Author = \"{0}\";", data.Author);
-                sw.WriteLine("data.Category =  \"{0}\";", data.Category);
-                sw.WriteLine("data.Title =  \"{0}\";", data.Title);
-                sw.WriteLine("data.Copyright = \"{0}\";", data.Copyright);
-                sw.WriteLine("data.MapEnable = new int[4] {0},{1},{2},{3}", new object[] { "{ " + data.MapEnable[0].ToString(CultureInfo.InvariantCulture), data.MapEnable[1].ToString(CultureInfo.InvariantCulture), data.MapEnable[2].ToString(CultureInfo.InvariantCulture), data.MapEnable[3].ToString(CultureInfo.InvariantCulture) + "};" });
-                sw.WriteLine("data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
+				sw.WriteLine("data.Author = \"{0}\";", data.Author);
+				sw.WriteLine("data.Category =  \"{0}\";", data.Category);
+				sw.WriteLine("data.Title =  \"{0}\";", data.Title);
+				sw.WriteLine("data.Copyright = \"{0}\";", data.Copyright);
+				sw.WriteLine("data.MapEnable = new int[4] {0},{1},{2},{3}", new object[] { "{ " + data.MapEnable[0].ToString(CultureInfo.InvariantCulture), data.MapEnable[1].ToString(CultureInfo.InvariantCulture), data.MapEnable[2].ToString(CultureInfo.InvariantCulture), data.MapEnable[3].ToString(CultureInfo.InvariantCulture) + "};" });
+				sw.WriteLine("data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
 
-                sw.WriteLine("data.ControlEnable = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlEnable[0].ToString(CultureInfo.InvariantCulture), data.ControlEnable[1].ToString(CultureInfo.InvariantCulture), data.ControlEnable[2].ToString(CultureInfo.InvariantCulture), data.ControlEnable[3].ToString(CultureInfo.InvariantCulture), data.ControlEnable[4].ToString(CultureInfo.InvariantCulture), data.ControlEnable[5].ToString(CultureInfo.InvariantCulture), data.ControlEnable[6].ToString(CultureInfo.InvariantCulture), data.ControlEnable[7].ToString(CultureInfo.InvariantCulture) + "};" });
-                sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
-                sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
-                sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
-                sw.WriteLine("data.PopDialog = {0};", data.PopDialog.ToString(CultureInfo.InvariantCulture));
-                sw.WriteLine("filterDataset = true;");
+				sw.WriteLine("data.ControlEnable = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlEnable[0].ToString(CultureInfo.InvariantCulture), data.ControlEnable[1].ToString(CultureInfo.InvariantCulture), data.ControlEnable[2].ToString(CultureInfo.InvariantCulture), data.ControlEnable[3].ToString(CultureInfo.InvariantCulture), data.ControlEnable[4].ToString(CultureInfo.InvariantCulture), data.ControlEnable[5].ToString(CultureInfo.InvariantCulture), data.ControlEnable[6].ToString(CultureInfo.InvariantCulture), data.ControlEnable[7].ToString(CultureInfo.InvariantCulture) + "};" });
+				sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
+				sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
+				sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
+				sw.WriteLine("data.PopDialog = {0};", data.PopDialog.ToString(CultureInfo.InvariantCulture));
+				sw.WriteLine("filterDataset = true;");
 
-                ret = sw.ToString();
+				ret = sw.ToString();
 			}
 			return ret;
 		}
@@ -3798,13 +3798,13 @@ namespace PdnFF
 				}
 				sw.WriteLine("base.OnSetRenderInfo(parameters, dstArgs, srcArgs); \n } \n");
 
-                sw.WriteLine("private bool Cancel() \n{ \n return base.IsCancelRequested; \n }");
+				sw.WriteLine("private bool Cancel() \n{ \n return base.IsCancelRequested; \n }");
 
 				// Render
 				sw.WriteLine("public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length) \n { \n");
 				sw.WriteLine("for (int i = startIndex; i < startIndex + length; ++i) \n { \n");
 				sw.WriteLine("Rectangle rect = rois[i];");
-                sw.WriteLine("com.Render(dstArgs.Surface, rect, new Func<bool>(Cancel)); \n } \n }");
+				sw.WriteLine("com.Render(dstArgs.Surface, rect, new Func<bool>(Cancel)); \n } \n }");
 				sw.WriteLine("}\n }"); // end the class and the namespace
 
 				ret = sw.ToString();
@@ -3825,21 +3825,21 @@ namespace PdnFF
 			cparm.IncludeDebugInformation = true;
 			cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug:full /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
 #else
-            cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug- /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
+			cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug- /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
 #endif
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-            string effectsDir = Path.Combine(installDir, "Effects");
-            string fileTypesDir = Path.Combine(installDir, "FileTypes");
+			string effectsDir = Path.Combine(installDir, "Effects");
+			string fileTypesDir = Path.Combine(installDir, "FileTypes");
 
-            foreach (var asm in assemblies)
-            {
-                if (!asm.Location.StartsWith(effectsDir, StringComparison.OrdinalIgnoreCase) &&
-                    !asm.Location.StartsWith(fileTypesDir, StringComparison.OrdinalIgnoreCase))
-                {
-                    cparm.ReferencedAssemblies.Add(asm.Location);
-                }
-            }
+			foreach (var asm in assemblies)
+			{
+				if (!asm.Location.StartsWith(effectsDir, StringComparison.OrdinalIgnoreCase) &&
+					!asm.Location.StartsWith(fileTypesDir, StringComparison.OrdinalIgnoreCase))
+				{
+					cparm.ReferencedAssemblies.Add(asm.Location);
+				}
+			}
 
 			cparm.OutputAssembly = Path.Combine(effectsDir, FileName);
 		}
@@ -3985,10 +3985,10 @@ namespace PdnFF
 							}
 						}
 					}
-                    else
-                    {
-                        MessageBox.Show(this, Resources.BuildFilterFileAlreadyExists, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+					else
+					{
+						MessageBox.Show(this, Resources.BuildFilterFileAlreadyExists, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 
 				}
 				catch (Exception ex)
@@ -4012,76 +4012,76 @@ namespace PdnFF
 
 		}
 
-        private void RedBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    e.Handled = true;
+		private void RedBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			switch (e.KeyCode)
+			{
+				case Keys.Up:
+					e.Handled = true;
 
-                    AlphaBox.Focus();
-                    AlphaBox.SelectionStart = AlphaBox.Text.Length;
-                    break;
-                case Keys.Down:
-                    e.Handled = true;
+					AlphaBox.Focus();
+					AlphaBox.SelectionStart = AlphaBox.Text.Length;
+					break;
+				case Keys.Down:
+					e.Handled = true;
 
-                    GreenBox.Focus();
-                    GreenBox.SelectionStart = GreenBox.Text.Length;
-                    break;
-            }
-        }
+					GreenBox.Focus();
+					GreenBox.SelectionStart = GreenBox.Text.Length;
+					break;
+			}
+		}
 
-        private void GreenBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    e.Handled = true;
-                    RedBox.Focus();
-                    RedBox.SelectionStart = RedBox.Text.Length;
-                    break;
-                case Keys.Down:
-                    e.Handled = true;
-                    BlueBox.Focus();
-                    BlueBox.SelectionStart = BlueBox.Text.Length;
-                    break;
-            }
-        }
+		private void GreenBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			switch (e.KeyCode)
+			{
+				case Keys.Up:
+					e.Handled = true;
+					RedBox.Focus();
+					RedBox.SelectionStart = RedBox.Text.Length;
+					break;
+				case Keys.Down:
+					e.Handled = true;
+					BlueBox.Focus();
+					BlueBox.SelectionStart = BlueBox.Text.Length;
+					break;
+			}
+		}
 
-        private void BlueBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    e.Handled = true;
-                    GreenBox.Focus();
-                    GreenBox.SelectionStart = GreenBox.Text.Length;
-                    break;
-                case Keys.Down:
-                    e.Handled = true;
-                    AlphaBox.Focus();
-                    AlphaBox.SelectionStart = AlphaBox.Text.Length;
-                    break;
-            }
-        }
+		private void BlueBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			switch (e.KeyCode)
+			{
+				case Keys.Up:
+					e.Handled = true;
+					GreenBox.Focus();
+					GreenBox.SelectionStart = GreenBox.Text.Length;
+					break;
+				case Keys.Down:
+					e.Handled = true;
+					AlphaBox.Focus();
+					AlphaBox.SelectionStart = AlphaBox.Text.Length;
+					break;
+			}
+		}
 
-        private void AlphaBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    e.Handled = true;
-                    BlueBox.Focus();
-                    BlueBox.SelectionStart = BlueBox.Text.Length;
-                    break;
-                case Keys.Down:
-                    e.Handled = true;
-                    RedBox.Focus();
-                    RedBox.SelectionStart = RedBox.Text.Length;
-                    break;
-            }
+		private void AlphaBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			switch (e.KeyCode)
+			{
+				case Keys.Up:
+					e.Handled = true;
+					BlueBox.Focus();
+					BlueBox.SelectionStart = BlueBox.Text.Length;
+					break;
+				case Keys.Down:
+					e.Handled = true;
+					RedBox.Focus();
+					RedBox.SelectionStart = RedBox.Text.Length;
+					break;
+			}
 
-        }
+		}
 
 
 	}
