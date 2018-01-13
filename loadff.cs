@@ -27,18 +27,30 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
+using Microsoft.Win32.SafeHandles;
 
 namespace PdnFF
 {
 	internal static class FFLoadSave
 	{
+		private sealed class SafeLibraryHandle : SafeHandleZeroOrMinusOneIsInvalid
+		{
+			private SafeLibraryHandle() : base(true)
+			{
+			}
+
+			protected override bool ReleaseHandle()
+			{
+				return UnsafeNativeMethods.FreeLibrary(handle);
+			}
+		}
+
 
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		private static class UnsafeNativeMethods
 		{
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-			public static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
+			public static extern SafeLibraryHandle LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
 
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
 			[return: MarshalAs(UnmanagedType.Bool)]
@@ -174,6 +186,10 @@ namespace PdnFF
 			return loaded;
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage(
+			"Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods",
+			MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle",
+			Justification = "Required by EnumResourceNames due to marshaller restrictions.")]
 		private static bool LoadBinFile(String fileName, filter_data data)
 		{
 			if (String.IsNullOrEmpty(fileName))
@@ -183,72 +199,70 @@ namespace PdnFF
 			bool result = false;
 			try
 			{
-				IntPtr hm = UnsafeNativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE);
-				if (hm != IntPtr.Zero)
+				using (SafeLibraryHandle hm = UnsafeNativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE))
 				{
-					IntPtr hres = IntPtr.Zero;
-
-					GCHandle gch = GCHandle.Alloc(hres);
-					try
+					if (!hm.IsInvalid)
 					{
+						IntPtr hres = IntPtr.Zero;
 
-						if (UnsafeNativeMethods.EnumResourceNames(hm, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
+						GCHandle gch = GCHandle.Alloc(hres);
+						bool needsRelease = false;
+						try
 						{
-							hres = (IntPtr)gch.Target;
-							if (hres != IntPtr.Zero)
+							hm.DangerousAddRef(ref needsRelease);
+							IntPtr hMod = hm.DangerousGetHandle();
+							if (UnsafeNativeMethods.EnumResourceNames(hMod, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
 							{
-								IntPtr loadres = UnsafeNativeMethods.LoadResource(hm, hres);
-								if (loadres != IntPtr.Zero)
+								hres = (IntPtr)gch.Target;
+								if (hres != IntPtr.Zero)
 								{
-									IntPtr reslock = UnsafeNativeMethods.LockResource(loadres);
-									if (reslock != IntPtr.Zero)
+									IntPtr loadres = UnsafeNativeMethods.LoadResource(hMod, hres);
+									if (loadres != IntPtr.Zero)
 									{
-										uint ds = UnsafeNativeMethods.SizeofResource(hm, hres);
-
-										if (ds == 8296) // All valid Filter Factory reSources are this size
+										IntPtr reslock = UnsafeNativeMethods.LockResource(loadres);
+										if (reslock != IntPtr.Zero)
 										{
-											byte[] ffdata = new byte[ds];
-											Marshal.Copy(reslock, ffdata, 0, (int)ds);
-											GetFilterDataFromParmBytes(data, ffdata);
-											result = true;
+											uint ds = UnsafeNativeMethods.SizeofResource(hMod, hres);
+
+											if (ds == 8296) // All valid Filter Factory reSources are this size
+											{
+												byte[] ffdata = new byte[ds];
+												Marshal.Copy(reslock, ffdata, 0, (int)ds);
+												GetFilterDataFromParmBytes(data, ffdata);
+												result = true;
+											}
 										}
-										UnsafeNativeMethods.FreeLibrary(hm);
+										else
+										{
+											throw new Win32Exception(Marshal.GetLastWin32Error());
+										}
 									}
 									else
 									{
-										UnsafeNativeMethods.FreeLibrary(hm);
 										throw new Win32Exception(Marshal.GetLastWin32Error());
 									}
 								}
 								else
 								{
-									UnsafeNativeMethods.FreeLibrary(hm);
 									throw new Win32Exception(Marshal.GetLastWin32Error());
 								}
 							}
-							else
+						}
+						finally
+						{
+							gch.Free();
+							if (needsRelease)
 							{
-								UnsafeNativeMethods.FreeLibrary(hm);
-								throw new Win32Exception(Marshal.GetLastWin32Error());
+								hm.DangerousRelease();
 							}
 						}
-						else // Not a Filter Factory Filter
-						{
-							UnsafeNativeMethods.FreeLibrary(hm);
-						}
 
 					}
-					finally
+					else
 					{
-						gch.Free();
+						throw new Win32Exception(Marshal.GetLastWin32Error());
 					}
-
 				}
-				else
-				{
-					throw new Win32Exception(Marshal.GetLastWin32Error());
-				}
-
 
 			}
 			catch (Exception)
