@@ -28,7 +28,7 @@ using PaintDotNet.Effects;
 
 namespace PdnFF
 {
-    public sealed class PdnFF_Effect : PaintDotNet.Effects.Effect
+    public sealed class PdnFFEffect : PaintDotNet.Effects.Effect
     {
 
         public static string StaticName
@@ -43,11 +43,11 @@ namespace PdnFF
             get
             {
                 //EffectPluginIcon.png
-                return new Bitmap(typeof(PdnFF_Effect), "script_code_red.png");
+                return new Bitmap(typeof(PdnFFEffect), "script_code_red.png");
             }
         }
-        public PdnFF_Effect()
-            : base(PdnFF_Effect.StaticName, PdnFF_Effect.StaticIcon, EffectFlags.Configurable | EffectFlags.SingleThreaded)
+        public PdnFFEffect()
+            : base(PdnFFEffect.StaticName, PdnFFEffect.StaticIcon, EffectFlags.Configurable | EffectFlags.SingleThreaded)
         {
         }
         private bool disposed = false;

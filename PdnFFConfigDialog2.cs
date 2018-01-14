@@ -2475,7 +2475,7 @@ namespace PdnFF
 				}
 				else
 				{
-					using (Stream res = Assembly.GetAssembly(typeof(PdnFF_Effect)).GetManifestResourceStream(@"PdnFF.PdnFF.xml"))
+					using (Stream res = Assembly.GetAssembly(typeof(PdnFFEffect)).GetManifestResourceStream(@"PdnFF.PdnFF.xml"))
 					{
 						byte[] bytes = new byte[res.Length];
 						int numBytesToRead = (int)res.Length;
@@ -3886,7 +3886,7 @@ namespace PdnFF
 			{
 				string resourceName = embeddedfiles[i];
 
-				using (Stream res = Assembly.GetAssembly(typeof(PdnFF_Effect)).GetManifestResourceStream(resourceName))
+				using (Stream res = Assembly.GetAssembly(typeof(PdnFFEffect)).GetManifestResourceStream(resourceName))
 				{
 					// Remove the 'PdnFF.Coderes.' name space prefix.
 					string fileName = resourceName.Substring(14, resourceName.Length - 14);
