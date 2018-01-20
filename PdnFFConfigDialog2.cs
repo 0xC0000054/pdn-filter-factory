@@ -1782,8 +1782,8 @@ namespace PdnFF
 				if (uselastvalues)
 				{
 					ClearEditControls();
-					FilterData tmpdata = new FilterData();
-					if (FFLoadSave.LoadFile(FileName, tmpdata))
+					FilterData tmpdata;
+					if (FFLoadSave.LoadFile(FileName, out tmpdata))
 					{
 						this.Filenametxt.Text = Path.GetFileName(FileName);
 						ResetTokenDataInfo(tmpdata);
@@ -1801,7 +1801,7 @@ namespace PdnFF
 					data = NewFilterData();
 					SetControls(data); // set the edit controls to the empty data to force all the checkboxes to be unchecked
 					ClearEditControls();
-					if (FFLoadSave.LoadFile(FileName, data))
+					if (FFLoadSave.LoadFile(FileName, out data))
 					{
 						this.Filenametxt.Text = Path.GetFileName(FileName);
 						this.lastFileName = FileName;
@@ -3362,8 +3362,8 @@ namespace PdnFF
 						}
 						if (fi.Exists)
 						{
-							FilterData fd = new FilterData();
-							if (FFLoadSave.LoadFile(fi.FullName, fd))
+							FilterData fd;
+							if (FFLoadSave.LoadFile(fi.FullName, out fd))
 							{
 								string[] subtext = new string[2] { fd.Author, fd.Copyright };
 

@@ -135,9 +135,8 @@ namespace PdnFF
 		/// <param name="data">The output filter_data</param>
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The FileName is null.</exception>
-		/// <exception cref="System.ArgumentNullException">The data is null.</exception>
 		/// <exception cref="System.ArgumentException">The FileName is Empty.</exception>
-		public static bool LoadFile(string fileName, FilterData data)
+		public static bool LoadFile(string fileName, out FilterData data)
 		{
 			bool loaded = false;
 
@@ -147,12 +146,11 @@ namespace PdnFF
 			if (string.IsNullOrEmpty(fileName))
 				throw new ArgumentException("fileName must not be empty", "fileName");
 
-			if (data == null)
-				throw new ArgumentNullException("data");
+			data = null;
 
 			if (Path.GetExtension(fileName).Equals(".8BF", StringComparison.OrdinalIgnoreCase))
 			{
-				loaded = LoadBinFile(fileName, data);
+				loaded = LoadBinFile(fileName, out data);
 			}
 			else
 			{
@@ -163,12 +161,12 @@ namespace PdnFF
 					fs.Read(buf, 0, 16);
 					if (Encoding.ASCII.GetString(buf, 0, 4).Equals("%RGB"))
 					{
-						LoadAfs(fs, data);
+						LoadAfs(fs, out data);
 						loaded = true;
 					}
 					else if (Encoding.ASCII.GetString(buf, 0, 8).Equals("Category"))
 					{
-						LoadTxt(fs, data);
+						LoadTxt(fs, out data);
 						loaded = true;
 					}
 
@@ -182,12 +180,12 @@ namespace PdnFF
 			"Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods",
 			MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle",
 			Justification = "Required by EnumResourceNames due to marshaller restrictions.")]
-		private static bool LoadBinFile(String fileName, FilterData data)
+		private static bool LoadBinFile(String fileName, out FilterData data)
 		{
 			if (String.IsNullOrEmpty(fileName))
 				throw new ArgumentException("fileName is null or empty.", "fileName");
-			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
+
+			data = null;
 			bool result = false;
 
 			using (SafeLibraryHandle hm = UnsafeNativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE))
@@ -337,12 +335,12 @@ namespace PdnFF
 
 			return data;
 		}
-		private static void LoadTxt(Stream infile, FilterData data)
+		private static void LoadTxt(Stream infile, out FilterData data)
 		{
 			if (infile == null)
 				throw new ArgumentNullException("infile", "infile is null.");
-			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
+
+			data = new FilterData();
 			infile.Position = 0L;
 
 			string line = string.Empty;
@@ -543,12 +541,12 @@ namespace PdnFF
 			return sb.ToString().Trim();
 		}
 
-		private static void LoadAfs(Stream infile, FilterData data)
+		private static void LoadAfs(Stream infile, out FilterData data)
 		{
 			if (infile == null)
 				throw new ArgumentNullException("infile", "infile is null.");
-			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
+
+			data = new FilterData();
 
 			infile.Position = 9L; // we have already read the signature skip it
 			string line = string.Empty;
