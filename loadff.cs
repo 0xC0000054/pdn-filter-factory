@@ -150,7 +150,7 @@ namespace PdnFF
 			if (data == null)
 				throw new ArgumentNullException("data");
 
-			if (Path.GetExtension(fileName).ToUpperInvariant() == ".8BF")
+			if (Path.GetExtension(fileName).Equals(".8BF", StringComparison.OrdinalIgnoreCase))
 			{
 				loaded = LoadBinFile(fileName, data);
 			}
