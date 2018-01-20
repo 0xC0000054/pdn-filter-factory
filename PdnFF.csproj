@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="PdnFFToken.cs" />
     <Compile Include="PdnFF.cs" />
+    <Compile Include="PluginSupportInfo.cs" />
     <Compile Include="TreeViewSort.cs" />
     <Compile Include="loadff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

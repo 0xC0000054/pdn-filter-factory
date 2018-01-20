@@ -28,6 +28,7 @@ using PaintDotNet.Effects;
 
 namespace PdnFF
 {
+    [PluginSupportInfo(typeof(PluginSupportInfo))]
     public sealed class PdnFFEffect : PaintDotNet.Effects.Effect
     {
 
