@@ -23,7 +23,7 @@ using System;
 
 namespace PdnFF
 {
-    public sealed class filter_data
+    public sealed class FilterData
     {
         private string title = string.Empty;
         private string category = string.Empty;

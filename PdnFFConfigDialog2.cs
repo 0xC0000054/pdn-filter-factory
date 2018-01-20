@@ -208,9 +208,9 @@ namespace PdnFF
 			InitializeComponent();
 
 		}
-		private static filter_data NewFilterData()
+		private static FilterData NewFilterData()
 		{
-			filter_data d = new filter_data();
+			FilterData d = new FilterData();
 			d.Author = d.Category = d.Title = d.Copyright = d.FileName = string.Empty;
 			for (int i = 0; i < 4; i++)
 			{
@@ -1734,7 +1734,7 @@ namespace PdnFF
 			this.Close();
 		}
 		int[] resetdata = new int[8];
-		private filter_data data = null;
+		private FilterData data = null;
 		private void Loadbtn_Click(object sender, System.EventArgs e)
 		{
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -1746,7 +1746,7 @@ namespace PdnFF
 		/// Reset the Control and the filter Info for the token filterdata
 		/// </summary>
 		/// <param name="tmpdata">The temp filter data with the filter defaults</param>
-		private void ResetTokenDataInfo(filter_data tmpdata)
+		private void ResetTokenDataInfo(FilterData tmpdata)
 		{
 			for (int i = 0; i < 8; i++)
 			{
@@ -1767,7 +1767,7 @@ namespace PdnFF
 			data.Title = tmpdata.Title;
 
 		}
-		private void SetFltrInfoLabels(filter_data data)
+		private void SetFltrInfoLabels(FilterData data)
 		{
 			fltrCatTxt.Text = data.Category;
 			fltrTitletxt.Text = data.Title;
@@ -1782,7 +1782,7 @@ namespace PdnFF
 				if (uselastvalues)
 				{
 					ClearEditControls();
-					filter_data tmpdata = new filter_data();
+					FilterData tmpdata = new FilterData();
 					if (FFLoadSave.LoadFile(FileName, tmpdata))
 					{
 						this.Filenametxt.Text = Path.GetFileName(FileName);
@@ -2058,7 +2058,7 @@ namespace PdnFF
 		/// Set the visability of the controls tab based on the filter_data PopDialog
 		/// </summary>
 		/// <param name="data">The filter_data to set</param>
-		private void SetControlsTabVisability(filter_data data)
+		private void SetControlsTabVisability(FilterData data)
 		{
 			if (data.PopDialog == 1)
 			{
@@ -2079,7 +2079,7 @@ namespace PdnFF
 		/// Resets the PopDialog function if the filter uses the maps or controls
 		/// </summary>
 		/// <param name="data">The filter_data to reset</param>
-		private static void ResetPopDialog(filter_data data)
+		private static void ResetPopDialog(FilterData data)
 		{
 			List<bool> ctlused = new List<bool>(8);
 			List<bool> mapused = new List<bool>(4);
@@ -2106,7 +2106,7 @@ namespace PdnFF
 			}
 
 		}
-		private void SetInfo(filter_data data)
+		private void SetInfo(FilterData data)
 		{
 			#region src text
 			RedBox.Text = data.Source[0];
@@ -2131,7 +2131,7 @@ namespace PdnFF
 		/// </summary>
 		/// <param name="data">The filter_data to set</param>
 		/// <param name="reset">Reset the control values to the filter defaults</param>
-		private void SetControls(filter_data data)
+		private void SetControls(FilterData data)
 		{
 
 			#region ctl / map enables
@@ -2432,7 +2432,7 @@ namespace PdnFF
 		{
 			if (data == null)
 			{
-				data = new filter_data();
+				data = new FilterData();
 			}
 			ClearLastFilters();
 			FFLoadSave.DefaultFilter(data);
@@ -2673,7 +2673,7 @@ namespace PdnFF
 					fs = null;
 					if (uselastvalues)
 					{
-						filter_data tmpdata = new filter_data();
+						FilterData tmpdata = new FilterData();
 						if (FFLoadSave.GetFilterfromFFL(br, offset, tmpdata))
 						{
 							for (int i = 0; i < 8; i++)
@@ -2723,7 +2723,7 @@ namespace PdnFF
 				ffltreecopytxt.Text = data.Copyright;
 			}
 		}
-		private void SetEditControls(filter_data data, int index, bool setctlnum, bool ismaptxt)
+		private void SetEditControls(FilterData data, int index, bool setctlnum, bool ismaptxt)
 		{
 			#region map0 / ctl 0 / ctl 1
 			if (map0cb.Checked && !ctl0cb.Checked && !ctl1cb.Checked)
@@ -3362,7 +3362,7 @@ namespace PdnFF
 						}
 						if (fi.Exists)
 						{
-							filter_data fd = new filter_data();
+							FilterData fd = new FilterData();
 							if (FFLoadSave.LoadFile(fi.FullName, fd))
 							{
 								string[] subtext = new string[2] { fd.Author, fd.Copyright };
@@ -3691,7 +3691,7 @@ namespace PdnFF
 			}
 		}
 
-		private static string BuildFilterData(filter_data data)
+		private static string BuildFilterData(FilterData data)
 		{
 			string ret = string.Empty;
 
@@ -3716,7 +3716,7 @@ namespace PdnFF
 			return ret;
 		}
 
-		private static string GetSubmenuCategory(filter_data data)
+		private static string GetSubmenuCategory(FilterData data)
 		{
 			string cat = string.Empty;
 
@@ -3759,7 +3759,7 @@ namespace PdnFF
 		/// <param name="FileName">The FileName of the output file.</param>
 		/// <param name="data">The filter_data of the filter to build.</param>
 		/// <returns>The generated Effect class Source code</returns>
-		private static string BuildEffectClass(string classname, string FileName,  filter_data data)
+		private static string BuildEffectClass(string classname, string FileName,  FilterData data)
 		{
 			string ret = string.Empty;
 			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))

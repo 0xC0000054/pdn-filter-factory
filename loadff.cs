@@ -137,7 +137,7 @@ namespace PdnFF
 		/// <exception cref="System.ArgumentNullException">The FileName is null.</exception>
 		/// <exception cref="System.ArgumentNullException">The data is null.</exception>
 		/// <exception cref="System.ArgumentException">The FileName is Empty.</exception>
-		public static bool LoadFile(string fileName, filter_data data)
+		public static bool LoadFile(string fileName, FilterData data)
 		{
 			bool loaded = false;
 
@@ -182,7 +182,7 @@ namespace PdnFF
 			"Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods",
 			MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle",
 			Justification = "Required by EnumResourceNames due to marshaller restrictions.")]
-		private static bool LoadBinFile(String fileName, filter_data data)
+		private static bool LoadBinFile(String fileName, FilterData data)
 		{
 			if (String.IsNullOrEmpty(fileName))
 				throw new ArgumentException("fileName is null or empty.", "fileName");
@@ -260,7 +260,7 @@ namespace PdnFF
 		/// </summary>
 		/// <param name="data">The filter_data to build</param>
 		/// <param name="parmbytes">The PARM reSource byte array</param>
-		private static void GetFilterDataFromParmBytes(filter_data data, byte[] parmbytes)
+		private static void GetFilterDataFromParmBytes(FilterData data, byte[] parmbytes)
 		{
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
@@ -337,7 +337,7 @@ namespace PdnFF
 			}
 
 		}
-		private static void LoadTxt(Stream infile, filter_data data)
+		private static void LoadTxt(Stream infile, FilterData data)
 		{
 			if (infile == null)
 				throw new ArgumentNullException("infile", "infile is null.");
@@ -543,7 +543,7 @@ namespace PdnFF
 			return sb.ToString().Trim();
 		}
 
-		private static void LoadAfs(Stream infile, filter_data data)
+		private static void LoadAfs(Stream infile, FilterData data)
 		{
 			if (infile == null)
 				throw new ArgumentNullException("infile", "infile is null.");
@@ -627,7 +627,7 @@ namespace PdnFF
 			SetPopDialog(data);
 
 		}
-		private static void SaveAfs(Stream output, filter_data data)
+		private static void SaveAfs(Stream output, FilterData data)
 		{
 			if (output == null)
 				throw new ArgumentNullException("output", "output is null.");
@@ -680,7 +680,7 @@ namespace PdnFF
 
 			}
 		}
-		private static void SaveTxt(Stream output, filter_data data)
+		private static void SaveTxt(Stream output, FilterData data)
 		{
 			if (output == null)
 				throw new ArgumentNullException("output", "output is null.");
@@ -726,7 +726,7 @@ namespace PdnFF
 		/// </summary>
 		/// <param name="FileName">The output FileName to save as</param>
 		/// <param name="data">The filter_data to save</param>
-		public static void SaveFile(string FileName, filter_data data)
+		public static void SaveFile(string FileName, FilterData data)
 		{
 			if (String.IsNullOrEmpty(FileName))
 				throw new ArgumentException("FileName is null or empty.", "FileName");
@@ -749,7 +749,7 @@ namespace PdnFF
 		/// Sets the filter_data to default values.
 		/// </summary>
 		/// <param name="data">The filter_data to set.</param>
-		public static void DefaultFilter(filter_data data)
+		public static void DefaultFilter(FilterData data)
 		{
 			string[] src = new string[] { "r", "g", "b", "a" };
 			data.Category = "Untitled";
@@ -833,7 +833,7 @@ namespace PdnFF
 					throw new ArgumentNullException("items");
 
 
-				filter_data data = new filter_data();
+				FilterData data = new FilterData();
 				fs = new FileStream(fn, FileMode.Open, FileAccess.Read, FileShare.None);
 
 				using (BinaryReader br = new BinaryReader(fs))
@@ -911,7 +911,7 @@ namespace PdnFF
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The BinaryReader is null.</exception>
 		/// <exception cref="System.ArgumentNullException">The filter_data is null.</exception>
-		public static bool GetFilterfromFFL(BinaryReader br, long offset, filter_data data)
+		public static bool GetFilterfromFFL(BinaryReader br, long offset, FilterData data)
 		{
 			if (br == null)
 				throw new ArgumentNullException("br", "br is null.");
@@ -986,7 +986,7 @@ namespace PdnFF
 		/// Sets the filter_data PopDialog for the loaded afs or txt Source
 		/// </summary>
 		/// <param name="data">The data to set</param>
-		private static void SetPopDialog(filter_data data)
+		private static void SetPopDialog(FilterData data)
 		{
 			List<bool> ctlused = new List<bool>(8);
 			List<bool> mapused = new List<bool>(4);

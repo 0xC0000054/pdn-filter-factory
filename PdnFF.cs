@@ -98,7 +98,7 @@ namespace PdnFF
         /// <summary>
         /// Sets the Filter source code and Control values
         /// </summary>
-        private static void SetupFilterData(filter_data data)
+        private static void SetupFilterData(FilterData data)
         {
             for (int i = 0; i < 8; i++)
             {

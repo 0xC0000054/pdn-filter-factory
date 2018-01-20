@@ -26,12 +26,12 @@ namespace PdnFF
 {
     public sealed class PdnFFConfigToken : PaintDotNet.Effects.EffectConfigToken
     {
-        private filter_data data;
+        private FilterData data;
         private string lastFileName;
         private string lastFFL;
         private string fflOfs;
 
-        public filter_data Data
+        public FilterData Data
         {
             get
             {
@@ -80,7 +80,7 @@ namespace PdnFF
         }
 
 
-        public PdnFFConfigToken(filter_data data, String lastfilename, String lastffl, String fflofs) : base()
+        public PdnFFConfigToken(FilterData data, String lastfilename, String lastffl, String fflofs) : base()
         {
             this.Data = data;
             this.lastFileName = lastfilename;
