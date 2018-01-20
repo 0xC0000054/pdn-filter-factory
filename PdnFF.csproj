@@ -96,7 +96,7 @@
     <EmbeddedResource Include="Coderes\FFEffectConfigToken.cs" />
     <EmbeddedResource Include="Coderes\ffparse.cs" />
     <EmbeddedResource Include="Coderes\FilterEnviromentData.cs" />
-    <EmbeddedResource Include="Coderes\filter_data.cs" />
+    <EmbeddedResource Include="Coderes\FilterData.cs" />
     <Compile Include="ffparse.cs" />
     <Compile Include="filterdata.cs" />
     <Compile Include="FilterEnviromentData.cs" />

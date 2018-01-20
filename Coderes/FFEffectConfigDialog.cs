@@ -80,9 +80,9 @@ namespace FFEffect
 		private Button buttonCancel;
 
 
-		private static filter_data data = new filter_data();
+		private static FilterData data = new FilterData();
 		private bool firstTokenInit = true;
-		public FFEffectConfigDialog(filter_data staticdata)
+		public FFEffectConfigDialog(FilterData staticdata)
 		{
 			InitializeComponent();
 			data = staticdata;
@@ -953,8 +953,8 @@ namespace FFEffect
 
 		/// Set the control values
 		/// </summary>
-		/// <param name="data">The filter_data to set</param>
-		private void SetControls(filter_data data)
+		/// <param name="data">The FilterData to set</param>
+		private void SetControls(FilterData data)
 		{
 
 			#region ctl / map enables
