@@ -219,7 +219,7 @@ namespace PdnFF
 										{
 											byte[] ffdata = new byte[ds];
 											Marshal.Copy(reslock, ffdata, 0, (int)ds);
-											GetFilterDataFromParmBytes(data, ffdata);
+											data = GetFilterDataFromParmBytes(ffdata);
 											result = true;
 										}
 									}
@@ -258,15 +258,14 @@ namespace PdnFF
 		/// <summary>
 		/// Builds the filter_data values from the Filter Factory PARM ReSource
 		/// </summary>
-		/// <param name="data">The filter_data to build</param>
 		/// <param name="parmbytes">The PARM reSource byte array</param>
-		private static void GetFilterDataFromParmBytes(FilterData data, byte[] parmbytes)
+		/// <returns>The filter data constructed from the PARM resource.</returns>
+		private static FilterData GetFilterDataFromParmBytes(byte[] parmbytes)
 		{
-			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
 			if (parmbytes == null || parmbytes.Length == 0)
 				throw new ArgumentException("parmbytes is null or empty.", "parmbytes");
 			MemoryStream ms = null;
+			FilterData data = new FilterData();
 
 			try
 			{
@@ -336,6 +335,7 @@ namespace PdnFF
 				}
 			}
 
+			return data;
 		}
 		private static void LoadTxt(Stream infile, FilterData data)
 		{
