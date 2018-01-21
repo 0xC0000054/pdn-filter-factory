@@ -959,7 +959,7 @@ namespace FFEffect
 
 			#region ctl / map enables
 
-			if (data.MapEnable[0] > 0 && data.ControlEnable[0] == 0 && data.ControlEnable[1] == 0/* && UsesMap(data.source,0)*/)
+			if (data.MapEnable[0] && !data.ControlEnable[0] && !data.ControlEnable[1]/* && UsesMap(data.source,0)*/)
 			{
 				map0_lbl.Visible = true;
 				map0_lbl.Text = data.MapLabel[0];
@@ -973,7 +973,7 @@ namespace FFEffect
 			}
 			else
 			{
-				if (data.ControlEnable[0] > 0)
+				if (data.ControlEnable[0])
 				{
 					ctl0.Visible = true;
 					ctl0_UpDown.Visible = true;
@@ -988,7 +988,7 @@ namespace FFEffect
 					resetbtn0.Visible = false;
 				}
 
-				if (data.ControlEnable[1] > 0)
+				if (data.ControlEnable[1])
 				{
 					ctl1.Visible = true;
 					ctl1_UpDown.Visible = true;
@@ -1005,7 +1005,7 @@ namespace FFEffect
 				this.ctllbl0.Text = data.ControlLabel[0];
 				this.ctllbl1.Text = data.ControlLabel[1];
 			}
-			if (data.MapEnable[1] > 0 && data.ControlEnable[2] == 0 && data.ControlEnable[3] == 0/* && UsesMap(data.source,1)*/)
+			if (data.MapEnable[1] && !data.ControlEnable[2] && !data.ControlEnable[3]/* && UsesMap(data.source,1)*/)
 			{
 				map1_lbl.Visible = true;
 				map1_lbl.Text = data.MapLabel[1];
@@ -1020,7 +1020,7 @@ namespace FFEffect
 			}
 			else
 			{
-				if (data.ControlEnable[2] > 0)
+				if (data.ControlEnable[2])
 				{
 					ctl2.Visible = true;
 					ctl2_UpDown.Visible = true;
@@ -1035,7 +1035,7 @@ namespace FFEffect
 					resetbtn2.Visible = false;
 				}
 
-				if (data.ControlEnable[3] > 0)
+				if (data.ControlEnable[3])
 				{
 					ctl3.Visible = true;
 					ctl3_UpDown.Visible = true;
@@ -1052,7 +1052,7 @@ namespace FFEffect
 				this.ctllbl2.Text = data.ControlLabel[2];
 				this.ctllbl3.Text = data.ControlLabel[3];
 			}
-			if (data.MapEnable[2] > 0 && data.ControlEnable[4] == 0 && data.ControlEnable[5] == 0 /*&& UsesMap(data.source, 2)*/)
+			if (data.MapEnable[2] && !data.ControlEnable[4] && !data.ControlEnable[5] /*&& UsesMap(data.source, 2)*/)
 			{
 				map2_lbl.Visible = true;
 				map2_lbl.Text = data.MapLabel[2];
@@ -1067,7 +1067,7 @@ namespace FFEffect
 			}
 			else
 			{
-				if (data.ControlEnable[4] > 0)
+				if (data.ControlEnable[4])
 				{
 					ctl4.Visible = true;
 					ctl4_UpDown.Visible = true;
@@ -1082,7 +1082,7 @@ namespace FFEffect
 					resetbtn4.Visible = false;
 				}
 
-				if (data.ControlEnable[5] > 0)
+				if (data.ControlEnable[5])
 				{
 					ctl5.Visible = true;
 					ctl5_UpDown.Visible = true;
@@ -1100,7 +1100,7 @@ namespace FFEffect
 				this.ctllbl5.Text = data.ControlLabel[5];
 			}
 
-			if (data.MapEnable[3] > 0 && data.ControlEnable[6] == 0 && data.ControlEnable[7] == 0 /*&& UsesMap(data.source, 3)*/)
+			if (data.MapEnable[3] && !data.ControlEnable[6] && !data.ControlEnable[7] /*&& UsesMap(data.source, 3)*/)
 			{
 				map3_lbl.Visible = true;
 				map3_lbl.Text = data.MapLabel[3];
@@ -1115,7 +1115,7 @@ namespace FFEffect
 			}
 			else
 			{
-				if (data.ControlEnable[6] > 0)
+				if (data.ControlEnable[6])
 				{
 					ctl6.Visible = true;
 					ctl6_UpDown.Visible = true;
@@ -1130,7 +1130,7 @@ namespace FFEffect
 					resetbtn6.Visible = false;
 				}
 
-				if (data.ControlEnable[7] > 0)
+				if (data.ControlEnable[7])
 				{
 					ctl7.Visible = true;
 					ctl7_UpDown.Visible = true;
@@ -1229,7 +1229,7 @@ namespace FFEffect
 						{
 							int ctl = int.Parse(control.Name.Substring(3, 1), CultureInfo.InvariantCulture);
 
-							if (data.ControlEnable[ctl] > 0)
+							if (data.ControlEnable[ctl])
 							{
 								Debug.WriteLine(ctl);
 								switch (ctl)

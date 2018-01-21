@@ -32,13 +32,13 @@ namespace FFEffect
         private string category = string.Empty;
         private string copyright = string.Empty;
         private string author = string.Empty;
-        private int[] mapEnable = new int[4];
+        private bool[] mapEnable = new bool[4];
         private string[] mapLabel = new string[4];
-        private int[] controlEnable = new int[8];
+        private bool[] controlEnable = new bool[8];
         private string[] controlLabel = new string[8];
         private int[] controlValue = new int[8];
         private string[] source = new string[4];
-        private int popDialog; // display parameter sliders
+        private bool popDialog; // display parameter sliders
         private string fileName; // filename for the FFL filters
 
         public string Title
@@ -85,7 +85,7 @@ namespace FFEffect
                 author = value;
             }
         }
-        public int[] MapEnable
+        public bool[] MapEnable
         {
             get
             {
@@ -113,7 +113,7 @@ namespace FFEffect
                 mapLabel = value;
             }
         }
-        public int[] ControlEnable
+        public bool[] ControlEnable
         {
             get
             {
@@ -166,7 +166,7 @@ namespace FFEffect
             }
         }
 
-        public int PopDialog
+        public bool PopDialog
         {
             get
             {

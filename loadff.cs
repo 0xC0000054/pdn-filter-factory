@@ -279,18 +279,18 @@ namespace PdnFF
 					{
 						data.ControlValue[i] = br.ReadInt32();
 					}
-					data.PopDialog = br.ReadInt32();
+					data.PopDialog = br.ReadInt32() != 0;
 
 					br.BaseStream.Position += 12; // Skip the 3 unknown data values
 
 					for (int i = 0; i < 4; i++)
 					{
-						data.MapEnable[i] = br.ReadInt32();
+						data.MapEnable[i] = br.ReadInt32() != 0;
 					}
 
 					for (int i = 0; i < 8; i++)
 					{
-						data.ControlEnable[i] = br.ReadInt32();
+						data.ControlEnable[i] = br.ReadInt32() != 0;
 					}
 					data.Category = StringFromChar(br.ReadChars(252)); // read the Category
 
@@ -442,7 +442,7 @@ namespace PdnFF
 										if (!string.IsNullOrEmpty(lbl))
 										{
 											data.ControlLabel[cn] = lbl;
-											data.ControlEnable[cn] = 1;
+											data.ControlEnable[cn] = true;
 										}
 										line = sr.ReadLine();
 									}
@@ -450,7 +450,7 @@ namespace PdnFF
 									for (int i = 0; i < 4; i++)
 									{
 										data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
-										data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
+										data.MapEnable[i] = UsesMap(data.Source, i);
 									}
 									SetPopDialog(data);
 
@@ -482,12 +482,12 @@ namespace PdnFF
 				for (int i = 0; i < 4; i++)
 				{
 					data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
-					data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
+					data.MapEnable[i] = UsesMap(data.Source, i);
 				}
 				for (int i = 0; i < 8; i++)
 				{
 					data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
-					data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
+					data.ControlEnable[i] = UsesCtl(data.Source, i);
 				}
 				SetPopDialog(data);
 			}
@@ -611,12 +611,12 @@ namespace PdnFF
 			for (int i = 0; i < 4; i++)
 			{
 				data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-				data.MapEnable[i] = UsesMap(data.Source, i) ? 1 : 0;
+				data.MapEnable[i] = UsesMap(data.Source, i);
 			}
 			for (int i = 0; i < 8; i++)
 			{
 				data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-				data.ControlEnable[i] = UsesCtl(data.Source, i) ? 1 : 0;
+				data.ControlEnable[i] = UsesCtl(data.Source, i);
 			}
 			SetPopDialog(data);
 
@@ -698,7 +698,7 @@ namespace PdnFF
 				sw.WriteLine(Environment.NewLine);
 				for (int i = 0; i < 8; i++)
 				{
-					if (data.ControlEnable[i] == 1)
+					if (data.ControlEnable[i])
 					{
 						sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "ctl[{0}]: {1}", i.ToString(CultureInfo.InvariantCulture), data.ControlLabel[i]));
 					}
@@ -708,7 +708,7 @@ namespace PdnFF
 
 				for (int i = 0; i < 8; i++)
 				{
-					if (data.ControlEnable[i] == 1)
+					if (data.ControlEnable[i])
 					{
 						sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "val[{0}]: {1}", i.ToString(CultureInfo.InvariantCulture), data.ControlValue[i]));
 					}
@@ -751,17 +751,17 @@ namespace PdnFF
 			data.Author = Environment.UserName;
 			data.Copyright = string.Format(CultureInfo.InvariantCulture, "Copyright © {0} {1}", DateTime.Now.Year.ToString(CultureInfo.CurrentCulture), Environment.UserName);
 
-			data.PopDialog = 1;
+			data.PopDialog = true;
 			for (int i = 0; i < 4; i++)
 			{
 				data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map {0}:", i.ToString(CultureInfo.InvariantCulture));
-				data.MapEnable[i] = 0;
+				data.MapEnable[i] = false;
 			}
 			for (int i = 0; i < 8; i++)
 			{
 				data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "ctl {0}", i.ToString(CultureInfo.InvariantCulture));
 				data.ControlValue[i] = 0;
-				data.ControlEnable[i] = 1;
+				data.ControlEnable[i] = true;
 			}
 
 			for (int i = 0; i < 4; i++)
@@ -928,12 +928,12 @@ namespace PdnFF
 				if (!string.IsNullOrEmpty(map))
 				{
 					data.MapLabel[i] = map;
-					data.MapEnable[i] = 1;
+					data.MapEnable[i] = true;
 				}
 				else
 				{
 					data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map {0}:", i.ToString(CultureInfo.InvariantCulture));
-					data.MapEnable[i] = 0;
+					data.MapEnable[i] = false;
 				}
 			}
 			for (int i = 0; i < 8; i++)
@@ -942,12 +942,12 @@ namespace PdnFF
 				if (!string.IsNullOrEmpty(ctl))
 				{
 					data.ControlLabel[i] = ctl;
-					data.ControlEnable[i] = 1;
+					data.ControlEnable[i] = true;
 				}
 				else
 				{
 					data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
-					data.ControlEnable[i] = 0;
+					data.ControlEnable[i] = false;
 				}
 			}
 
@@ -987,23 +987,21 @@ namespace PdnFF
 
 			for (int i = 0; i < 4; i++)
 			{
-				bool val = data.MapEnable[i] == 1;
-				mapused.Add(val);
+				mapused.Add(data.MapEnable[i]);
 			}
 
 			for (int i = 0; i < 8; i++)
 			{
-				bool val = data.ControlEnable[i] == 1;
-				ctlused.Add(val);
+				ctlused.Add(data.ControlEnable[i]);
 			}
 
 			if (ctlused.Contains(true) || mapused.Contains(true))
 			{
-				data.PopDialog = 1;
+				data.PopDialog = true;
 			}
 			else
 			{
-				data.PopDialog = 0;
+				data.PopDialog = false;
 			}
 		}
 		private static bool UsesMap(string[] Source, int mapnum)

@@ -2060,7 +2060,7 @@ namespace PdnFF
 		/// <param name="data">The filter_data to set</param>
 		private void SetControlsTabVisability(FilterData data)
 		{
-			if (data.PopDialog == 1)
+			if (data.PopDialog)
 			{
 				if (!tabControl1.TabPages.Contains(controlsTab))
 				{
@@ -2086,23 +2086,21 @@ namespace PdnFF
 
 			for (int i = 0; i < 4; i++)
 			{
-				bool val = (data.MapEnable[i] == 1);
-				mapused.Add(val);
+				mapused.Add(data.MapEnable[i]);
 			}
 
 			for (int i = 0; i < 8; i++)
 			{
-				bool val = (data.ControlEnable[i] == 1);
-				ctlused.Add(val);
+				ctlused.Add(data.ControlEnable[i]);
 			}
 
 			if (ctlused.Contains(true) || mapused.Contains(true))
 			{
-				data.PopDialog = 1;
+				data.PopDialog = true;
 			}
 			else
 			{
-				data.PopDialog = 0;
+				data.PopDialog = false;
 			}
 
 		}
@@ -2136,7 +2134,7 @@ namespace PdnFF
 
 			#region ctl / map enables
 
-			if (data.MapEnable[0] > 0 && data.ControlEnable[0] == 0 && data.ControlEnable[1] == 0/* && UsesMap(data.Source,0)*/)
+			if (data.MapEnable[0] && !data.ControlEnable[0] && !data.ControlEnable[1]/* && UsesMap(data.Source,0)*/)
 			{
 				map0_lbl.Visible = true;
 				map0_lbl.Text = map0txt.Text = data.MapLabel[0];
@@ -2156,7 +2154,7 @@ namespace PdnFF
 					map0cb.Checked = false;
 				}
 
-				if (data.ControlEnable[0] > 0)
+				if (data.ControlEnable[0])
 				{
 					ctl0cb.Checked = true;
 					ctl0.Visible = true;
@@ -2173,7 +2171,7 @@ namespace PdnFF
 					resetbtn0.Visible = false;
 				}
 
-				if (data.ControlEnable[1] > 0)
+				if (data.ControlEnable[1])
 				{
 					ctl1cb.Checked = true;
 					ctl1.Visible = true;
@@ -2192,7 +2190,7 @@ namespace PdnFF
 				this.ctllbl0.Text = this.ctl0txt.Text = data.ControlLabel[0];
 				this.ctllbl1.Text = this.ctl1txt.Text = data.ControlLabel[1];
 			}
-			if (data.MapEnable[1] > 0 && data.ControlEnable[2] == 0 && data.ControlEnable[3] == 0/* && UsesMap(data.Source,1)*/)
+			if (data.MapEnable[1] && !data.ControlEnable[2] && !data.ControlEnable[3]/* && UsesMap(data.Source,1)*/)
 			{
 				map1_lbl.Visible = true;
 				map1_lbl.Text = data.MapLabel[1];
@@ -2214,7 +2212,7 @@ namespace PdnFF
 					map1cb.Checked = false;
 				}
 
-				if (data.ControlEnable[2] > 0)
+				if (data.ControlEnable[2])
 				{
 					ctl2cb.Checked = true;
 					ctl2.Visible = true;
@@ -2231,7 +2229,7 @@ namespace PdnFF
 					resetbtn2.Visible = false;
 				}
 
-				if (data.ControlEnable[3] > 0)
+				if (data.ControlEnable[3])
 				{
 					ctl3cb.Checked = true;
 					ctl3.Visible = true;
@@ -2250,7 +2248,7 @@ namespace PdnFF
 				this.ctllbl2.Text = this.ctl2txt.Text = data.ControlLabel[2];
 				this.ctllbl3.Text = this.ctl3txt.Text = data.ControlLabel[3];
 			}
-			if (data.MapEnable[2] > 0 && data.ControlEnable[4] == 0 && data.ControlEnable[5] == 0 /*&& UsesMap(data.Source, 2)*/)
+			if (data.MapEnable[2] && !data.ControlEnable[4] && !data.ControlEnable[5] /*&& UsesMap(data.Source, 2)*/)
 			{
 				map2_lbl.Visible = true;
 				map2_lbl.Text = data.MapLabel[2];
@@ -2272,7 +2270,7 @@ namespace PdnFF
 					map2cb.Checked = false;
 				}
 
-				if (data.ControlEnable[4] > 0)
+				if (data.ControlEnable[4])
 				{
 					ctl4cb.Checked = true;
 					ctl4.Visible = true;
@@ -2289,7 +2287,7 @@ namespace PdnFF
 					resetbtn4.Visible = false;
 				}
 
-				if (data.ControlEnable[5] > 0)
+				if (data.ControlEnable[5])
 				{
 					ctl5cb.Checked = true;
 					ctl5.Visible = true;
@@ -2309,7 +2307,7 @@ namespace PdnFF
 				this.ctllbl5.Text = this.ctl5txt.Text = data.ControlLabel[5];
 			}
 
-			if (data.MapEnable[3] > 0 && data.ControlEnable[6] == 0 && data.ControlEnable[7] == 0 /*&& UsesMap(data.Source, 3)*/)
+			if (data.MapEnable[3] && !data.ControlEnable[6] && !data.ControlEnable[7] /*&& UsesMap(data.Source, 3)*/)
 			{
 				map3_lbl.Visible = true;
 				map3_lbl.Text = data.MapLabel[3];
@@ -2331,7 +2329,7 @@ namespace PdnFF
 					map3cb.Checked = false;
 				}
 
-				if (data.ControlEnable[6] > 0)
+				if (data.ControlEnable[6])
 				{
 					ctl6cb.Checked = true;
 					ctl6.Visible = true;
@@ -2348,7 +2346,7 @@ namespace PdnFF
 					resetbtn6.Visible = false;
 				}
 
-				if (data.ControlEnable[7] > 0)
+				if (data.ControlEnable[7])
 				{
 					ctl7cb.Checked = true;
 					ctl7.Visible = true;
@@ -2744,7 +2742,7 @@ namespace PdnFF
 				resetbtn1.Visible = true;
 
 				map0_lbl.Visible = true;
-				data.MapEnable[0] = 1;
+				data.MapEnable[0] = true;
 				if (!string.IsNullOrEmpty(map0txt.Text))
 				{
 				   map0_lbl.Text = data.MapLabel[0] = map0txt.Text;
@@ -2785,7 +2783,7 @@ namespace PdnFF
 							ctl0_UpDown.Visible = true;
 							ctllbl0.Visible = true;
 							resetbtn0.Visible = true;
-							data.ControlEnable[0] = 1;
+							data.ControlEnable[0] = true;
 							if (setctlnum)
 							{
 								ctl0_UpDown.Value = data.ControlValue[0] = (int)ctl0num.Value;
@@ -2808,7 +2806,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[0] = "Control 0:";
 							}
-							data.ControlEnable[0] = 0;
+							data.ControlEnable[0] = false;
 							data.ControlValue[0] = 0;
 						}
 					}
@@ -2820,7 +2818,7 @@ namespace PdnFF
 							ctl1_UpDown.Visible = true;
 							ctllbl1.Visible = true;
 							resetbtn1.Visible = true;
-							data.ControlEnable[1] = 1;
+							data.ControlEnable[1] = true;
 							if (setctlnum)
 							{
 								ctl1_UpDown.Value = data.ControlValue[1] = (int)ctl1num.Value;
@@ -2841,7 +2839,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[1] = "Control 1:";
 							}
-							data.ControlEnable[1] = 0;
+							data.ControlEnable[1] = false;
 							data.ControlValue[1] = 0;
 						}
 					}
@@ -2869,7 +2867,7 @@ namespace PdnFF
 				resetbtn3.Visible = true;
 
 				map1_lbl.Visible = true;
-				data.MapEnable[1] = 1;
+				data.MapEnable[1] = true;
 				if (!string.IsNullOrEmpty(map1txt.Text))
 				{
 				   map1_lbl.Text = data.MapLabel[1] = map1txt.Text;
@@ -2912,7 +2910,7 @@ namespace PdnFF
 							ctllbl2.Visible = true;
 							resetbtn2.Visible = true;
 
-							data.ControlEnable[2] = 1;
+							data.ControlEnable[2] = true;
 							if (setctlnum)
 							{
 								ctl2_UpDown.Value = data.ControlValue[2] = (int)ctl2num.Value;
@@ -2933,7 +2931,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[2] = "Control 2:";
 							}
-							data.ControlEnable[2] = 0;
+							data.ControlEnable[2] = false;
 							data.ControlValue[2] = 0;
 						}
 					}
@@ -2945,7 +2943,7 @@ namespace PdnFF
 							ctl3_UpDown.Visible = true;
 							ctllbl3.Visible = true;
 							resetbtn3.Visible = true;
-							data.ControlEnable[3] = 1;
+							data.ControlEnable[3] = true;
 							if (setctlnum)
 							{
 								ctl3_UpDown.Value = data.ControlValue[3] = (int)ctl3num.Value;
@@ -2966,7 +2964,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[3] = "Control 3:";
 							}
-							data.ControlEnable[3] = 0;
+							data.ControlEnable[3] = false;
 							data.ControlValue[3] = 0;
 						}
 					}
@@ -2993,7 +2991,7 @@ namespace PdnFF
 				resetbtn5.Visible = true;
 
 				map2_lbl.Visible = true;
-				data.MapEnable[2] = 1;
+				data.MapEnable[2] = true;
 				if (!string.IsNullOrEmpty(map2txt.Text))
 				{
 				   map2_lbl.Text = data.MapLabel[2] = map2txt.Text;
@@ -3032,7 +3030,7 @@ namespace PdnFF
 							ctl4_UpDown.Visible = true;
 							ctllbl4.Visible = true;
 							resetbtn4.Visible = true;
-							data.ControlEnable[4] = 1;
+							data.ControlEnable[4] = true;
 							if (setctlnum)
 							{
 								ctl4_UpDown.Value = data.ControlValue[4] = (int)ctl4num.Value;
@@ -3053,7 +3051,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[4] = "Control 4:";
 							}
-							data.ControlEnable[4] = 0;
+							data.ControlEnable[4] = false;
 							data.ControlValue[4] = 0;
 						}
 					}
@@ -3066,7 +3064,7 @@ namespace PdnFF
 							ctl5_UpDown.Visible = true;
 							ctllbl5.Visible = true;
 							resetbtn5.Visible = true;
-							data.ControlEnable[5] = 1;
+							data.ControlEnable[5] = true;
 							if (setctlnum)
 							{
 								ctl5_UpDown.Value = data.ControlValue[5] = (int)ctl5num.Value;
@@ -3087,7 +3085,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[5] = "Control 5:";
 							}
-							data.ControlEnable[5] = 0;
+							data.ControlEnable[5] = false;
 							data.ControlValue[5] = 0;
 						}
 					}
@@ -3115,7 +3113,7 @@ namespace PdnFF
 				resetbtn7.Visible = true;
 
 				map3_lbl.Visible = true;
-				data.MapEnable[3] = 1;
+				data.MapEnable[3] = true;
 				if (!string.IsNullOrEmpty(map3txt.Text))
 				{
 				   map3_lbl.Text = data.MapLabel[3] = map3txt.Text;
@@ -3156,7 +3154,7 @@ namespace PdnFF
 							ctllbl6.Visible = true;
 							resetbtn6.Visible = true;
 
-							data.ControlEnable[6] = 1;
+							data.ControlEnable[6] = true;
 							if (setctlnum)
 							{
 								ctl6_UpDown.Value = data.ControlValue[6] = (int)ctl6num.Value;
@@ -3177,7 +3175,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[6] = "Control 6:";
 							}
-							data.ControlEnable[6] = 0;
+							data.ControlEnable[6] = false;
 							data.ControlValue[6] = 0;
 						}
 					}
@@ -3189,7 +3187,7 @@ namespace PdnFF
 							ctl7_UpDown.Visible = true;
 							ctllbl7.Visible = true;
 							resetbtn7.Visible = true;
-							data.ControlEnable[7] = 1;
+							data.ControlEnable[7] = true;
 							if (setctlnum)
 							{
 								ctl7_UpDown.Value = data.ControlValue[7] = (int)ctl7num.Value;
@@ -3210,7 +3208,7 @@ namespace PdnFF
 							{
 								data.ControlLabel[7] = "Control 7:";
 							}
-							data.ControlEnable[7] = 0;
+							data.ControlEnable[7] = false;
 							data.ControlValue[7] = 0;
 						}
 					}
@@ -3691,6 +3689,11 @@ namespace PdnFF
 			}
 		}
 
+		private static string GetBooleanKeywordString(bool value)
+		{
+			return value ? "true" : "false";
+		}
+
 		private static string BuildFilterData(FilterData data)
 		{
 			string ret = string.Empty;
@@ -3701,14 +3704,26 @@ namespace PdnFF
 				sw.WriteLine("data.Category =  \"{0}\";", data.Category);
 				sw.WriteLine("data.Title =  \"{0}\";", data.Title);
 				sw.WriteLine("data.Copyright = \"{0}\";", data.Copyright);
-				sw.WriteLine("data.MapEnable = new int[4] {0},{1},{2},{3}", new object[] { "{ " + data.MapEnable[0].ToString(CultureInfo.InvariantCulture), data.MapEnable[1].ToString(CultureInfo.InvariantCulture), data.MapEnable[2].ToString(CultureInfo.InvariantCulture), data.MapEnable[3].ToString(CultureInfo.InvariantCulture) + "};" });
+				sw.WriteLine("data.MapEnable = new bool[4] {0},{1},{2},{3}",
+					new object[] { "{ " + GetBooleanKeywordString(data.MapEnable[0]),
+										  GetBooleanKeywordString(data.MapEnable[1]),
+										  GetBooleanKeywordString(data.MapEnable[2]),
+										  GetBooleanKeywordString(data.MapEnable[3]) + "};" });
 				sw.WriteLine("data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
 
-				sw.WriteLine("data.ControlEnable = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlEnable[0].ToString(CultureInfo.InvariantCulture), data.ControlEnable[1].ToString(CultureInfo.InvariantCulture), data.ControlEnable[2].ToString(CultureInfo.InvariantCulture), data.ControlEnable[3].ToString(CultureInfo.InvariantCulture), data.ControlEnable[4].ToString(CultureInfo.InvariantCulture), data.ControlEnable[5].ToString(CultureInfo.InvariantCulture), data.ControlEnable[6].ToString(CultureInfo.InvariantCulture), data.ControlEnable[7].ToString(CultureInfo.InvariantCulture) + "};" });
+				sw.WriteLine("data.ControlEnable = new bool[8] {0},{1},{2},{3},{4},{5},{6},{7} ",
+					new object[] { "{ " + GetBooleanKeywordString(data.ControlEnable[0]),
+										  GetBooleanKeywordString(data.ControlEnable[1]),
+										  GetBooleanKeywordString(data.ControlEnable[2]),
+										  GetBooleanKeywordString(data.ControlEnable[3]),
+										  GetBooleanKeywordString(data.ControlEnable[4]),
+										  GetBooleanKeywordString(data.ControlEnable[5]),
+										  GetBooleanKeywordString(data.ControlEnable[6]),
+										  GetBooleanKeywordString(data.ControlEnable[7]) + "};" });
 				sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
 				sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
 				sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
-				sw.WriteLine("data.PopDialog = {0};", data.PopDialog.ToString(CultureInfo.InvariantCulture));
+				sw.WriteLine("data.PopDialog = {0};", GetBooleanKeywordString(data.PopDialog));
 				sw.WriteLine("filterDataset = true;");
 
 				ret = sw.ToString();
@@ -3789,14 +3804,14 @@ namespace PdnFF
 				sw.WriteLine("Common com = new Common();");
 				// Constructor
 				string Category = GetSubmenuCategory(data);
-				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3} | EffectFlags.SingleThreaded)", classname, data.Title, Category, data.PopDialog == 1 ? "Configurable" : "None"));
+				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3} | EffectFlags.SingleThreaded)", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
 				sw.WriteLine("{}");
 				//OnDispose
 				sw.WriteLine("protected override void OnDispose(bool disposing)\n{");
 				sw.WriteLine("if (disposing) \n {");
 				sw.WriteLine("com.Dispose();\n } \n base.OnDispose(disposing); \n }");
 				// CreateConfigDialog
-				if (data.PopDialog == 1)
+				if (data.PopDialog)
 				{
 					sw.WriteLine(" public override EffectConfigDialog CreateConfigDialog() \n{\n");
 					sw.WriteLine("if (!filterDataset) \n { \n SetFilterData(); \n } \n");
@@ -3807,7 +3822,7 @@ namespace PdnFF
 				sw.WriteLine("protected override void OnSetRenderInfo(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs)\n { \n");
 				sw.WriteLine("if (!filterDataset) \n { \n SetFilterData(); \n } \n");
 
-				if (data.PopDialog == 1) // is the Effect configurable
+				if (data.PopDialog) // is the Effect configurable
 				{
 					sw.WriteLine("FFEffectConfigToken token = (FFEffectConfigToken)parameters;");
 					sw.WriteLine("\n com.SetupFilterData(token.ctlvalues, data.Source);\n ");
