@@ -978,20 +978,20 @@ namespace PdnFF
 		/// <param name="data">The data to set</param>
 		private static void SetPopDialog(FilterData data)
 		{
-			List<bool> ctlused = new List<bool>(8);
-			List<bool> mapused = new List<bool>(4);
+			bool ctlused = false;
+			bool mapused = false;
 
 			for (int i = 0; i < 4; i++)
 			{
-				mapused.Add(data.MapEnable[i]);
+				mapused |= data.MapEnable[i];
 			}
 
 			for (int i = 0; i < 8; i++)
 			{
-				ctlused.Add(data.ControlEnable[i]);
+				ctlused |= data.ControlEnable[i];
 			}
 
-			if (ctlused.Contains(true) || mapused.Contains(true))
+			if (ctlused || mapused)
 			{
 				data.PopDialog = true;
 			}
