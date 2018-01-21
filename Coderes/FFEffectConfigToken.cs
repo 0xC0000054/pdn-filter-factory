@@ -49,7 +49,7 @@ namespace FFEffect
         protected FFEffectConfigToken(FFEffectConfigToken copyMe)
             : base(copyMe)
         {
-             this.control_values = copyMe.control_values;
+            this.control_values = copyMe.control_values;
         }
 
         public override object Clone()

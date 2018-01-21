@@ -188,11 +188,11 @@ namespace FFEffect
             IntPtr s = Marshal.StringToHGlobalAnsi(src);
             if (IntPtr.Size == 8)
             {
-               ret = ffeval64.ValidateSrc(s);
+                ret = ffeval64.ValidateSrc(s);
             }
             else
             {
-               ret = ffeval32.ValidateSrc(s);
+                ret = ffeval32.ValidateSrc(s);
             }
             Marshal.FreeHGlobal(s);
 
@@ -207,11 +207,11 @@ namespace FFEffect
         {
             if (IntPtr.Size == 8)
             {
-               return ffeval64.datafreed();
+                return ffeval64.datafreed();
             }
             else
             {
-               return ffeval32.datafreed();
+                return ffeval32.datafreed();
             }
         }
     }
