@@ -3850,7 +3850,7 @@ namespace PdnFF
 
 		private static void SetupCompilerParameters(string FileName, CompilerParameters cparm)
 		{
-			String installDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+			String installDir = Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location);
 
 			cparm.GenerateInMemory = true;
 			cparm.GenerateExecutable = false;
