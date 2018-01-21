@@ -3850,8 +3850,6 @@ namespace PdnFF
 
 		private static void SetupCompilerParameters(string FileName, CompilerParameters cparm)
 		{
-			String installDir = Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location);
-
 			cparm.GenerateInMemory = true;
 			cparm.GenerateExecutable = false;
 			String resourceName = Path.Combine(dir,"FFEffect.FFEffectConfigDialog.resources");
@@ -3864,8 +3862,8 @@ namespace PdnFF
 #endif
 			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-			string effectsDir = Path.Combine(installDir, "Effects");
-			string fileTypesDir = Path.Combine(installDir, "FileTypes");
+			string effectsDir = Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location);
+			string fileTypesDir = Path.Combine(Path.GetDirectoryName(effectsDir), "FileTypes");
 
 			foreach (var asm in assemblies)
 			{
@@ -3951,7 +3949,7 @@ namespace PdnFF
 					else
 						FileName = Path.GetFileName(TitleBox.Text);
 					FileName += ".dll";
-					string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + Path.DirectorySeparatorChar + "Effects", FileName);
+					string filepath = Path.Combine(Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location), FileName);
 
 
 					if (!File.Exists(filepath))
