@@ -3796,7 +3796,7 @@ namespace PdnFF
 				sw.WriteLine("namespace FFEffect_" + classname+ " \n{\n");
 				sw.WriteLine("public class " + classname + " : PaintDotNet.Effects.Effect \n{\n");
 
-				sw.WriteLine("filter_data data = new filter_data();");
+				sw.WriteLine("FilterData data = new FilterData();");
 				// SetFilterData
 				sw.WriteLine("private bool filterDataset;");
 				sw.WriteLine("private void SetFilterData() \n { \n");
@@ -3894,7 +3894,7 @@ namespace PdnFF
 				Directory.CreateDirectory(dir);
 
 			string[] embeddedfiles = new string[7] {"PdnFF.Coderes.FFEffect.FFEffectConfigDialog.resources","PdnFF.Coderes.Common.cs",
-			"PdnFF.Coderes.FFEffectConfigDialog.cs","PdnFF.Coderes.FFEffectConfigToken.cs","PdnFF.Coderes.ffparse.cs","PdnFF.Coderes.filter_data.cs"
+			"PdnFF.Coderes.FFEffectConfigDialog.cs","PdnFF.Coderes.FFEffectConfigToken.cs","PdnFF.Coderes.ffparse.cs","PdnFF.Coderes.FilterData.cs"
 			,"PdnFF.Coderes.FilterEnviromentData.cs"};
 
 			for (int i = 0; i < embeddedfiles.Length; i++)
