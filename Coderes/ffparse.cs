@@ -71,13 +71,6 @@ namespace FFEffect
             public static extern bool datafreed();
         }
 
-        private static bool Is64Bit
-        {
-            get
-            {
-                return (Marshal.SizeOf(IntPtr.Zero) == 8);
-            }
-        }
         /// <summary>
         /// The number channels in the image, always 4 in Paint.NET
         /// </summary>
@@ -89,7 +82,7 @@ namespace FFEffect
         /// <param name="ctl">The number of the control to set</param>
         public static void SetControls(int val, int ctl)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.SetControls(val, ctl);
             }
@@ -108,7 +101,7 @@ namespace FFEffect
         /// <returns>1 on Success, negitive on failure</returns>
         public static int SetupBitmap(IntPtr pixeldata, int width, int height, int stride)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 return ffeval64.SetupBitmap(pixeldata, width, height, stride, pixelSize);
             }
@@ -126,7 +119,7 @@ namespace FFEffect
         /// <param name="c">The channel that the source code belongs to (0 - 3 in RGBA order).</param>
         public static void SetupTree(IntPtr src, int c)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.SetupTree(src, c);
             }
@@ -143,7 +136,7 @@ namespace FFEffect
         /// <param name="y">The y pixel position</param>
         public static void UpdateEnvir(int x, int y)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.UpdateEnvir(x, y);
             }
@@ -159,7 +152,7 @@ namespace FFEffect
         /// <returns>The resulting pixel color</returns>
         public static int CalcColor(int channel)
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 return ffeval64.CalcColor(channel);
             }
@@ -174,7 +167,7 @@ namespace FFEffect
         /// </summary>
         public static void FreeData()
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                 ffeval64.FreeData();
             }
@@ -193,7 +186,7 @@ namespace FFEffect
         {
             int ret = 1;
             IntPtr s = Marshal.StringToHGlobalAnsi(src);
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                ret = ffeval64.ValidateSrc(s);
             }
@@ -212,7 +205,7 @@ namespace FFEffect
         /// <returns>True if the data has been freed, otherwise false.</returns>
         public static bool datafreed()
         {
-            if (Is64Bit)
+            if (IntPtr.Size == 8)
             {
                return ffeval64.datafreed();
             }
