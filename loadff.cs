@@ -112,9 +112,9 @@ namespace PdnFF
 						}
 					}
 				}
-
-				return true;
 			}
+
+			// Only read the first PARM resource.
 			return false;
 		}
 		#endregion
@@ -219,7 +219,7 @@ namespace PdnFF
 					{
 						hm.DangerousAddRef(ref needsRelease);
 						IntPtr hMod = hm.DangerousGetHandle();
-						if (UnsafeNativeMethods.EnumResourceNames(hMod, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
+						if (!UnsafeNativeMethods.EnumResourceNames(hMod, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
 						{
 							ffdata = (byte[])gch.Target;
 							if (ffdata != null)
