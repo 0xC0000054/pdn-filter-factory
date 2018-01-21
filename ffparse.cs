@@ -36,13 +36,13 @@ namespace PdnFF
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern void UpdateEnvir(int x, int y);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern void SetupTree(System.IntPtr src, int c);
+            public static extern void SetupTree([MarshalAs(UnmanagedType.LPStr)] string src, int c);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern int CalcColor(int c);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern void FreeData();
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern int ValidateSrc(IntPtr src);
+            public static extern int ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.I1)]
             public static extern bool datafreed();
@@ -58,13 +58,13 @@ namespace PdnFF
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern void UpdateEnvir(int x, int y);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern void SetupTree(System.IntPtr src, int c);
+            public static extern void SetupTree([MarshalAs(UnmanagedType.LPStr)] string src, int c);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern int CalcColor(int c);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern void FreeData();
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern int ValidateSrc(IntPtr src);
+            public static extern int ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.I1)]
             public static extern bool datafreed();
@@ -114,9 +114,9 @@ namespace PdnFF
         /// <summary>
         /// Setups the unmanaged source code parse tree.
         /// </summary>
-        /// <param name="src">The pointer to the  source code.</param>
+        /// <param name="src">The source code.</param>
         /// <param name="c">The channel that the source code belongs to (0 - 3 in RGBA order).</param>
-        public static void SetupTree(IntPtr src, int c)
+        public static void SetupTree(string src, int c)
         {
             if (IntPtr.Size == 8)
             {
@@ -184,21 +184,13 @@ namespace PdnFF
         public static int ValidateSrc(string src)
         {
             int ret = 1;
-            IntPtr s = Marshal.StringToHGlobalAnsi(src);
-            try
+            if (IntPtr.Size == 8)
             {
-                if (IntPtr.Size == 8)
-                {
-                    ret = ffeval64.ValidateSrc(s);
-                }
-                else
-                {
-                    ret = ffeval32.ValidateSrc(s);
-                }
+                ret = ffeval64.ValidateSrc(src);
             }
-            finally
+            else
             {
-                Marshal.FreeHGlobal(s);
+                ret = ffeval32.ValidateSrc(src);
             }
 
             return ret;

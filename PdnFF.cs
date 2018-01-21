@@ -107,9 +107,7 @@ namespace PdnFF
             }
             for (int i = 0; i < 4; i++)
             {
-                IntPtr s = Marshal.StringToHGlobalAnsi(data.Source[i]);
-                ffparse.SetupTree(s, i);
-                Marshal.FreeHGlobal(s);
+                ffparse.SetupTree(data.Source[i], i);
             }
         }
 
