@@ -90,9 +90,28 @@ namespace PdnFF
 			GCHandle gch = GCHandle.FromIntPtr(lParam);
 			if (IS_INTRESOURCE(lpszName))
 			{
-				IntPtr fr = UnsafeNativeMethods.FindResource(hModule, lpszName, lpszType);
+				IntPtr hres = UnsafeNativeMethods.FindResource(hModule, lpszName, lpszType);
 
-				gch.Target = fr;
+				if (hres != IntPtr.Zero)
+				{
+					IntPtr loadres = UnsafeNativeMethods.LoadResource(hModule, hres);
+					if (loadres != IntPtr.Zero)
+					{
+						IntPtr reslock = UnsafeNativeMethods.LockResource(loadres);
+						if (reslock != IntPtr.Zero)
+						{
+							uint ds = UnsafeNativeMethods.SizeofResource(hModule, hres);
+
+							if (ds == 8296) // All valid Filter Factory resources are this size
+							{
+								byte[] ffdata = new byte[ds];
+								Marshal.Copy(reslock, ffdata, 0, (int)ds);
+
+								gch.Target = ffdata;
+							}
+						}
+					}
+				}
 
 				return true;
 			}
@@ -192,9 +211,9 @@ namespace PdnFF
 			{
 				if (!hm.IsInvalid)
 				{
-					IntPtr hres = IntPtr.Zero;
+					byte[] ffdata = null;
 
-					GCHandle gch = GCHandle.Alloc(hres);
+					GCHandle gch = GCHandle.Alloc(ffdata);
 					bool needsRelease = false;
 					try
 					{
@@ -202,34 +221,11 @@ namespace PdnFF
 						IntPtr hMod = hm.DangerousGetHandle();
 						if (UnsafeNativeMethods.EnumResourceNames(hMod, "PARM", new EnumResNameDelegate(EnumRes), GCHandle.ToIntPtr(gch)))
 						{
-							hres = (IntPtr)gch.Target;
-							if (hres != IntPtr.Zero)
+							ffdata = (byte[])gch.Target;
+							if (ffdata != null)
 							{
-								IntPtr loadres = UnsafeNativeMethods.LoadResource(hMod, hres);
-								if (loadres != IntPtr.Zero)
-								{
-									IntPtr reslock = UnsafeNativeMethods.LockResource(loadres);
-									if (reslock != IntPtr.Zero)
-									{
-										uint ds = UnsafeNativeMethods.SizeofResource(hMod, hres);
-
-										if (ds == 8296) // All valid Filter Factory reSources are this size
-										{
-											byte[] ffdata = new byte[ds];
-											Marshal.Copy(reslock, ffdata, 0, (int)ds);
-											data = GetFilterDataFromParmBytes(ffdata);
-											result = true;
-										}
-									}
-									else
-									{
-										throw new Win32Exception(Marshal.GetLastWin32Error());
-									}
-								}
-								else
-								{
-									throw new Win32Exception(Marshal.GetLastWin32Error());
-								}
+								data = GetFilterDataFromParmBytes(ffdata);
+								result = true;
 							}
 						}
 					}
