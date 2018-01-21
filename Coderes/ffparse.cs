@@ -42,8 +42,6 @@ namespace FFEffect
             public static extern int CalcColor(int c);
             [DllImport("ffparse_x86.dll", EntryPoint = "FreeData")]
             public static extern void FreeData();
-            [DllImport("ffparse_x86.dll", EntryPoint = "ValidateSrc")]
-            public static extern int ValidateSrc(IntPtr src);
             [DllImport("ffparse_x86.dll", EntryPoint = "datafreed")]
             [return: MarshalAs(UnmanagedType.I1)]
             public static extern bool datafreed();
@@ -64,8 +62,6 @@ namespace FFEffect
             public static extern int CalcColor(int c);
             [DllImport("ffparse_x64.dll", EntryPoint = "FreeData")]
             public static extern void FreeData();
-            [DllImport("ffparse_x64.dll", EntryPoint = "ValidateSrc")]
-            public static extern int ValidateSrc(IntPtr src);
             [DllImport("ffparse_x64.dll", EntryPoint = "datafreed")]
             [return: MarshalAs(UnmanagedType.I1)]
             public static extern bool datafreed();
@@ -175,28 +171,6 @@ namespace FFEffect
             {
                 ffeval32.FreeData();
             }
-        }
-
-        /// <summary>
-        /// Validates the Filter source code syntax
-        /// </summary>
-        /// <param name="src">The source code to validate</param>
-        /// <returns>1 if source is valid, otherwise 0</returns>
-        public static int ValidateSrc(string src)
-        {
-            int ret = 1;
-            IntPtr s = Marshal.StringToHGlobalAnsi(src);
-            if (IntPtr.Size == 8)
-            {
-                ret = ffeval64.ValidateSrc(s);
-            }
-            else
-            {
-                ret = ffeval32.ValidateSrc(s);
-            }
-            Marshal.FreeHGlobal(s);
-
-            return ret;
         }
 
         /// <summary>
