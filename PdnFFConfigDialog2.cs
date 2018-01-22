@@ -20,7 +20,6 @@
 */
 
 using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -29,7 +28,6 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.CSharp;
 using PaintDotNet;
 using PaintDotNet.Effects;
 using PdnFF.Properties;
@@ -3689,254 +3687,6 @@ namespace PdnFF
 			}
 		}
 
-		private static string GetBooleanKeywordString(bool value)
-		{
-			return value ? "true" : "false";
-		}
-
-		private static string BuildFilterData(FilterData data)
-		{
-			string ret = string.Empty;
-
-			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
-			{
-				sw.WriteLine("data.Author = \"{0}\";", data.Author);
-				sw.WriteLine("data.Category =  \"{0}\";", data.Category);
-				sw.WriteLine("data.Title =  \"{0}\";", data.Title);
-				sw.WriteLine("data.Copyright = \"{0}\";", data.Copyright);
-				sw.WriteLine("data.MapEnable = new bool[4] {0},{1},{2},{3}",
-					new object[] { "{ " + GetBooleanKeywordString(data.MapEnable[0]),
-										  GetBooleanKeywordString(data.MapEnable[1]),
-										  GetBooleanKeywordString(data.MapEnable[2]),
-										  GetBooleanKeywordString(data.MapEnable[3]) + "};" });
-				sw.WriteLine("data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
-
-				sw.WriteLine("data.ControlEnable = new bool[8] {0},{1},{2},{3},{4},{5},{6},{7} ",
-					new object[] { "{ " + GetBooleanKeywordString(data.ControlEnable[0]),
-										  GetBooleanKeywordString(data.ControlEnable[1]),
-										  GetBooleanKeywordString(data.ControlEnable[2]),
-										  GetBooleanKeywordString(data.ControlEnable[3]),
-										  GetBooleanKeywordString(data.ControlEnable[4]),
-										  GetBooleanKeywordString(data.ControlEnable[5]),
-										  GetBooleanKeywordString(data.ControlEnable[6]),
-										  GetBooleanKeywordString(data.ControlEnable[7]) + "};" });
-				sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
-				sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
-				sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
-				sw.WriteLine("data.PopDialog = {0};", GetBooleanKeywordString(data.PopDialog));
-				sw.WriteLine("filterDataset = true;");
-
-				ret = sw.ToString();
-			}
-			return ret;
-		}
-
-		private static string GetSubmenuCategory(FilterData data)
-		{
-			string cat = string.Empty;
-
-			switch (data.Category.ToUpperInvariant())
-			{
-				case "ARTISTIC":
-					cat = "SubmenuNames.Artistic";
-					break;
-				case "BLURS":
-					cat = "SubmenuNames.Blurs";
-					break;
-				case "DISTORT":
-					cat = "SubmenuNames.Distort";
-					break;
-				case "NOISE":
-					cat = "SubmenuNames.Noise";
-					break;
-				case "PHOTO":
-					cat = "SubmenuNames.Photo";
-					break;
-				case "RENDER":
-					cat = "SubmenuNames.Render";
-					break;
-				case "STYLIZE":
-					cat = "SubmenuNames.Stylize";
-					break;
-
-				default:
-					cat = "\"" + data.Category + "\"";
-					break;
-			}
-
-			return cat;
-		}
-
-		/// <summary>
-		/// Builds the effect class.
-		/// </summary>
-		/// <param name="classname">The class name of the Effect.</param>
-		/// <param name="FileName">The FileName of the output file.</param>
-		/// <param name="data">The filter_data of the filter to build.</param>
-		/// <returns>The generated Effect class Source code</returns>
-		private static string BuildEffectClass(string classname, string FileName,  FilterData data)
-		{
-			string ret = string.Empty;
-			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
-			{
-				// usings
-				sw.WriteLine("using System;");
-				sw.WriteLine("using System.Drawing;");
-				sw.WriteLine("using System.Runtime.InteropServices;");
-				sw.WriteLine("using System.Reflection;");
-				sw.WriteLine("using PaintDotNet;");
-				sw.WriteLine("using PaintDotNet.Effects;");
-				sw.WriteLine("using FFEffect;\n");
-				// AssemblyInfo
-				sw.WriteLine("[assembly: AssemblyTitle(\"" + FileName + " Plugin (Compiled by PdnFF)\")]");
-				sw.WriteLine("[assembly: AssemblyCompany(\""+ data.Author +"\")]");
-				sw.WriteLine("[assembly: AssemblyProduct(\"" + FileName + " Plugin (Compiled by PdnFF)\")]");
-				sw.WriteLine("[assembly: AssemblyCopyright(\"" + data.Copyright + "\")]");
-				// namespace and class
-				sw.WriteLine("namespace FFEffect_" + classname+ " \n{\n");
-				sw.WriteLine("public class " + classname + " : PaintDotNet.Effects.Effect \n{\n");
-
-				sw.WriteLine("FilterData data = new FilterData();");
-				// SetFilterData
-				sw.WriteLine("private bool filterDataset;");
-				sw.WriteLine("private void SetFilterData() \n { \n");
-				sw.WriteLine(BuildFilterData(data) + "\n }");
-				sw.WriteLine("Common com = new Common();");
-				// Constructor
-				string Category = GetSubmenuCategory(data);
-				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3} | EffectFlags.SingleThreaded)", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
-				sw.WriteLine("{}");
-				//OnDispose
-				sw.WriteLine("protected override void OnDispose(bool disposing)\n{");
-				sw.WriteLine("if (disposing) \n {");
-				sw.WriteLine("com.Dispose();\n } \n base.OnDispose(disposing); \n }");
-				// CreateConfigDialog
-				if (data.PopDialog)
-				{
-					sw.WriteLine(" public override EffectConfigDialog CreateConfigDialog() \n{\n");
-					sw.WriteLine("if (!filterDataset) \n { \n SetFilterData(); \n } \n");
-					sw.WriteLine("com.SetupFilterEnviromentData(base.EnvironmentParameters.SourceSurface);");
-					sw.WriteLine("return new FFEffectConfigDialog(data); \n }\n");
-				}
-				// OnSetRenderInfo
-				sw.WriteLine("protected override void OnSetRenderInfo(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs)\n { \n");
-				sw.WriteLine("if (!filterDataset) \n { \n SetFilterData(); \n } \n");
-
-				if (data.PopDialog) // is the Effect configurable
-				{
-					sw.WriteLine("FFEffectConfigToken token = (FFEffectConfigToken)parameters;");
-					sw.WriteLine("\n com.SetupFilterData(token.ctlvalues, data.Source);\n ");
-				}
-				else
-				{
-					sw.WriteLine("com.SetupFilterEnviromentData(base.EnvironmentParameters.SourceSurface); \n com.SetupFilterData(data.ControlValue, data.Source);");
-				}
-				sw.WriteLine("base.OnSetRenderInfo(parameters, dstArgs, srcArgs); \n } \n");
-
-				sw.WriteLine("private bool Cancel() \n{ \n return base.IsCancelRequested; \n }");
-
-				// Render
-				sw.WriteLine("public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length) \n { \n");
-				sw.WriteLine("for (int i = startIndex; i < startIndex + length; ++i) \n { \n");
-				sw.WriteLine("Rectangle rect = rois[i];");
-				sw.WriteLine("com.Render(dstArgs.Surface, rect, new Func<bool>(Cancel)); \n } \n }");
-				sw.WriteLine("}\n }"); // end the class and the namespace
-
-				ret = sw.ToString();
-			}
-
-			return ret;
-		}
-
-		private static void SetupCompilerParameters(string FileName, CompilerParameters cparm)
-		{
-			cparm.GenerateInMemory = true;
-			cparm.GenerateExecutable = false;
-			String resourceName = Path.Combine(dir,"FFEffect.FFEffectConfigDialog.resources");
-
-#if DEBUG
-			cparm.IncludeDebugInformation = true;
-			cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug:full /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
-#else
-			cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug- /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
-#endif
-			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-			string effectsDir = Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location);
-			string fileTypesDir = Path.Combine(Path.GetDirectoryName(effectsDir), "FileTypes");
-
-			foreach (var asm in assemblies)
-			{
-				if (!asm.Location.StartsWith(effectsDir, StringComparison.OrdinalIgnoreCase) &&
-					!asm.Location.StartsWith(fileTypesDir, StringComparison.OrdinalIgnoreCase))
-				{
-					cparm.ReferencedAssemblies.Add(asm.Location);
-				}
-			}
-
-			cparm.OutputAssembly = Path.Combine(effectsDir, FileName);
-		}
-		static string dir = string.Empty;
-
-		/// <summary>
-		/// Sets up the temp Source code files.
-		/// </summary>
-		/// <param name="effectFileName">The effect FileName.</param>
-		/// <param name="effectClassName">The effect ClasssName</param>
-		/// <returns>The list of temp files</returns>
-		public string[] SetupSourceCodeFiles(string effectFileName, string effectClassName)
-		{
-			List<string> files = new List<string>(8);
-			dir = Path.Combine(Path.GetTempPath(), "Pdnfftemp");
-			if (!Directory.Exists(dir))
-				Directory.CreateDirectory(dir);
-
-			string[] embeddedfiles = new string[7] {"PdnFF.Coderes.FFEffect.FFEffectConfigDialog.resources","PdnFF.Coderes.Common.cs",
-			"PdnFF.Coderes.FFEffectConfigDialog.cs","PdnFF.Coderes.FFEffectConfigToken.cs","PdnFF.Coderes.ffparse.cs","PdnFF.Coderes.FilterData.cs"
-			,"PdnFF.Coderes.FilterEnviromentData.cs"};
-
-			for (int i = 0; i < embeddedfiles.Length; i++)
-			{
-				string resourceName = embeddedfiles[i];
-
-				using (Stream res = Assembly.GetAssembly(typeof(PdnFFEffect)).GetManifestResourceStream(resourceName))
-				{
-					// Remove the 'PdnFF.Coderes.' name space prefix.
-					string fileName = resourceName.Substring(14, resourceName.Length - 14);
-
-					string outfile = Path.Combine(dir, fileName);
-
-					using (FileStream fs = new FileStream(outfile,FileMode.Create, FileAccess.Write))
-					{
-						byte[] bytes = new byte[res.Length];
-						int numBytesToRead = (int)res.Length;
-						int numBytesRead = 0;
-						while (numBytesToRead > 0)
-						{
-							// Read may return anything from 0 to numBytesToRead.
-							int n = res.Read(bytes, numBytesRead, numBytesToRead);
-							// The end of the file is reached.
-							if (n == 0)
-								break;
-							numBytesRead += n;
-							numBytesToRead -= n;
-						}
-
-						fs.Write(bytes, 0, bytes.Length);
-					}
-					if (i > 0)
-						files.Add(outfile);
-				}
-
-			}
-			string outpath = Path.Combine(dir,"ffeffect.cs");
-			string code = BuildEffectClass(effectClassName, effectFileName, this.data);
-			File.WriteAllText(outpath, code);
-			files.Add(outpath);
-
-			return files.ToArray();
-		}
-
 		private void buildfilterbtn_Click(object sender, EventArgs e)
 		{
 			if (data != null && !string.IsNullOrEmpty(data.Author))
@@ -3949,57 +3699,20 @@ namespace PdnFF
 					else
 						FileName = Path.GetFileName(TitleBox.Text);
 					FileName += ".dll";
-					string filepath = Path.Combine(Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location), FileName);
 
-
-					if (!File.Exists(filepath))
+					using (FilterBuilder builder = new FilterBuilder(this.data))
 					{
-						CompilerParameters cparm = new CompilerParameters();
+						string error = builder.Build(FileName);
 
-						string classname = Path.GetFileNameWithoutExtension(FileName);
-
-						for (int i = 0; i < classname.Length; i++)
+						if (!string.IsNullOrEmpty(error))
 						{
-							char c = classname[i];
-							if (!char.IsLetterOrDigit(c))
-							{
-								classname = classname.Remove(i, 1);
-								i--;
-							}
+							MessageBox.Show(this, error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						}
-
-						if (char.IsDigit(classname[0]))
+						else
 						{
-							classname = string.Concat("FF_", classname);
-						}
-
-						// Setup the source code files after setting up the effect classname
-						string[] files = this.SetupSourceCodeFiles(FileName, classname);
-
-						SetupCompilerParameters(FileName, cparm);
-
-
-
-
-						using (CSharpCodeProvider cscp = new CSharpCodeProvider())
-						{
-							CompilerResults cr = cscp.CompileAssemblyFromFile(cparm, files);
-
-							if (cr.Errors.HasErrors)
-							{
-								MessageBox.Show(this, string.Format("Unable to build filter.\n\nError Text: \n {0}", cr.Errors[0].ErrorText), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-							}
-							else
-							{
-								MessageBox.Show(this, string.Format("Filter {0} Built successfully.\n\nYou will need to restart Paint.NET  to see it in the Effects menu.", Path.GetFileName(FileName)), this.Text);
-							}
+							MessageBox.Show(this, string.Format("Filter {0} Built successfully.\n\nYou will need to restart Paint.NET  to see it in the Effects menu.", Path.GetFileName(FileName)), this.Text);
 						}
 					}
-					else
-					{
-						MessageBox.Show(this, Resources.BuildFilterFileAlreadyExists, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-
 				}
 				catch (Exception ex)
 				{
@@ -4009,14 +3722,6 @@ namespace PdnFF
 					MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 #endif
 
-				}
-				finally
-				{
-					if (Directory.Exists(dir))
-					{
-						DirectoryInfo di = new DirectoryInfo(dir);
-						di.Delete(true); // delete the temp files
-					}
 				}
 			}
 

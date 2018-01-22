@@ -98,6 +98,7 @@
     <EmbeddedResource Include="Coderes\FilterEnviromentData.cs" />
     <EmbeddedResource Include="Coderes\FilterData.cs" />
     <Compile Include="ffparse.cs" />
+    <Compile Include="FilterBuilder.cs" />
     <Compile Include="filterdata.cs" />
     <Compile Include="FilterEnviromentData.cs" />
     <Compile Include="GlobalSuppressions.cs" />
