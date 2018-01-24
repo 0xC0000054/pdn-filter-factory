@@ -1841,7 +1841,7 @@ namespace PdnFF
 
 			if (src.Length > 0)
 			{
-				if (ffparse.ValidateSrc(src) == 1)
+				if (ffparse.ValidateSrc(src))
 				{
 					valid = true;
 				}

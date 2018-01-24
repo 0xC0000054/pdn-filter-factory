@@ -56,7 +56,8 @@ namespace PdnFF
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern int ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
+            [return: MarshalAs(UnmanagedType.U1)]
+            public static extern bool ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
 
         }
         [System.Security.SuppressUnmanagedCodeSecurity]
@@ -78,7 +79,8 @@ namespace PdnFF
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern int ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
+            [return: MarshalAs(UnmanagedType.U1)]
+            public static extern bool ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
         }
 
         private sealed class SafeEnvironmentDataHandle64 : SafeEnvironmentDataHandle
@@ -207,20 +209,17 @@ namespace PdnFF
         /// Validates the Filter source code syntax
         /// </summary>
         /// <param name="src">The source code to validate</param>
-        /// <returns>1 if source is valid, otherwise 0</returns>
-        public static int ValidateSrc(string src)
+        /// <returns>true if source is valid, otherwise false.</returns>
+        public static bool ValidateSrc(string src)
         {
-            int ret = 1;
             if (IntPtr.Size == 8)
             {
-                ret = ffeval64.ValidateSrc(src);
+                return ffeval64.ValidateSrc(src);
             }
             else
             {
-                ret = ffeval32.ValidateSrc(src);
+                return ffeval32.ValidateSrc(src);
             }
-
-            return ret;
         }
     }
 }
