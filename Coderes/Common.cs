@@ -31,51 +31,40 @@ namespace FFEffect
 {
     class Common : IDisposable
     {
-        private FilterEnviromentData envdata;
+        private bool setSourceImage;
+        private SafeEnvironmentDataHandle environmentDataHandle;
+
         public void SetupFilterSourceImage(Surface source)
         {
-            if (envdata == null)
+            if (!setSourceImage)
             {
-                envdata = new FilterEnviromentData(source);
-                envdata.ResetEnvir();
+                setSourceImage = true;
+                ffparse.SetupBitmap(source.Scan0.Pointer, source.Width, source.Height, source.Stride);
             }
         }
         /// <summary>
         /// Sets the Filter source code and Control values
         /// </summary>
-        public void SetupFilterData(int[] control_values, string[] source)
+        public void SetupFilterData(int width, int height, int[] control_values, string[] source)
         {
-            for (int i = 0; i < 8; i++)
+            if (environmentDataHandle != null)
             {
-                ffparse.SetControls(control_values[i], i);
+                environmentDataHandle.Dispose();
+                environmentDataHandle = null;
             }
 
-            for (int i = 0; i < 4; i++)
-            {
-                IntPtr s = Marshal.StringToHGlobalAnsi(source[i]);
-                ffparse.SetupTree(s, i);
-                Marshal.FreeHGlobal(s);
-            }
+            environmentDataHandle = ffparse.CreateEnvironmentData(width, height, source, control_values);
         }
         object sync = new object();
-        public unsafe void Render(Surface dest, Rectangle rect, Func<bool> cancel)
+        public unsafe void Render(Surface src, Surface dst, Rectangle[] rois, int startIndex, int length)
         {
-            for (int y = rect.Top; y < rect.Bottom; ++y)
+            if (!environmentDataHandle.IsInvalid)
             {
-                ColorBgra* p = dest.GetPointAddressUnchecked(rect.Left, y);
-                for (int x = rect.Left; x < rect.Right; ++x)
-                {
-                    if (cancel()) return; // stop if a cancel is requested
-
-                    ffparse.UpdateEnvir(x, y); // update the (x, y) position in the unmanaged ffparse data
-
-                    p->R = (byte)ffparse.CalcColor(0); // red channel
-                    p->G = (byte)ffparse.CalcColor(1); // green channel
-                    p->B = (byte)ffparse.CalcColor(2); // blue channel
-                    p->A = (byte)ffparse.CalcColor(3); // alpha channel
-
-                    p++;
-                }
+                ffparse.Render(environmentDataHandle, rois, startIndex, length, dst);
+            }
+            else
+            {
+                dst.CopySurface(src, rois, startIndex, length);
             }
         }
 
@@ -85,23 +74,22 @@ namespace FFEffect
         {
             Dispose(true);
         }
+
+
         private void Dispose(bool disposing)
         {
-            if (disposing)
+            if (!Disposed)
             {
-                if (!Disposed)
+                if (disposing)
                 {
-                    if ((envdata != null) && !ffparse.datafreed())
+                    if (environmentDataHandle != null)
                     {
-                        ffparse.FreeData(); // free the unmanaged ffparse data
-#if DEBUG
-                        System.Diagnostics.Debug.WriteLine("Dispose called");
-#endif
-                        envdata.Dispose(); // free the enviroment data
-                        envdata = null;
-                        this.Disposed = true;
+                        environmentDataHandle.Dispose();
+                        environmentDataHandle = null;
                     }
                 }
+
+                ffparse.DestroyBitmap();
             }
         }
 

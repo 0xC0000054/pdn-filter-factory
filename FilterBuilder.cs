@@ -243,7 +243,7 @@ namespace PdnFF
 				sw.WriteLine("Common com = new Common();");
 				// Constructor
 				string Category = GetSubmenuCategory(data);
-				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3} | EffectFlags.SingleThreaded)", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
+				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
 				sw.WriteLine("{}");
 				//OnDispose
 				sw.WriteLine("protected override void OnDispose(bool disposing)\n{");
@@ -264,21 +264,18 @@ namespace PdnFF
 				if (data.PopDialog) // is the Effect configurable
 				{
 					sw.WriteLine("FFEffectConfigToken token = (FFEffectConfigToken)parameters;");
-					sw.WriteLine("\n com.SetupFilterData(token.ctlvalues, data.Source);\n ");
+					sw.WriteLine("\n com.SetupFilterData(srcArgs.Surface.Width, srcArgs.Surface.Height, token.ctlvalues, data.Source);\n ");
 				}
 				else
 				{
-					sw.WriteLine("com.SetupFilterSourceImage(base.EnvironmentParameters.SourceSurface); \n com.SetupFilterData(data.ControlValue, data.Source);");
+					sw.WriteLine("com.SetupFilterSourceImage(base.EnvironmentParameters.SourceSurface);");
+					sw.WriteLine("com.SetupFilterData(srcArgs.Surface.Width, srcArgs.Surface.Height, data.ControlValue, data.Source);");
 				}
 				sw.WriteLine("base.OnSetRenderInfo(parameters, dstArgs, srcArgs); \n } \n");
 
-				sw.WriteLine("private bool Cancel() \n{ \n return base.IsCancelRequested; \n }");
-
 				// Render
 				sw.WriteLine("public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length) \n { \n");
-				sw.WriteLine("for (int i = startIndex; i < startIndex + length; ++i) \n { \n");
-				sw.WriteLine("Rectangle rect = rois[i];");
-				sw.WriteLine("com.Render(dstArgs.Surface, rect, new Func<bool>(Cancel)); \n } \n }");
+				sw.WriteLine("com.Render(srcArgs.Surface, dstArgs.Surface, rois, startIndex, length); \n }");
 				sw.WriteLine("}\n }"); // end the class and the namespace
 
 				ret = sw.ToString();
@@ -328,7 +325,7 @@ namespace PdnFF
 
 			string[] embeddedfiles = new string[] {"PdnFF.Coderes.FFEffect.FFEffectConfigDialog.resources","PdnFF.Coderes.Common.cs",
 			"PdnFF.Coderes.FFEffectConfigDialog.cs","PdnFF.Coderes.FFEffectConfigToken.cs","PdnFF.Coderes.ffparse.cs","PdnFF.Coderes.FilterData.cs"
-			,"PdnFF.Coderes.FilterEnviromentData.cs"};
+			,"PdnFF.Coderes.FilterEnviromentData.cs", "PdnFF.Coderes.SafeEnvironmentDataHandle.cs"};
 
 			string dir = tempFolder.FullName;
 

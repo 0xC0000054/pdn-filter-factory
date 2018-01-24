@@ -19,33 +19,44 @@
 *
 */
 
+using PaintDotNet;
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace PdnFF
 {
     internal static class ffparse
     {
+        private struct BitmapData
+        {
+            public int width;
+            public int height;
+            public int stride;
+            public int pixelSize;
+            public IntPtr scan0;
+        }
+
         [System.Security.SuppressUnmanagedCodeSecurity]
         private static class ffeval32
         {
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern int SetupBitmap(IntPtr pixelData, int width, int height, int stride, int pixelSize);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern void SetControls(int val, int ctl);
+            public static extern void DestroyBitmap();
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern void UpdateEnvir(int x, int y);
+            public static extern SafeEnvironmentDataHandle86 CreateEnvironmentData(
+                int width,
+                int height,
+                int pixelSize,
+                [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
+                [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern void SetupTree([MarshalAs(UnmanagedType.LPStr)] string src, int c);
+            public static extern void FreeEnvironmentData(IntPtr handle);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern int CalcColor(int c);
-            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern void FreeData();
+            public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern int ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
-            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            [return: MarshalAs(UnmanagedType.I1)]
-            public static extern bool datafreed();
 
         }
         [System.Security.SuppressUnmanagedCodeSecurity]
@@ -54,42 +65,53 @@ namespace PdnFF
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern int SetupBitmap(IntPtr pixelData, int width, int height, int stride, int pixelSize);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern void SetControls(int val, int ctl);
+            public static extern void DestroyBitmap();
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern void UpdateEnvir(int x, int y);
+            public static extern SafeEnvironmentDataHandle64 CreateEnvironmentData(
+                int width,
+                int height,
+                int pixelSize,
+                [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
+                [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern void SetupTree([MarshalAs(UnmanagedType.LPStr)] string src, int c);
+            public static extern void FreeEnvironmentData(IntPtr handle);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern int CalcColor(int c);
-            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern void FreeData();
+            public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern int ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
-            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            [return: MarshalAs(UnmanagedType.I1)]
-            public static extern bool datafreed();
+        }
+
+        private sealed class SafeEnvironmentDataHandle64 : SafeEnvironmentDataHandle
+        {
+            private SafeEnvironmentDataHandle64() : base(true)
+            {
+            }
+
+            protected override bool ReleaseHandle()
+            {
+                ffeval64.FreeEnvironmentData(handle);
+                return true;
+            }
+        }
+
+        private sealed class SafeEnvironmentDataHandle86 : SafeEnvironmentDataHandle
+        {
+            private SafeEnvironmentDataHandle86() : base(true)
+            {
+            }
+
+            protected override bool ReleaseHandle()
+            {
+                ffeval32.FreeEnvironmentData(handle);
+                return true;
+            }
         }
 
         /// <summary>
         /// The number channels in the image, always 4 in Paint.NET
         /// </summary>
         private const int pixelSize = 4;
-        /// <summary>
-        ///  Sets the control value
-        /// </summary>
-        /// <param name="val">The control value</param>
-        /// <param name="ctl">The number of the control to set</param>
-        public static void SetControls(int val, int ctl)
-        {
-            if (IntPtr.Size == 8)
-            {
-                ffeval64.SetControls(val, ctl);
-            }
-            else
-            {
-                ffeval32.SetControls(val, ctl);
-            }
-        }
+
         /// <summary>
         /// Sets up the unmanaged access to the Bitmap Data
         /// </summary>
@@ -110,69 +132,74 @@ namespace PdnFF
             }
         }
 
-
         /// <summary>
-        /// Setups the unmanaged source code parse tree.
+        /// Destroys the unmanaged access to the Bitmap Data
         /// </summary>
-        /// <param name="src">The source code.</param>
-        /// <param name="c">The channel that the source code belongs to (0 - 3 in RGBA order).</param>
-        public static void SetupTree(string src, int c)
+        public static void DestroyBitmap()
         {
             if (IntPtr.Size == 8)
             {
-                ffeval64.SetupTree(src, c);
+                ffeval64.DestroyBitmap();
             }
             else
             {
-                ffeval32.SetupTree(src, c);
+                ffeval32.DestroyBitmap();
             }
         }
 
         /// <summary>
-        /// Updates the filter enviroment's pixel location to x,y
+        /// Creates the filter environment data
         /// </summary>
-        /// <param name="x">The x pixel position</param>
-        /// <param name="y">The y pixel position</param>
-        public static void UpdateEnvir(int x, int y)
+        /// <param name="width">The width of the image in pixels</param>
+        /// <param name="height">The height of the image in pixels</param>
+        /// <param name="data">The filter data.</param>
+        /// <returns>A handle to the created filter environment.</returns>
+        public static SafeEnvironmentDataHandle CreateEnviromentData(int width, int height, FilterData data)
         {
             if (IntPtr.Size == 8)
             {
-                ffeval64.UpdateEnvir(x, y);
+                return ffeval64.CreateEnvironmentData(width, height, pixelSize, data.Source, data.ControlValue);
             }
             else
             {
-                ffeval32.UpdateEnvir(x, y);
-            }
-        }
-        /// <summary>
-        /// Calculates the resulting pixel color for the specified channel
-        /// </summary>
-        /// <param name="channel">The channel to calculate (0 - 3 in RGBA order)</param>
-        /// <returns>The resulting pixel color</returns>
-        public static int CalcColor(int channel)
-        {
-            if (IntPtr.Size == 8)
-            {
-                return ffeval64.CalcColor(channel);
-            }
-            else
-            {
-                return ffeval32.CalcColor(channel);
+                return ffeval32.CreateEnvironmentData(width, height, pixelSize, data.Source, data.ControlValue);
             }
         }
 
         /// <summary>
-        /// Frees the unmanaged Data and cleans up
+        /// Renders the Filter Factory output to the destination surface.
         /// </summary>
-        public static void FreeData()
+        /// <param name="handle">The filter environment handle.</param>
+        /// <param name="rois">The array of rectangles to render.</param>
+        /// <param name="startIndex">The starting index in the rectangle array.</param>
+        /// <param name="length">The number of rectangles to render.</param>
+        /// <param name="dstSurface">The destination surface.</param>
+        public static unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle[] rois, int startIndex, int length, Surface dstSurface)
         {
-            if (IntPtr.Size == 8)
+            if (length == 0)
             {
-                ffeval64.FreeData();
+                return;
             }
-            else
+
+            BitmapData bitmap = new BitmapData
             {
-                ffeval32.FreeData();
+                width = dstSurface.Width,
+                height = dstSurface.Height,
+                stride = dstSurface.Stride,
+                pixelSize = ColorBgra.SizeOf,
+                scan0 = dstSurface.Scan0.Pointer
+            };
+
+            fixed (Rectangle* rectanglePointer = &rois[startIndex])
+            {
+                if (IntPtr.Size == 8)
+                {
+                    ffeval64.Render(handle, rectanglePointer, length, ref bitmap);
+                }
+                else
+                {
+                    ffeval32.Render(handle, rectanglePointer, length, ref bitmap);
+                }
             }
         }
 
@@ -194,22 +221,6 @@ namespace PdnFF
             }
 
             return ret;
-        }
-
-        /// <summary>
-        /// Gets if the unmanaged Data has been freed
-        /// </summary>
-        /// <returns>True if the Data has been freed, otherwise false.</returns>
-        public static bool datafreed()
-        {
-            if (IntPtr.Size == 8)
-            {
-               return ffeval64.datafreed();
-            }
-            else
-            {
-               return ffeval32.datafreed();
-            }
         }
     }
 }

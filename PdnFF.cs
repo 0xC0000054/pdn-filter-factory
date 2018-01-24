@@ -47,8 +47,12 @@ namespace PdnFF
                 return new Bitmap(typeof(PdnFFEffect), "script_code_red.png");
             }
         }
+
+        private bool setFilterBitmap;
+        private SafeEnvironmentDataHandle enviromentDataHandle;
+
         public PdnFFEffect()
-            : base(PdnFFEffect.StaticName, PdnFFEffect.StaticIcon, EffectFlags.Configurable | EffectFlags.SingleThreaded)
+            : base(PdnFFEffect.StaticName, PdnFFEffect.StaticIcon, EffectFlags.Configurable)
         {
         }
 
@@ -56,55 +60,24 @@ namespace PdnFF
         {
             if (disposing)
             {
-                if ((envdata != null) && !ffparse.datafreed())
+                if (enviromentDataHandle != null)
                 {
-                    ffparse.FreeData(); // free the unmanaged ffparse data
-#if DEBUG
-                    Debug.WriteLine("Dispose called");
-#endif
-                    envdata.Dispose(); // free the enviroment data
-                    envdata = null;
+                    enviromentDataHandle.Dispose();
+                    enviromentDataHandle = null;
                 }
             }
-            base.OnDispose(disposing);
 
-        }
-
-        /// <summary>
-        /// Sets up the unmanaged FilterEnviromentData
-        /// </summary>
-        private void SetupFilterEnviromentData()
-        {
-            if (envdata == null)
+            if (setFilterBitmap)
             {
-                envdata = new FilterEnviromentData(base.EnvironmentParameters.SourceSurface);
-
-                bool resetEnvir = envdata.ResetEnvir();
-#if DEBUG
-                Debug.WriteLine(string.Format("firstrun resetEnvir = {0}", resetEnvir.ToString()));
-#endif
+                ffparse.DestroyBitmap();
             }
+
+            base.OnDispose(disposing);
         }
+
         public override EffectConfigDialog CreateConfigDialog()
         {
-            SetupFilterEnviromentData();
             return new PdnFFConfigDialog();
-        }
-        FilterEnviromentData envdata = null;
-
-        /// <summary>
-        /// Sets the Filter source code and Control values
-        /// </summary>
-        private static void SetupFilterData(FilterData data)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                ffparse.SetControls(data.ControlValue[i], i);
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                ffparse.SetupTree(data.Source[i], i);
-            }
         }
 
         private bool filterparsed = false;
@@ -112,18 +85,25 @@ namespace PdnFF
         {
             PdnFFConfigToken token = (PdnFFConfigToken)parameters;
 
-            SetupFilterEnviromentData();
+            if (!setFilterBitmap)
+            {
+                setFilterBitmap = true;
+
+                ffparse.SetupBitmap(srcArgs.Surface.Scan0.Pointer, srcArgs.Surface.Width, srcArgs.Surface.Height, srcArgs.Surface.Stride);
+            }
+
+            if (enviromentDataHandle != null)
+            {
+                enviromentDataHandle.Dispose();
+                enviromentDataHandle = null;
+            }
 
             filterparsed = false;
-
-#if DEBUG
-            Debug.WriteLine(string.Format("BitmapEnvirSetup = {0}", envdata.BmpEnvirSetup.ToString()));
-            Debug.WriteLine(string.Format("datafreed = {0}", ffparse.datafreed().ToString()));
-#endif
-            if (token.Data != null && !string.IsNullOrEmpty(token.Data.Author) && envdata.BmpEnvirSetup && !ffparse.datafreed())
+            if (token.Data != null && !string.IsNullOrEmpty(token.Data.Author))
             {
-                SetupFilterData(token.Data);
-                filterparsed = true;
+                enviromentDataHandle = ffparse.CreateEnviromentData(srcArgs.Surface.Width, srcArgs.Surface.Height, token.Data);
+
+                filterparsed = !enviromentDataHandle.IsInvalid;
             }
 
             base.OnSetRenderInfo(parameters, dstArgs, srcArgs);
@@ -133,32 +113,7 @@ namespace PdnFF
             Surface dest = dstArgs.Surface;
             if (filterparsed)
             {
-                unsafe
-                {
-                    for (int i = startIndex; i < startIndex + length; ++i)
-                    {
-                        Rectangle rect = rois[i];
-                        for (int y = rect.Top; y < rect.Bottom; ++y)
-                        {
-                            if (IsCancelRequested) return; // stop if a cancel is requested
-
-                            ColorBgra *p = dest.GetPointAddressUnchecked(rect.Left, y);
-                            for (int x = rect.Left; x < rect.Right; ++x)
-                            {
-                                ffparse.UpdateEnvir(x, y); // update the (x, y) position in the unmanaged ffparse data
-
-                                p->R = (byte)ffparse.CalcColor(0); // red channel
-                                p->G = (byte)ffparse.CalcColor(1); // green channel
-                                p->B = (byte)ffparse.CalcColor(2); // blue channel
-                                p->A = (byte)ffparse.CalcColor(3); // alpha channel
-
-                                p++;
-                            }
-                        }
-
-                    }
-                }
-
+                ffparse.Render(enviromentDataHandle, rois, startIndex, length, dest);
             }
             else
             {
