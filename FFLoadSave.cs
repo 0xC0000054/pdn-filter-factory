@@ -150,7 +150,7 @@ namespace PdnFF
 			return builder.ToString();
 		}
 		/// <summary>
-		/// Loads a Filter Factory file, auitomatically determining the type.
+		/// Loads a Filter Factory file, automatically determining the type.
 		/// </summary>
 		/// <param name="FileName">The FileName to load.</param>
 		/// <param name="data">The output filter_data</param>

@@ -2052,7 +2052,7 @@ namespace PdnFF
 
 
 		/// <summary>
-		/// Set the visability of the controls tab based on the filter_data PopDialog
+		/// Set the visibility of the controls tab based on the filter_data PopDialog
 		/// </summary>
 		/// <param name="data">The filter_data to set</param>
 		private void SetControlsTabVisability(FilterData data)
