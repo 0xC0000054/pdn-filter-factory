@@ -32,7 +32,7 @@ namespace FFEffect
     class Common : IDisposable
     {
         private FilterEnviromentData envdata;
-        public void SetupFilterEnviromentData(Surface source)
+        public void SetupFilterSourceImage(Surface source)
         {
             if (envdata == null)
             {
