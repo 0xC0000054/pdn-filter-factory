@@ -1660,7 +1660,6 @@ namespace PdnFF
 			this.Controls.Add(this.Loadbtn2);
 			this.Controls.Add(this.Filenametxt);
 			this.Name = "PdnFFConfigDialog";
-			this.Opacity = 0.9D;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PdnFFConfigDialog_FormClosing);
 			this.Load += new System.EventHandler(this.PdnFFConfigDialog_Load);
 			this.Controls.SetChildIndex(this.Filenametxt, 0);
