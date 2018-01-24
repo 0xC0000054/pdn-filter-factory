@@ -126,7 +126,7 @@
   <data name="ConfigDialog_LoadFFLDialog_Filter" xml:space="preserve">
     <value>FFL files (*.ffl)|*.ffl</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ConfigDialog_Resetbtn_Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ConfigDialpg_Resetbtn_Image.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,5 +136,8 @@
   </data>
   <data name="BuildFilterFileAlreadyExists" xml:space="preserve">
     <value>Unable to build Filter, File already exists?</value>
+  </data>
+  <data name="ConfigDialog_FormulaEmptyError_Text" xml:space="preserve">
+    <value>The formula cannot be empty</value>
   </data>
 </root>

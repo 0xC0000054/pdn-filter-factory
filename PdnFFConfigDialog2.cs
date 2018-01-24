@@ -2535,7 +2535,12 @@ namespace PdnFF
 			TextBox tb = sender as TextBox;
 			string name = tb.Name.Substring(0, 1);
 
-			if (!string.IsNullOrEmpty(tb.Text))
+			if (string.IsNullOrEmpty(tb.Text))
+			{
+				ep.ContainerControl = this;
+				ep.SetError(tb, Resources.ConfigDialog_FormulaEmptyError_Text);
+			}
+			else
 			{
 				int ch = 0;
 				switch (name)
