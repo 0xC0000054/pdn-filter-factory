@@ -3442,7 +3442,6 @@ namespace PdnFF
 					folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", "0", DirlistView1.Items.Count.ToString(CultureInfo.InvariantCulture));
 					filtertreeview.Nodes.Clear();
 					filterlistcnttxt.Text = string.Empty;
-					UpdateFilterListbw_Done = false;
 
 					UpdateFilterListbw.RunWorkerAsync(uflp);
 				}
@@ -3564,8 +3563,6 @@ namespace PdnFF
 
 			}
 
-			this.UpdateFilterListbw_Done = true;
-
 			if (FormClosePending)
 			{
 				this.Close(); // close the form
@@ -3581,11 +3578,10 @@ namespace PdnFF
 			fltrmgrprogress.PerformStep();
 		}
 
-		private bool UpdateFilterListbw_Done;
 		private bool FormClosePending;
 		private void PdnFFConfigDialog_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!UpdateFilterListbw_Done && DirlistView1.Items.Count > 0) // don't hold the form open if there are no search Dirs
+			if (UpdateFilterListbw.IsBusy && DirlistView1.Items.Count > 0) // don't hold the form open if there are no search Dirs
 			{
 				UpdateFilterListbw.CancelAsync();
 				e.Cancel = true;
