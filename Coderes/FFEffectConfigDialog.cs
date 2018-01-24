@@ -1202,138 +1202,107 @@ namespace FFEffect
 
         private void BringSlidersToFront()
         {
-            // The sliders are in reverse order so SendToBack is used.
-            this.ctl0.SendToBack();
-            this.ctl1.SendToBack();
-            this.ctl2.SendToBack();
-            this.ctl3.SendToBack();
-            this.ctl4.SendToBack();
-            this.ctl5.SendToBack();
-            this.ctl6.SendToBack();
-            this.ctl7.SendToBack();
+            this.ctl0.BringToFront();
+            this.ctl1.BringToFront();
+            this.ctl2.BringToFront();
+            this.ctl3.BringToFront();
+            this.ctl4.BringToFront();
+            this.ctl5.BringToFront();
+            this.ctl6.BringToFront();
+            this.ctl7.BringToFront();
         }
 
         private void ResizetoVisibleControls()
         {
-            bool ctlPanelSet = false;
+            SuspendLayout();
+
             this.Height = 0;
-            foreach (Control item in this.Controls)
+            this.ctlpanel.Height = 0;
+            for (int i = 0; i < 8; i++)
             {
-                if (!ctlPanelSet)
+
+                if (data.ControlEnable[i])
                 {
-                    this.ctlpanel.Height = 0;
-
-                    foreach (Control control in this.ctlpanel.Controls)
+                    Debug.WriteLine(i);
+                    switch (i)
                     {
-                        if (!control.Visible && control.Name.Contains("ctl") && !control.Name.Contains("UpDown") && !control.Name.Contains("lbl"))
-                        {
-                            int ctl = int.Parse(control.Name.Substring(3, 1), CultureInfo.InvariantCulture);
-
-                            if (data.ControlEnable[ctl])
-                            {
-                                Debug.WriteLine(ctl);
-                                switch (ctl)
-                                {
-                                    case 0:
-                                        ctllbl0.Location = new Point(ctllbl0.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl0.Location = new Point(ctl0.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl0_UpDown.Location = new Point(ctl0_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn0.Location = new Point(resetbtn0.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                    case 1:
-                                        ctllbl1.Location = new Point(ctllbl1.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl1.Location = new Point(ctl1.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl1_UpDown.Location = new Point(ctl1_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn1.Location = new Point(resetbtn1.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                    case 2:
-                                        ctllbl2.Location = new Point(ctllbl2.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl2.Location = new Point(ctl2.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl2_UpDown.Location = new Point(ctl2_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn2.Location = new Point(resetbtn2.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                    case 3:
-                                        ctllbl3.Location = new Point(ctllbl3.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl3.Location = new Point(ctl3.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl3_UpDown.Location = new Point(ctl3_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn3.Location = new Point(resetbtn3.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                    case 4:
-                                        ctllbl4.Location = new Point(ctllbl4.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl4.Location = new Point(ctl4.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl4_UpDown.Location = new Point(ctl4_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn4.Location = new Point(resetbtn4.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                    case 5:
-                                        ctllbl5.Location = new Point(ctllbl5.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl5.Location = new Point(ctl5.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl5_UpDown.Location = new Point(ctl5_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn5.Location = new Point(resetbtn5.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                    case 6:
-                                        ctllbl6.Location = new Point(ctllbl6.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl6.Location = new Point(ctl6.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl6_UpDown.Location = new Point(ctl6_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn6.Location = new Point(resetbtn6.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                    case 7:
-                                        ctllbl7.Location = new Point(ctllbl7.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl7.Location = new Point(ctl7.Location.X, ctlpanel.ClientSize.Height);
-                                        ctl7_UpDown.Location = new Point(ctl7_UpDown.Location.X, ctlpanel.ClientSize.Height);
-                                        resetbtn7.Location = new Point(resetbtn7.Location.X, ctlpanel.ClientSize.Height);
-                                        break;
-                                }
-                                this.Height += 25;
-                                this.ctlpanel.Height += 25;
-                            }
-                        }
+                        case 0:
+                            ctllbl0.Location = new Point(ctllbl0.Location.X, ctlpanel.ClientSize.Height);
+                            ctl0.Location = new Point(ctl0.Location.X, ctlpanel.ClientSize.Height);
+                            ctl0_UpDown.Location = new Point(ctl0_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn0.Location = new Point(resetbtn0.Location.X, ctlpanel.ClientSize.Height);
+                            break;
+                        case 1:
+                            ctllbl1.Location = new Point(ctllbl1.Location.X, ctlpanel.ClientSize.Height);
+                            ctl1.Location = new Point(ctl1.Location.X, ctlpanel.ClientSize.Height);
+                            ctl1_UpDown.Location = new Point(ctl1_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn1.Location = new Point(resetbtn1.Location.X, ctlpanel.ClientSize.Height);
+                            break;
+                        case 2:
+                            ctllbl2.Location = new Point(ctllbl2.Location.X, ctlpanel.ClientSize.Height);
+                            ctl2.Location = new Point(ctl2.Location.X, ctlpanel.ClientSize.Height);
+                            ctl2_UpDown.Location = new Point(ctl2_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn2.Location = new Point(resetbtn2.Location.X, ctlpanel.ClientSize.Height);
+                            break;
+                        case 3:
+                            ctllbl3.Location = new Point(ctllbl3.Location.X, ctlpanel.ClientSize.Height);
+                            ctl3.Location = new Point(ctl3.Location.X, ctlpanel.ClientSize.Height);
+                            ctl3_UpDown.Location = new Point(ctl3_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn3.Location = new Point(resetbtn3.Location.X, ctlpanel.ClientSize.Height);
+                            break;
+                        case 4:
+                            ctllbl4.Location = new Point(ctllbl4.Location.X, ctlpanel.ClientSize.Height);
+                            ctl4.Location = new Point(ctl4.Location.X, ctlpanel.ClientSize.Height);
+                            ctl4_UpDown.Location = new Point(ctl4_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn4.Location = new Point(resetbtn4.Location.X, ctlpanel.ClientSize.Height);
+                            break;
+                        case 5:
+                            ctllbl5.Location = new Point(ctllbl5.Location.X, ctlpanel.ClientSize.Height);
+                            ctl5.Location = new Point(ctl5.Location.X, ctlpanel.ClientSize.Height);
+                            ctl5_UpDown.Location = new Point(ctl5_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn5.Location = new Point(resetbtn5.Location.X, ctlpanel.ClientSize.Height);
+                            break;
+                        case 6:
+                            ctllbl6.Location = new Point(ctllbl6.Location.X, ctlpanel.ClientSize.Height);
+                            ctl6.Location = new Point(ctl6.Location.X, ctlpanel.ClientSize.Height);
+                            ctl6_UpDown.Location = new Point(ctl6_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn6.Location = new Point(resetbtn6.Location.X, ctlpanel.ClientSize.Height);
+                            break;
+                        case 7:
+                            ctllbl7.Location = new Point(ctllbl7.Location.X, ctlpanel.ClientSize.Height);
+                            ctl7.Location = new Point(ctl7.Location.X, ctlpanel.ClientSize.Height);
+                            ctl7_UpDown.Location = new Point(ctl7_UpDown.Location.X, ctlpanel.ClientSize.Height);
+                            resetbtn7.Location = new Point(resetbtn7.Location.X, ctlpanel.ClientSize.Height);
+                            break;
                     }
-                    this.BringSlidersToFront();
-
-
-                    this.Height += 12;
-                    // Debug.WriteLine("ctlpanel height = " + this.ctlpanel.Height.ToString());
-                    ctlPanelSet = true;
-                }
-
-                if (item.Name.Contains("auth") || item.Name.Contains("copy"))
-                {
-                    if (item.Name.Contains("txt"))
-                    {
-
-                        switch (item.Name.Substring(0, 4))
-                        {
-                            case "auth":
-                                item.Location = new Point(item.Location.X, this.ClientSize.Height);
-                                item.Visible = true;
-                                this.authlbl.Location = new Point(this.authlbl.Location.X, this.ClientSize.Height);
-                                this.authlbl.Visible = true;
-                                this.Height += item.Height + 5;
-                                break;
-                            case "copy":
-                                item.Location = new Point(item.Location.X, this.ClientSize.Height);
-                                item.Visible = true;
-                                this.copylbl.Location = new Point(this.copylbl.Location.X, this.ClientSize.Height);
-                                this.copylbl.Visible = true;
-                                this.Height += item.Height;
-                                break;
-
-                        }
-
-                    }
-                }
-                else
-                {
-                    if (item.Name.Contains("OK"))
-                    {
-                        item.Location = new Point(item.Location.X, this.ClientSize.Height);
-                        item.Visible = true;
-                        this.buttonCancel.Location = new Point(this.buttonCancel.Location.X, this.ClientSize.Height);
-                        this.buttonCancel.Visible = true;
-                        this.Height += item.Height + 3;
-                    }
+                    this.Height += 25;
+                    this.ctlpanel.Height += 25;
                 }
             }
+            BringSlidersToFront();
+
+            this.Height += 12;
+            // Debug.WriteLine("ctlpanel height = " + this.ctlpanel.Height.ToString());
+
+            this.authtxt.Location = new Point(this.authtxt.Location.X, this.ClientSize.Height);
+            this.authtxt.Visible = true;
+            this.authlbl.Location = new Point(this.authlbl.Location.X, this.ClientSize.Height);
+            this.authlbl.Visible = true;
+            this.Height += authlbl.Height + 5;
+
+            this.copytxt.Location = new Point(this.copytxt.Location.X, this.ClientSize.Height);
+            this.copytxt.Visible = true;
+            this.copylbl.Location = new Point(this.copylbl.Location.X, this.ClientSize.Height);
+            this.copylbl.Visible = true;
+            this.Height += copylbl.Height;
+
+            this.buttonOK.Location = new Point(this.buttonOK.Location.X, this.ClientSize.Height);
+            this.buttonOK.Visible = true;
+            this.buttonCancel.Location = new Point(this.buttonCancel.Location.X, this.ClientSize.Height);
+            this.buttonCancel.Visible = true;
+            this.Height += this.buttonOK.Height + 3;
+
+            PerformLayout();
         }
     }
 }
