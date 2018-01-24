@@ -126,26 +126,29 @@ namespace PdnFF
 		/// <returns>The resulting string</returns>
 		private static string StringFromChar(char[] buf)
 		{
-			string temp = new string(buf);
-			temp = temp.Substring(0, temp.IndexOf("\0", StringComparison.Ordinal)).Trim();
+			int terminatorIndex = Array.IndexOf(buf, '\0');
+			int length = terminatorIndex != -1 ? terminatorIndex : buf.Length;
 
-			for (int i = 0; i < temp.Length; i++)
+			StringBuilder builder = new StringBuilder(length);
+
+			for (int i = 0; i < length; i++)
 			{
-				if (temp[i] == '\r' || temp[i] == '\n')
+				char value = buf[i];
+
+				if (value == '\r' || value == '\n')
 				{
-					if (buf.Length > 256)
+					if (buf.Length <= 256)
 					{
-						temp = temp.Remove(i, 1);
-						i = (i - 1);
+						builder.Append(' ');
 					}
-					else
-					{
-						temp = temp.Replace(temp[i], ' ');
-					}
+				}
+				else
+				{
+					builder.Append(value);
 				}
 			}
 
-			return temp;
+			return builder.ToString();
 		}
 		/// <summary>
 		/// Loads a Filter Factory file, auitomatically determining the type.
