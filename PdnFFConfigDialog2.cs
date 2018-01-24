@@ -3359,7 +3359,7 @@ namespace PdnFF
 						if (fi.Exists)
 						{
 							FilterData fd;
-							if (FFLoadSave.LoadFile(fi.FullName, out fd))
+							if (FFLoadSave.LoadFrom8bf(fi.FullName, out fd))
 							{
 								string[] subtext = new string[2] { fd.Author, fd.Copyright };
 
