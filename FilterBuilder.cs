@@ -321,7 +321,7 @@ namespace PdnFF
 
 			string[] embeddedfiles = new string[] {"PdnFF.Coderes.FFEffect.FFEffectConfigDialog.resources","PdnFF.Coderes.Common.cs",
 			"PdnFF.Coderes.FFEffectConfigDialog.cs","PdnFF.Coderes.FFEffectConfigToken.cs","PdnFF.Coderes.ffparse.cs","PdnFF.Coderes.FilterData.cs"
-			,"PdnFF.Coderes.FilterEnviromentData.cs", "PdnFF.Coderes.SafeEnvironmentDataHandle.cs"};
+			, "PdnFF.Coderes.SafeEnvironmentDataHandle.cs"};
 
 			string dir = tempFolder.FullName;
 
