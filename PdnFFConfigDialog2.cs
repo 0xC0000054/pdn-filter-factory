@@ -3303,9 +3303,9 @@ namespace PdnFF
 			}
 		}
 		/// <summary>
-		/// The Parameter struct for the UpdateFilterList Background Worker
+		/// The Parameter class for the UpdateFilterList Background Worker
 		/// </summary>
-		private struct UpdateFilterListParm
+		private sealed class UpdateFilterListParm
 		{
 			/// <summary>
 			/// The list of Search Directories
