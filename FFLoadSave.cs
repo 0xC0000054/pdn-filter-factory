@@ -120,20 +120,20 @@ namespace PdnFF
 		#endregion
 
 		/// <summary>
-		///  Builds a string from a variable length char array.
+		///  Builds a string from a byte array containing ASCII characters.
 		/// </summary>
 		/// <param name="buf">The input buffer.</param>
 		/// <returns>The resulting string</returns>
-		private static string StringFromChar(char[] buf)
+		private static string StringFromASCIIBytes(byte[] buf)
 		{
-			int terminatorIndex = Array.IndexOf(buf, '\0');
+			int terminatorIndex = Array.IndexOf(buf, (byte)0);
 			int length = terminatorIndex != -1 ? terminatorIndex : buf.Length;
 
 			StringBuilder builder = new StringBuilder(length);
 
 			for (int i = 0; i < length; i++)
 			{
-				char value = buf[i];
+				char value = (char)buf[i];
 
 				if (value == '\r' || value == '\n')
 				{
@@ -291,7 +291,7 @@ namespace PdnFF
 					{
 						data.ControlEnable[i] = br.ReadInt32() != 0;
 					}
-					data.Category = StringFromChar(br.ReadChars(252)); // read the Category
+					data.Category = StringFromASCIIBytes(br.ReadBytes(252)); // read the Category
 
 					//Michael Johannhanwahr's protect flag...
 #if false
@@ -299,23 +299,23 @@ namespace PdnFF
 #else
 					br.BaseStream.Position += 4L;
 #endif
-					data.Title = StringFromChar(br.ReadChars(256));
-					data.Copyright = StringFromChar(br.ReadChars(256));
-					data.Author = StringFromChar(br.ReadChars(256));
+					data.Title = StringFromASCIIBytes(br.ReadBytes(256));
+					data.Copyright = StringFromASCIIBytes(br.ReadBytes(256));
+					data.Author = StringFromASCIIBytes(br.ReadBytes(256));
 
 					for (int i = 0; i < 4; i++)
 					{
-						data.MapLabel[i] = StringFromChar(br.ReadChars(256));
+						data.MapLabel[i] = StringFromASCIIBytes(br.ReadBytes(256));
 					}
 
 					for (int i = 0; i < 8; i++)
 					{
-						data.ControlLabel[i] = StringFromChar(br.ReadChars(256));
+						data.ControlLabel[i] = StringFromASCIIBytes(br.ReadBytes(256));
 					}
 
 					for (int i = 0; i < 4; i++)
 					{
-						data.Source[i] = StringFromChar(br.ReadChars(1024));
+						data.Source[i] = StringFromASCIIBytes(br.ReadBytes(1024));
 					}
 
 				}
