@@ -97,17 +97,25 @@
     <EmbeddedResource Include="Coderes\ffparse.cs" />
     <EmbeddedResource Include="Coderes\FilterData.cs" />
     <EmbeddedResource Include="Coderes\SafeEnvironmentDataHandle.cs" />
+    <Compile Include="Controls\TabControlEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FFLoadSave.cs" />
     <Compile Include="ffparse.cs" />
     <Compile Include="FilterBuilder.cs" />
     <Compile Include="filterdata.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Interop\NativeConstants.cs" />
+    <Compile Include="Interop\NativeEnums.cs" />
+    <Compile Include="Interop\NativeStructs.cs" />
+    <Compile Include="Interop\SafeNativeMethods.cs" />
     <Compile Include="PdnFFConfigDialog2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PdnFFToken.cs" />
     <Compile Include="PdnFF.cs" />
     <Compile Include="PluginSupportInfo.cs" />
+    <Compile Include="PluginThemingUtil.cs" />
     <Compile Include="SafeEnvironmentDataHandle.cs" />
     <Compile Include="TreeViewSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

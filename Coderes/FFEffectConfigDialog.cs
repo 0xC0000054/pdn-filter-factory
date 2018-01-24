@@ -1304,5 +1304,119 @@ namespace FFEffect
 
             PerformLayout();
         }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            PluginThemingUtil.EnableEffectDialogTheme(this);
+        }
+
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            base.OnBackColorChanged(e);
+
+            UpdateControlBackColor(this, BackColor);
+        }
+
+        protected override void OnForeColorChanged(EventArgs e)
+        {
+            base.OnForeColorChanged(e);
+
+            UpdateControlForeColor(this, ForeColor);
+        }
+
+        private static void UpdateControlBackColor(Control parent, Color backColor)
+        {
+            foreach (Control item in parent.Controls)
+            {
+                Button button = item as Button;
+                if (button != null)
+                {
+                    // Reset the BackColor of all Button controls.
+                    button.UseVisualStyleBackColor = true;
+                }
+                else
+                {
+                    // Update the BackColor for all child controls as some controls
+                    // do not change the BackColor when the parent control does.
+
+                    item.BackColor = backColor;
+
+                    if (item.HasChildren)
+                    {
+                        UpdateControlBackColor(item, backColor);
+                    }
+                }
+            }
+        }
+
+        private static void UpdateControlForeColor(Control parent, Color foreColor)
+        {
+            foreach (Control item in parent.Controls)
+            {
+                Button button = item as Button;
+                if (button != null)
+                {
+                    // Reset the ForeColor of all Button controls.
+                    button.ForeColor = SystemColors.ControlText;
+                }
+                else
+                {
+                    item.ForeColor = foreColor;
+
+                    if (item.HasChildren)
+                    {
+                        UpdateControlForeColor(item, foreColor);
+                    }
+                }
+            }
+        }
+
+        private static class PluginThemingUtil
+        {
+            // Paint.NET added theming support for plug-ins in 4.20.
+            private static readonly Version PluginThemingMinVersion = new Version("4.20");
+
+            private static System.Reflection.MethodInfo useAppThemeSetter;
+            private static bool initAppThemeSetter = false;
+
+            public static void EnableEffectDialogTheme(EffectConfigDialog dialog)
+            {
+                try
+                {
+                    IAppInfoService appInfoService = dialog.Services.GetService(typeof(IAppInfoService)) as IAppInfoService;
+
+                    if (appInfoService != null)
+                    {
+                        Version pdnVersion = appInfoService.AppVersion;
+
+                        if (pdnVersion >= PluginThemingMinVersion)
+                        {
+                            if (!initAppThemeSetter)
+                            {
+                                initAppThemeSetter = true;
+
+                                System.Reflection.PropertyInfo propertyInfo = typeof(EffectConfigDialog).GetProperty("UseAppThemeColors");
+                                if (propertyInfo != null)
+                                {
+                                    useAppThemeSetter = propertyInfo.GetSetMethod();
+                                }
+                            }
+
+                            if (useAppThemeSetter != null)
+                            {
+                                useAppThemeSetter.Invoke(dialog, new object[] { true });
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    // Ignore any exceptions that are thrown when trying to enable the dialog theming.
+                    // The dialog should be shown to the user even if theming could not be enabled.
+                }
+            }
+        }
     }
 }

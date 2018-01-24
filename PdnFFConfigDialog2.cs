@@ -30,6 +30,7 @@ using System.Text;
 using System.Windows.Forms;
 using PaintDotNet;
 using PaintDotNet.Effects;
+using PdnFF.Controls;
 using PdnFF.Properties;
 
 namespace PdnFF
@@ -184,7 +185,7 @@ namespace PdnFF
 		private TrackBar ctl2;
 		private TrackBar ctl1;
 		private TrackBar ctl0;
-		private TabControl tabControl1;
+		private TabControlEx tabControl1;
 		private TextBox filterSearchBox;
 		private TreeView FFLtreeView1;
 		private Label ffltreecopytxt;
@@ -406,7 +407,7 @@ namespace PdnFF
 			this.ctl1 = new System.Windows.Forms.TrackBar();
 			this.ctl0 = new System.Windows.Forms.TrackBar();
 			this.map1_lbl = new System.Windows.Forms.Label();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabControl1 = new  PdnFF.Controls.TabControlEx();
 			this.buildfilterbtn = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.FilterDirtab.SuspendLayout();
@@ -2526,6 +2527,22 @@ namespace PdnFF
 			{
 				default_fltr_Click(null, null);
 			}
+			PluginThemingUtil.EnableEffectDialogTheme(this);
+		}
+
+		protected override void OnBackColorChanged(EventArgs e)
+		{
+			base.OnBackColorChanged(e);
+
+			PluginThemingUtil.UpdateControlBackColor(this);
+		}
+
+		protected override void OnForeColorChanged(EventArgs e)
+		{
+			base.OnForeColorChanged(e);
+
+			PluginThemingUtil.UpdateControlForeColor(this);
+			this.filterSearchBox.ForeColor = SystemColors.GrayText;
 		}
 
 		private void SrcTextBoxes_TextChanged(object sender, EventArgs e)
@@ -3658,7 +3675,7 @@ namespace PdnFF
 			{
 				filterSearchBox.Text = string.Empty;
 				filterSearchBox.Font = new Font(filterSearchBox.Font, FontStyle.Regular);
-				filterSearchBox.ForeColor = SystemColors.WindowText;
+				filterSearchBox.ForeColor = ForeColor != DefaultForeColor ? ForeColor : SystemColors.WindowText;
 			}
 		}
 
