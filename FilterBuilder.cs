@@ -290,12 +290,8 @@ namespace PdnFF
 			compilerParameters.GenerateExecutable = false;
 			String resourceName = Path.Combine(tempFolder.FullName, "FFEffect.FFEffectConfigDialog.resources");
 
-#if DEBUG
-			cparm.IncludeDebugInformation = true;
-			cparm.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug:full /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
-#else
 			compilerParameters.CompilerOptions = string.Format(CultureInfo.InvariantCulture, "/debug- /unsafe /optimize /target:library /resource:\"{0}\"", resourceName);
-#endif
+
 			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
 			string effectsDir = Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location);
