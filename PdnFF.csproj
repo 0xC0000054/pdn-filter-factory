@@ -98,6 +98,7 @@
     <EmbeddedResource Include="Coderes\FilterEnviromentData.cs" />
     <EmbeddedResource Include="Coderes\FilterData.cs" />
     <EmbeddedResource Include="Coderes\SafeEnvironmentDataHandle.cs" />
+    <Compile Include="FFLoadSave.cs" />
     <Compile Include="ffparse.cs" />
     <Compile Include="FilterBuilder.cs" />
     <Compile Include="filterdata.cs" />
@@ -111,7 +112,6 @@
     <Compile Include="PluginSupportInfo.cs" />
     <Compile Include="SafeEnvironmentDataHandle.cs" />
     <Compile Include="TreeViewSort.cs" />
-    <Compile Include="loadff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
