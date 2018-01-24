@@ -1223,7 +1223,7 @@ namespace FFEffect
 
                 if (data.ControlEnable[i])
                 {
-                    Debug.WriteLine(i);
+                    //Debug.WriteLine(i);
                     switch (i)
                     {
                         case 0:
