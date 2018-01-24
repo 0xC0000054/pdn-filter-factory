@@ -2430,7 +2430,7 @@ namespace PdnFF
 				data = new FilterData();
 			}
 			ClearLastFilters();
-			FFLoadSave.DefaultFilter(data);
+			data = FFLoadSave.DefaultFilter();
 			SetControls(data);
 			SetInfo(data);
 			SetFltrInfoLabels(data);

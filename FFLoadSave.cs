@@ -757,11 +757,13 @@ namespace PdnFF
 			}
 		}
 		/// <summary>
-		/// Sets the filter_data to default values.
+		/// Gets a FilterData set to the default values.
 		/// </summary>
-		/// <param name="data">The filter_data to set.</param>
-		public static void DefaultFilter(FilterData data)
+		/// <returns></returns>The FilterData set to the default values.</param>
+		public static FilterData DefaultFilter()
 		{
+			FilterData data = new FilterData();
+
 			string[] src = new string[] { "r", "g", "b", "a" };
 			data.Category = "Untitled";
 			data.Title = "Untitled";
@@ -785,6 +787,8 @@ namespace PdnFF
 			{
 				data.Source[i] = src[i];
 			}
+
+			return data;
 		}
 		/// <summary>
 		/// Reads a string from a FFL or AFS file.
