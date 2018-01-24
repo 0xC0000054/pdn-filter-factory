@@ -51,23 +51,19 @@ namespace PdnFF
             : base(PdnFFEffect.StaticName, PdnFFEffect.StaticIcon, EffectFlags.Configurable | EffectFlags.SingleThreaded)
         {
         }
-        private bool disposed = false;
+
         protected override void OnDispose(bool disposing)
         {
             if (disposing)
             {
-                if (!disposed)
+                if ((envdata != null) && !ffparse.datafreed())
                 {
-                    if ((envdata != null) && !ffparse.datafreed())
-                    {
-                        ffparse.FreeData(); // free the unmanaged ffparse data
+                    ffparse.FreeData(); // free the unmanaged ffparse data
 #if DEBUG
-                        Debug.WriteLine("Dispose called");
+                    Debug.WriteLine("Dispose called");
 #endif
-                        envdata.Dispose(); // free the enviroment data
-                        envdata = null;
-                        this.disposed = true;
-                    }
+                    envdata.Dispose(); // free the enviroment data
+                    envdata = null;
                 }
             }
             base.OnDispose(disposing);
