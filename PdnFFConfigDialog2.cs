@@ -1660,8 +1660,6 @@ namespace PdnFF
 			this.Controls.Add(this.Loadbtn2);
 			this.Controls.Add(this.Filenametxt);
 			this.Name = "PdnFFConfigDialog";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PdnFFConfigDialog_FormClosing);
-			this.Load += new System.EventHandler(this.PdnFFConfigDialog_Load);
 			this.Controls.SetChildIndex(this.Filenametxt, 0);
 			this.Controls.SetChildIndex(this.Loadbtn2, 0);
 			this.Controls.SetChildIndex(this.tabControl1, 0);
@@ -2494,8 +2492,10 @@ namespace PdnFF
 			}
 		}
 
-		private void PdnFFConfigDialog_Load(object sender, EventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
+			base.OnLoad(e);
+
 			SetTokenData();
 			LoadSettings();
 			subdirSearchcb.Checked = bool.Parse(settings.GetSetting("SearchSubDir", bool.TrueString).Trim());
@@ -3568,7 +3568,7 @@ namespace PdnFF
 		}
 
 		private bool FormClosePending;
-		private void PdnFFConfigDialog_FormClosing(object sender, FormClosingEventArgs e)
+		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
 			if (UpdateFilterListbw.IsBusy && DirlistView1.Items.Count > 0) // don't hold the form open if there are no search Dirs
 			{
@@ -3576,6 +3576,8 @@ namespace PdnFF
 				e.Cancel = true;
 				FormClosePending = true;
 			}
+
+			base.OnFormClosing(e);
 		}
 		/// <summary>
 		/// Filters the filtertreeview Items by the specified text
