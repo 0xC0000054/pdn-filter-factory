@@ -3563,8 +3563,6 @@ namespace PdnFF
 #endif
 
 			}
-			this.UpdateFilterListbw.Dispose();
-			this.UpdateFilterListbw = null;
 
 			this.UpdateFilterListbw_Done = true;
 
