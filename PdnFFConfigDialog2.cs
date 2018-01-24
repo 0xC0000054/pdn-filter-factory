@@ -3402,27 +3402,12 @@ namespace PdnFF
 		}
 
 		/// <summary>
-		/// Initilizes the UpdateFilterListbw Background Worker
-		/// </summary>
-		private void InitilizeUpdateFilterListbw()
-		{
-			if (UpdateFilterListbw == null)
-			{
-				UpdateFilterListbw = new BackgroundWorker() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
-				UpdateFilterListbw.DoWork += new DoWorkEventHandler(UpdateFilterListbw_DoWork);
-				UpdateFilterListbw.ProgressChanged += new ProgressChangedEventHandler(UpdateFilterListbw_ProgressChanged);
-				UpdateFilterListbw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(UpdateFilterListbw_RunWorkerCompleted);
-			}
-		}
-
-		/// <summary>
 		/// Update the Filter Manager filterlist
 		/// </summary>
 		private void UpdateFilterList()
 		{
 			if (DirlistView1.Items.Count > 0)
 			{
-				InitilizeUpdateFilterListbw();
 	#if DEBUG
 				System.Diagnostics.Debug.WriteLine(string.Format("UpdateFilterListbw.IsBusy = {0}", UpdateFilterListbw.IsBusy.ToString()));
 	#endif
