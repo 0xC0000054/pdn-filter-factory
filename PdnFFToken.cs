@@ -20,7 +20,6 @@
 */
 
 using System;
-using PaintDotNet;
 
 namespace PdnFF
 {

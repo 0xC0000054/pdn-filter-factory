@@ -2,7 +2,6 @@
 // Original code by Vasian Cepa
 // https://www.codeproject.com/Articles/11016/Numeric-String-Sort-in-C
 
-using System;
 using System.Collections;
 using System.Globalization;
 
