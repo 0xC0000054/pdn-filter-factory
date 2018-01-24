@@ -198,6 +198,25 @@ namespace PdnFF
 			return loaded;
 		}
 
+		/// <summary>
+		/// Load the Filter Factory data from the specified 8bf file.
+		/// </summary>
+		/// <param name="path">The path.</param>
+		/// <param name="data">The data.</param>
+		/// <returns>
+		/// <c>true</c> if the 8bf file is a Filter Factory filter and the data was loaded successfully; otherwise, <c>false</c>
+		/// </returns>
+		/// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+		public static bool LoadFrom8bf(string path, out FilterData data)
+		{
+			if (path == null)
+			{
+				throw new ArgumentNullException(nameof(path));
+			}
+
+			return LoadBinFile(path, out data);
+		}
+
 		[System.Diagnostics.CodeAnalysis.SuppressMessage(
 			"Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods",
 			MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle",
