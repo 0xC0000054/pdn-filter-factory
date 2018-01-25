@@ -49,7 +49,7 @@ namespace PdnFF
         private SafeEnvironmentDataHandle enviromentDataHandle;
 
         public PdnFFEffect()
-            : base(PdnFFEffect.StaticName, PdnFFEffect.StaticIcon, EffectFlags.Configurable)
+            : base(StaticName, StaticIcon, EffectFlags.Configurable)
         {
         }
 
