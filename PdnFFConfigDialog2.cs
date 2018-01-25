@@ -3247,7 +3247,7 @@ namespace PdnFF
 		{
 			Control cb = sender as Control;
 			int ctlnum = int.Parse(cb.Name.Substring(3, 1), CultureInfo.InvariantCulture);
-			bool ismaptxt = cb.Name.ToUpperInvariant().Substring(0,3).Equals("MAP");
+			bool ismaptxt = cb.Name.StartsWith("MAP", StringComparison.OrdinalIgnoreCase);
 			SetEditControls(data,ctlnum,false, ismaptxt);
 		}
 
