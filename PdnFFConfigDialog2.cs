@@ -2626,8 +2626,8 @@ namespace PdnFF
 				FFLtreeView1.Nodes.Clear();
 			}
 
-			List<TreeNode> nodes = new List<TreeNode>();
-			if (FFLoadSave.LoadFFL(FileName, nodes))
+			List<TreeNode> nodes;
+			if (FFLoadSave.LoadFFL(FileName, out nodes))
 			{
 				int count = 0;
 
@@ -2690,8 +2690,8 @@ namespace PdnFF
 					fs = null;
 					if (uselastvalues)
 					{
-						FilterData tmpdata = new FilterData();
-						if (FFLoadSave.GetFilterfromFFL(br, offset, tmpdata))
+						FilterData tmpdata;
+						if (FFLoadSave.GetFilterfromFFL(br, offset, out tmpdata))
 						{
 							for (int i = 0; i < 8; i++)
 							{
@@ -2704,8 +2704,7 @@ namespace PdnFF
 					}
 					else
 					{
-						data = NewFilterData();
-						if (FFLoadSave.GetFilterfromFFL(br, offset, data))
+						if (FFLoadSave.GetFilterfromFFL(br, offset, out data))
 						{
 							for (int i = 0; i < 8; i++)
 							{

@@ -830,9 +830,8 @@ namespace PdnFF
 		/// <param name="items">The output TreeNode list of items in the file.</param>
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The Filename is null.</exception>
-		/// <exception cref="System.ArgumentNullException">The list of items is null.</exception>
-		/// cref="System.ArgumentException">The Filename is empty.</exception>
-		public static bool LoadFFL(string fn, List<TreeNode> items)
+		/// <exception cref="System.ArgumentException">The Filename is empty.</exception>
+		public static bool LoadFFL(string fn, out List<TreeNode> items)
 		{
 			bool loaded = false;
 			FileStream fs = null;
@@ -844,11 +843,8 @@ namespace PdnFF
 				if (string.IsNullOrEmpty(fn))
 					throw new ArgumentException("Filename must not be empty", "fn");
 
-				if (items == null)
-					throw new ArgumentNullException("items");
+				items = new List<TreeNode>();
 
-
-				FilterData data = new FilterData();
 				fs = new FileStream(fn, FileMode.Open, FileAccess.Read, FileShare.None);
 
 				using (BinaryReader br = new BinaryReader(fs))
@@ -867,7 +863,8 @@ namespace PdnFF
 								try
 								{
 									long pos = br.BaseStream.Position;
-									if (GetFilterfromFFL(br, pos, data))
+									FilterData data;
+									if (GetFilterfromFFL(br, pos, out data))
 									{
 										if (nodes.ContainsKey(data.Category))
 										{
@@ -925,23 +922,23 @@ namespace PdnFF
 		/// <param name="data">The output filter_data for the extraced filter.</param>
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The BinaryReader is null.</exception>
-		/// <exception cref="System.ArgumentNullException">The filter_data is null.</exception>
-		public static bool GetFilterfromFFL(BinaryReader br, long offset, FilterData data)
+		public static bool GetFilterfromFFL(BinaryReader br, long offset, out FilterData data)
 		{
 			if (br == null)
 				throw new ArgumentNullException("br", "br is null.");
-			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
 
 			bool loaded = false;
 
 			br.BaseStream.Seek(offset, SeekOrigin.Begin);
 
-			data.FileName = ReadString(br, 256);
-			data.Category = ReadString(br, 256);
-			data.Title = ReadString(br, 256);
-			data.Author = ReadString(br, 256);
-			data.Copyright = ReadString(br, 256);
+			data = new FilterData
+			{
+				FileName = ReadString(br, 256),
+				Category = ReadString(br, 256),
+				Title = ReadString(br, 256),
+				Author = ReadString(br, 256),
+				Copyright = ReadString(br, 256)
+			};
 
 			for (int i = 0; i < 4; i++)
 			{
