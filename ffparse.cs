@@ -22,6 +22,7 @@
 using PaintDotNet;
 using System;
 using System.Drawing;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 
 namespace PdnFF
@@ -52,6 +53,7 @@ namespace PdnFF
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
+            [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
             public static extern void FreeEnvironmentData(IntPtr handle);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
@@ -75,6 +77,7 @@ namespace PdnFF
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
+            [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
             public static extern void FreeEnvironmentData(IntPtr handle);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
