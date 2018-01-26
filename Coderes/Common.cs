@@ -31,21 +31,12 @@ namespace FFEffect
 {
     class Common : IDisposable
     {
-        private bool setSourceImage;
         private SafeEnvironmentDataHandle environmentDataHandle;
 
-        public void SetupFilterSourceImage(Surface source)
-        {
-            if (!setSourceImage)
-            {
-                setSourceImage = true;
-                ffparse.SetupBitmap(source.Scan0.Pointer, source.Width, source.Height, source.Stride);
-            }
-        }
         /// <summary>
         /// Sets the Filter source code and Control values
         /// </summary>
-        public void SetupFilterData(int width, int height, int[] control_values, string[] source)
+        public void SetupFilterData(Surface srcSurface, int[] control_values, string[] source)
         {
             if (environmentDataHandle != null)
             {
@@ -53,7 +44,7 @@ namespace FFEffect
                 environmentDataHandle = null;
             }
 
-            environmentDataHandle = ffparse.CreateEnvironmentData(width, height, source, control_values);
+            environmentDataHandle = ffparse.CreateEnvironmentData(srcSurface, source, control_values);
         }
         object sync = new object();
         public unsafe void Render(Surface src, Surface dst, Rectangle[] rois, int startIndex, int length)
@@ -88,8 +79,6 @@ namespace FFEffect
                         environmentDataHandle = null;
                     }
                 }
-
-                ffparse.DestroyBitmap();
             }
         }
 

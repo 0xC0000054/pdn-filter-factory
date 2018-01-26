@@ -45,7 +45,6 @@ namespace PdnFF
             }
         }
 
-        private bool setFilterBitmap;
         private SafeEnvironmentDataHandle enviromentDataHandle;
 
         public PdnFFEffect()
@@ -64,11 +63,6 @@ namespace PdnFF
                 }
             }
 
-            if (setFilterBitmap)
-            {
-                ffparse.DestroyBitmap();
-            }
-
             base.OnDispose(disposing);
         }
 
@@ -82,13 +76,6 @@ namespace PdnFF
         {
             PdnFFConfigToken token = (PdnFFConfigToken)parameters;
 
-            if (!setFilterBitmap)
-            {
-                setFilterBitmap = true;
-
-                ffparse.SetupBitmap(srcArgs.Surface.Scan0.Pointer, srcArgs.Surface.Width, srcArgs.Surface.Height, srcArgs.Surface.Stride);
-            }
-
             if (enviromentDataHandle != null)
             {
                 enviromentDataHandle.Dispose();
@@ -98,7 +85,7 @@ namespace PdnFF
             filterparsed = false;
             if (token.Data != null && !string.IsNullOrEmpty(token.Data.Author))
             {
-                enviromentDataHandle = ffparse.CreateEnvironmentData(srcArgs.Surface.Width, srcArgs.Surface.Height, token.Data);
+                enviromentDataHandle = ffparse.CreateEnvironmentData(srcArgs.Surface, token.Data);
 
                 filterparsed = !enviromentDataHandle.IsInvalid;
             }

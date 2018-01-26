@@ -41,14 +41,8 @@ namespace FFEffect
         private static class ffeval32
         {
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern int SetupBitmap(IntPtr pixelData, int width, int height, int stride, int pixelSize);
-            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
-            public static extern void DestroyBitmap();
-            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern SafeEnvironmentDataHandle86 CreateEnvironmentData(
-                int width,
-                int height,
-                int pixelSize,
+                [In] ref BitmapData input,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
@@ -60,14 +54,8 @@ namespace FFEffect
         private static class ffeval64
         {
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern int SetupBitmap(IntPtr pixelData, int width, int height, int stride, int pixelSize);
-            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
-            public static extern void DestroyBitmap();
-            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern SafeEnvironmentDataHandle64 CreateEnvironmentData(
-                int width,
-                int height,
-                int pixelSize,
+                [In] ref BitmapData input,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
@@ -108,56 +96,29 @@ namespace FFEffect
         private const int pixelSize = 4;
 
         /// <summary>
-        /// Sets up the unmanaged access to the Bitmap Data
-        /// </summary>
-        /// <param name="pixelData">The pointer to the start of the pixeldata, Scan0</param>
-        /// <param name="width">The width of the image in Pixels</param>
-        /// <param name="height">The height of the image in Pixels</param>
-        /// <param name="stride">The stride of the image</param>
-        /// <returns>1 on Success, negitive on failure</returns>
-        public static int SetupBitmap(IntPtr pixelData, int width, int height, int stride)
-        {
-            if (IntPtr.Size == 8)
-            {
-                return ffeval64.SetupBitmap(pixelData, width, height, stride, pixelSize);
-            }
-            else
-            {
-                return ffeval32.SetupBitmap(pixelData, width, height, stride, pixelSize);
-            }
-        }
-
-        /// <summary>
-        /// Destroys the unmanaged access to the Bitmap Data
-        /// </summary>
-        public static void DestroyBitmap()
-        {
-            if (IntPtr.Size == 8)
-            {
-                ffeval64.DestroyBitmap();
-            }
-            else
-            {
-                ffeval32.DestroyBitmap();
-            }
-        }
-
-        /// <summary>
         /// Creates the filter environment data
         /// </summary>
-        /// <param name="width">The width of the image in pixels</param>
-        /// <param name="height">The height of the image in pixels</param>
+        /// <param name="srcSurface">The source surface</param>
         /// <param name="data">The filter data.</param>
         /// <returns>A handle to the created filter environment.</returns>
-        public static SafeEnvironmentDataHandle CreateEnvironmentData(int width, int height, string[] source, int[] controlValues)
+        public static SafeEnvironmentDataHandle CreateEnvironmentData(Surface srcSurface, string[] source, int[] controlValues)
         {
+            BitmapData sourceBitmapData = new BitmapData
+            {
+                width = srcSurface.Width,
+                height = srcSurface.Height,
+                stride = srcSurface.Stride,
+                pixelSize = ColorBgra.SizeOf,
+                scan0 = srcSurface.Scan0.Pointer
+            };
+
             if (IntPtr.Size == 8)
             {
-                return ffeval64.CreateEnvironmentData(width, height, pixelSize, source, controlValues);
+                return ffeval64.CreateEnvironmentData(ref sourceBitmapData, source, controlValues);
             }
             else
             {
-                return ffeval32.CreateEnvironmentData(width, height, pixelSize, source, controlValues);
+                return ffeval32.CreateEnvironmentData(ref sourceBitmapData, source, controlValues);
             }
         }
 

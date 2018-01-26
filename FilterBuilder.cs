@@ -254,7 +254,6 @@ namespace PdnFF
 				{
 					sw.WriteLine(" public override EffectConfigDialog CreateConfigDialog() \n{\n");
 					sw.WriteLine("if (!filterDataset) \n { \n SetFilterData(); \n } \n");
-					sw.WriteLine("com.SetupFilterSourceImage(base.EnvironmentParameters.SourceSurface);");
 					sw.WriteLine("return new FFEffectConfigDialog(data); \n }\n");
 				}
 				// OnSetRenderInfo
@@ -264,12 +263,11 @@ namespace PdnFF
 				if (data.PopDialog) // is the Effect configurable
 				{
 					sw.WriteLine("FFEffectConfigToken token = (FFEffectConfigToken)parameters;");
-					sw.WriteLine("\n com.SetupFilterData(srcArgs.Surface.Width, srcArgs.Surface.Height, token.ctlvalues, data.Source);\n ");
+					sw.WriteLine("\n com.SetupFilterData(srcArgs.Surface, token.ctlvalues, data.Source);\n ");
 				}
 				else
 				{
-					sw.WriteLine("com.SetupFilterSourceImage(base.EnvironmentParameters.SourceSurface);");
-					sw.WriteLine("com.SetupFilterData(srcArgs.Surface.Width, srcArgs.Surface.Height, data.ControlValue, data.Source);");
+					sw.WriteLine("com.SetupFilterData(srcArgs.Surface, data.ControlValue, data.Source);");
 				}
 				sw.WriteLine("base.OnSetRenderInfo(parameters, dstArgs, srcArgs); \n } \n");
 
