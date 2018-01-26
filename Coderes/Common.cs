@@ -46,7 +46,7 @@ namespace FFEffect
 
             environmentDataHandle = ffparse.CreateEnvironmentData(srcSurface, source, control_values);
         }
-        object sync = new object();
+
         public unsafe void Render(Surface src, Surface dst, Rectangle[] rois, int startIndex, int length)
         {
             if (!environmentDataHandle.IsInvalid)
