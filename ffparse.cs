@@ -101,11 +101,6 @@ namespace PdnFF
         }
 
         /// <summary>
-        /// The number channels in the image, always 4 in Paint.NET
-        /// </summary>
-        private const int pixelSize = 4;
-
-        /// <summary>
         /// Creates the filter environment data
         /// </summary>
         /// <param name="srcSurface">The source surface</param>
