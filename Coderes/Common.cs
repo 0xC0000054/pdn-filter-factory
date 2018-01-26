@@ -59,29 +59,13 @@ namespace FFEffect
             }
         }
 
-        #region IDisposable Members
-        private bool Disposed = false;
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-
-        private void Dispose(bool disposing)
-        {
-            if (!Disposed)
+            if (environmentDataHandle != null)
             {
-                if (disposing)
-                {
-                    if (environmentDataHandle != null)
-                    {
-                        environmentDataHandle.Dispose();
-                        environmentDataHandle = null;
-                    }
-                }
+                environmentDataHandle.Dispose();
+                environmentDataHandle = null;
             }
         }
-
-        #endregion
     }
 }
