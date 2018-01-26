@@ -98,7 +98,7 @@ namespace PdnFF
             filterparsed = false;
             if (token.Data != null && !string.IsNullOrEmpty(token.Data.Author))
             {
-                enviromentDataHandle = ffparse.CreateEnviromentData(srcArgs.Surface.Width, srcArgs.Surface.Height, token.Data);
+                enviromentDataHandle = ffparse.CreateEnvironmentData(srcArgs.Surface.Width, srcArgs.Surface.Height, token.Data);
 
                 filterparsed = !enviromentDataHandle.IsInvalid;
             }

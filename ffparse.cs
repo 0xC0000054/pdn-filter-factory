@@ -159,7 +159,7 @@ namespace PdnFF
         /// <param name="height">The height of the image in pixels</param>
         /// <param name="data">The filter data.</param>
         /// <returns>A handle to the created filter environment.</returns>
-        public static SafeEnvironmentDataHandle CreateEnviromentData(int width, int height, FilterData data)
+        public static SafeEnvironmentDataHandle CreateEnvironmentData(int width, int height, FilterData data)
         {
             if (IntPtr.Size == 8)
             {
