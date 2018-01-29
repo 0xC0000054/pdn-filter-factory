@@ -25,7 +25,7 @@ namespace PdnFF
 {
     internal abstract class SafeEnvironmentDataHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
-        protected SafeEnvironmentDataHandle(bool ownsHandle) : base(true)
+        protected SafeEnvironmentDataHandle(bool ownsHandle) : base(ownsHandle)
         {
         }
     }
