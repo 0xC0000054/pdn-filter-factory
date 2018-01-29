@@ -26,6 +26,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security;
 
@@ -61,17 +62,7 @@ namespace PdnFF
 
 			try
 			{
-				string classname = Path.GetFileNameWithoutExtension(fileName);
-
-				for (int i = 0; i < classname.Length; i++)
-				{
-					char c = classname[i];
-					if (!char.IsLetterOrDigit(c))
-					{
-						classname = classname.Remove(i, 1);
-						i--;
-					}
-				}
+				string classname = new string(Path.GetFileNameWithoutExtension(fileName).Where(c => char.IsLetterOrDigit(c)).ToArray());
 
 				if (char.IsDigit(classname[0]))
 				{
