@@ -40,7 +40,6 @@ namespace PdnFF
         {
             get
             {
-                //EffectPluginIcon.png
                 return new Bitmap(typeof(PdnFFEffect), "script_code_red.png");
             }
         }
