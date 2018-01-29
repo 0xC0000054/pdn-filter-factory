@@ -140,18 +140,19 @@ namespace PdnFF
 
 			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
 			{
-				sw.WriteLine("data.Author = \"{0}\";", data.Author);
-				sw.WriteLine("data.Category =  \"{0}\";", data.Category);
-				sw.WriteLine("data.Title =  \"{0}\";", data.Title);
-				sw.WriteLine("data.Copyright = \"{0}\";", data.Copyright);
-				sw.WriteLine("data.MapEnable = new bool[4] {0},{1},{2},{3}",
+				sw.WriteLine("new FilterData {");
+				sw.WriteLine("Author = \"{0}\",", data.Author);
+				sw.WriteLine("Category =  \"{0}\",", data.Category);
+				sw.WriteLine("Title =  \"{0}\",", data.Title);
+				sw.WriteLine("Copyright = \"{0}\",", data.Copyright);
+				sw.WriteLine("MapEnable = new bool[4] {0},{1},{2},{3}",
 					new object[] { "{ " + GetBooleanKeywordString(data.MapEnable[0]),
 										  GetBooleanKeywordString(data.MapEnable[1]),
 										  GetBooleanKeywordString(data.MapEnable[2]),
-										  GetBooleanKeywordString(data.MapEnable[3]) + "};" });
-				sw.WriteLine("data.MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "};");
+										  GetBooleanKeywordString(data.MapEnable[3]) + "}," });
+				sw.WriteLine("MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "},");
 
-				sw.WriteLine("data.ControlEnable = new bool[8] {0},{1},{2},{3},{4},{5},{6},{7} ",
+				sw.WriteLine("ControlEnable = new bool[8] {0},{1},{2},{3},{4},{5},{6},{7} ",
 					new object[] { "{ " + GetBooleanKeywordString(data.ControlEnable[0]),
 										  GetBooleanKeywordString(data.ControlEnable[1]),
 										  GetBooleanKeywordString(data.ControlEnable[2]),
@@ -159,12 +160,12 @@ namespace PdnFF
 										  GetBooleanKeywordString(data.ControlEnable[4]),
 										  GetBooleanKeywordString(data.ControlEnable[5]),
 										  GetBooleanKeywordString(data.ControlEnable[6]),
-										  GetBooleanKeywordString(data.ControlEnable[7]) + "};" });
-				sw.WriteLine("data.ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "};" });
-				sw.WriteLine("data.ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "};" });
-				sw.WriteLine("data.Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ";");
-				sw.WriteLine("data.PopDialog = {0};", GetBooleanKeywordString(data.PopDialog));
-				sw.WriteLine("filterDataset = true;");
+										  GetBooleanKeywordString(data.ControlEnable[7]) + "}," });
+				sw.WriteLine("ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "}," });
+				sw.WriteLine("ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "}," });
+				sw.WriteLine("Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ",");
+				sw.WriteLine("PopDialog = {0},", GetBooleanKeywordString(data.PopDialog));
+				sw.WriteLine("};");
 
 				ret = sw.ToString();
 			}
@@ -235,16 +236,14 @@ namespace PdnFF
 				sw.WriteLine("namespace FFEffect_" + classname + " \n{\n");
 				sw.WriteLine("public class " + classname + " : PaintDotNet.Effects.Effect \n{\n");
 
-				sw.WriteLine("FilterData data = new FilterData();");
-				// SetFilterData
-				sw.WriteLine("private bool filterDataset;");
-				sw.WriteLine("private void SetFilterData() \n { \n");
-				sw.WriteLine(BuildFilterData(data) + "\n }");
+				sw.WriteLine("private readonly FilterData data;");
 				sw.WriteLine("Common com = new Common();");
 				// Constructor
 				string Category = GetSubmenuCategory(data);
 				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
-				sw.WriteLine("{}");
+				sw.WriteLine("{");
+				sw.WriteLine("data = {0}", BuildFilterData(data));
+				sw.WriteLine("}");
 				//OnDispose
 				sw.WriteLine("protected override void OnDispose(bool disposing)\n{");
 				sw.WriteLine("if (disposing) \n {");
@@ -253,12 +252,10 @@ namespace PdnFF
 				if (data.PopDialog)
 				{
 					sw.WriteLine(" public override EffectConfigDialog CreateConfigDialog() \n{\n");
-					sw.WriteLine("if (!filterDataset) \n { \n SetFilterData(); \n } \n");
 					sw.WriteLine("return new FFEffectConfigDialog(data); \n }\n");
 				}
 				// OnSetRenderInfo
 				sw.WriteLine("protected override void OnSetRenderInfo(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs)\n { \n");
-				sw.WriteLine("if (!filterDataset) \n { \n SetFilterData(); \n } \n");
 
 				if (data.PopDialog) // is the Effect configurable
 				{
