@@ -86,15 +86,14 @@ namespace PdnFF
             this.lastFFL = lastffl;
             this.fflOfs = fflofs;
         }
-#pragma warning disable 0628
-        protected PdnFFConfigToken(PdnFFConfigToken copyMe) : base(copyMe)
+
+        private PdnFFConfigToken(PdnFFConfigToken copyMe) : base(copyMe)
         {
             this.Data = copyMe.Data;
             this.lastFileName = copyMe.lastFileName;
             this.lastFFL = copyMe.lastFFL;
             this.fflOfs = copyMe.fflOfs;
         }
-#pragma warning restore 0628
 
         public override object Clone()
         {
