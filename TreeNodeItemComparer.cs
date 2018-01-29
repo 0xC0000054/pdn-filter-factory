@@ -26,8 +26,18 @@ namespace PdnFF
 {
     class TreeNodeItemComparer : IComparer
     {
-        public TreeNodeItemComparer()
+        private static readonly TreeNodeItemComparer instance = new TreeNodeItemComparer();
+
+        private TreeNodeItemComparer()
         {
+        }
+
+        public static TreeNodeItemComparer Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
 
         public int Compare(object x, object y)

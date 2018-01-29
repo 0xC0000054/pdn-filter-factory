@@ -2638,7 +2638,7 @@ namespace PdnFF
 					count += item.Nodes.Count;
 					FFLtreeView1.Nodes.Add(item);
 				}
-				FFLtreeView1.TreeViewNodeSorter = new TreeNodeItemComparer();
+				FFLtreeView1.TreeViewNodeSorter = TreeNodeItemComparer.Instance;
 				FFLtreeView1.EndUpdate();
 
 				lastffl = FileName;
@@ -3415,7 +3415,7 @@ namespace PdnFF
 			parm.itemarr = new TreeNode[nodes.Values.Count];
 			nodes.Values.CopyTo(parm.itemarr, 0);
 			parm.itemcount = count;
-			Array.Sort(parm.itemarr, new TreeNodeItemComparer()); // sort the treenode items
+			Array.Sort(parm.itemarr, TreeNodeItemComparer.Instance); // sort the treenode items
 
 			e.Result = parm;
 
@@ -3640,7 +3640,7 @@ namespace PdnFF
 						filtertreeview.Nodes[index].Expand();
 					}
 				}
-				filtertreeview.TreeViewNodeSorter = new TreeNodeItemComparer();
+				filtertreeview.TreeViewNodeSorter = TreeNodeItemComparer.Instance;
 				filtertreeview.EndUpdate();
 
 			}
