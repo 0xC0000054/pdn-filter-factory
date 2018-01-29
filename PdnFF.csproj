@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TreeNodeItemComparer.cs" />
     <EmbeddedResource Include="Coderes\Common.cs" />
     <EmbeddedResource Include="Coderes\FFEffectConfigDialog.cs">
       <SubType>Form</SubType>
@@ -117,7 +118,6 @@
     <Compile Include="PluginSupportInfo.cs" />
     <Compile Include="PluginThemingUtil.cs" />
     <Compile Include="SafeEnvironmentDataHandle.cs" />
-    <Compile Include="TreeViewSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
