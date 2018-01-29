@@ -101,7 +101,7 @@ namespace PdnFF
             }
             else
             {
-                dest.CopySurface(srcArgs.Surface);
+                dest.CopySurface(srcArgs.Surface, rois, startIndex, length);
             }
 
         }
