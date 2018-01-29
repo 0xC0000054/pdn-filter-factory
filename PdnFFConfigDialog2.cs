@@ -35,7 +35,7 @@ using PdnFF.Properties;
 
 namespace PdnFF
 {
-	internal class PdnFFConfigDialog : PaintDotNet.Effects.EffectConfigDialog
+	internal class PdnFFConfigDialog : EffectConfigDialog
 	{
 		private Button buttonOK;
 		private Label Filenametxt;
