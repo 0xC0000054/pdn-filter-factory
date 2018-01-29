@@ -247,7 +247,7 @@ namespace PdnFF
 				//OnDispose
 				sw.WriteLine("protected override void OnDispose(bool disposing)\n{");
 				sw.WriteLine("if (disposing) \n {");
-				sw.WriteLine("com.Dispose();\n } \n base.OnDispose(disposing); \n }");
+				sw.WriteLine("if (com != null) \n { com.Dispose();\n com = null; } \n } \n base.OnDispose(disposing); \n }");
 				// CreateConfigDialog
 				if (data.PopDialog)
 				{
