@@ -630,6 +630,7 @@ namespace PdnFF
 			this.filtertreeview.HideSelection = false;
 			resources.ApplyResources(this.filtertreeview, "filtertreeview");
 			this.filtertreeview.Name = "filtertreeview";
+			this.filtertreeview.ShowLines = false;
 			this.filtertreeview.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.filtertreeview_AfterSelect);
 			//
 			// filtermgrprogresspanel
