@@ -3547,7 +3547,9 @@ namespace PdnFF
 					}
 
 					filtertreeview.BeginUpdate();
+					filtertreeview.TreeViewNodeSorter = null;
 					filtertreeview.Nodes.AddRange(parm.itemarr);
+					filtertreeview.TreeViewNodeSorter = TreeNodeItemComparer.Instance;
 					filtertreeview.EndUpdate();
 
 					filterlistcnttxt.Text = parm.itemcount.ToString(CultureInfo.CurrentCulture);
