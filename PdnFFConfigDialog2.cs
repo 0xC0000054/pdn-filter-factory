@@ -1781,6 +1781,21 @@ namespace PdnFF
 			fltrCopyTxt.Text = data.Copyright;
 		}
 
+		private void ShowErrorMessage(string message)
+		{
+			if (InvokeRequired)
+			{
+				Invoke(new Action<string>(delegate (string text)
+				{
+					MessageBox.Show(this, text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}), message);
+			}
+			else
+			{
+				MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
 		private void LoadFilter(string FileName, bool uselastvalues)
 		{
 			try
@@ -1829,9 +1844,9 @@ namespace PdnFF
 			catch (Exception ex)
 			{
 #if DEBUG
-				MessageBox.Show(this, ex.Message + Environment.NewLine + ex.StackTrace, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowErrorMessage(ex.Message + Environment.NewLine + ex.StackTrace);
 #else
-				MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowErrorMessage(ex.Message);
 #endif
 
 				default_fltr_Click(null, null);
@@ -1868,7 +1883,7 @@ namespace PdnFF
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowErrorMessage(ex.Message);
 			}
 		}
 
@@ -2652,7 +2667,7 @@ namespace PdnFF
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowErrorMessage(ex.Message);
 			}
 
 		}
@@ -3476,8 +3491,7 @@ namespace PdnFF
 		{
 			if (e.Error != null)
 			{
-				string message = e.Error.Message;
-				MessageBox.Show(message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowErrorMessage(e.Error.Message);
 			}
 			else
 			{
@@ -3668,7 +3682,7 @@ namespace PdnFF
 
 						if (!string.IsNullOrEmpty(error))
 						{
-							MessageBox.Show(this, error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+							ShowErrorMessage(error);
 						}
 						else
 						{
@@ -3679,9 +3693,9 @@ namespace PdnFF
 				catch (Exception ex)
 				{
 #if DEBUG
-					MessageBox.Show(this, ex.Message + Environment.NewLine + ex.StackTrace, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					ShowErrorMessage(ex.Message + Environment.NewLine + ex.StackTrace);
 #else
-					MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					ShowErrorMessage(ex.Message);
 #endif
 
 				}
