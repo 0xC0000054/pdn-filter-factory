@@ -62,15 +62,7 @@ namespace PdnFF
 
 			try
 			{
-				string classname = new string(Path.GetFileNameWithoutExtension(fileName).Where(c => char.IsLetterOrDigit(c)).ToArray());
-
-				if (char.IsDigit(classname[0]))
-				{
-					classname = string.Concat("FF_", classname);
-				}
-
-				// Setup the source code files after setting up the effect classname
-				string[] files = SetupSourceCodeFiles(fileName, classname);
+				string[] files = SetupSourceCodeFiles(fileName);
 
 				SetupCompilerParameters(fileName);
 
@@ -202,11 +194,17 @@ namespace PdnFF
 		/// <summary>
 		/// Builds the effect class.
 		/// </summary>
-		/// <param name="classname">The class name of the Effect.</param>
 		/// <param name="FileName">The FileName of the output file.</param>
 		/// <returns>The generated Effect class Source code</returns>
-		private string BuildEffectClass(string classname, string FileName)
+		private string BuildEffectClass(string FileName)
 		{
+			string classname = new string(Path.GetFileNameWithoutExtension(FileName).Where(c => char.IsLetterOrDigit(c)).ToArray());
+
+			if (char.IsDigit(classname[0]))
+			{
+				classname = string.Concat("FF_", classname);
+			}
+
 			string ret = string.Empty;
 			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
 			{
@@ -299,9 +297,8 @@ namespace PdnFF
 		/// Sets up the temp Source code files.
 		/// </summary>
 		/// <param name="effectFileName">The effect FileName.</param>
-		/// <param name="effectClassName">The effect ClasssName</param>
 		/// <returns>The list of temp files</returns>
-		private string[] SetupSourceCodeFiles(string effectFileName, string effectClassName)
+		private string[] SetupSourceCodeFiles(string effectFileName)
 		{
 			List<string> files = new List<string>(8);
 
@@ -348,7 +345,7 @@ namespace PdnFF
 
 			}
 			string outpath = Path.Combine(dir, "ffeffect.cs");
-			string code = BuildEffectClass(effectClassName, effectFileName);
+			string code = BuildEffectClass(effectFileName);
 			File.WriteAllText(outpath, code);
 			files.Add(outpath);
 
