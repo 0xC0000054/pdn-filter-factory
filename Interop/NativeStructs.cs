@@ -23,11 +23,13 @@ namespace PdnFF.Interop
 {
     internal static class NativeStructs
     {
+#pragma warning disable 649
         internal struct FILETIME
         {
             public uint dwLowDateTime;
             public uint dwHighDateTime;
         }
+#pragma warning restore 649
 
         internal struct POINT
         {
