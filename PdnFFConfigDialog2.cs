@@ -202,10 +202,14 @@ namespace PdnFF
 		private Label fltrAuthorTxt;
 		private Button buttonCancel;
 
+		private List<string> searchDirectories;
+		private ListViewItem[] searchDirListViewCache;
+		private int cacheStartIndex;
+
 		public PdnFFConfigDialog()
 		{
 			InitializeComponent();
-
+			searchDirectories = new List<string>();
 		}
 		private static FilterData NewFilterData()
 		{
@@ -569,6 +573,9 @@ namespace PdnFF
 			this.DirlistView1.Name = "DirlistView1";
 			this.DirlistView1.UseCompatibleStateImageBehavior = false;
 			this.DirlistView1.View = System.Windows.Forms.View.Details;
+			this.DirlistView1.VirtualMode = true;
+			this.DirlistView1.CacheVirtualItems += new CacheVirtualItemsEventHandler(DirlistView1_CacheVirtualItems);
+			this.DirlistView1.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(DirlistView1_RetrieveVirtualItem);
 			//
 			// pathColHeader
 			//
@@ -2510,9 +2517,10 @@ namespace PdnFF
 				{
 					if (Directory.Exists(dir))
 					{
-						DirlistView1.Items.Add(dir);
+						searchDirectories.Add(dir);
 					}
 				}
+				DirlistView1.VirtualListSize = searchDirectories.Count;
 				UpdateFilterList();
 			}
 
@@ -3311,11 +3319,11 @@ namespace PdnFF
 			if (settings != null)
 			{
 				string dirs = string.Empty;
-				for (int i = 0; i < DirlistView1.Items.Count; i++)
+				for (int i = 0; i < searchDirectories.Count; i++)
 				{
-					string val = DirlistView1.Items[i].Text;
+					string val = searchDirectories[i];
 
-					if (i != DirlistView1.Items.Count - 1)
+					if (i != searchDirectories.Count - 1)
 					{
 						val += ",";
 					}
@@ -3352,7 +3360,7 @@ namespace PdnFF
 		/// </summary>
 		private void UpdateFilterList()
 		{
-			if (DirlistView1.Items.Count > 0)
+			if (searchDirectories.Count > 0)
 			{
 	#if DEBUG
 				System.Diagnostics.Debug.WriteLine(string.Format("UpdateFilterListbw.IsBusy = {0}", UpdateFilterListbw.IsBusy.ToString()));
@@ -3361,16 +3369,16 @@ namespace PdnFF
 				{
 					UpdateFilterListParm uflp = new UpdateFilterListParm();
 					uflp.options = subdirSearchcb.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-					uflp.dirlist = new string[DirlistView1.Items.Count];
-					for (int i = 0; i < DirlistView1.Items.Count; i++)
+					uflp.dirlist = new string[searchDirectories.Count];
+					for (int i = 0; i < searchDirectories.Count; i++)
 					{
-						uflp.dirlist[i] = DirlistView1.Items[i].Text;
+						uflp.dirlist[i] = searchDirectories[i];
 					}
 					// Debug.WriteLine(string.Format("UpdateFilterList isbackground = {0}", Thread.CurrentThread.IsBackground.ToString()));
 					fltrmgrprogress.Maximum = uflp.dirlist.Length;
 					fltrmgrprogress.Step = 1;
 					filtermgrprogresspanel.Visible = true;
-					folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", "0", DirlistView1.Items.Count.ToString(CultureInfo.InvariantCulture));
+					folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", "0", searchDirectories.Count.ToString(CultureInfo.InvariantCulture));
 					filtertreeview.Nodes.Clear();
 					filterlistcnttxt.Text = string.Empty;
 
@@ -3390,7 +3398,9 @@ namespace PdnFF
 					{
 						default_fltr_Click(null, null); // if a filter is loaded reset it to the default
 					}
-					DirlistView1.Items.Add(DirBrowserDialog1.SelectedPath);
+					searchDirectories.Add(DirBrowserDialog1.SelectedPath);
+					DirlistView1.VirtualListSize = searchDirectories.Count;
+					InvalidateDirectoryListViewCache(searchDirectories.Count);
 					UpdateSearchList();
 					UpdateFilterList();
 				}
@@ -3399,13 +3409,16 @@ namespace PdnFF
 
 		private void remdirbtn_Click(object sender, EventArgs e)
 		{
-			if (DirlistView1.SelectedItems.Count > 0)
+			if (DirlistView1.SelectedIndices.Count > 0)
 			{
 				if (!string.IsNullOrEmpty(Filenametxt.Text))
 				{
 					default_fltr_Click(null, null);
 				}
-				DirlistView1.Items.Remove(DirlistView1.SelectedItems[0]);
+				int index = DirlistView1.SelectedIndices[0];
+				searchDirectories.RemoveAt(index);
+				DirlistView1.VirtualListSize = searchDirectories.Count;
+				InvalidateDirectoryListViewCache(index);
 				UpdateSearchList();
 				UpdateFilterList();
 			}
@@ -3571,7 +3584,7 @@ namespace PdnFF
 		private bool FormClosePending;
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
-			if (UpdateFilterListbw.IsBusy && DirlistView1.Items.Count > 0) // don't hold the form open if there are no search Dirs
+			if (UpdateFilterListbw.IsBusy && searchDirectories.Count > 0) // don't hold the form open if there are no search Dirs
 			{
 				UpdateFilterListbw.CancelAsync();
 				e.Cancel = true;
@@ -3784,6 +3797,64 @@ namespace PdnFF
 
 		}
 
+		private void DirlistView1_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
+		{
+			// Check if the cache needs to be refreshed.
+			if (searchDirListViewCache != null && e.StartIndex >= cacheStartIndex && e.EndIndex <= cacheStartIndex + searchDirListViewCache.Length)
+			{
+				// If the newly requested cache is a subset of the old cache,
+				// no need to rebuild everything, so do nothing.
+				return;
+			}
 
+			cacheStartIndex = e.StartIndex;
+			// The indexes are inclusive.
+			int length = e.EndIndex - e.StartIndex + 1;
+			searchDirListViewCache = new ListViewItem[length];
+
+			// Fill the cache with the appropriate ListViewItems.
+			for (int i = 0; i < length; i++)
+			{
+				searchDirListViewCache[i] = new ListViewItem(this.searchDirectories[i + cacheStartIndex]);
+			}
+		}
+
+		private void DirlistView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+		{
+
+			if (searchDirListViewCache != null && e.ItemIndex >= cacheStartIndex && e.ItemIndex < cacheStartIndex + searchDirListViewCache.Length)
+			{
+				e.Item = searchDirListViewCache[e.ItemIndex - cacheStartIndex];
+			}
+			else
+			{
+				e.Item = new ListViewItem(this.searchDirectories[e.ItemIndex]);
+			}
+		}
+
+		private void InvalidateDirectoryListViewCache(int changedIndex)
+		{
+			if (searchDirListViewCache != null)
+			{
+				int endIndex = cacheStartIndex + searchDirListViewCache.Length;
+				if (changedIndex >= cacheStartIndex && changedIndex <= endIndex)
+				{
+					this.searchDirListViewCache = null;
+
+					if (DirlistView1.VirtualListSize > 0)
+					{
+						if (endIndex > DirlistView1.VirtualListSize)
+						{
+							endIndex = DirlistView1.VirtualListSize;
+						}
+						// The indexes in the CacheVirtualItems event are inclusive,
+						// so we need to subtract 1 from the end index.
+						DirlistView1_CacheVirtualItems(this, new CacheVirtualItemsEventArgs(cacheStartIndex, endIndex - 1));
+					}
+				}
+
+				DirlistView1.Invalidate();
+			}
+		}
 	}
 }
