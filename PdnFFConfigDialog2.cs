@@ -3417,7 +3417,6 @@ namespace PdnFF
 			parm.itemarr = new TreeNode[nodes.Values.Count];
 			nodes.Values.CopyTo(parm.itemarr, 0);
 			parm.itemcount = count;
-			Array.Sort(parm.itemarr, TreeNodeItemComparer.Instance); // sort the treenode items
 
 			e.Result = parm;
 
