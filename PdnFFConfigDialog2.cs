@@ -715,6 +715,7 @@ namespace PdnFF
 			this.FFLtreeView1.HideSelection = false;
 			resources.ApplyResources(this.FFLtreeView1, "FFLtreeView1");
 			this.FFLtreeView1.Name = "FFLtreeView1";
+			this.FFLtreeView1.ShowLines = false;
 			this.FFLtreeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.FFLtreeView1_AfterSelect);
 			//
 			// FFLfltrnumtxt
