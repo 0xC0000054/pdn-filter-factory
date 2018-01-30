@@ -205,6 +205,7 @@ namespace PdnFF
 		private List<string> searchDirectories;
 		private ListViewItem[] searchDirListViewCache;
 		private int cacheStartIndex;
+		private PdnFFSettings settings;
 
 		public PdnFFConfigDialog()
 		{
@@ -2471,34 +2472,7 @@ namespace PdnFF
 					// Ignore it
 				}
 
-				string path = Path.Combine(dir, @"PdnFF.xml");
-				if (File.Exists(path))
-				{
-					settings = new Settings(path);
-				}
-				else
-				{
-					using (Stream res = Assembly.GetAssembly(typeof(PdnFFEffect)).GetManifestResourceStream(@"PdnFF.PdnFF.xml"))
-					{
-						byte[] bytes = new byte[res.Length];
-						int numBytesToRead = (int)res.Length;
-						int numBytesRead = 0;
-						while (numBytesToRead > 0)
-						{
-							// Read may return anything from 0 to numBytesToRead.
-							int n = res.Read(bytes, numBytesRead, numBytesToRead);
-							// The end of the file is reached.
-							if (n == 0)
-								break;
-							numBytesRead += n;
-							numBytesToRead -= n;
-						}
-						File.WriteAllBytes(path, bytes);
-					}
-
-					settings = new Settings(path);
-
-				}
+				settings = new PdnFFSettings(Path.Combine(dir, @"PdnFF.xml"));
 			}
 		}
 
@@ -2508,18 +2482,11 @@ namespace PdnFF
 
 			SetTokenData();
 			LoadSettings();
-			subdirSearchcb.Checked = bool.Parse(settings.GetSetting("SearchSubDir", bool.TrueString).Trim());
-			string dirs = settings.GetSetting("SearchDirs", string.Empty).Trim();
-			if (!string.IsNullOrEmpty(dirs))
+			subdirSearchcb.Checked = settings.SearchSubdirectories;
+			HashSet<string> dirs = settings.SearchDirectories;
+			if (dirs != null)
 			{
-				string[] dirlist = dirs.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-				foreach (string dir in dirlist)
-				{
-					if (Directory.Exists(dir))
-					{
-						searchDirectories.Add(dir);
-					}
-				}
+				searchDirectories.AddRange(dirs);
 				DirlistView1.VirtualListSize = searchDirectories.Count;
 				UpdateFilterList();
 			}
@@ -3313,23 +3280,11 @@ namespace PdnFF
 
 		}
 
-		private Settings settings;
 		private void UpdateSearchList()
 		{
 			if (settings != null)
 			{
-				string dirs = string.Empty;
-				for (int i = 0; i < searchDirectories.Count; i++)
-				{
-					string val = searchDirectories[i];
-
-					if (i != searchDirectories.Count - 1)
-					{
-						val += ",";
-					}
-					dirs += val;
-				}
-				settings.PutSetting("SearchDirs", dirs);
+				settings.SearchDirectories = new HashSet<string>(searchDirectories, StringComparer.OrdinalIgnoreCase);
 			}
 		}
 		/// <summary>
@@ -3440,7 +3395,7 @@ namespace PdnFF
 		{
 			if (settings != null)
 			{
-				settings.PutSetting("SearchSubDirs", subdirSearchcb.Checked.ToString());
+				settings.SearchSubdirectories = subdirSearchcb.Checked;
 				UpdateFilterList();
 			}
 		}
@@ -3589,6 +3544,14 @@ namespace PdnFF
 				UpdateFilterListbw.CancelAsync();
 				e.Cancel = true;
 				FormClosePending = true;
+			}
+
+			if (!e.Cancel)
+			{
+				if (settings != null)
+				{
+					settings.Flush();
+				}
 			}
 
 			base.OnFormClosing(e);
