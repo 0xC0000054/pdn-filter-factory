@@ -3348,76 +3348,6 @@ namespace PdnFF
 		}
 
 		/// <summary>
-		/// Gets the filter items list using the UpdateFilterListbw Background Worker.
-		/// </summary>
-		/// <param name="parm">The output UpdateFilterListParm data.</param>
-		/// <param name="worker">The  UpdateFilterListbw Background Worker.</param>
-		/// <param name="e">The <see cref="System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
-		private static void GetFilterItemsList(UpdateFilterListParm parm, BackgroundWorker worker, DoWorkEventArgs e)
-		{
-			Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
-
-			int count = 0;
-			//Debug.WriteLine("GetFilterItemsList");
-			for (int i = 0; i < parm.dirlist.Length; i++)
-			{
-				string path = parm.dirlist[i];
-				if (Directory.Exists(path))
-				{
-
-					worker.ReportProgress(i, Path.GetFileName(path));
-
-					using (FileEnumerator enumerator = new FileEnumerator(path, ".8bf", parm.options, false))
-					{
-						while (enumerator.MoveNext())
-						{
-							if (worker.CancellationPending)
-							{
-								e.Cancel = true;
-								return;
-							}
-							FilterData fd;
-							if (FFLoadSave.LoadFrom8bf(enumerator.Current, out fd))
-							{
-								string[] subtext = new string[2] { fd.Author, fd.Copyright };
-
-								if (nodes.ContainsKey(fd.Category))
-								{
-									TreeNode node = nodes[fd.Category];
-
-									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
-									node.Nodes.Add(subnode);
-								}
-								else
-								{
-									TreeNode node = new TreeNode(fd.Category);
-									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
-									node.Nodes.Add(subnode);
-
-									nodes.Add(fd.Category, node);
-								}
-
-								count++;
-								//Debug.WriteLine(string.Format("Item name = {0}, Count = {1}", fi.Name, items.Count.ToString()));
-							}
-						}
-					}
-				}
-
-			}
-
-#if DEBUG
-			System.Diagnostics.Debug.WriteLine(string.Format("node count = {0}", nodes.Values.Count.ToString()));
-#endif
-			parm.itemarr = new TreeNode[nodes.Values.Count];
-			nodes.Values.CopyTo(parm.itemarr, 0);
-			parm.itemcount = count;
-
-			e.Result = parm;
-
-		}
-
-		/// <summary>
 		/// Update the Filter Manager filterlist
 		/// </summary>
 		private void UpdateFilterList()
@@ -3512,9 +3442,66 @@ namespace PdnFF
 
 		private void UpdateFilterListbw_DoWork(object sender, DoWorkEventArgs e)
 		{
+			BackgroundWorker worker = (BackgroundWorker)sender;
 			UpdateFilterListParm uflp = (UpdateFilterListParm)e.Argument;
-			//Debug.WriteLine(uflp.resetselection.ToString());
-			GetFilterItemsList(uflp, UpdateFilterListbw, e);
+
+			Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
+
+			int count = 0;
+			for (int i = 0; i < uflp.dirlist.Length; i++)
+			{
+				string path = uflp.dirlist[i];
+				if (Directory.Exists(path))
+				{
+					worker.ReportProgress(i, Path.GetFileName(path));
+
+					using (FileEnumerator enumerator = new FileEnumerator(path, ".8bf", uflp.options, false))
+					{
+						while (enumerator.MoveNext())
+						{
+							if (worker.CancellationPending)
+							{
+								e.Cancel = true;
+								return;
+							}
+							FilterData fd;
+							if (FFLoadSave.LoadFrom8bf(enumerator.Current, out fd))
+							{
+								string[] subtext = new string[2] { fd.Author, fd.Copyright };
+
+								if (nodes.ContainsKey(fd.Category))
+								{
+									TreeNode node = nodes[fd.Category];
+
+									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
+									node.Nodes.Add(subnode);
+								}
+								else
+								{
+									TreeNode node = new TreeNode(fd.Category);
+									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
+									node.Nodes.Add(subnode);
+
+									nodes.Add(fd.Category, node);
+								}
+
+								count++;
+								//Debug.WriteLine(string.Format("Item name = {0}, Count = {1}", fi.Name, items.Count.ToString()));
+							}
+						}
+					}
+				}
+
+			}
+
+#if DEBUG
+			System.Diagnostics.Debug.WriteLine(string.Format("node count = {0}", nodes.Values.Count.ToString()));
+#endif
+			uflp.itemarr = new TreeNode[nodes.Values.Count];
+			nodes.Values.CopyTo(uflp.itemarr, 0);
+			uflp.itemcount = count;
+
+			e.Result = uflp;
 		}
 		private Dictionary<TreeNode, string> FiltertreeviewItems = null; // used for the filter search list
 		private void UpdateFilterListbw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
