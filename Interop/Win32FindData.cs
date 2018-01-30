@@ -19,40 +19,25 @@
 *
 */
 
-using System;
+using System.Runtime.InteropServices;
 
 namespace PdnFF.Interop
 {
-    internal static class NativeEnums
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    [BestFitMapping(false)]
+    internal sealed class WIN32_FIND_DATAW
     {
-        internal enum FindExInfoLevel : int
-        {
-            Standard = 0,
-            Basic
-        }
-
-        internal enum FindExSearchOp : int
-        {
-            NameMatch = 0,
-            LimitToDirectories,
-            LimitToDevices
-        }
-
-        [Flags]
-        internal enum FindExAdditionalFlags : uint
-        {
-            None = 0,
-            CaseSensitive = 1,
-            LargeFetch = 2
-        }
-
-        [Flags]
-        internal enum TCHITTESTFLAGS
-        {
-            TCHT_NOWHERE = 1,
-            TCHT_ONITEMICON = 2,
-            TCHT_ONITEMLABEL = 4,
-            TCHT_ONITEM = TCHT_ONITEMICON | TCHT_ONITEMLABEL
-        }
+        public uint dwFileAttributes;
+        public NativeStructs.FILETIME ftCreationTime;
+        public NativeStructs.FILETIME ftLastAccessTime;
+        public NativeStructs.FILETIME ftLastWriteTime;
+        public uint nFileSizeHigh;
+        public uint nFileSizeLow;
+        public uint dwReserved0;
+        public uint dwReserved1;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = NativeConstants.MAX_PATH)]
+        public string cFileName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
+        public string cAlternateFileName;
     }
 }

@@ -23,6 +23,12 @@ namespace PdnFF.Interop
 {
     internal static class NativeStructs
     {
+        internal struct FILETIME
+        {
+            public uint dwLowDateTime;
+            public uint dwHighDateTime;
+        }
+
         internal struct POINT
         {
             public int x;

@@ -23,6 +23,25 @@ namespace PdnFF.Interop
 {
     internal static class NativeConstants
     {
+        internal const string CLSID_ShellLink = "00021401-0000-0000-C000-000000000046";
+
+        internal const string IID_IPersist = "0000010c-0000-0000-c000-000000000046";
+        internal const string IID_IPersistFile = "0000010b-0000-0000-C000-000000000046";
+        internal const string IID_IShellLinkW = "000214F9-0000-0000-C000-000000000046";
+
+        internal const int MAX_PATH = 260;
+
+        internal const int S_OK = 0;
+
+        internal const uint FILE_ATTRIBUTE_DIRECTORY = 16U;
+        internal const uint FILE_ATTRIBUTE_REPARSE_POINT = 1024U;
+
+        internal const uint INVALID_FILE_ATTRIBUTES = 0xFFFFFFFF;
+
+        internal const uint SEM_FAILCRITICALERRORS = 1U;
+
+        internal const int STGM_READ = 0;
+
         internal const int TCM_FIRST = 0x1300;
         internal const int TCM_HITTEST = TCM_FIRST + 13;
     }

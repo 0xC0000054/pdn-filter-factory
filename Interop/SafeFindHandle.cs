@@ -19,40 +19,17 @@
 *
 */
 
-using System;
+using Microsoft.Win32.SafeHandles;
 
 namespace PdnFF.Interop
 {
-    internal static class NativeEnums
+    internal sealed class SafeFindHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
-        internal enum FindExInfoLevel : int
-        {
-            Standard = 0,
-            Basic
-        }
+        private SafeFindHandle() : base(true) { }
 
-        internal enum FindExSearchOp : int
+        protected override bool ReleaseHandle()
         {
-            NameMatch = 0,
-            LimitToDirectories,
-            LimitToDevices
-        }
-
-        [Flags]
-        internal enum FindExAdditionalFlags : uint
-        {
-            None = 0,
-            CaseSensitive = 1,
-            LargeFetch = 2
-        }
-
-        [Flags]
-        internal enum TCHITTESTFLAGS
-        {
-            TCHT_NOWHERE = 1,
-            TCHT_ONITEMICON = 2,
-            TCHT_ONITEMLABEL = 4,
-            TCHT_ONITEM = TCHT_ONITEMICON | TCHT_ONITEMLABEL
+            return UnsafeNativeMethods.FindClose(handle);
         }
     }
 }

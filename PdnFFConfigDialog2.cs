@@ -3365,23 +3365,19 @@ namespace PdnFF
 				if (Directory.Exists(path))
 				{
 
-					DirectoryInfo dir = new DirectoryInfo(path);
-					FileInfo[] files = dir.GetFiles("*.8bf", parm.options);
-				   // Debug.WriteLine(string.Format("File Count = {0}", files.Length.ToString()));
+					worker.ReportProgress(i, Path.GetFileName(path));
 
-					worker.ReportProgress(i, dir.Name);
-
-					foreach (FileInfo fi in files)
+					using (FileEnumerator enumerator = new FileEnumerator(path, ".8bf", parm.options, false))
 					{
-						if (worker.CancellationPending)
+						while (enumerator.MoveNext())
 						{
-							e.Cancel = true;
-							return;
-						}
-						if (fi.Exists)
-						{
+							if (worker.CancellationPending)
+							{
+								e.Cancel = true;
+								return;
+							}
 							FilterData fd;
-							if (FFLoadSave.LoadFrom8bf(fi.FullName, out fd))
+							if (FFLoadSave.LoadFrom8bf(enumerator.Current, out fd))
 							{
 								string[] subtext = new string[2] { fd.Author, fd.Copyright };
 
@@ -3389,13 +3385,13 @@ namespace PdnFF
 								{
 									TreeNode node = nodes[fd.Category];
 
-									TreeNode subnode = new TreeNode(fd.Title) { Name = fi.FullName, Tag = subtext }; // Title
+									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
 									node.Nodes.Add(subnode);
 								}
 								else
 								{
 									TreeNode node = new TreeNode(fd.Category);
-									TreeNode subnode = new TreeNode(fd.Title) { Name = fi.FullName, Tag = subtext }; // Title
+									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
 									node.Nodes.Add(subnode);
 
 									nodes.Add(fd.Category, node);
@@ -3404,7 +3400,6 @@ namespace PdnFF
 								count++;
 								//Debug.WriteLine(string.Format("Item name = {0}, Count = {1}", fi.Name, items.Count.ToString()));
 							}
-
 						}
 					}
 				}

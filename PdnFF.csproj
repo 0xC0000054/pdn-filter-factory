@@ -89,6 +89,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileEnumerator.cs" />
+    <Compile Include="Interop\NativeInterfaces.cs" />
+    <Compile Include="Interop\SafeFindHandle.cs" />
+    <Compile Include="OS.cs" />
+    <Compile Include="ShellLink.cs" />
+    <Compile Include="Interop\UnsafeNativeMethods.cs" />
+    <Compile Include="Interop\Win32FindData.cs" />
     <Compile Include="TreeNodeItemComparer.cs" />
     <EmbeddedResource Include="Coderes\Common.cs" />
     <EmbeddedResource Include="Coderes\FFEffectConfigDialog.cs">
