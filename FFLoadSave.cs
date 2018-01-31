@@ -177,9 +177,9 @@ namespace PdnFF
 			{
 				using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
 				{
-					byte[] buf = new byte[32];
+					byte[] buf = new byte[8];
 
-					fs.Read(buf, 0, 16);
+					fs.Read(buf, 0, 8);
 					if (Encoding.ASCII.GetString(buf, 0, 4).Equals("%RGB"))
 					{
 						LoadAfs(fs, out data);
