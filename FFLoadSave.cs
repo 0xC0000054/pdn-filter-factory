@@ -27,6 +27,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32.SafeHandles;
+using PaintDotNet.IO;
 
 namespace PdnFF
 {
@@ -179,7 +180,7 @@ namespace PdnFF
 				{
 					byte[] buf = new byte[8];
 
-					fs.Read(buf, 0, 8);
+					fs.ProperRead(buf, 0, 8);
 					if (Encoding.ASCII.GetString(buf, 0, 4).Equals("%RGB"))
 					{
 						LoadAfs(fs, out data);
