@@ -53,7 +53,7 @@ namespace PdnFF
 
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
 			[return: MarshalAs(UnmanagedType.Bool)]
-			public static extern bool EnumResourceNames([In()]IntPtr hModule, [In]string lpszType, EnumResNameDelegate lpEnumFunc, [MarshalAs(UnmanagedType.SysInt)]IntPtr lParam);
+			public static extern bool EnumResourceNames([In()]IntPtr hModule, [In]string lpszType, EnumResNameDelegate lpEnumFunc, IntPtr lParam);
 
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
 			public static extern IntPtr FindResource([In()]IntPtr hModule, [In()]IntPtr lpName, [In()]IntPtr lpType);
