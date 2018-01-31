@@ -132,7 +132,11 @@ namespace PdnFF
 										  GetBooleanKeywordString(data.MapEnable[1]),
 										  GetBooleanKeywordString(data.MapEnable[2]),
 										  GetBooleanKeywordString(data.MapEnable[3]) + "}," });
-				sw.WriteLine("MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.MapLabel[0], data.MapLabel[1], data.MapLabel[2], data.MapLabel[3] + "\"" + "},");
+				sw.WriteLine("MapLabel = new string[4] {0}\",\"{1}\",\"{2}\",\"{3}",
+					"{ \"" + data.MapLabel[0],
+					data.MapLabel[1],
+					data.MapLabel[2],
+					data.MapLabel[3] + "\"" + "},");
 
 				sw.WriteLine("ControlEnable = new bool[8] {0},{1},{2},{3},{4},{5},{6},{7} ",
 					new object[] { "{ " + GetBooleanKeywordString(data.ControlEnable[0]),
@@ -143,9 +147,29 @@ namespace PdnFF
 										  GetBooleanKeywordString(data.ControlEnable[5]),
 										  GetBooleanKeywordString(data.ControlEnable[6]),
 										  GetBooleanKeywordString(data.ControlEnable[7]) + "}," });
-				sw.WriteLine("ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}", new object[] { "{ \"" + data.ControlLabel[0], data.ControlLabel[1], data.ControlLabel[2], data.ControlLabel[3], data.ControlLabel[4], data.ControlLabel[5], data.ControlLabel[6], data.ControlLabel[7] + "\"" + "}," });
-				sw.WriteLine("ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ", new object[] { "{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture), data.ControlValue[1].ToString(CultureInfo.InvariantCulture), data.ControlValue[2].ToString(CultureInfo.InvariantCulture), data.ControlValue[3].ToString(CultureInfo.InvariantCulture), data.ControlValue[4].ToString(CultureInfo.InvariantCulture), data.ControlValue[5].ToString(CultureInfo.InvariantCulture), data.ControlValue[6].ToString(CultureInfo.InvariantCulture), data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "}," });
-				sw.WriteLine("Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}", "{ \"" + data.Source[0], data.Source[1], data.Source[2], data.Source[3] + "\"" + "}" + ",");
+				sw.WriteLine("ControlLabel = new string[8] {0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}",
+					"{ \"" + data.ControlLabel[0],
+					data.ControlLabel[1],
+					data.ControlLabel[2],
+					data.ControlLabel[3],
+					data.ControlLabel[4],
+					data.ControlLabel[5],
+					data.ControlLabel[6],
+					data.ControlLabel[7] + "\"" + "},");
+				sw.WriteLine("ControlValue = new int[8] {0},{1},{2},{3},{4},{5},{6},{7} ",
+					"{ " + data.ControlValue[0].ToString(CultureInfo.InvariantCulture),
+					data.ControlValue[1].ToString(CultureInfo.InvariantCulture),
+					data.ControlValue[2].ToString(CultureInfo.InvariantCulture),
+					data.ControlValue[3].ToString(CultureInfo.InvariantCulture),
+					data.ControlValue[4].ToString(CultureInfo.InvariantCulture),
+					data.ControlValue[5].ToString(CultureInfo.InvariantCulture),
+					data.ControlValue[6].ToString(CultureInfo.InvariantCulture),
+					data.ControlValue[7].ToString(CultureInfo.InvariantCulture) + "},");
+				sw.WriteLine("Source = new string[4]  {0}\",\"{1}\",\"{2}\",\"{3}",
+					"{ \"" + data.Source[0],
+					data.Source[1],
+					data.Source[2],
+					data.Source[3] + "\"" + "}" + ",");
 				sw.WriteLine("PopDialog = {0},", GetBooleanKeywordString(data.PopDialog));
 				sw.WriteLine("};");
 
@@ -226,7 +250,8 @@ namespace PdnFF
 			writer.WriteLine("Common com = new Common();");
 			// Constructor
 			string Category = GetSubmenuCategory(data);
-			writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
+			writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})",
+				classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
 			writer.WriteLine("{");
 			writer.WriteLine("data = {0}", BuildFilterData(data));
 			writer.WriteLine("}");
