@@ -1034,15 +1034,18 @@ namespace PdnFF
 
 			for (int i = 0; i < 4; i++)
 			{
-				if (Source[i].Contains("map"))
+				string src = Source[i];
+
+				if (src.Contains("map"))
 				{
-					string tmpsrc = Source[i];
+					int startOffset = 0;
 					int pos = -1;
-					while ((pos = tmpsrc.IndexOf("map", StringComparison.Ordinal)) > 0)
+					while ((pos = src.IndexOf("map", startOffset, StringComparison.Ordinal)) > 0)
 					{
-						string str = tmpsrc.Substring(pos, 5);
-						tmpsrc = tmpsrc.Substring(pos + 3);
-						int map = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
+						startOffset = pos + 3;
+						int mapNumberOffset = pos + 4;
+
+						int map = int.Parse(src[mapNumberOffset].ToString(), CultureInfo.InvariantCulture);
 						if (map >= 0 && map <= 3)
 						{
 							mapsUsed[map] = true;
@@ -1058,30 +1061,34 @@ namespace PdnFF
 			bool[] controlsUsed = new bool[8] { false, false, false, false, false, false, false, false };
 			for (int i = 0; i < 4; i++)
 			{
-				if (Source[i].Contains("ctl"))
+				string src = Source[i];
+
+				if (src.Contains("ctl"))
 				{
-					string tmpsrc = Source[i];
+					int startOffset = 0;
 					int pos = -1;
-					while ((pos = tmpsrc.IndexOf("ctl", StringComparison.Ordinal)) > 0)
+					while ((pos = src.IndexOf("ctl", startOffset, StringComparison.Ordinal)) > 0)
 					{
-						string str = tmpsrc.Substring(pos, 5);
-						tmpsrc = tmpsrc.Substring(pos + 3);
-						int ctl = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
+						startOffset = pos + 3;
+						int ctlNumberOffset = pos + 4;
+
+						int ctl = int.Parse(src[ctlNumberOffset].ToString(), CultureInfo.InvariantCulture);
 						if (ctl >= 0 && ctl <= 7)
 						{
 							controlsUsed[ctl] = true;
 						}
 					}
 				}
-				if (Source[i].Contains("val"))
+				if (src.Contains("val"))
 				{
-					string tmpsrc = Source[i];
+					int startOffset = 0;
 					int pos = -1;
-					while ((pos = tmpsrc.IndexOf("val", StringComparison.Ordinal)) > 0)
+					while ((pos = src.IndexOf("val", startOffset, StringComparison.Ordinal)) > 0)
 					{
-						string str = tmpsrc.Substring(pos, 5);
-						tmpsrc = tmpsrc.Substring(pos + 3);
-						int ctl = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
+						startOffset = pos + 3;
+						int ctlNumberOffset = pos + 4;
+
+						int ctl = int.Parse(src[ctlNumberOffset].ToString(), CultureInfo.InvariantCulture);
 						if (ctl >= 0 && ctl <= 7)
 						{
 							controlsUsed[ctl] = true;
