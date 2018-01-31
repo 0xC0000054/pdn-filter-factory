@@ -194,9 +194,10 @@ namespace PdnFF
 		/// <summary>
 		/// Builds the effect class.
 		/// </summary>
+		/// <param name="writer">The output StreamWriter.</param>
 		/// <param name="FileName">The FileName of the output file.</param>
 		/// <returns>The generated Effect class Source code</returns>
-		private string BuildEffectClass(string FileName)
+		private void BuildEffectClass(StreamWriter writer, string FileName)
 		{
 			string classname = new string(Path.GetFileNameWithoutExtension(FileName).Where(c => char.IsLetterOrDigit(c)).ToArray());
 
@@ -205,67 +206,59 @@ namespace PdnFF
 				classname = string.Concat("FF_", classname);
 			}
 
-			string ret = string.Empty;
-			using (StringWriter sw = new StringWriter(CultureInfo.InvariantCulture))
+			// usings
+			writer.WriteLine("using System;");
+			writer.WriteLine("using System.Drawing;");
+			writer.WriteLine("using System.Runtime.InteropServices;");
+			writer.WriteLine("using System.Reflection;");
+			writer.WriteLine("using PaintDotNet;");
+			writer.WriteLine("using PaintDotNet.Effects;");
+			writer.WriteLine("using FFEffect;\n");
+			// AssemblyInfo
+			writer.WriteLine("[assembly: AssemblyTitle(\"" + FileName + " Plugin (Compiled by PdnFF)\")]");
+			writer.WriteLine("[assembly: AssemblyCompany(\"" + data.Author + "\")]");
+			writer.WriteLine("[assembly: AssemblyProduct(\"" + FileName + " Plugin (Compiled by PdnFF)\")]");
+			writer.WriteLine("[assembly: AssemblyCopyright(\"" + data.Copyright + "\")]");
+			// namespace and class
+			writer.WriteLine("namespace FFEffect_" + classname + " \n{\n");
+			writer.WriteLine("public class " + classname + " : PaintDotNet.Effects.Effect \n{\n");
+
+			writer.WriteLine("private readonly FilterData data;");
+			writer.WriteLine("Common com = new Common();");
+			// Constructor
+			string Category = GetSubmenuCategory(data);
+			writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
+			writer.WriteLine("{");
+			writer.WriteLine("data = {0}", BuildFilterData(data));
+			writer.WriteLine("}");
+			//OnDispose
+			writer.WriteLine("protected override void OnDispose(bool disposing)\n{");
+			writer.WriteLine("if (disposing) \n {");
+			writer.WriteLine("if (com != null) \n { com.Dispose();\n com = null; } \n } \n base.OnDispose(disposing); \n }");
+			// CreateConfigDialog
+			if (data.PopDialog)
 			{
-				// usings
-				sw.WriteLine("using System;");
-				sw.WriteLine("using System.Drawing;");
-				sw.WriteLine("using System.Runtime.InteropServices;");
-				sw.WriteLine("using System.Reflection;");
-				sw.WriteLine("using PaintDotNet;");
-				sw.WriteLine("using PaintDotNet.Effects;");
-				sw.WriteLine("using FFEffect;\n");
-				// AssemblyInfo
-				sw.WriteLine("[assembly: AssemblyTitle(\"" + FileName + " Plugin (Compiled by PdnFF)\")]");
-				sw.WriteLine("[assembly: AssemblyCompany(\"" + data.Author + "\")]");
-				sw.WriteLine("[assembly: AssemblyProduct(\"" + FileName + " Plugin (Compiled by PdnFF)\")]");
-				sw.WriteLine("[assembly: AssemblyCopyright(\"" + data.Copyright + "\")]");
-				// namespace and class
-				sw.WriteLine("namespace FFEffect_" + classname + " \n{\n");
-				sw.WriteLine("public class " + classname + " : PaintDotNet.Effects.Effect \n{\n");
-
-				sw.WriteLine("private readonly FilterData data;");
-				sw.WriteLine("Common com = new Common();");
-				// Constructor
-				string Category = GetSubmenuCategory(data);
-				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})", classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
-				sw.WriteLine("{");
-				sw.WriteLine("data = {0}", BuildFilterData(data));
-				sw.WriteLine("}");
-				//OnDispose
-				sw.WriteLine("protected override void OnDispose(bool disposing)\n{");
-				sw.WriteLine("if (disposing) \n {");
-				sw.WriteLine("if (com != null) \n { com.Dispose();\n com = null; } \n } \n base.OnDispose(disposing); \n }");
-				// CreateConfigDialog
-				if (data.PopDialog)
-				{
-					sw.WriteLine(" public override EffectConfigDialog CreateConfigDialog() \n{\n");
-					sw.WriteLine("return new FFEffectConfigDialog(data); \n }\n");
-				}
-				// OnSetRenderInfo
-				sw.WriteLine("protected override void OnSetRenderInfo(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs)\n { \n");
-
-				if (data.PopDialog) // is the Effect configurable
-				{
-					sw.WriteLine("FFEffectConfigToken token = (FFEffectConfigToken)parameters;");
-					sw.WriteLine("\n com.SetupFilterData(srcArgs.Surface, token.ctlvalues, data.Source);\n ");
-				}
-				else
-				{
-					sw.WriteLine("com.SetupFilterData(srcArgs.Surface, data.ControlValue, data.Source);");
-				}
-				sw.WriteLine("base.OnSetRenderInfo(parameters, dstArgs, srcArgs); \n } \n");
-
-				// Render
-				sw.WriteLine("public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length) \n { \n");
-				sw.WriteLine("com.Render(srcArgs.Surface, dstArgs.Surface, rois, startIndex, length); \n }");
-				sw.WriteLine("}\n }"); // end the class and the namespace
-
-				ret = sw.ToString();
+				writer.WriteLine(" public override EffectConfigDialog CreateConfigDialog() \n{\n");
+				writer.WriteLine("return new FFEffectConfigDialog(data); \n }\n");
 			}
+			// OnSetRenderInfo
+			writer.WriteLine("protected override void OnSetRenderInfo(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs)\n { \n");
 
-			return ret;
+			if (data.PopDialog) // is the Effect configurable
+			{
+				writer.WriteLine("FFEffectConfigToken token = (FFEffectConfigToken)parameters;");
+				writer.WriteLine("\n com.SetupFilterData(srcArgs.Surface, token.ctlvalues, data.Source);\n ");
+			}
+			else
+			{
+				writer.WriteLine("com.SetupFilterData(srcArgs.Surface, data.ControlValue, data.Source);");
+			}
+			writer.WriteLine("base.OnSetRenderInfo(parameters, dstArgs, srcArgs); \n } \n");
+
+			// Render
+			writer.WriteLine("public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length) \n { \n");
+			writer.WriteLine("com.Render(srcArgs.Surface, dstArgs.Surface, rois, startIndex, length); \n }");
+			writer.WriteLine("}\n }"); // end the class and the namespace
 		}
 
 		private void SetupCompilerParameters(string fileName)
@@ -345,8 +338,10 @@ namespace PdnFF
 
 			}
 			string outpath = Path.Combine(dir, "ffeffect.cs");
-			string code = BuildEffectClass(effectFileName);
-			File.WriteAllText(outpath, code);
+			using (StreamWriter writer = new StreamWriter(outpath))
+			{
+				BuildEffectClass(writer, effectFileName);
+			}
 			files.Add(outpath);
 
 			return files.ToArray();
