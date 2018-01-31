@@ -25,8 +25,32 @@ namespace PdnFF
 {
     internal static class OS
     {
+        private static bool checkedIsVistaOrLater;
         private static bool checkedIsWindows7OrLater;
+        private static bool isVistaOrLater;
         private static bool isWindows7OrLater;
+
+        /// <summary>
+        /// Gets a value indicating whether the current operating system is Windows Vista or later.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if operating system is Windows Vista or later; otherwise, <c>false</c>.
+        /// </value>
+        public static bool IsVistaOrLater
+        {
+            get
+            {
+                if (!checkedIsVistaOrLater)
+                {
+                    OperatingSystem os = Environment.OSVersion;
+
+                    isVistaOrLater = os.Platform == PlatformID.Win32NT && os.Version.Major >= 6;
+                    checkedIsVistaOrLater = true;
+                }
+
+                return isVistaOrLater;
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether the current operating system is Windows 7 or later.

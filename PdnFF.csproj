@@ -90,6 +90,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\PlatformFolderBrowserDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\VistaFolderBrowserDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FileEnumerator.cs" />
     <Compile Include="Interop\NativeInterfaces.cs" />
     <Compile Include="Interop\SafeFindHandle.cs" />

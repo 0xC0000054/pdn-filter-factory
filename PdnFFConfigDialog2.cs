@@ -31,6 +31,7 @@ using System.Windows.Forms;
 using PaintDotNet;
 using PaintDotNet.Effects;
 using PdnFF.Controls;
+using PdnFF.Dialogs;
 using PdnFF.Properties;
 
 namespace PdnFF
@@ -50,7 +51,7 @@ namespace PdnFF
 		private Label greenlbl;
 		private Label Redlbl;
 		private Button default_fltr;
-		private FolderBrowserDialog DirBrowserDialog1;
+		private PlatformFolderBrowserDialog DirBrowserDialog1;
 		private BackgroundWorker UpdateFilterListbw;
 		private TabPage FilterDirtab;
 		private CheckBox subdirSearchcb;
@@ -266,7 +267,7 @@ namespace PdnFF
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.default_fltr = new System.Windows.Forms.Button();
-			this.DirBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+			this.DirBrowserDialog1 = new PdnFF.Dialogs.PlatformFolderBrowserDialog();
 			this.UpdateFilterListbw = new System.ComponentModel.BackgroundWorker();
 			this.FilterDirtab = new System.Windows.Forms.TabPage();
 			this.subdirSearchcb = new System.Windows.Forms.CheckBox();
