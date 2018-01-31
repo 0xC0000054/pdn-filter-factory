@@ -49,11 +49,9 @@ namespace PdnFF
 			tempFolder.Create();
 		}
 
-		public string Build(string fileName)
+		public string Build(string fullPath)
 		{
-			string path = Path.Combine(Path.GetDirectoryName(typeof(PdnFFEffect).Assembly.Location), fileName);
-
-			if (File.Exists(path))
+			if (File.Exists(fullPath))
 			{
 				return Resources.BuildFilterFileAlreadyExists;
 			}
@@ -62,9 +60,10 @@ namespace PdnFF
 
 			try
 			{
-				string[] files = SetupSourceCodeFiles(fileName);
+				string[] files = SetupSourceCodeFiles(Path.GetFileName(fullPath));
 
-				SetupCompilerParameters(fileName);
+				SetupCompilerParameters();
+				compilerParameters.OutputAssembly = fullPath;
 
 				using (CSharpCodeProvider cscp = new CSharpCodeProvider())
 				{
@@ -261,7 +260,7 @@ namespace PdnFF
 			writer.WriteLine("}\n }"); // end the class and the namespace
 		}
 
-		private void SetupCompilerParameters(string fileName)
+		private void SetupCompilerParameters()
 		{
 			compilerParameters.GenerateInMemory = true;
 			compilerParameters.GenerateExecutable = false;
@@ -282,8 +281,6 @@ namespace PdnFF
 					compilerParameters.ReferencedAssemblies.Add(asm.Location);
 				}
 			}
-
-			compilerParameters.OutputAssembly = Path.Combine(effectsDir, fileName);
 		}
 
 		/// <summary>

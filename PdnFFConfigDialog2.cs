@@ -3678,7 +3678,9 @@ namespace PdnFF
 
 					using (FilterBuilder builder = new FilterBuilder(this.data))
 					{
-						string error = builder.Build(FileName);
+						string fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), FileName);
+
+						string error = builder.Build(fullPath);
 
 						if (!string.IsNullOrEmpty(error))
 						{
@@ -3686,7 +3688,7 @@ namespace PdnFF
 						}
 						else
 						{
-							MessageBox.Show(this, string.Format("Filter {0} Built successfully.\n\nYou will need to restart Paint.NET  to see it in the Effects menu.", Path.GetFileName(FileName)), this.Text);
+							MessageBox.Show(this, string.Format("Filter built successfully.\n\nYou will need copy {0} from your Desktop into the Paint.NET Effects folder and to restart Paint.NET to see it in the Effects menu.", Path.GetFileName(FileName)), this.Text);
 						}
 					}
 				}
