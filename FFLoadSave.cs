@@ -465,10 +465,11 @@ namespace PdnFF
 										line = sr.ReadLine();
 									}
 
+									bool[] mapsUsed = UsesMap(data.Source);
 									for (int i = 0; i < 4; i++)
 									{
 										data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
-										data.MapEnable[i] = UsesMap(data.Source, i);
+										data.MapEnable[i] = mapsUsed[i];
 									}
 									SetPopDialog(data);
 
@@ -497,15 +498,17 @@ namespace PdnFF
 			}
 			if (!ctlread && !valread)
 			{
+				bool[] mapsUsed = UsesMap(data.Source);
+				bool[] ctlsUsed = UsesCtl(data.Source);
 				for (int i = 0; i < 4; i++)
 				{
 					data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
-					data.MapEnable[i] = UsesMap(data.Source, i);
+					data.MapEnable[i] = mapsUsed[i];
 				}
 				for (int i = 0; i < 8; i++)
 				{
 					data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
-					data.ControlEnable[i] = UsesCtl(data.Source, i);
+					data.ControlEnable[i] = ctlsUsed[i];
 				}
 				SetPopDialog(data);
 			}
@@ -626,15 +629,17 @@ namespace PdnFF
 			data.Title = Title;
 			data.Author = "Unknown";
 			data.Copyright = "Copyright © Unknown";
+			bool[] mapsUsed = UsesMap(data.Source);
+			bool[] ctlsUsed = UsesCtl(data.Source);
 			for (int i = 0; i < 4; i++)
 			{
 				data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-				data.MapEnable[i] = UsesMap(data.Source, i);
+				data.MapEnable[i] = mapsUsed[i];
 			}
 			for (int i = 0; i < 8; i++)
 			{
 				data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
-				data.ControlEnable[i] = UsesCtl(data.Source, i);
+				data.ControlEnable[i] = ctlsUsed[i];
 			}
 			SetPopDialog(data);
 
@@ -1023,9 +1028,10 @@ namespace PdnFF
 				data.PopDialog = false;
 			}
 		}
-		private static bool UsesMap(string[] Source, int mapnum)
+		private static bool[] UsesMap(string[] Source)
 		{
-			bool hasmap = false;
+			bool[] mapsUsed = new bool[4] { false, false, false, false, };
+
 			for (int i = 0; i < 4; i++)
 			{
 				if (Source[i].Contains("map"))
@@ -1036,19 +1042,20 @@ namespace PdnFF
 					{
 						string str = tmpsrc.Substring(pos, 5);
 						tmpsrc = tmpsrc.Substring(pos + 3);
-						int num = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
-						if (num == mapnum && !hasmap)
+						int map = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
+						if (map >= 0 && map <= 3)
 						{
-							hasmap = true;
+							mapsUsed[map] = true;
 						}
 					}
 				}
 			}
-			return hasmap;
+
+			return mapsUsed;
 		}
-		private static bool UsesCtl(string[] Source, int ctlnum)
+		private static bool[] UsesCtl(string[] Source)
 		{
-			bool hasctl = false;
+			bool[] controlsUsed = new bool[8] { false, false, false, false, false, false, false, false };
 			for (int i = 0; i < 4; i++)
 			{
 				if (Source[i].Contains("ctl"))
@@ -1059,10 +1066,10 @@ namespace PdnFF
 					{
 						string str = tmpsrc.Substring(pos, 5);
 						tmpsrc = tmpsrc.Substring(pos + 3);
-						int num = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
-						if (num == ctlnum  && !hasctl)
+						int ctl = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
+						if (ctl >= 0 && ctl <= 7)
 						{
-							hasctl = true;
+							controlsUsed[ctl] = true;
 						}
 					}
 				}
@@ -1074,15 +1081,15 @@ namespace PdnFF
 					{
 						string str = tmpsrc.Substring(pos, 5);
 						tmpsrc = tmpsrc.Substring(pos + 3);
-						int num = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
-						if (num == ctlnum && !hasctl)
+						int ctl = int.Parse(str.Substring(4, 1), CultureInfo.InvariantCulture);
+						if (ctl >= 0 && ctl <= 7)
 						{
-							hasctl = true;
+							controlsUsed[ctl] = true;
 						}
 					}
 				}
 			}
-			return hasctl;
+			return controlsUsed;
 		}
 	}
 }
