@@ -517,43 +517,41 @@ namespace PdnFF
 		private static string ReadAfsString(BinaryReader br, int length)
 		{
 			StringBuilder sb = new StringBuilder();
-			char lastChar = br.ReadChar();
-			for (int i = 0; i < length; i++)
+			try
 			{
+				char value = br.ReadChar();
 
-				try
+				if (value == '\r')
 				{
-					char newChar = br.ReadChar();
-					bool isLineBreak = (lastChar == 0x5c && newChar == 'r');
-
-
-					if (lastChar == '\r')
-					{
-
-						br.BaseStream.Position -= 1L;
-						break;
-					}
-
-					if (lastChar != 0x5c || !isLineBreak)
-					{
-						sb.Append(lastChar);
-					}
-
-					if (!isLineBreak)
-					{
-						lastChar = newChar;
-					}
-					else
-					{
-						lastChar = ' ';
-					}
-
+					// Return null for a blank line to allow the lines that separate the source code for
+					// the different channels to be distinguished from a line that only contains whitespace.
+					return null;
 				}
-				catch (EndOfStreamException)
+				else
 				{
-					sb.Append(lastChar);
-					break;
+					do
+					{
+						if (value == '\\')
+						{
+							char nextChar = br.ReadChar();
+							if (nextChar == 'r')
+							{
+								// Exit if the string contains an embedded carriage return.
+								break;
+							}
+						}
+						else
+						{
+							sb.Append(value);
+						}
+
+						value = br.ReadChar();
+
+					} while (value != '\r');
 				}
+			}
+			catch (EndOfStreamException)
+			{
 			}
 			return sb.ToString().Trim();
 		}
@@ -592,15 +590,18 @@ namespace PdnFF
 					while (i < 4)
 					{
 						line = ReadAfsString(br, 1024);
-						if (!string.IsNullOrEmpty(line))
-						{
-							builder.Append(line);
-						}
-						else
+						if (line == null)
 						{
 							data.Source[i] = builder.ToString();
 							builder.Length = 0;
 							i++;
+						}
+						else
+						{
+							if (line.Length > 0)
+							{
+								builder.Append(line);
+							}
 						}
 
 					}
