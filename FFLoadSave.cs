@@ -514,7 +514,7 @@ namespace PdnFF
 			}
 		}
 
-		private static string ReadAfsString(BinaryReader br, int length)
+		private static string ReadAfsString(BinaryReader br)
 		{
 			StringBuilder sb = new StringBuilder();
 			try
@@ -574,7 +574,7 @@ namespace PdnFF
 				{
 					for (int i = 0; i < 8; i++)
 					{
-						line = ReadAfsString(br, 256);
+						line = ReadAfsString(br);
 						if (!string.IsNullOrEmpty(line) && line.Length <= 3)
 						{
 							data.ControlValue[i] = int.Parse(line, CultureInfo.InvariantCulture);
@@ -589,7 +589,7 @@ namespace PdnFF
 					int i = 0;
 					while (i < 4)
 					{
-						line = ReadAfsString(br, 1024);
+						line = ReadAfsString(br);
 						if (line == null)
 						{
 							data.Source[i] = builder.ToString();
