@@ -864,7 +864,7 @@ namespace PdnFF
 
 							try
 							{
-								for (int i = 0; i < len - 1; i++)
+								for (int i = 0; i < len; i++)
 								{
 									long pos = br.BaseStream.Position;
 									FilterData data;
