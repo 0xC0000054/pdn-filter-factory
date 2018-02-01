@@ -861,9 +861,10 @@ namespace PdnFF
 						{
 							int len = int.Parse(num, CultureInfo.InvariantCulture);
 							Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
-							for (int i = 0; i < len - 1; i++)
+
+							try
 							{
-								try
+								for (int i = 0; i < len - 1; i++)
 								{
 									long pos = br.BaseStream.Position;
 									FilterData data;
@@ -884,16 +885,13 @@ namespace PdnFF
 
 											nodes.Add(data.Category, node);
 										}
-
 									}
 								}
-								catch (EndOfStreamException)
-								{
-									// ignore it
-								}
-
 							}
-
+							catch (EndOfStreamException)
+							{
+								// ignore it
+							}
 							items.AddRange(nodes.Values);
 
 							loaded = true;
