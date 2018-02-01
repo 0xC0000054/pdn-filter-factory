@@ -587,23 +587,19 @@ namespace PdnFF
 
 				if (!srcread)
 				{
+					StringBuilder builder = new StringBuilder(1024);
 					int i = 0;
 					while (i < 4)
 					{
 						line = ReadAfsString(br, 1024);
 						if (!string.IsNullOrEmpty(line))
 						{
-							if (!string.IsNullOrEmpty(data.Source[i]) && (data.Source[i].Length + line.Length) < 1024)
-							{
-								data.Source[i] += line; // append the line to te existing Source
-							}
-							else
-							{
-								data.Source[i] = line;
-							}
+							builder.Append(line);
 						}
 						else
 						{
+							data.Source[i] = builder.ToString();
+							builder.Length = 0;
 							i++;
 						}
 
