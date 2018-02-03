@@ -25,18 +25,34 @@ namespace PdnFF
 {
     public sealed class FilterData
     {
-        private string title = string.Empty;
-        private string category = string.Empty;
-        private string copyright = string.Empty;
-        private string author = string.Empty;
-        private bool[] mapEnable = new bool[4];
-        private string[] mapLabel = new string[4];
-        private bool[] controlEnable = new bool[8];
-        private string[] controlLabel = new string[8];
-        private int[] controlValue = new int[8];
-        private string[] source = new string[4];
+        private string title;
+        private string category;
+        private string copyright;
+        private string author;
+        private bool[] mapEnable;
+        private string[] mapLabel;
+        private bool[] controlEnable;
+        private string[] controlLabel;
+        private int[] controlValue;
+        private string[] source;
         private bool popDialog; // display parameter sliders
         private string fileName; // filename for the FFL filters
+
+        public FilterData()
+        {
+            title = string.Empty;
+            category = string.Empty;
+            copyright = string.Empty;
+            author = string.Empty;
+            mapEnable = new bool[4];
+            mapLabel = new string[4];
+            controlEnable = new bool[8];
+            controlLabel = new string[8];
+            controlValue = new int[8];
+            source = new string[4];
+            popDialog = false; // display parameter sliders
+            fileName = string.Empty; // filename for the FFL filters
+        }
 
         public string Title
         {
