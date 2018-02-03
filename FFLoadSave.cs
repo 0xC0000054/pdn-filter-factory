@@ -797,9 +797,8 @@ namespace PdnFF
 		/// Reads a string from a FFL or AFS file.
 		/// </summary>
 		/// <param name="br">The BinaryReader to read from.</param>
-		/// <param name="length">The max length to read from the string.</param>
 		/// <returns></returns>
-		private static string ReadString(BinaryReader br, int length)
+		private static string ReadString(BinaryReader br)
 		{
 			StringBuilder sb = new StringBuilder();
 
@@ -848,10 +847,10 @@ namespace PdnFF
 				using (BinaryReader br = new BinaryReader(fs))
 				{
 					fs = null;
-					string id = ReadString(br, 10);
+					string id = ReadString(br);
 					if (id != null && id == "FFL1.0")
 					{
-						string num = ReadString(br, 10);
+						string num = ReadString(br);
 						if (!string.IsNullOrEmpty(num))
 						{
 							int len = int.Parse(num, CultureInfo.InvariantCulture);
@@ -929,16 +928,16 @@ namespace PdnFF
 
 			data = new FilterData
 			{
-				FileName = ReadString(br, 256),
-				Category = ReadString(br, 256),
-				Title = ReadString(br, 256),
-				Author = ReadString(br, 256),
-				Copyright = ReadString(br, 256)
+				FileName = ReadString(br),
+				Category = ReadString(br),
+				Title = ReadString(br),
+				Author = ReadString(br),
+				Copyright = ReadString(br)
 			};
 
 			for (int i = 0; i < 4; i++)
 			{
-				string map = ReadString(br, 256);
+				string map = ReadString(br);
 				if (!string.IsNullOrEmpty(map))
 				{
 					data.MapLabel[i] = map;
@@ -952,7 +951,7 @@ namespace PdnFF
 			}
 			for (int i = 0; i < 8; i++)
 			{
-				string ctl = ReadString(br, 256);
+				string ctl = ReadString(br);
 				if (!string.IsNullOrEmpty(ctl))
 				{
 					data.ControlLabel[i] = ctl;
@@ -967,7 +966,7 @@ namespace PdnFF
 
 			for (int i = 0; i < 8; i++)
 			{
-				string cv = ReadString(br, 10);
+				string cv = ReadString(br);
 				data.ControlValue[i] = int.Parse(cv, CultureInfo.InvariantCulture);
 			}
 
@@ -975,7 +974,7 @@ namespace PdnFF
 
 			for (int i = 0; i < 4; i++)
 			{
-				string src = ReadString(br, 8192);
+				string src = ReadString(br);
 				if (!string.IsNullOrEmpty(src))
 				{
 					data.Source[i] = src;
