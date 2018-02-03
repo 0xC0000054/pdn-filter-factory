@@ -471,7 +471,7 @@ namespace PdnFF
 										data.MapLabel[i] = string.Format(CultureInfo.InvariantCulture, "Map: {0}", i.ToString(CultureInfo.InvariantCulture));
 										data.MapEnable[i] = mapsUsed[i];
 									}
-									SetPopDialog(data);
+									data.PopDialog = HasControls(data);
 
 									ctlread = true;
 								}
@@ -510,7 +510,7 @@ namespace PdnFF
 					data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", i.ToString(CultureInfo.InvariantCulture));
 					data.ControlEnable[i] = ctlsUsed[i];
 				}
-				SetPopDialog(data);
+				data.PopDialog = HasControls(data);
 			}
 		}
 
@@ -638,7 +638,7 @@ namespace PdnFF
 				data.ControlLabel[i] = string.Format(CultureInfo.InvariantCulture, "Control: {0}", new object[] { i.ToString(CultureInfo.InvariantCulture) });
 				data.ControlEnable[i] = ctlsUsed[i];
 			}
-			SetPopDialog(data);
+			data.PopDialog = HasControls(data);
 
 		}
 		private static void SaveAfs(Stream output, FilterData data)
@@ -995,11 +995,8 @@ namespace PdnFF
 
 			return loaded;
 		}
-		/// <summary>
-		/// Sets the filter_data PopDialog for the loaded afs or txt Source
-		/// </summary>
-		/// <param name="data">The data to set</param>
-		private static void SetPopDialog(FilterData data)
+
+		private static bool HasControls(FilterData data)
 		{
 			bool ctlused = false;
 			bool mapused = false;
@@ -1014,14 +1011,7 @@ namespace PdnFF
 				ctlused |= data.ControlEnable[i];
 			}
 
-			if (ctlused || mapused)
-			{
-				data.PopDialog = true;
-			}
-			else
-			{
-				data.PopDialog = false;
-			}
+			return (mapused | ctlused);
 		}
 		private static bool[] UsesMap(string[] Source)
 		{
