@@ -517,42 +517,38 @@ namespace PdnFF
 		private static string ReadAfsString(BinaryReader br)
 		{
 			StringBuilder sb = new StringBuilder();
-			try
-			{
-				char value = br.ReadChar();
 
-				if (value == '\r')
+			char value = br.ReadChar();
+
+			if (value == '\r')
+			{
+				// Return null for a blank line to allow the lines that separate the source code for
+				// the different channels to be distinguished from a line that only contains whitespace.
+				return null;
+			}
+			else
+			{
+				do
 				{
-					// Return null for a blank line to allow the lines that separate the source code for
-					// the different channels to be distinguished from a line that only contains whitespace.
-					return null;
-				}
-				else
-				{
-					do
+					if (value == '\\')
 					{
-						if (value == '\\')
+						char nextChar = br.ReadChar();
+						if (nextChar == 'r')
 						{
-							char nextChar = br.ReadChar();
-							if (nextChar == 'r')
-							{
-								// Exit if the string contains an embedded carriage return.
-								break;
-							}
+							// Exit if the string contains an embedded carriage return.
+							break;
 						}
-						else
-						{
-							sb.Append(value);
-						}
+					}
+					else
+					{
+						sb.Append(value);
+					}
 
-						value = br.ReadChar();
+					value = br.ReadChar();
 
-					} while (value != '\r');
-				}
+				} while (value != '\r');
 			}
-			catch (EndOfStreamException)
-			{
-			}
+
 			return sb.ToString().Trim();
 		}
 
