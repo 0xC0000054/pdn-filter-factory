@@ -802,27 +802,22 @@ namespace PdnFF
 		private static string ReadString(BinaryReader br, int length)
 		{
 			StringBuilder sb = new StringBuilder();
-			char lastChar = br.ReadChar();
-			for (int i = 0; i < length; i++)
+
+			while (true)
 			{
+				char value = br.ReadChar();
 
-				try
+				if (value == '\r' || value == '\n')
 				{
-					char newChar = br.ReadChar();
-
-					if ((lastChar == '\r' && newChar == '\n') || (lastChar == '\n' && newChar == '\r'))
+					if (value == '\r' && br.PeekChar() == '\n')
 					{
-						break;
+						br.ReadChar();
 					}
 
-					sb.Append(lastChar);
-					lastChar = newChar;
-				}
-				catch (EndOfStreamException)
-				{
-					sb.Append(lastChar);
 					break;
 				}
+
+				sb.Append(value);
 			}
 			return sb.ToString().Trim();
 		}
