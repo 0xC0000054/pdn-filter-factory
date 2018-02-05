@@ -54,6 +54,27 @@ namespace PdnFF
             fileName = string.Empty; // filename for the FFL filters
         }
 
+        private FilterData(FilterData cloneMe)
+        {
+            title = cloneMe.title;
+            category = cloneMe.category;
+            copyright = cloneMe.copyright;
+            author = cloneMe.author;
+            mapEnable = cloneMe.mapEnable;
+            mapLabel = cloneMe.mapLabel;
+            controlEnable = cloneMe.controlEnable;
+            controlLabel = cloneMe.controlLabel;
+            controlValue = cloneMe.controlValue;
+            source = cloneMe.source;
+            popDialog = cloneMe.popDialog;
+            fileName = cloneMe.fileName;
+        }
+
+        public FilterData Clone()
+        {
+            return new FilterData(this);
+        }
+
         public string Title
         {
             get
