@@ -1774,7 +1774,7 @@ namespace PdnFF
 			data.Title = tmpdata.Title;
 
 		}
-		private void SetFltrInfoLabels(FilterData data)
+		private void SetFilterInfoLabels(FilterData data)
 		{
 			fltrCatTxt.Text = data.Category;
 			fltrTitletxt.Text = data.Title;
@@ -1812,7 +1812,7 @@ namespace PdnFF
 						ResetPopDialog(data);
 						SetControls(data); // set the controls from the token data
 						SetInfo(data);
-						SetFltrInfoLabels(data);
+						SetFilterInfoLabels(data);
 
 						FinishTokenUpdate();
 					}
@@ -1835,7 +1835,7 @@ namespace PdnFF
 						ResetPopDialog(data);
 						SetControls(data);
 						SetInfo(data);
-						SetFltrInfoLabels(data);
+						SetFilterInfoLabels(data);
 
 						FinishTokenUpdate();
 					}
@@ -2425,7 +2425,7 @@ namespace PdnFF
 			data = FFLoadSave.DefaultFilter();
 			SetControls(data);
 			SetInfo(data);
-			SetFltrInfoLabels(data);
+			SetFilterInfoLabels(data);
 			FinishTokenUpdate();
 		}
 		/// <summary>
@@ -2612,7 +2612,7 @@ namespace PdnFF
 					GetFilterfromFFLOffset(ofs, true);
 				}
 
-				SetFltrInfoLabels(data);
+				SetFilterInfoLabels(data);
 			}
 
 		}
@@ -2671,7 +2671,7 @@ namespace PdnFF
 							}
 							SetControls(data);
 							SetInfo(data);
-							SetFltrInfoLabels(data);
+							SetFilterInfoLabels(data);
 
 						}
 					}
