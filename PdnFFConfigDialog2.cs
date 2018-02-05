@@ -2379,39 +2379,38 @@ namespace PdnFF
 		{
 			if (data != null)
 			{
-				Button b = sender as Button;
-				int num = int.Parse(b.Name.Substring(8, 1), CultureInfo.InvariantCulture); // get the number from the control name
-
-				switch (num)
+				if (sender == resetbtn0)
 				{
-					case 0:
-						ctl0.Value = resetdata[0];
-						break;
-					case 1:
-						ctl1.Value = resetdata[1];
-						break;
-					case 2:
-						ctl2.Value = resetdata[2];
-						break;
-					case 3:
-						ctl3.Value = resetdata[3];
-						break;
-					case 4:
-						ctl4.Value = resetdata[4];
-						break;
-					case 5:
-						ctl5.Value = resetdata[5];
-						break;
-					case 6:
-						ctl6.Value = resetdata[6];
-						break;
-					case 7:
-						ctl7.Value = resetdata[7];
-						break;
+					ctl0.Value = resetdata[0];
 				}
-
-
-
+				else if (sender == resetbtn1)
+				{
+					ctl1.Value = resetdata[1];
+				}
+				else if (sender == resetbtn2)
+				{
+					ctl2.Value = resetdata[2];
+				}
+				else if (sender == resetbtn3)
+				{
+					ctl3.Value = resetdata[3];
+				}
+				else if (sender == resetbtn4)
+				{
+					ctl4.Value = resetdata[4];
+				}
+				else if (sender == resetbtn5)
+				{
+					ctl5.Value = resetdata[5];
+				}
+				else if (sender == resetbtn6)
+				{
+					ctl6.Value = resetdata[6];
+				}
+				else if (sender == resetbtn7)
+				{
+					ctl7.Value = resetdata[7];
+				}
 			}
 		}
 
