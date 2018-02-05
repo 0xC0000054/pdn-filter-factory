@@ -2075,28 +2075,6 @@ namespace PdnFF
 			}
 		}
 
-
-		/// <summary>
-		/// Set the visibility of the controls tab based on the filter_data PopDialog
-		/// </summary>
-		/// <param name="data">The filter_data to set</param>
-		private void SetControlsTabVisability(FilterData data)
-		{
-			if (data.PopDialog)
-			{
-				if (!tabControl1.TabPages.Contains(controlsTab))
-				{
-					tabControl1.TabPages.Insert(0, controlsTab);
-				}
-			}
-			else
-			{
-				if (tabControl1.TabPages.Contains(controlsTab))
-				{
-					tabControl1.TabPages.Remove(controlsTab);
-				}
-			}
-		}
 		/// <summary>
 		/// Resets the PopDialog function if the filter uses the maps or controls
 		/// </summary>
