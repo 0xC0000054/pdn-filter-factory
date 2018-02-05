@@ -2123,12 +2123,14 @@ namespace PdnFF
 		/// Set the control values
 		/// </summary>
 		/// <param name="data">The filter_data to set</param>
-		/// <param name="reset">Reset the control values to the filter defaults</param>
 		private void SetControls(FilterData data)
 		{
+			SetControlsEnabled(data);
+			SetControlValues(data);
+		}
 
-			#region ctl / map enables
-
+		private void SetControlsEnabled(FilterData data)
+		{
 			if (data.MapEnable[0] && !data.ControlEnable[0] && !data.ControlEnable[1]/* && UsesMap(data.Source,0)*/)
 			{
 				map0_lbl.Visible = true;
@@ -2360,11 +2362,10 @@ namespace PdnFF
 				this.ctllbl6.Text = this.ctl6txt.Text = data.ControlLabel[6];
 				this.ctllbl7.Text = this.ctl7txt.Text = data.ControlLabel[7];
 			}
+		}
 
-			#endregion
-
-			#region ctl values
-			// set the default editor control values
+		private void SetControlValues(FilterData data)
+		{
 			this.ctl0num.Value = this.ctl0.Value = data.ControlValue[0];
 			this.ctl1num.Value = this.ctl1.Value = data.ControlValue[1];
 			this.ctl2num.Value = this.ctl2.Value = data.ControlValue[2];
@@ -2373,8 +2374,8 @@ namespace PdnFF
 			this.ctl5num.Value = this.ctl5.Value = data.ControlValue[5];
 			this.ctl6num.Value = this.ctl6.Value = data.ControlValue[6];
 			this.ctl7num.Value = this.ctl7.Value = data.ControlValue[7];
-			#endregion
 		}
+
 		private void resetbtn_Click(object sender, EventArgs e)
 		{
 			if (data != null)
