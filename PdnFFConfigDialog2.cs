@@ -2106,13 +2106,10 @@ namespace PdnFF
 		}
 		private void SetInfo(FilterData data)
 		{
-			#region src text
 			RedBox.Text = data.Source[0];
 			GreenBox.Text = data.Source[1];
 			BlueBox.Text = data.Source[2];
 			AlphaBox.Text = data.Source[3];
-			#endregion
-			#region filter info
 			AuthorBox.Text = data.Author;
 			CategoryBox.Text = data.Category;
 			CopyrightBox.Text = data.Copyright;
@@ -2121,8 +2118,6 @@ namespace PdnFF
 			{
 				Filenametxt.Text = data.FileName;
 			}
-			#endregion
-
 		}
 		/// <summary>
 		/// Set the control values
