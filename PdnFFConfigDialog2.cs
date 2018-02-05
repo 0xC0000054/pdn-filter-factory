@@ -2441,13 +2441,7 @@ namespace PdnFF
 
 			}
 		}
-		private void SetTokenData()
-		{
-			if (((PdnFFConfigToken)theEffectToken).Data != null && this.data == null)
-			{
-			   this.data = ((PdnFFConfigToken)theEffectToken).Data;
-			}
-		}
+
 		private void default_fltr_Click(object sender, EventArgs e)
 		{
 			if (data == null)
@@ -2496,7 +2490,6 @@ namespace PdnFF
 		{
 			base.OnLoad(e);
 
-			SetTokenData();
 			LoadSettings();
 			subdirSearchcb.Checked = settings.SearchSubdirectories;
 			HashSet<string> dirs = settings.SearchDirectories;
