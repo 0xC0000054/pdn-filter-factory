@@ -229,7 +229,7 @@ namespace PdnFF
 		}
 		protected override void InitialInitToken()
 		{
-			this.theEffectToken = new PdnFFConfigToken(null, null, string.Empty, string.Empty, string.Empty);
+			this.theEffectToken = new PdnFFConfigToken(null, null);
 		}
 
 		protected override void InitTokenFromDialog()

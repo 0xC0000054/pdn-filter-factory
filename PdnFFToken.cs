@@ -27,9 +27,6 @@ namespace PdnFF
     {
         private FilterData data;
         private FilterData resetData;
-        private string lastFileName;
-        private string lastFFL;
-        private string fflOfs;
 
         public FilterData Data
         {
@@ -55,59 +52,16 @@ namespace PdnFF
             }
         }
 
-        public string LastFileName
-        {
-            get
-            {
-                return lastFileName;
-            }
-            internal set
-            {
-                lastFileName = value;
-            }
-        }
-
-        public string LastFFL
-        {
-            get
-            {
-                return lastFFL;
-            }
-            internal set
-            {
-                lastFFL = value;
-            }
-        }
-
-        public string FFLOffset
-        {
-            get
-            {
-                return fflOfs;
-            }
-            internal set
-            {
-                fflOfs = value;
-            }
-        }
-
-
-        public PdnFFConfigToken(FilterData data, FilterData resetData, String lastfilename, String lastffl, String fflofs) : base()
+        public PdnFFConfigToken(FilterData data, FilterData resetData) : base()
         {
             this.Data = data;
             this.resetData = resetData;
-            this.lastFileName = lastfilename;
-            this.lastFFL = lastffl;
-            this.fflOfs = fflofs;
         }
 
         private PdnFFConfigToken(PdnFFConfigToken copyMe) : base(copyMe)
         {
             this.Data = copyMe.Data;
             this.resetData = copyMe.resetData;
-            this.lastFileName = copyMe.lastFileName;
-            this.lastFFL = copyMe.lastFFL;
-            this.fflOfs = copyMe.fflOfs;
         }
 
         public override object Clone()
