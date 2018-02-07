@@ -229,7 +229,7 @@ namespace PdnFF
 		}
 		protected override void InitialInitToken()
 		{
-			this.theEffectToken = new PdnFFConfigToken(NewFilterData(),string.Empty,string.Empty,string.Empty);
+			this.theEffectToken = new PdnFFConfigToken(null,string.Empty,string.Empty,string.Empty);
 		}
 		private string lastFileName = string.Empty;
 		protected override void InitTokenFromDialog()
