@@ -72,6 +72,8 @@ namespace PdnFF
 			public static extern bool FreeLibrary(IntPtr hModule);
 		}
 
+		private static readonly Encoding Windows1252 = Encoding.GetEncoding(1252);
+
 		private const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
 		#region EnumRes
 		private delegate bool EnumResNameDelegate(IntPtr hModule, IntPtr lpszType, IntPtr lpszName, IntPtr lParam);
@@ -281,7 +283,7 @@ namespace PdnFF
 			try
 			{
 				ms = new MemoryStream(parmbytes);
-				using (BinaryReader br = new BinaryReader(ms, Encoding.Default))
+				using (BinaryReader br = new BinaryReader(ms, Windows1252))
 				{
 					ms = null;
 
@@ -361,7 +363,7 @@ namespace PdnFF
 			bool inforead = false;
 			bool srcread = false;
 			bool valread = false;
-			using (StreamReader sr = new StreamReader(infile, Encoding.Default))
+			using (StreamReader sr = new StreamReader(infile, Windows1252))
 			{
 				while ((line = sr.ReadLine()) != null)
 				{
@@ -567,7 +569,7 @@ namespace PdnFF
 			bool ctlread = false;
 			bool srcread = false;
 
-			using (StreamReader reader = new StreamReader(infile, Encoding.Default))
+			using (StreamReader reader = new StreamReader(infile, Windows1252))
 			{
 				if (!ctlread)
 				{
@@ -647,7 +649,7 @@ namespace PdnFF
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
 
-			using (StreamWriter sw = new StreamWriter(output, Encoding.Default))
+			using (StreamWriter sw = new StreamWriter(output, Windows1252))
 			{
 				sw.NewLine = "\r"; // Filter factory uses the Mac end of line format
 				sw.WriteLine("%RGB-1.0");
@@ -700,7 +702,7 @@ namespace PdnFF
 			if (data == null)
 				throw new ArgumentNullException("data", "data is null.");
 
-			using (StreamWriter sw = new StreamWriter(output, Encoding.Default))
+			using (StreamWriter sw = new StreamWriter(output, Windows1252))
 			{
 				sw.WriteLine("{0}: {1}", "Category", data.Category);
 				sw.WriteLine("{0}: {1}", "Title", data.Title);
