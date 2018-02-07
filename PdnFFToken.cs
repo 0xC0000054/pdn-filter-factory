@@ -19,8 +19,6 @@
 *
 */
 
-using System;
-
 namespace PdnFF
 {
     public sealed class PdnFFConfigToken : PaintDotNet.Effects.EffectConfigToken
