@@ -20,6 +20,7 @@
 */
 
 using System;
+using PaintDotNet;
 
 namespace PdnFF
 {
@@ -60,12 +61,12 @@ namespace PdnFF
             category = cloneMe.category;
             copyright = cloneMe.copyright;
             author = cloneMe.author;
-            mapEnable = cloneMe.mapEnable;
-            mapLabel = cloneMe.mapLabel;
-            controlEnable = cloneMe.controlEnable;
-            controlLabel = cloneMe.controlLabel;
-            controlValue = cloneMe.controlValue;
-            source = cloneMe.source;
+            mapEnable = cloneMe.mapEnable.CloneT();
+            mapLabel = cloneMe.mapLabel.CloneT();
+            controlEnable = cloneMe.controlEnable.CloneT();
+            controlLabel = cloneMe.controlLabel.CloneT();
+            controlValue = cloneMe.controlValue.CloneT();
+            source = cloneMe.source.CloneT();
             popDialog = cloneMe.popDialog;
             fileName = cloneMe.fileName;
         }
