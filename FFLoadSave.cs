@@ -854,9 +854,8 @@ namespace PdnFF
 							{
 								for (int i = 0; i < len; i++)
 								{
-									long pos = br.BaseStream.Position;
 									FilterData data;
-									if (GetFilterfromFFL(br, pos, out data))
+									if (GetFilterfromFFL(br, out data))
 									{
 										items.Add(data);
 									}
@@ -889,21 +888,18 @@ namespace PdnFF
 			return loaded;
 		}
 		/// <summary>
-		/// Extracts a filter fom an offset in the FFL
+		/// Extracts a filter from the current location in the FFL
 		/// </summary>
 		/// <param name="br">The BimaryReader to read from.</param>
-		/// <param name="offset">The offset in the FFL to read from.</param>
-		/// <param name="data">The output filter_data for the extraced filter.</param>
+		/// <param name="data">The output filter_data for the extracted filter.</param>
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The BinaryReader is null.</exception>
-		private static bool GetFilterfromFFL(BinaryReader br, long offset, out FilterData data)
+		private static bool GetFilterfromFFL(BinaryReader br, out FilterData data)
 		{
 			if (br == null)
 				throw new ArgumentNullException("br", "br is null.");
 
 			bool loaded = false;
-
-			br.BaseStream.Seek(offset, SeekOrigin.Begin);
 
 			data = new FilterData
 			{
