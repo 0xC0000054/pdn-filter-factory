@@ -229,7 +229,7 @@ namespace PdnFF
 		}
 		protected override void InitialInitToken()
 		{
-			this.theEffectToken = new PdnFFConfigToken(null,string.Empty,string.Empty,string.Empty);
+			this.theEffectToken = new PdnFFConfigToken(null, string.Empty, string.Empty, string.Empty);
 		}
 		private string lastFileName = string.Empty;
 		protected override void InitTokenFromDialog()
@@ -242,11 +242,11 @@ namespace PdnFF
 
 		protected override void InitDialogFromToken(EffectConfigToken effectToken)
 		{
-			 PdnFFConfigToken token = (PdnFFConfigToken)effectToken;
-			 this.data = token.Data;
-			 this.lastFileName = token.LastFileName;
-			 this.lastffl = token.LastFFL;
-			 this.fflofs = token.FFLOffset;
+			PdnFFConfigToken token = (PdnFFConfigToken)effectToken;
+			this.data = token.Data;
+			this.lastFileName = token.LastFileName;
+			this.lastffl = token.LastFFL;
+			this.fflofs = token.FFLOffset;
 		}
 
 		private void InitializeComponent()
@@ -413,7 +413,7 @@ namespace PdnFF
 			this.ctl1 = new System.Windows.Forms.TrackBar();
 			this.ctl0 = new System.Windows.Forms.TrackBar();
 			this.map1_lbl = new System.Windows.Forms.Label();
-			this.tabControl1 = new  PdnFF.Controls.TabControlEx();
+			this.tabControl1 = new PdnFF.Controls.TabControlEx();
 			this.buildfilterbtn = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.FilterDirtab.SuspendLayout();
@@ -1746,7 +1746,7 @@ namespace PdnFF
 		{
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
 			{
-				LoadFilter(openFileDialog1.FileName,false);
+				LoadFilter(openFileDialog1.FileName, false);
 			}
 		}
 		/// <summary>
@@ -1945,7 +1945,7 @@ namespace PdnFF
 		{
 			if (this.ctl2.Value < this.ctl2.Minimum) this.ctl2.Value = (int)this.ctl2.Minimum;
 			if (this.ctl2.Value > this.ctl2.Maximum) this.ctl2.Value = (int)this.ctl2.Maximum;
-			if ((int)this.ctl2_UpDown.Value != this.ctl2.Value )
+			if ((int)this.ctl2_UpDown.Value != this.ctl2.Value)
 			{
 				this.ctl2_UpDown.Value = this.ctl2.Value;
 			}
@@ -2008,7 +2008,7 @@ namespace PdnFF
 			if (this.ctl5_UpDown.Value < this.ctl5_UpDown.Minimum) this.ctl5_UpDown.Value = (int)this.ctl5_UpDown.Minimum;
 			if (this.ctl5_UpDown.Value > this.ctl5_UpDown.Maximum) this.ctl5_UpDown.Value = (int)this.ctl5_UpDown.Maximum;
 			this.ctl5.Value = (int)this.ctl5_UpDown.Value;
-	   }
+		}
 
 		private void ctl5_ValueChanged(object sender, System.EventArgs e)
 		{
@@ -2063,7 +2063,7 @@ namespace PdnFF
 			if (this.ctl7.Value < this.ctl7.Minimum) this.ctl7.Value = (int)this.ctl7.Minimum;
 			if (this.ctl7.Value > this.ctl7.Maximum) this.ctl7.Value = (int)this.ctl7.Maximum;
 
-			if ((int)this.ctl7_UpDown.Value != this.ctl7.Value )
+			if ((int)this.ctl7_UpDown.Value != this.ctl7.Value)
 			{
 				this.ctl7_UpDown.Value = this.ctl7.Value;
 			}
@@ -2722,7 +2722,7 @@ namespace PdnFF
 				data.MapEnable[0] = true;
 				if (!string.IsNullOrEmpty(map0txt.Text))
 				{
-				   map0_lbl.Text = data.MapLabel[0] = map0txt.Text;
+					map0_lbl.Text = data.MapLabel[0] = map0txt.Text;
 				}
 
 			}
@@ -2732,7 +2732,7 @@ namespace PdnFF
 				map0_lbl.Visible = false;
 				if (string.IsNullOrEmpty(map0txt.Text))
 				{
-				   map0txt.Text = data.MapLabel[0];
+					map0txt.Text = data.MapLabel[0];
 				}
 				if (!ismaptxt)
 				{
@@ -2847,7 +2847,7 @@ namespace PdnFF
 				data.MapEnable[1] = true;
 				if (!string.IsNullOrEmpty(map1txt.Text))
 				{
-				   map1_lbl.Text = data.MapLabel[1] = map1txt.Text;
+					map1_lbl.Text = data.MapLabel[1] = map1txt.Text;
 				}
 
 			}
@@ -2971,7 +2971,7 @@ namespace PdnFF
 				data.MapEnable[2] = true;
 				if (!string.IsNullOrEmpty(map2txt.Text))
 				{
-				   map2_lbl.Text = data.MapLabel[2] = map2txt.Text;
+					map2_lbl.Text = data.MapLabel[2] = map2txt.Text;
 				}
 			}
 			else
@@ -3093,7 +3093,7 @@ namespace PdnFF
 				data.MapEnable[3] = true;
 				if (!string.IsNullOrEmpty(map3txt.Text))
 				{
-				   map3_lbl.Text = data.MapLabel[3] = map3txt.Text;
+					map3_lbl.Text = data.MapLabel[3] = map3txt.Text;
 				}
 
 			}
@@ -3207,14 +3207,14 @@ namespace PdnFF
 			Control cb = sender as Control;
 			int ctlnum = int.Parse(cb.Name.Substring(3, 1), CultureInfo.InvariantCulture);
 			bool ismaptxt = cb.Name.StartsWith("MAP", StringComparison.OrdinalIgnoreCase);
-			SetEditControls(data,ctlnum,false, ismaptxt);
+			SetEditControls(data, ctlnum, false, ismaptxt);
 		}
 
 		private void ctlnum_ValueChanged(object sender, EventArgs e)
 		{
 			Control cb = sender as Control;
 			int ctlnum = int.Parse(cb.Name.Substring(3, 1), CultureInfo.InvariantCulture);
-			SetEditControls(data,ctlnum,true, false);
+			SetEditControls(data, ctlnum, true, false);
 		}
 
 		private void editInfoTxt_TextChanged(object sender, EventArgs e)
@@ -3227,34 +3227,34 @@ namespace PdnFF
 				{
 					case "AuthorBox":
 
-							if (tb.Text != data.Author)
-							{
-								data.Author = tb.Text;
-							}
+						if (tb.Text != data.Author)
+						{
+							data.Author = tb.Text;
+						}
 
 						break;
 					case "CategoryBox":
 
-							if (tb.Text != data.Category)
-							{
-								data.Category = tb.Text;
-							}
+						if (tb.Text != data.Category)
+						{
+							data.Category = tb.Text;
+						}
 
 						break;
 					case "CopyrightBox":
 
-							if (tb.Text != data.Copyright)
-							{
-								data.Copyright = tb.Text;
-							}
+						if (tb.Text != data.Copyright)
+						{
+							data.Copyright = tb.Text;
+						}
 
 						break;
 					case "TitleBox":
 
-							if (tb.Text != data.Title)
-							{
-								data.Title = tb.Text;
-							}
+						if (tb.Text != data.Title)
+						{
+							data.Title = tb.Text;
+						}
 
 						break;
 				}
@@ -3299,9 +3299,9 @@ namespace PdnFF
 		{
 			if (searchDirectories.Count > 0)
 			{
-	#if DEBUG
+#if DEBUG
 				System.Diagnostics.Debug.WriteLine(string.Format("UpdateFilterListbw.IsBusy = {0}", UpdateFilterListbw.IsBusy.ToString()));
-	#endif
+#endif
 				if (!UpdateFilterListbw.IsBusy)
 				{
 					UpdateFilterListParm uflp = new UpdateFilterListParm();
@@ -3543,10 +3543,10 @@ namespace PdnFF
 		/// <param name="filtertext">The keyword text to filter by</param>
 		private void FilterTreeView(string filtertext)
 		{
-			if (FiltertreeviewItems.Count  > 0)
+			if (FiltertreeviewItems.Count > 0)
 			{
 				Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
-				foreach (KeyValuePair<TreeNode,string> item in FiltertreeviewItems)
+				foreach (KeyValuePair<TreeNode, string> item in FiltertreeviewItems)
 				{
 					TreeNode child = item.Key;
 					string Title = child.Text;
