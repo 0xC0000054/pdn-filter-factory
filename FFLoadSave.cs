@@ -854,11 +854,7 @@ namespace PdnFF
 							{
 								for (int i = 0; i < len; i++)
 								{
-									FilterData data;
-									if (GetFilterfromFFL(br, out data))
-									{
-										items.Add(data);
-									}
+									items.Add(GetFilterfromFFL(br));
 								}
 							}
 							catch (EndOfStreamException)
@@ -891,17 +887,14 @@ namespace PdnFF
 		/// Extracts a filter from the current location in the FFL
 		/// </summary>
 		/// <param name="br">The BimaryReader to read from.</param>
-		/// <param name="data">The output filter_data for the extracted filter.</param>
-		/// <returns>True if successful otherwise false.</returns>
+		/// <returns>The extracted filter data.</returns>
 		/// <exception cref="System.ArgumentNullException">The BinaryReader is null.</exception>
-		private static bool GetFilterfromFFL(BinaryReader br, out FilterData data)
+		private static FilterData GetFilterfromFFL(BinaryReader br)
 		{
 			if (br == null)
 				throw new ArgumentNullException("br", "br is null.");
 
-			bool loaded = false;
-
-			data = new FilterData
+			FilterData data = new FilterData
 			{
 				FileName = ReadString(br),
 				Category = ReadString(br),
@@ -959,10 +952,8 @@ namespace PdnFF
 					data.Source[i] = rgba[i];
 				}
 			}
-			loaded = true;
 
-
-			return loaded;
+			return data;
 		}
 
 		private static bool HasControls(FilterData data)
