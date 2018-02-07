@@ -184,12 +184,12 @@ namespace PdnFF
 					fs.ProperRead(buf, 0, 8);
 					if (Encoding.ASCII.GetString(buf, 0, 4).Equals("%RGB"))
 					{
-						LoadAfs(fs, out data);
+						data = LoadAfs(fs);
 						loaded = true;
 					}
 					else if (Encoding.ASCII.GetString(buf, 0, 8).Equals("Category"))
 					{
-						LoadTxt(fs, out data);
+						data = LoadTxt(fs);
 						loaded = true;
 					}
 
@@ -350,12 +350,12 @@ namespace PdnFF
 
 			return data;
 		}
-		private static void LoadTxt(Stream infile, out FilterData data)
+		private static FilterData LoadTxt(Stream infile)
 		{
 			if (infile == null)
 				throw new ArgumentNullException("infile", "infile is null.");
 
-			data = new FilterData();
+			FilterData data = new FilterData();
 			infile.Position = 0L;
 
 			string line = string.Empty;
@@ -513,6 +513,8 @@ namespace PdnFF
 				}
 				data.PopDialog = HasControls(data);
 			}
+
+			return data;
 		}
 
 		private static string ReadAfsString(StreamReader reader)
@@ -562,12 +564,12 @@ namespace PdnFF
 			return null;
 		}
 
-		private static void LoadAfs(Stream infile, out FilterData data)
+		private static FilterData LoadAfs(Stream infile)
 		{
 			if (infile == null)
 				throw new ArgumentNullException("infile", "infile is null.");
 
-			data = new FilterData();
+			FilterData data = new FilterData();
 
 			infile.Position = 9L; // we have already read the signature skip it
 			string line = string.Empty;
@@ -646,6 +648,7 @@ namespace PdnFF
 			}
 			data.PopDialog = HasControls(data);
 
+			return data;
 		}
 		private static void SaveAfs(Stream output, FilterData data)
 		{
