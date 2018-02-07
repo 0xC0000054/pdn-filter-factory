@@ -3419,7 +3419,7 @@ namespace PdnFF
 		{
 			//Debug.WriteLine(string.Format("progresschanged isbackground = {0}", Thread.CurrentThread.IsBackground.ToString()));
 
-			folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", (e.ProgressPercentage + 1).ToString(CultureInfo.InvariantCulture), DirlistView1.Items.Count.ToString(CultureInfo.InvariantCulture));
+			folderloadcountlbl.Text = string.Format(CultureInfo.InvariantCulture, "({0} of {1})", (e.ProgressPercentage + 1).ToString(CultureInfo.InvariantCulture), searchDirectories.Count.ToString(CultureInfo.InvariantCulture));
 			folderloadnamelbl.Text = string.Format(CultureInfo.InvariantCulture, "({0})", e.UserState.ToString());
 			fltrmgrprogress.PerformStep();
 		}
