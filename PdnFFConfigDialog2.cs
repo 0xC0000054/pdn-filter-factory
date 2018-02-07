@@ -231,14 +231,11 @@ namespace PdnFF
 		{
 			this.theEffectToken = new PdnFFConfigToken(null, null, string.Empty, string.Empty, string.Empty);
 		}
-		private string lastFileName = string.Empty;
+
 		protected override void InitTokenFromDialog()
 		{
 			((PdnFFConfigToken)theEffectToken).Data = data;
 			((PdnFFConfigToken)theEffectToken).ResetData = resetData;
-			((PdnFFConfigToken)theEffectToken).LastFileName = lastFileName;
-			((PdnFFConfigToken)theEffectToken).LastFFL = lastffl;
-			((PdnFFConfigToken)theEffectToken).FFLOffset = fflofs;
 		}
 
 		protected override void InitDialogFromToken(EffectConfigToken effectToken)
@@ -246,9 +243,6 @@ namespace PdnFF
 			PdnFFConfigToken token = (PdnFFConfigToken)effectToken;
 			this.data = token.Data;
 			this.resetData = token.ResetData;
-			this.lastFileName = token.LastFileName;
-			this.lastffl = token.LastFFL;
-			this.fflofs = token.FFLOffset;
 		}
 
 		private void InitializeComponent()
@@ -1786,8 +1780,6 @@ namespace PdnFF
 				if (FFLoadSave.LoadFile(FileName, out data))
 				{
 					this.Filenametxt.Text = Path.GetFileName(FileName);
-					this.lastFileName = FileName;
-					this.fflofs = string.Empty;
 					this.resetData = data.Clone();
 					ResetPopDialog(data);
 					SetControls(data);
@@ -2388,7 +2380,7 @@ namespace PdnFF
 		/// </summary>
 		private void ClearLastFilters()
 		{
-			Filenametxt.Text = this.lastFileName = string.Empty;
+			Filenametxt.Text = string.Empty;
 			clearFFLbtn_Click(null, null);
 			resetData = null;
 		}
@@ -2524,8 +2516,7 @@ namespace PdnFF
 			}
 
 		}
-		private string lastffl = string.Empty;
-		private string fflofs = string.Empty;
+
 		/// <summary>
 		/// Loads a FFL library
 		/// </summary>
@@ -2571,8 +2562,7 @@ namespace PdnFF
 				FFLtreeView1.TreeViewNodeSorter = TreeNodeItemComparer.Instance;
 				FFLtreeView1.EndUpdate();
 
-				lastffl = FileName;
-				fflnametxt.Text = Path.GetFileName(this.lastffl);
+				fflnametxt.Text = Path.GetFileName(FileName);
 
 
 				FFLfltrnumtxt.Text = filters.Count.ToString(CultureInfo.CurrentCulture);
@@ -2609,7 +2599,6 @@ namespace PdnFF
 			if (FFLtreeView1.SelectedNode.Tag != null)
 			{
 				TreeNode lvi = FFLtreeView1.SelectedNode;
-				fflofs = lvi.Name; // the item's FileName in the FFL
 				this.data = ((FilterData)lvi.Tag).Clone();
 				this.resetData = data.Clone();
 				SetControls(data);
@@ -3287,8 +3276,6 @@ namespace PdnFF
 		{
 			if (FFLtreeView1.Nodes.Count > 0)
 			{
-				lastffl = string.Empty;
-				fflofs = string.Empty;
 				Filenametxt.Text = data.FileName = string.Empty;
 				fflnametxt.Text = FFLfltrnumtxt.Text = string.Empty;
 				FFLtreeView1.Nodes.Clear();
