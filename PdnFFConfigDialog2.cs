@@ -3326,19 +3326,17 @@ namespace PdnFF
 							FilterData fd;
 							if (FFLoadSave.LoadFrom8bf(enumerator.Current, out fd))
 							{
-								string[] subtext = new string[2] { fd.Author, fd.Copyright };
-
 								if (nodes.ContainsKey(fd.Category))
 								{
 									TreeNode node = nodes[fd.Category];
 
-									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
+									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = fd }; // Title
 									node.Nodes.Add(subnode);
 								}
 								else
 								{
 									TreeNode node = new TreeNode(fd.Category);
-									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = subtext }; // Title
+									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = fd }; // Title
 									node.Nodes.Add(subnode);
 
 									nodes.Add(fd.Category, node);
@@ -3501,11 +3499,15 @@ namespace PdnFF
 		{
 			if (filtertreeview.SelectedNode.Tag != null)
 			{
-				string[] subtext = (string[])filtertreeview.SelectedNode.Tag;
-				treefltrauthtxt.Text = subtext[0];
-				treefltrcopytxt.Text = subtext[1];
+				FilterData filter = (FilterData)filtertreeview.SelectedNode.Tag;
+				treefltrauthtxt.Text = filter.Author;
+				treefltrcopytxt.Text = filter.Copyright;
 
-				LoadFilter(filtertreeview.SelectedNode.Name);
+				this.data = filter.Clone();
+				this.resetData = data.Clone();
+				SetControls(data);
+				SetInfo(data);
+				SetFilterInfoLabels(data);
 			}
 			else
 			{
