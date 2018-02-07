@@ -207,11 +207,13 @@ namespace PdnFF
 		private ListViewItem[] searchDirListViewCache;
 		private int cacheStartIndex;
 		private PdnFFSettings settings;
+		private FilterData resetData;
 
 		public PdnFFConfigDialog()
 		{
 			InitializeComponent();
 			searchDirectories = new List<string>();
+			resetData = null;
 		}
 		private static FilterData NewFilterData()
 		{
@@ -229,12 +231,13 @@ namespace PdnFF
 		}
 		protected override void InitialInitToken()
 		{
-			this.theEffectToken = new PdnFFConfigToken(null, string.Empty, string.Empty, string.Empty);
+			this.theEffectToken = new PdnFFConfigToken(null, null, string.Empty, string.Empty, string.Empty);
 		}
 		private string lastFileName = string.Empty;
 		protected override void InitTokenFromDialog()
 		{
 			((PdnFFConfigToken)theEffectToken).Data = data;
+			((PdnFFConfigToken)theEffectToken).ResetData = resetData;
 			((PdnFFConfigToken)theEffectToken).LastFileName = lastFileName;
 			((PdnFFConfigToken)theEffectToken).LastFFL = lastffl;
 			((PdnFFConfigToken)theEffectToken).FFLOffset = fflofs;
@@ -244,6 +247,7 @@ namespace PdnFF
 		{
 			PdnFFConfigToken token = (PdnFFConfigToken)effectToken;
 			this.data = token.Data;
+			this.resetData = token.ResetData;
 			this.lastFileName = token.LastFileName;
 			this.lastffl = token.LastFFL;
 			this.fflofs = token.FFLOffset;
@@ -1740,40 +1744,16 @@ namespace PdnFF
 			DialogResult = DialogResult.Cancel;
 			this.Close();
 		}
-		int[] resetdata = new int[8];
+
 		private FilterData data = null;
 		private void Loadbtn_Click(object sender, System.EventArgs e)
 		{
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
 			{
-				LoadFilter(openFileDialog1.FileName, false);
+				LoadFilter(openFileDialog1.FileName);
 			}
 		}
-		/// <summary>
-		/// Reset the Control and the filter Info for the token filterdata
-		/// </summary>
-		/// <param name="tmpdata">The temp filter data with the filter defaults</param>
-		private void ResetTokenDataInfo(FilterData tmpdata)
-		{
-			for (int i = 0; i < 8; i++)
-			{
-				// set the reset values but keep the last control values
-				resetdata[i] = tmpdata.ControlValue[i];
-				data.ControlLabel[i] = tmpdata.ControlLabel[i];
-				data.ControlEnable[i] = tmpdata.ControlEnable[i];
-			}
-			for (int i = 0; i < 4; i++)
-			{
-				data.MapLabel[i] = tmpdata.MapLabel[i];
-				data.MapEnable[i] = tmpdata.MapEnable[i];
-				data.Source[i] = tmpdata.Source[i];
-			}
-			data.Author = tmpdata.Author;
-			data.Category = tmpdata.Category;
-			data.Copyright = tmpdata.Copyright;
-			data.Title = tmpdata.Title;
 
-		}
 		private void SetFilterInfoLabels(FilterData data)
 		{
 			fltrCatTxt.Text = data.Category;
@@ -1797,50 +1777,27 @@ namespace PdnFF
 			}
 		}
 
-		private void LoadFilter(string FileName, bool uselastvalues)
+		private void LoadFilter(string FileName)
 		{
 			try
 			{
-				if (uselastvalues)
+
+				data = NewFilterData();
+				SetControls(data); // set the edit controls to the empty data to force all the checkboxes to be unchecked
+				ClearEditControls();
+				if (FFLoadSave.LoadFile(FileName, out data))
 				{
-					ClearEditControls();
-					FilterData tmpdata;
-					if (FFLoadSave.LoadFile(FileName, out tmpdata))
-					{
-						this.Filenametxt.Text = Path.GetFileName(FileName);
-						ResetTokenDataInfo(tmpdata);
-						ResetPopDialog(data);
-						SetControls(data); // set the controls from the token data
-						SetInfo(data);
-						SetFilterInfoLabels(data);
+					this.Filenametxt.Text = Path.GetFileName(FileName);
+					this.lastFileName = FileName;
+					this.fflofs = string.Empty;
+					this.resetData = data.Clone();
+					ResetPopDialog(data);
+					SetControls(data);
+					SetInfo(data);
+					SetFilterInfoLabels(data);
 
-						FinishTokenUpdate();
-					}
+					FinishTokenUpdate();
 				}
-				else
-				{
-
-					data = NewFilterData();
-					SetControls(data); // set the edit controls to the empty data to force all the checkboxes to be unchecked
-					ClearEditControls();
-					if (FFLoadSave.LoadFile(FileName, out data))
-					{
-						this.Filenametxt.Text = Path.GetFileName(FileName);
-						this.lastFileName = FileName;
-						this.fflofs = string.Empty;
-						for (int i = 0; i < 8; i++)
-						{
-							resetdata[i] = data.ControlValue[i];
-						}
-						ResetPopDialog(data);
-						SetControls(data);
-						SetInfo(data);
-						SetFilterInfoLabels(data);
-
-						FinishTokenUpdate();
-					}
-				}
-
 			}
 			catch (Exception ex)
 			{
@@ -2378,39 +2335,39 @@ namespace PdnFF
 
 		private void resetbtn_Click(object sender, EventArgs e)
 		{
-			if (data != null)
+			if (resetData != null)
 			{
 				if (sender == resetbtn0)
 				{
-					ctl0.Value = resetdata[0];
+					ctl0.Value = resetData.ControlValue[0];
 				}
 				else if (sender == resetbtn1)
 				{
-					ctl1.Value = resetdata[1];
+					ctl1.Value = resetData.ControlValue[1];
 				}
 				else if (sender == resetbtn2)
 				{
-					ctl2.Value = resetdata[2];
+					ctl2.Value = resetData.ControlValue[2];
 				}
 				else if (sender == resetbtn3)
 				{
-					ctl3.Value = resetdata[3];
+					ctl3.Value = resetData.ControlValue[3];
 				}
 				else if (sender == resetbtn4)
 				{
-					ctl4.Value = resetdata[4];
+					ctl4.Value = resetData.ControlValue[4];
 				}
 				else if (sender == resetbtn5)
 				{
-					ctl5.Value = resetdata[5];
+					ctl5.Value = resetData.ControlValue[5];
 				}
 				else if (sender == resetbtn6)
 				{
-					ctl6.Value = resetdata[6];
+					ctl6.Value = resetData.ControlValue[6];
 				}
 				else if (sender == resetbtn7)
 				{
-					ctl7.Value = resetdata[7];
+					ctl7.Value = resetData.ControlValue[7];
 				}
 			}
 		}
@@ -2435,6 +2392,7 @@ namespace PdnFF
 		{
 			Filenametxt.Text = this.lastFileName = string.Empty;
 			clearFFLbtn_Click(null, null);
+			resetData = null;
 		}
 
 		private void LoadSettings()
@@ -2473,14 +2431,11 @@ namespace PdnFF
 				UpdateFilterList();
 			}
 
-			if (!string.IsNullOrEmpty(this.lastffl) && !string.IsNullOrEmpty(this.fflofs))
+			if (data != null)
 			{
-				LoadFFL(this.lastffl, this.fflofs);
-				FinishTokenUpdate();
-			}
-			else if (!string.IsNullOrEmpty(this.lastFileName))
-			{
-				LoadFilter(this.lastFileName, true);
+				SetControls(data);
+				SetInfo(data);
+				SetFilterInfoLabels(data);
 			}
 			else
 			{
@@ -2577,8 +2532,7 @@ namespace PdnFF
 		/// Loads a FFL library
 		/// </summary>
 		/// <param name="FileName">The FileName to load</param>
-		/// <param name="index">The item name of the filter to select</param>
-		private void LoadFFL(string FileName, string itemname)
+		private void LoadFFL(string FileName)
 		{
 			if (FFLtreeView1.Nodes.Count > 0)
 			{
@@ -2605,12 +2559,6 @@ namespace PdnFF
 
 
 				FFLfltrnumtxt.Text = count.ToString(CultureInfo.CurrentCulture);
-				if (!string.IsNullOrEmpty(itemname) && FFLtreeView1.Nodes.ContainsKey(itemname))
-				{
-					int index = FFLtreeView1.Nodes.IndexOfKey(itemname);
-					long ofs = (long)FFLtreeView1.Nodes[index].Tag;
-					GetFilterfromFFLOffset(ofs, true);
-				}
 
 				SetFilterInfoLabels(data);
 			}
@@ -2628,7 +2576,7 @@ namespace PdnFF
 					fflDialog.Filter = Resources.ConfigDialog_LoadFFLDialog_Filter;
 					if (fflDialog.ShowDialog() == DialogResult.OK)
 					{
-						LoadFFL(fflDialog.FileName, string.Empty);
+						LoadFFL(fflDialog.FileName);
 					}
 				}
 			}
@@ -2638,7 +2586,7 @@ namespace PdnFF
 			}
 
 		}
-		private void GetFilterfromFFLOffset(long offset, bool uselastvalues)
+		private void GetFilterfromFFLOffset(long offset)
 		{
 			FileStream fs = null;
 			try
@@ -2647,33 +2595,14 @@ namespace PdnFF
 				using (BinaryReader br = new BinaryReader(fs, Encoding.Default))
 				{
 					fs = null;
-					if (uselastvalues)
-					{
-						FilterData tmpdata;
-						if (FFLoadSave.GetFilterfromFFL(br, offset, out tmpdata))
-						{
-							for (int i = 0; i < 8; i++)
-							{
-								resetdata[i] = tmpdata.ControlValue[i];
-							}
-							ResetTokenDataInfo(tmpdata);
-							SetControls(data); // set the controls from the token Data
-							SetInfo(data);
-						}
-					}
-					else
-					{
-						if (FFLoadSave.GetFilterfromFFL(br, offset, out data))
-						{
-							for (int i = 0; i < 8; i++)
-							{
-								resetdata[i] = data.ControlValue[i];
-							}
-							SetControls(data);
-							SetInfo(data);
-							SetFilterInfoLabels(data);
 
-						}
+					if (FFLoadSave.GetFilterfromFFL(br, offset, out data))
+					{
+						this.resetData = data.Clone();
+						SetControls(data);
+						SetInfo(data);
+						SetFilterInfoLabels(data);
+
 					}
 				}
 			}
@@ -2692,7 +2621,7 @@ namespace PdnFF
 				TreeNode lvi = FFLtreeView1.SelectedNode;
 				fflofs = lvi.Name; // the item's FileName in the FFL
 				long offset = (long)lvi.Tag;
-				GetFilterfromFFLOffset(offset, false);
+				GetFilterfromFFLOffset(offset);
 
 				ffltreeauthtxt.Text = data.Author;
 				ffltreecopytxt.Text = data.Copyright;
@@ -3596,7 +3525,7 @@ namespace PdnFF
 				treefltrauthtxt.Text = subtext[0];
 				treefltrcopytxt.Text = subtext[1];
 
-				LoadFilter(filtertreeview.SelectedNode.Name, false);
+				LoadFilter(filtertreeview.SelectedNode.Name);
 			}
 			else
 			{

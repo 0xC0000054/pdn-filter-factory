@@ -26,6 +26,7 @@ namespace PdnFF
     public sealed class PdnFFConfigToken : PaintDotNet.Effects.EffectConfigToken
     {
         private FilterData data;
+        private FilterData resetData;
         private string lastFileName;
         private string lastFFL;
         private string fflOfs;
@@ -39,6 +40,18 @@ namespace PdnFF
             internal set
             {
                 data = value;
+            }
+        }
+
+        public FilterData ResetData
+        {
+            get
+            {
+                return resetData;
+            }
+            internal set
+            {
+                resetData = value;
             }
         }
 
@@ -79,9 +92,10 @@ namespace PdnFF
         }
 
 
-        public PdnFFConfigToken(FilterData data, String lastfilename, String lastffl, String fflofs) : base()
+        public PdnFFConfigToken(FilterData data, FilterData resetData, String lastfilename, String lastffl, String fflofs) : base()
         {
             this.Data = data;
+            this.resetData = resetData;
             this.lastFileName = lastfilename;
             this.lastFFL = lastffl;
             this.fflOfs = fflofs;
@@ -90,6 +104,7 @@ namespace PdnFF
         private PdnFFConfigToken(PdnFFConfigToken copyMe) : base(copyMe)
         {
             this.Data = copyMe.Data;
+            this.resetData = copyMe.resetData;
             this.lastFileName = copyMe.lastFileName;
             this.lastFFL = copyMe.lastFFL;
             this.fflOfs = copyMe.fflOfs;
