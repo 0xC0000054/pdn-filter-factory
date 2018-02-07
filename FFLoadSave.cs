@@ -527,8 +527,13 @@ namespace PdnFF
 					throw new EndOfStreamException();
 				}
 
-				if (value == '\r')
+				if (value == '\r' || value == '\n')
 				{
+					if (value == '\r' && reader.Peek() == '\n')
+					{
+						reader.Read();
+					}
+
 					break;
 				}
 
