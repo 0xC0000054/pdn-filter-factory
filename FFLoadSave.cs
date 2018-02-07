@@ -513,42 +513,46 @@ namespace PdnFF
 			}
 		}
 
-		private static string ReadAfsString(BinaryReader br)
+		private static string ReadAfsString(StreamReader reader)
 		{
 			StringBuilder sb = new StringBuilder();
 
-			char value = br.ReadChar();
-
-			if (value == '\r')
+			while (true)
 			{
-				// Return null for a blank line to allow the lines that separate the source code for
-				// the different channels to be distinguished from a line that only contains whitespace.
-				return null;
-			}
-			else
-			{
-				do
+				int value = reader.Read();
+				if (value == -1)
 				{
-					if (value == '\\')
-					{
-						char nextChar = br.ReadChar();
-						if (nextChar == 'r')
-						{
-							// Exit if the string contains an embedded carriage return.
-							break;
-						}
-					}
-					else
-					{
-						sb.Append(value);
-					}
+					throw new EndOfStreamException();
+				}
 
-					value = br.ReadChar();
+				if (value == '\r')
+				{
+					break;
+				}
 
-				} while (value != '\r');
+				if (value == '\\')
+				{
+					int nextChar = reader.Read();
+					if (nextChar == 'r')
+					{
+						// Exit if the string contains an embedded carriage return.
+						break;
+					}
+				}
+				else
+				{
+					sb.Append((char)value);
+				}
 			}
 
-			return sb.ToString().Trim();
+			if (sb.Length > 0)
+			{
+				return sb.ToString().Trim();
+			}
+
+			// Return null for a blank line to allow the lines that separate the source code for
+			// the different channels to be distinguished from a line that only contains whitespace.
+			return null;
 		}
 
 		private static void LoadAfs(Stream infile, out FilterData data)
@@ -563,13 +567,13 @@ namespace PdnFF
 			bool ctlread = false;
 			bool srcread = false;
 
-			using (BinaryReader br = new BinaryReader(infile, Encoding.Default))
+			using (StreamReader reader = new StreamReader(infile, Encoding.Default))
 			{
 				if (!ctlread)
 				{
 					for (int i = 0; i < 8; i++)
 					{
-						line = ReadAfsString(br);
+						line = ReadAfsString(reader);
 						if (!string.IsNullOrEmpty(line) && line.Length <= 3)
 						{
 							data.ControlValue[i] = int.Parse(line, CultureInfo.InvariantCulture);
@@ -584,7 +588,7 @@ namespace PdnFF
 					int i = 0;
 					while (i < 4)
 					{
-						line = ReadAfsString(br);
+						line = ReadAfsString(reader);
 						if (line == null)
 						{
 							data.Source[i] = builder.ToString();
@@ -791,27 +795,32 @@ namespace PdnFF
 		/// <summary>
 		/// Reads a string from a FFL file.
 		/// </summary>
-		/// <param name="br">The BinaryReader to read from.</param>
+		/// <param name="reader">The StreamReader to read from.</param>
+		/// <exception cref="EndOfStreamException">The end of the stream was reached.</exception>
 		/// <returns></returns>
-		private static string ReadFFLString(BinaryReader br)
+		private static string ReadFFLString(StreamReader reader)
 		{
 			StringBuilder sb = new StringBuilder();
 
 			while (true)
 			{
-				char value = br.ReadChar();
+				int value = reader.Read();
+				if (value == -1)
+				{
+					throw new EndOfStreamException();
+				}
 
 				if (value == '\r' || value == '\n')
 				{
-					if (value == '\r' && br.PeekChar() == '\n')
+					if (value == '\r' && reader.Peek() == '\n')
 					{
-						br.ReadChar();
+						reader.Read();
 					}
 
 					break;
 				}
 
-				sb.Append(value);
+				sb.Append((char)value);
 			}
 			return sb.ToString().Trim();
 		}
@@ -839,13 +848,13 @@ namespace PdnFF
 
 				fs = new FileStream(fn, FileMode.Open, FileAccess.Read, FileShare.None);
 
-				using (BinaryReader br = new BinaryReader(fs))
+				using (StreamReader reader = new StreamReader(fs))
 				{
 					fs = null;
-					string id = ReadFFLString(br);
+					string id = ReadFFLString(reader);
 					if (id != null && id == "FFL1.0")
 					{
-						string num = ReadFFLString(br);
+						string num = ReadFFLString(reader);
 						if (!string.IsNullOrEmpty(num))
 						{
 							int len = int.Parse(num, CultureInfo.InvariantCulture);
@@ -854,7 +863,7 @@ namespace PdnFF
 							{
 								for (int i = 0; i < len; i++)
 								{
-									items.Add(GetFilterfromFFL(br));
+									items.Add(GetFilterfromFFL(reader));
 								}
 							}
 							catch (EndOfStreamException)
@@ -886,26 +895,26 @@ namespace PdnFF
 		/// <summary>
 		/// Extracts a filter from the current location in the FFL
 		/// </summary>
-		/// <param name="br">The BimaryReader to read from.</param>
+		/// <param name="reader">The BimaryReader to read from.</param>
 		/// <returns>The extracted filter data.</returns>
 		/// <exception cref="System.ArgumentNullException">The BinaryReader is null.</exception>
-		private static FilterData GetFilterfromFFL(BinaryReader br)
+		private static FilterData GetFilterfromFFL(StreamReader reader)
 		{
-			if (br == null)
+			if (reader == null)
 				throw new ArgumentNullException("br", "br is null.");
 
 			FilterData data = new FilterData
 			{
-				FileName = ReadFFLString(br),
-				Category = ReadFFLString(br),
-				Title = ReadFFLString(br),
-				Author = ReadFFLString(br),
-				Copyright = ReadFFLString(br)
+				FileName = ReadFFLString(reader),
+				Category = ReadFFLString(reader),
+				Title = ReadFFLString(reader),
+				Author = ReadFFLString(reader),
+				Copyright = ReadFFLString(reader)
 			};
 
 			for (int i = 0; i < 4; i++)
 			{
-				string map = ReadFFLString(br);
+				string map = ReadFFLString(reader);
 				if (!string.IsNullOrEmpty(map))
 				{
 					data.MapLabel[i] = map;
@@ -919,7 +928,7 @@ namespace PdnFF
 			}
 			for (int i = 0; i < 8; i++)
 			{
-				string ctl = ReadFFLString(br);
+				string ctl = ReadFFLString(reader);
 				if (!string.IsNullOrEmpty(ctl))
 				{
 					data.ControlLabel[i] = ctl;
@@ -934,7 +943,7 @@ namespace PdnFF
 
 			for (int i = 0; i < 8; i++)
 			{
-				string cv = ReadFFLString(br);
+				string cv = ReadFFLString(reader);
 				data.ControlValue[i] = int.Parse(cv, CultureInfo.InvariantCulture);
 			}
 
@@ -942,7 +951,7 @@ namespace PdnFF
 
 			for (int i = 0; i < 4; i++)
 			{
-				string src = ReadFFLString(br);
+				string src = ReadFFLString(reader);
 				if (!string.IsNullOrEmpty(src))
 				{
 					data.Source[i] = src;
