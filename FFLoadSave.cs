@@ -820,11 +820,11 @@ namespace PdnFF
 		/// Loads A Filter Factory Library file
 		/// </summary>
 		/// <param name="fn">The FileName to load.</param>
-		/// <param name="items">The output TreeNode list of items in the file.</param>
+		/// <param name="items">The list of filters in the file.</param>
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The Filename is null.</exception>
 		/// <exception cref="System.ArgumentException">The Filename is empty.</exception>
-		public static bool LoadFFL(string fn, out List<TreeNode> items)
+		public static bool LoadFFL(string fn, out List<FilterData> items)
 		{
 			bool loaded = false;
 			FileStream fs = null;
@@ -836,7 +836,7 @@ namespace PdnFF
 				if (string.IsNullOrEmpty(fn))
 					throw new ArgumentException("Filename must not be empty", "fn");
 
-				items = new List<TreeNode>();
+				items = new List<FilterData>();
 
 				fs = new FileStream(fn, FileMode.Open, FileAccess.Read, FileShare.None);
 
@@ -850,7 +850,6 @@ namespace PdnFF
 						if (!string.IsNullOrEmpty(num))
 						{
 							int len = int.Parse(num, CultureInfo.InvariantCulture);
-							Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
 
 							try
 							{
@@ -860,21 +859,7 @@ namespace PdnFF
 									FilterData data;
 									if (GetFilterfromFFL(br, pos, out data))
 									{
-										if (nodes.ContainsKey(data.Category))
-										{
-											TreeNode node = nodes[data.Category];
-
-											TreeNode subnode = new TreeNode(data.Title) { Name = data.FileName, Tag = pos }; // Title
-											node.Nodes.Add(subnode);
-										}
-										else
-										{
-											TreeNode node = new TreeNode(data.Category);
-											TreeNode subnode = new TreeNode(data.Title) { Name = data.FileName, Tag = pos }; // Title
-											node.Nodes.Add(subnode);
-
-											nodes.Add(data.Category, node);
-										}
+										items.Add(data);
 									}
 								}
 							}
@@ -882,7 +867,6 @@ namespace PdnFF
 							{
 								// ignore it
 							}
-							items.AddRange(nodes.Values);
 
 							loaded = true;
 						}

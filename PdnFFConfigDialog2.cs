@@ -2539,17 +2539,36 @@ namespace PdnFF
 				FFLtreeView1.Nodes.Clear();
 			}
 
-			List<TreeNode> nodes;
-			if (FFLoadSave.LoadFFL(FileName, out nodes))
+			List<FilterData> filters;
+			if (FFLoadSave.LoadFFL(FileName, out filters))
 			{
-				int count = 0;
+				Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
+				for (int i = 0; i < filters.Count; i++)
+				{
+					FilterData filter = filters[i];
+
+					if (nodes.ContainsKey(filter.Category))
+					{
+						TreeNode node = nodes[filter.Category];
+
+						TreeNode subnode = new TreeNode(filter.Title) { Name = filter.FileName, Tag = filter };
+						node.Nodes.Add(subnode);
+					}
+					else
+					{
+						TreeNode node = new TreeNode(filter.Category);
+						TreeNode subnode = new TreeNode(filter.Title) { Name = filter.FileName, Tag = filter };
+						node.Nodes.Add(subnode);
+
+						nodes.Add(filter.Category, node);
+					}
+				}
 
 				FFLtreeView1.BeginUpdate();
 				FFLtreeView1.TreeViewNodeSorter = null;
 				foreach (var item in nodes)
 				{
-					count += item.Nodes.Count;
-					FFLtreeView1.Nodes.Add(item);
+					FFLtreeView1.Nodes.Add(item.Value);
 				}
 				FFLtreeView1.TreeViewNodeSorter = TreeNodeItemComparer.Instance;
 				FFLtreeView1.EndUpdate();
@@ -2558,7 +2577,7 @@ namespace PdnFF
 				fflnametxt.Text = Path.GetFileName(this.lastffl);
 
 
-				FFLfltrnumtxt.Text = count.ToString(CultureInfo.CurrentCulture);
+				FFLfltrnumtxt.Text = filters.Count.ToString(CultureInfo.CurrentCulture);
 
 				SetFilterInfoLabels(data);
 			}
@@ -2586,42 +2605,18 @@ namespace PdnFF
 			}
 
 		}
-		private void GetFilterfromFFLOffset(long offset)
-		{
-			FileStream fs = null;
-			try
-			{
-				fs = new FileStream(lastffl, FileMode.Open, FileAccess.Read, FileShare.None);
-				using (BinaryReader br = new BinaryReader(fs, Encoding.Default))
-				{
-					fs = null;
 
-					if (FFLoadSave.GetFilterfromFFL(br, offset, out data))
-					{
-						this.resetData = data.Clone();
-						SetControls(data);
-						SetInfo(data);
-						SetFilterInfoLabels(data);
-
-					}
-				}
-			}
-			finally
-			{
-				if (fs != null)
-				{
-					fs.Close();
-				}
-			}
-		}
 		private void FFLtreeView1_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			if (FFLtreeView1.SelectedNode.Tag != null)
 			{
 				TreeNode lvi = FFLtreeView1.SelectedNode;
 				fflofs = lvi.Name; // the item's FileName in the FFL
-				long offset = (long)lvi.Tag;
-				GetFilterfromFFLOffset(offset);
+				this.data = ((FilterData)lvi.Tag).Clone();
+				this.resetData = data.Clone();
+				SetControls(data);
+				SetInfo(data);
+				SetFilterInfoLabels(data);
 
 				ffltreeauthtxt.Text = data.Author;
 				ffltreecopytxt.Text = data.Copyright;
