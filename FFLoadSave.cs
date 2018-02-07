@@ -897,7 +897,7 @@ namespace PdnFF
 		/// <param name="data">The output filter_data for the extraced filter.</param>
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The BinaryReader is null.</exception>
-		public static bool GetFilterfromFFL(BinaryReader br, long offset, out FilterData data)
+		private static bool GetFilterfromFFL(BinaryReader br, long offset, out FilterData data)
 		{
 			if (br == null)
 				throw new ArgumentNullException("br", "br is null.");
