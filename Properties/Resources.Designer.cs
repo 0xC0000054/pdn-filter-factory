@@ -123,5 +123,14 @@ namespace PdnFF.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The source code for a channel can not be longer than 1024 characters..
+        /// </summary>
+        internal static string SourceCodeTooLong {
+            get {
+                return ResourceManager.GetString("SourceCodeTooLong", resourceCulture);
+            }
+        }
     }
 }

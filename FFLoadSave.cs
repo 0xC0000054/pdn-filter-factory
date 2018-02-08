@@ -27,6 +27,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
 using PaintDotNet.IO;
+using PdnFF.Properties;
 
 namespace PdnFF
 {
@@ -422,6 +423,11 @@ namespace PdnFF
 
 										if (!string.IsNullOrEmpty(src))
 										{
+											if (src.Length > 1024)
+											{
+												throw new FormatException(Resources.SourceCodeTooLong);
+											}
+
 											switch (id)
 											{
 												case "R":
@@ -608,6 +614,11 @@ namespace PdnFF
 						{
 							if (line.Length > 0)
 							{
+								if ((builder.Length + line.Length) > 1024)
+								{
+									throw new FormatException(Resources.SourceCodeTooLong);
+								}
+
 								builder.Append(line);
 							}
 						}

@@ -140,4 +140,7 @@
   <data name="ConfigDialog_FormulaEmptyError_Text" xml:space="preserve">
     <value>The formula cannot be empty</value>
   </data>
+  <data name="SourceCodeTooLong" xml:space="preserve">
+    <value>The source code for a channel can not be longer than 1024 characters.</value>
+  </data>
 </root>
