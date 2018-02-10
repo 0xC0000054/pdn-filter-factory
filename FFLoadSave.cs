@@ -922,7 +922,7 @@ namespace PdnFF
 		private static FilterData GetFilterfromFFL(StreamReader reader)
 		{
 			if (reader == null)
-				throw new ArgumentNullException("br", "br is null.");
+				throw new ArgumentNullException(nameof(reader));
 
 			FilterData data = new FilterData
 			{
