@@ -74,6 +74,7 @@ namespace PdnFF
 		}
 
 		private static readonly Encoding Windows1252 = Encoding.GetEncoding(1252);
+		private static readonly string[] DefaultSourceCode = new string[4] { "r", "g", "b", "a" };
 
 		private const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
 		#region EnumRes
@@ -787,7 +788,6 @@ namespace PdnFF
 		{
 			FilterData data = new FilterData();
 
-			string[] src = new string[] { "r", "g", "b", "a" };
 			data.Category = "Untitled";
 			data.Title = "Untitled";
 			data.Author = Environment.UserName;
@@ -808,7 +808,7 @@ namespace PdnFF
 
 			for (int i = 0; i < 4; i++)
 			{
-				data.Source[i] = src[i];
+				data.Source[i] = DefaultSourceCode[i];
 			}
 
 			return data;
@@ -968,8 +968,6 @@ namespace PdnFF
 				data.ControlValue[i] = int.Parse(cv, CultureInfo.InvariantCulture);
 			}
 
-			string[] rgba = new string[] { "r", "g", "b", "a" };
-
 			for (int i = 0; i < 4; i++)
 			{
 				string src = ReadFFLString(reader);
@@ -979,7 +977,7 @@ namespace PdnFF
 				}
 				else
 				{
-					data.Source[i] = rgba[i];
+					data.Source[i] = DefaultSourceCode[i];
 				}
 			}
 
