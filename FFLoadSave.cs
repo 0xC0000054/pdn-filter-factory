@@ -355,7 +355,7 @@ namespace PdnFF
 		private static FilterData LoadTxt(Stream infile)
 		{
 			if (infile == null)
-				throw new ArgumentNullException("infile", "infile is null.");
+				throw new ArgumentNullException("infile");
 
 			FilterData data = new FilterData();
 			infile.Position = 0L;
@@ -574,7 +574,7 @@ namespace PdnFF
 		private static FilterData LoadAfs(Stream infile)
 		{
 			if (infile == null)
-				throw new ArgumentNullException("infile", "infile is null.");
+				throw new ArgumentNullException("infile");
 
 			FilterData data = new FilterData();
 
@@ -665,9 +665,9 @@ namespace PdnFF
 		private static void SaveAfs(Stream output, FilterData data)
 		{
 			if (output == null)
-				throw new ArgumentNullException("output", "output is null.");
+				throw new ArgumentNullException("output");
 			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
+				throw new ArgumentNullException("data");
 
 			using (StreamWriter sw = new StreamWriter(output, Windows1252))
 			{
@@ -718,9 +718,9 @@ namespace PdnFF
 		private static void SaveTxt(Stream output, FilterData data)
 		{
 			if (output == null)
-				throw new ArgumentNullException("output", "output is null.");
+				throw new ArgumentNullException("output");
 			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
+				throw new ArgumentNullException("data");
 
 			using (StreamWriter sw = new StreamWriter(output, Windows1252))
 			{
@@ -766,7 +766,7 @@ namespace PdnFF
 			if (String.IsNullOrEmpty(FileName))
 				throw new ArgumentException("FileName is null or empty.", "FileName");
 			if (data == null)
-				throw new ArgumentNullException("data", "data is null.");
+				throw new ArgumentNullException("data");
 
 			using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write))
 			{
