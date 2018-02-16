@@ -3310,41 +3310,38 @@ namespace PdnFF
 			for (int i = 0; i < uflp.dirlist.Length; i++)
 			{
 				string path = uflp.dirlist[i];
-				if (Directory.Exists(path))
+				worker.ReportProgress(i, Path.GetFileName(path));
+
+				using (FileEnumerator enumerator = new FileEnumerator(path, ".8bf", uflp.options, false))
 				{
-					worker.ReportProgress(i, Path.GetFileName(path));
-
-					using (FileEnumerator enumerator = new FileEnumerator(path, ".8bf", uflp.options, false))
+					while (enumerator.MoveNext())
 					{
-						while (enumerator.MoveNext())
+						if (worker.CancellationPending)
 						{
-							if (worker.CancellationPending)
+							e.Cancel = true;
+							return;
+						}
+						FilterData fd;
+						if (FFLoadSave.LoadFrom8bf(enumerator.Current, out fd))
+						{
+							if (nodes.ContainsKey(fd.Category))
 							{
-								e.Cancel = true;
-								return;
+								TreeNode node = nodes[fd.Category];
+
+								TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = fd }; // Title
+								node.Nodes.Add(subnode);
 							}
-							FilterData fd;
-							if (FFLoadSave.LoadFrom8bf(enumerator.Current, out fd))
+							else
 							{
-								if (nodes.ContainsKey(fd.Category))
-								{
-									TreeNode node = nodes[fd.Category];
+								TreeNode node = new TreeNode(fd.Category);
+								TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = fd }; // Title
+								node.Nodes.Add(subnode);
 
-									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = fd }; // Title
-									node.Nodes.Add(subnode);
-								}
-								else
-								{
-									TreeNode node = new TreeNode(fd.Category);
-									TreeNode subnode = new TreeNode(fd.Title) { Name = enumerator.Current, Tag = fd }; // Title
-									node.Nodes.Add(subnode);
-
-									nodes.Add(fd.Category, node);
-								}
-
-								count++;
-								//Debug.WriteLine(string.Format("Item name = {0}, Count = {1}", fi.Name, items.Count.ToString()));
+								nodes.Add(fd.Category, node);
 							}
+
+							count++;
+							//Debug.WriteLine(string.Format("Item name = {0}, Count = {1}", fi.Name, items.Count.ToString()));
 						}
 					}
 				}
