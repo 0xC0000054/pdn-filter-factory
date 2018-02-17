@@ -3183,7 +3183,7 @@ namespace PdnFF
 		/// <summary>
 		/// The Parameter class for the UpdateFilterList Background Worker
 		/// </summary>
-		private sealed class UpdateFilterListParm
+		private sealed class UpdateFilterListParam
 		{
 			/// <summary>
 			/// The list of Search Directories
@@ -3215,7 +3215,7 @@ namespace PdnFF
 #endif
 				if (!UpdateFilterListbw.IsBusy)
 				{
-					UpdateFilterListParm uflp = new UpdateFilterListParm();
+					UpdateFilterListParam uflp = new UpdateFilterListParam();
 					uflp.options = subdirSearchcb.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
 					uflp.dirlist = new string[searchDirectories.Count];
 					for (int i = 0; i < searchDirectories.Count; i++)
@@ -3302,7 +3302,7 @@ namespace PdnFF
 		private void UpdateFilterListbw_DoWork(object sender, DoWorkEventArgs e)
 		{
 			BackgroundWorker worker = (BackgroundWorker)sender;
-			UpdateFilterListParm uflp = (UpdateFilterListParm)e.Argument;
+			UpdateFilterListParam uflp = (UpdateFilterListParam)e.Argument;
 
 			Dictionary<string, TreeNode> nodes = new Dictionary<string, TreeNode>();
 
@@ -3368,7 +3368,7 @@ namespace PdnFF
 			{
 				if (!e.Cancelled) // has the worker been canceled
 				{
-					UpdateFilterListParm parm = (UpdateFilterListParm)e.Result;
+					UpdateFilterListParam parm = (UpdateFilterListParam)e.Result;
 
 					FiltertreeviewItems = new Dictionary<TreeNode, string>();
 					for (int i = 0; i < parm.itemarr.Length; i++)
