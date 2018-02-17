@@ -3201,6 +3201,15 @@ namespace PdnFF
 			/// The number of items in the list
 			/// </summary>
 			public int itemcount;
+
+			public UpdateFilterListParam(ICollection<string> searchDirectories, bool searchSubDirectories)
+			{
+				this.dirlist = new string[searchDirectories.Count];
+				searchDirectories.CopyTo(this.dirlist, 0);
+				this.itemarr = null;
+				this.options = searchSubDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+				this.itemcount = 0;
+			}
 		}
 
 		/// <summary>
@@ -3215,13 +3224,7 @@ namespace PdnFF
 #endif
 				if (!UpdateFilterListbw.IsBusy)
 				{
-					UpdateFilterListParam uflp = new UpdateFilterListParam();
-					uflp.options = subdirSearchcb.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-					uflp.dirlist = new string[searchDirectories.Count];
-					for (int i = 0; i < searchDirectories.Count; i++)
-					{
-						uflp.dirlist[i] = searchDirectories[i];
-					}
+					UpdateFilterListParam uflp = new UpdateFilterListParam(this.searchDirectories, this.subdirSearchcb.Checked);
 					// Debug.WriteLine(string.Format("UpdateFilterList isbackground = {0}", Thread.CurrentThread.IsBackground.ToString()));
 					fltrmgrprogress.Maximum = uflp.dirlist.Length;
 					fltrmgrprogress.Step = 1;
