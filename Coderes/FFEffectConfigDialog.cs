@@ -117,11 +117,8 @@ namespace FFEffect
                 return; // Bail since the values in data.ControlValue have not been copied to the token.
             }
 
-            if (effectToken is FFEffectConfigToken)
-            {
-                FFEffectConfigToken token = (FFEffectConfigToken)effectToken;
-                data.ControlValue = token.ctlvalues;
-            }
+            FFEffectConfigToken token = (FFEffectConfigToken)effectToken;
+            data.ControlValue = token.ctlvalues;
         }
 
 
