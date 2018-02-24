@@ -49,25 +49,32 @@ namespace PdnFF
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		private static class UnsafeNativeMethods
 		{
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
 			public static extern SafeLibraryHandle LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
 
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
 			[return: MarshalAs(UnmanagedType.Bool)]
 			public static extern bool EnumResourceNames([In()]IntPtr hModule, [In]string lpszType, EnumResNameDelegate lpEnumFunc, IntPtr lParam);
 
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
 			[DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
 			public static extern IntPtr FindResource([In()]IntPtr hModule, [In()]IntPtr lpName, [In()]IntPtr lpType);
 
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
 			[DllImport("Kernel32.dll", EntryPoint = "SizeofResource", SetLastError = true)]
 			public static extern uint SizeofResource(IntPtr hModule, IntPtr hReSource);
 
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
 			[DllImport("Kernel32.dll", EntryPoint = "LoadResource", SetLastError = true)]
 			public static extern IntPtr LoadResource(IntPtr hModule, IntPtr hReSource);
 
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
 			[DllImport("Kernel32.dll", EntryPoint = "LockResource")]
 			public static extern IntPtr LockResource(IntPtr hGlobal);
 
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
 			[DllImport("kernel32.dll", SetLastError = true)]
 			[return: MarshalAs(UnmanagedType.Bool)]
 			public static extern bool FreeLibrary(IntPtr hModule);
