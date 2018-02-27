@@ -41,19 +41,23 @@ namespace PdnFF
         [System.Security.SuppressUnmanagedCodeSecurity]
         private static class ffeval32
         {
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern SafeEnvironmentDataHandle86 CreateEnvironmentData(
                 [In] ref BitmapData input,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
             public static extern void FreeEnvironmentData(IntPtr handle);
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x86.dll", ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.U1)]
@@ -63,19 +67,23 @@ namespace PdnFF
         [System.Security.SuppressUnmanagedCodeSecurity]
         private static class ffeval64
         {
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern SafeEnvironmentDataHandle64 CreateEnvironmentData(
                 [In] ref BitmapData input,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr, SizeConst = 4)] string[] source,
                 [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.I4, SizeConst = 8)] int[] controlValues);
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
             public static extern void FreeEnvironmentData(IntPtr handle);
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
             [DllImport("ffparse_x64.dll", ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.U1)]
