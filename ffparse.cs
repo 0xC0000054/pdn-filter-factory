@@ -59,7 +59,7 @@ namespace PdnFF
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
-            [DllImport("ffparse_x86.dll", ExactSpelling = true)]
+            [DllImport("ffparse_x86.dll", CharSet = CharSet.Ansi, ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
 
@@ -85,7 +85,7 @@ namespace PdnFF
             public static extern unsafe void Render(SafeEnvironmentDataHandle handle, Rectangle* rois, int length, [In] ref BitmapData data);
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
-            [DllImport("ffparse_x64.dll", ExactSpelling = true)]
+            [DllImport("ffparse_x64.dll", CharSet = CharSet.Ansi, ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
         }
