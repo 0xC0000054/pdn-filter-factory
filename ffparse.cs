@@ -39,7 +39,7 @@ namespace PdnFF
         }
 
         [System.Security.SuppressUnmanagedCodeSecurity]
-        private static class ffeval32
+        private static class ffeval86
         {
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA5122:PInvokesShouldNotBeSafeCriticalFxCopRule")]
@@ -111,7 +111,7 @@ namespace PdnFF
 
             protected override bool ReleaseHandle()
             {
-                ffeval32.FreeEnvironmentData(handle);
+                ffeval86.FreeEnvironmentData(handle);
                 return true;
             }
         }
@@ -139,7 +139,7 @@ namespace PdnFF
             }
             else
             {
-                return ffeval32.CreateEnvironmentData(ref sourceBitmapData, data.Source, data.ControlValue);
+                return ffeval86.CreateEnvironmentData(ref sourceBitmapData, data.Source, data.ControlValue);
             }
         }
 
@@ -175,7 +175,7 @@ namespace PdnFF
                 }
                 else
                 {
-                    ffeval32.Render(handle, rectanglePointer, length, ref bitmap);
+                    ffeval86.Render(handle, rectanglePointer, length, ref bitmap);
                 }
             }
         }
@@ -193,7 +193,7 @@ namespace PdnFF
             }
             else
             {
-                return ffeval32.ValidateSrc(src);
+                return ffeval86.ValidateSrc(src);
             }
         }
     }
