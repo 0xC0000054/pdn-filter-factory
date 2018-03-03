@@ -2078,7 +2078,7 @@ namespace PdnFF
 
 		private void SetControlsEnabled(FilterData data)
 		{
-			if (data.MapEnable[0] && !data.ControlEnable[0] && !data.ControlEnable[1]/* && UsesMap(data.Source,0)*/)
+			if (data.MapEnable[0] && !data.ControlEnable[0] && !data.ControlEnable[1])
 			{
 				map0_lbl.Visible = true;
 				map0_lbl.Text = map0txt.Text = data.MapLabel[0];
@@ -2134,7 +2134,7 @@ namespace PdnFF
 				this.ctllbl0.Text = this.ctl0txt.Text = data.ControlLabel[0];
 				this.ctllbl1.Text = this.ctl1txt.Text = data.ControlLabel[1];
 			}
-			if (data.MapEnable[1] && !data.ControlEnable[2] && !data.ControlEnable[3]/* && UsesMap(data.Source,1)*/)
+			if (data.MapEnable[1] && !data.ControlEnable[2] && !data.ControlEnable[3])
 			{
 				map1_lbl.Visible = true;
 				map1_lbl.Text = data.MapLabel[1];
@@ -2192,7 +2192,7 @@ namespace PdnFF
 				this.ctllbl2.Text = this.ctl2txt.Text = data.ControlLabel[2];
 				this.ctllbl3.Text = this.ctl3txt.Text = data.ControlLabel[3];
 			}
-			if (data.MapEnable[2] && !data.ControlEnable[4] && !data.ControlEnable[5] /*&& UsesMap(data.Source, 2)*/)
+			if (data.MapEnable[2] && !data.ControlEnable[4] && !data.ControlEnable[5])
 			{
 				map2_lbl.Visible = true;
 				map2_lbl.Text = data.MapLabel[2];
@@ -2251,7 +2251,7 @@ namespace PdnFF
 				this.ctllbl5.Text = this.ctl5txt.Text = data.ControlLabel[5];
 			}
 
-			if (data.MapEnable[3] && !data.ControlEnable[6] && !data.ControlEnable[7] /*&& UsesMap(data.Source, 3)*/)
+			if (data.MapEnable[3] && !data.ControlEnable[6] && !data.ControlEnable[7])
 			{
 				map3_lbl.Visible = true;
 				map3_lbl.Text = data.MapLabel[3];
@@ -2639,7 +2639,6 @@ namespace PdnFF
 			}
 			else
 			{
-				/*data.MapEnable[0] = 0;*/
 				map0_lbl.Visible = false;
 				if (string.IsNullOrEmpty(map0txt.Text))
 				{
@@ -2765,7 +2764,6 @@ namespace PdnFF
 			else
 			{
 				map1_lbl.Visible = false;
-				/*data.MapEnable[1] = 0;*/
 
 				if (string.IsNullOrEmpty(map1txt.Text))
 				{
@@ -2888,7 +2886,6 @@ namespace PdnFF
 			else
 			{
 				map2_lbl.Visible = false;
-				/* data.MapEnable[2] = 0;*/
 
 				if (string.IsNullOrEmpty(map2txt.Text))
 				{
