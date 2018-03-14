@@ -34,7 +34,7 @@ namespace PdnFF
         // Paint.NET added theming support for plug-ins in 4.20.
         private static readonly Version PluginThemingMinVersion = new Version("4.20");
 
-        private static MethodInfo useAppThemeSetter;
+        private static Action<EffectConfigDialog, bool> useAppThemeSetter;
         private static bool initAppThemeSetter = false;
 
         public static void EnableEffectDialogTheme(EffectConfigDialog dialog)
@@ -52,13 +52,13 @@ namespace PdnFF
                         PropertyInfo propertyInfo = typeof(EffectConfigDialog).GetProperty("UseAppThemeColors");
                         if (propertyInfo != null)
                         {
-                            useAppThemeSetter = propertyInfo.GetSetMethod();
+                            useAppThemeSetter = (Action<EffectConfigDialog, bool>)Delegate.CreateDelegate(typeof(Action<EffectConfigDialog, bool>), propertyInfo.GetSetMethod());
                         }
                     }
 
                     if (useAppThemeSetter != null)
                     {
-                        useAppThemeSetter.Invoke(dialog, new object[] { true });
+                        useAppThemeSetter.Invoke(dialog, true);
                     }
                 }
             }
