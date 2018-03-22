@@ -32,7 +32,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("null54")]
 [assembly: AssemblyProduct("PDN FF")]
-[assembly: AssemblyCopyright("© 2011 Nicholas Hayes (aka null54)")]
+[assembly: AssemblyCopyright("Copyright © 2018 Nicholas Hayes (aka null54)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
