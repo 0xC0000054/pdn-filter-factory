@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PdnFF.Properties {
+namespace PdnFF.Properties
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,113 +23,137 @@ namespace PdnFF.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
-        
+    internal class Resources
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PdnFF.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Unable to build Filter, File already exists?.
         /// </summary>
-        internal static string BuildFilterFileAlreadyExists {
-            get {
+        internal static string BuildFilterFileAlreadyExists
+        {
+            get
+            {
                 return ResourceManager.GetString("BuildFilterFileAlreadyExists", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to channel must be between the values of 0 and 3.
         /// </summary>
-        internal static string ChannelValuesOutofRangeError {
-            get {
+        internal static string ChannelValuesOutofRangeError
+        {
+            get
+            {
                 return ResourceManager.GetString("ChannelValuesOutofRangeError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Search Filters.
         /// </summary>
-        internal static string ConfigDialog_FilterSearchBox_BackText {
-            get {
+        internal static string ConfigDialog_FilterSearchBox_BackText
+        {
+            get
+            {
                 return ResourceManager.GetString("ConfigDialog_FilterSearchBox_BackText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The formula cannot be empty.
         /// </summary>
-        internal static string ConfigDialog_FormulaEmptyError_Text {
-            get {
+        internal static string ConfigDialog_FormulaEmptyError_Text
+        {
+            get
+            {
                 return ResourceManager.GetString("ConfigDialog_FormulaEmptyError_Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Syntax error in formula.
         /// </summary>
-        internal static string ConfigDialog_FormulaSyntaxError_Text {
-            get {
+        internal static string ConfigDialog_FormulaSyntaxError_Text
+        {
+            get
+            {
                 return ResourceManager.GetString("ConfigDialog_FormulaSyntaxError_Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to FFL files (*.ffl)|*.ffl.
         /// </summary>
-        internal static string ConfigDialog_LoadFFLDialog_Filter {
-            get {
+        internal static string ConfigDialog_LoadFFLDialog_Filter
+        {
+            get
+            {
                 return ResourceManager.GetString("ConfigDialog_LoadFFLDialog_Filter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ConfigDialog_Resetbtn_Image {
-            get {
+        internal static System.Drawing.Bitmap ConfigDialog_Resetbtn_Image
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("ConfigDialog_Resetbtn_Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The source code for a channel can not be longer than 1024 characters..
         /// </summary>
-        internal static string SourceCodeTooLong {
-            get {
+        internal static string SourceCodeTooLong
+        {
+            get
+            {
                 return ResourceManager.GetString("SourceCodeTooLong", resourceCulture);
             }
         }
