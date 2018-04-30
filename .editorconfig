@@ -1,0 +1,18 @@
+# EditorConfig is awesome:http://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+[*.cs]
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+# CSharp code style settings:
+csharp_new_line_before_catch = true
+csharp_new_line_before_else = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_open_brace = all
+csharp_prefer_braces = true
