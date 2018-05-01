@@ -300,10 +300,17 @@ namespace PdnFF
 
             foreach (var asm in assemblies)
             {
-                if (!asm.Location.StartsWith(effectsDir, StringComparison.OrdinalIgnoreCase) &&
-                    !asm.Location.StartsWith(fileTypesDir, StringComparison.OrdinalIgnoreCase))
+                try
                 {
-                    compilerParameters.ReferencedAssemblies.Add(asm.Location);
+                    if (!asm.Location.StartsWith(effectsDir, StringComparison.OrdinalIgnoreCase) &&
+                        !asm.Location.StartsWith(fileTypesDir, StringComparison.OrdinalIgnoreCase))
+                    {
+                        compilerParameters.ReferencedAssemblies.Add(asm.Location);
+                    }
+                }
+                catch (NotSupportedException)
+                {
+                    // Ignore any assemblies that do not have a file on disk.
                 }
             }
         }
