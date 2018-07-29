@@ -173,12 +173,16 @@ namespace PdnFF
 			bool loaded = false;
 
 			if (fileName == null)
-				throw new ArgumentNullException("fileName");
+            {
+                throw new ArgumentNullException("fileName");
+            }
 
-			if (string.IsNullOrEmpty(fileName))
-				throw new ArgumentException("fileName must not be empty", "fileName");
+            if (string.IsNullOrEmpty(fileName))
+            {
+                throw new ArgumentException("fileName must not be empty", "fileName");
+            }
 
-			data = null;
+            data = null;
 
 			if (Path.GetExtension(fileName).Equals(".8BF", StringComparison.OrdinalIgnoreCase))
 			{
@@ -234,9 +238,11 @@ namespace PdnFF
 		private static bool LoadBinFile(String fileName, out FilterData data)
 		{
 			if (String.IsNullOrEmpty(fileName))
-				throw new ArgumentException("fileName is null or empty.", "fileName");
+            {
+                throw new ArgumentException("fileName is null or empty.", "fileName");
+            }
 
-			data = null;
+            data = null;
 			bool result = false;
 
 			using (SafeLibraryHandle hm = UnsafeNativeMethods.LoadLibraryEx(fileName, IntPtr.Zero, LOAD_LIBRARY_AS_DATAFILE))
@@ -285,8 +291,11 @@ namespace PdnFF
 		private static FilterData GetFilterDataFromParmBytes(byte[] parmbytes)
 		{
 			if (parmbytes == null || parmbytes.Length == 0)
-				throw new ArgumentException("parmbytes is null or empty.", "parmbytes");
-			MemoryStream ms = null;
+            {
+                throw new ArgumentException("parmbytes is null or empty.", "parmbytes");
+            }
+
+            MemoryStream ms = null;
 			FilterData data = new FilterData();
 
 			try
@@ -362,9 +371,11 @@ namespace PdnFF
 		private static FilterData LoadTxt(Stream infile)
 		{
 			if (infile == null)
-				throw new ArgumentNullException("infile");
+            {
+                throw new ArgumentNullException("infile");
+            }
 
-			FilterData data = new FilterData();
+            FilterData data = new FilterData();
 			infile.Position = 0L;
 
 			string line = string.Empty;
@@ -581,9 +592,11 @@ namespace PdnFF
 		private static FilterData LoadAfs(Stream infile)
 		{
 			if (infile == null)
-				throw new ArgumentNullException("infile");
+            {
+                throw new ArgumentNullException("infile");
+            }
 
-			FilterData data = new FilterData();
+            FilterData data = new FilterData();
 
 			infile.Position = 9L; // we have already read the signature skip it
 			string line = string.Empty;
@@ -672,11 +685,16 @@ namespace PdnFF
 		private static void SaveAfs(Stream output, FilterData data)
 		{
 			if (output == null)
-				throw new ArgumentNullException("output");
-			if (data == null)
-				throw new ArgumentNullException("data");
+            {
+                throw new ArgumentNullException("output");
+            }
 
-			using (StreamWriter sw = new StreamWriter(output, Windows1252))
+            if (data == null)
+            {
+                throw new ArgumentNullException("data");
+            }
+
+            using (StreamWriter sw = new StreamWriter(output, Windows1252))
 			{
 				sw.NewLine = "\r"; // Filter factory uses the Mac end of line format
 				sw.WriteLine("%RGB-1.0");
@@ -725,11 +743,16 @@ namespace PdnFF
 		private static void SaveTxt(Stream output, FilterData data)
 		{
 			if (output == null)
-				throw new ArgumentNullException("output");
-			if (data == null)
-				throw new ArgumentNullException("data");
+            {
+                throw new ArgumentNullException("output");
+            }
 
-			using (StreamWriter sw = new StreamWriter(output, Windows1252))
+            if (data == null)
+            {
+                throw new ArgumentNullException("data");
+            }
+
+            using (StreamWriter sw = new StreamWriter(output, Windows1252))
 			{
 				sw.WriteLine("{0}: {1}", "Category", data.Category);
 				sw.WriteLine("{0}: {1}", "Title", data.Title);
@@ -771,11 +794,16 @@ namespace PdnFF
 		public static void SaveFile(string FileName, FilterData data)
 		{
 			if (String.IsNullOrEmpty(FileName))
-				throw new ArgumentException("FileName is null or empty.", "FileName");
-			if (data == null)
-				throw new ArgumentNullException("data");
+            {
+                throw new ArgumentException("FileName is null or empty.", "FileName");
+            }
 
-			using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write))
+            if (data == null)
+            {
+                throw new ArgumentNullException("data");
+            }
+
+            using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write))
 			{
 				if (Path.GetExtension(FileName).Equals(".afs", StringComparison.OrdinalIgnoreCase))
 				{
@@ -867,12 +895,16 @@ namespace PdnFF
 			try
 			{
 				if (fn == null)
-					throw new ArgumentNullException("fn");
+                {
+                    throw new ArgumentNullException("fn");
+                }
 
-				if (string.IsNullOrEmpty(fn))
-					throw new ArgumentException("Filename must not be empty", "fn");
+                if (string.IsNullOrEmpty(fn))
+                {
+                    throw new ArgumentException("Filename must not be empty", "fn");
+                }
 
-				items = new List<FilterData>();
+                items = new List<FilterData>();
 
 				fs = new FileStream(fn, FileMode.Open, FileAccess.Read, FileShare.None);
 
@@ -929,9 +961,11 @@ namespace PdnFF
 		private static FilterData GetFilterfromFFL(StreamReader reader)
 		{
 			if (reader == null)
-				throw new ArgumentNullException(nameof(reader));
+            {
+                throw new ArgumentNullException(nameof(reader));
+            }
 
-			FilterData data = new FilterData
+            FilterData data = new FilterData
 			{
 				FileName = ReadFFLString(reader),
 				Category = ReadFFLString(reader),

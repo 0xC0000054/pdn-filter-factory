@@ -1837,17 +1837,32 @@ namespace PdnFF
 
 		private void ctl0_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl0_UpDown.Value < this.ctl0_UpDown.Minimum) this.ctl0_UpDown.Value = (int)this.ctl0_UpDown.Minimum;
-			if (this.ctl3_UpDown.Value > this.ctl0_UpDown.Maximum) this.ctl0_UpDown.Value = (int)this.ctl0_UpDown.Maximum;
-			this.ctl0.Value = (int)this.ctl0_UpDown.Value;
+			if (this.ctl0_UpDown.Value < this.ctl0_UpDown.Minimum)
+            {
+                this.ctl0_UpDown.Value = (int)this.ctl0_UpDown.Minimum;
+            }
+
+            if (this.ctl3_UpDown.Value > this.ctl0_UpDown.Maximum)
+            {
+                this.ctl0_UpDown.Value = (int)this.ctl0_UpDown.Maximum;
+            }
+
+            this.ctl0.Value = (int)this.ctl0_UpDown.Value;
 		}
 
 		private void ctl0_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl0.Value < this.ctl0.Minimum) this.ctl0.Value = this.ctl0.Minimum;
-			if (this.ctl0.Value > this.ctl0.Maximum) this.ctl0.Value = this.ctl0.Maximum;
+			if (this.ctl0.Value < this.ctl0.Minimum)
+            {
+                this.ctl0.Value = this.ctl0.Minimum;
+            }
 
-			if ((int)this.ctl0_UpDown.Value != this.ctl0.Value)
+            if (this.ctl0.Value > this.ctl0.Maximum)
+            {
+                this.ctl0.Value = this.ctl0.Maximum;
+            }
+
+            if ((int)this.ctl0_UpDown.Value != this.ctl0.Value)
 			{
 				this.ctl0_UpDown.Value = this.ctl0.Value;
 			}
@@ -1861,16 +1876,32 @@ namespace PdnFF
 
 		private void ctl1_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl1_UpDown.Value < this.ctl1_UpDown.Minimum) this.ctl1_UpDown.Value = (int)this.ctl1_UpDown.Minimum;
-			if (this.ctl1_UpDown.Value > this.ctl1_UpDown.Maximum) this.ctl1_UpDown.Value = (int)this.ctl1_UpDown.Maximum;
-			this.ctl1.Value = (int)this.ctl1_UpDown.Value;
+			if (this.ctl1_UpDown.Value < this.ctl1_UpDown.Minimum)
+            {
+                this.ctl1_UpDown.Value = (int)this.ctl1_UpDown.Minimum;
+            }
+
+            if (this.ctl1_UpDown.Value > this.ctl1_UpDown.Maximum)
+            {
+                this.ctl1_UpDown.Value = (int)this.ctl1_UpDown.Maximum;
+            }
+
+            this.ctl1.Value = (int)this.ctl1_UpDown.Value;
 		}
 
 		private void ctl1_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl1.Value < this.ctl1.Minimum) this.ctl1.Value = this.ctl1.Minimum;
-			if (this.ctl1.Value > this.ctl1.Maximum) this.ctl1.Value = this.ctl1.Maximum;
-			if ((int)this.ctl1_UpDown.Value != this.ctl1.Value)
+			if (this.ctl1.Value < this.ctl1.Minimum)
+            {
+                this.ctl1.Value = this.ctl1.Minimum;
+            }
+
+            if (this.ctl1.Value > this.ctl1.Maximum)
+            {
+                this.ctl1.Value = this.ctl1.Maximum;
+            }
+
+            if ((int)this.ctl1_UpDown.Value != this.ctl1.Value)
 			{
 				this.ctl1_UpDown.Value = this.ctl1.Value;
 			}
@@ -1883,16 +1914,32 @@ namespace PdnFF
 		}
 		private void ctl2_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl2_UpDown.Value < this.ctl2_UpDown.Minimum) this.ctl2_UpDown.Value = (int)this.ctl2_UpDown.Minimum;
-			if (this.ctl2_UpDown.Value > this.ctl2_UpDown.Maximum) this.ctl2_UpDown.Value = (int)this.ctl2_UpDown.Maximum;
-			this.ctl2.Value = (int)this.ctl2_UpDown.Value;
+			if (this.ctl2_UpDown.Value < this.ctl2_UpDown.Minimum)
+            {
+                this.ctl2_UpDown.Value = (int)this.ctl2_UpDown.Minimum;
+            }
+
+            if (this.ctl2_UpDown.Value > this.ctl2_UpDown.Maximum)
+            {
+                this.ctl2_UpDown.Value = (int)this.ctl2_UpDown.Maximum;
+            }
+
+            this.ctl2.Value = (int)this.ctl2_UpDown.Value;
 		}
 
 		private void ctl2_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl2.Value < this.ctl2.Minimum) this.ctl2.Value = this.ctl2.Minimum;
-			if (this.ctl2.Value > this.ctl2.Maximum) this.ctl2.Value = this.ctl2.Maximum;
-			if ((int)this.ctl2_UpDown.Value != this.ctl2.Value)
+			if (this.ctl2.Value < this.ctl2.Minimum)
+            {
+                this.ctl2.Value = this.ctl2.Minimum;
+            }
+
+            if (this.ctl2.Value > this.ctl2.Maximum)
+            {
+                this.ctl2.Value = this.ctl2.Maximum;
+            }
+
+            if ((int)this.ctl2_UpDown.Value != this.ctl2.Value)
 			{
 				this.ctl2_UpDown.Value = this.ctl2.Value;
 			}
@@ -1905,17 +1952,32 @@ namespace PdnFF
 		}
 		private void ctl3_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl3_UpDown.Value < this.ctl3_UpDown.Minimum) this.ctl3_UpDown.Value = (int)this.ctl3_UpDown.Minimum;
-			if (this.ctl3_UpDown.Value > this.ctl3_UpDown.Maximum) this.ctl3_UpDown.Value = (int)this.ctl3_UpDown.Maximum;
-			this.ctl3.Value = (int)this.ctl3_UpDown.Value;
+			if (this.ctl3_UpDown.Value < this.ctl3_UpDown.Minimum)
+            {
+                this.ctl3_UpDown.Value = (int)this.ctl3_UpDown.Minimum;
+            }
+
+            if (this.ctl3_UpDown.Value > this.ctl3_UpDown.Maximum)
+            {
+                this.ctl3_UpDown.Value = (int)this.ctl3_UpDown.Maximum;
+            }
+
+            this.ctl3.Value = (int)this.ctl3_UpDown.Value;
 		}
 
 		private void ctl3_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl3.Value < this.ctl3.Minimum) this.ctl3.Value = this.ctl3.Minimum;
-			if (this.ctl3.Value > this.ctl3.Maximum) this.ctl3.Value = this.ctl3.Maximum;
+			if (this.ctl3.Value < this.ctl3.Minimum)
+            {
+                this.ctl3.Value = this.ctl3.Minimum;
+            }
 
-			if ((int)this.ctl3_UpDown.Value != this.ctl3.Value)
+            if (this.ctl3.Value > this.ctl3.Maximum)
+            {
+                this.ctl3.Value = this.ctl3.Maximum;
+            }
+
+            if ((int)this.ctl3_UpDown.Value != this.ctl3.Value)
 			{
 				this.ctl3_UpDown.Value = this.ctl3.Value;
 			}
@@ -1928,17 +1990,32 @@ namespace PdnFF
 		}
 		private void ctl4_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl4_UpDown.Value < this.ctl4_UpDown.Minimum) this.ctl4_UpDown.Value = (int)this.ctl4_UpDown.Minimum;
-			if (this.ctl4_UpDown.Value > this.ctl4_UpDown.Maximum) this.ctl4_UpDown.Value = (int)this.ctl4_UpDown.Maximum;
-			this.ctl4.Value = (int)this.ctl4_UpDown.Value;
+			if (this.ctl4_UpDown.Value < this.ctl4_UpDown.Minimum)
+            {
+                this.ctl4_UpDown.Value = (int)this.ctl4_UpDown.Minimum;
+            }
+
+            if (this.ctl4_UpDown.Value > this.ctl4_UpDown.Maximum)
+            {
+                this.ctl4_UpDown.Value = (int)this.ctl4_UpDown.Maximum;
+            }
+
+            this.ctl4.Value = (int)this.ctl4_UpDown.Value;
 		}
 
 		private void ctl4_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl4.Value < this.ctl4.Minimum) this.ctl4.Value = this.ctl4.Minimum;
-			if (this.ctl4.Value > this.ctl4.Maximum) this.ctl4.Value = this.ctl4.Maximum;
+			if (this.ctl4.Value < this.ctl4.Minimum)
+            {
+                this.ctl4.Value = this.ctl4.Minimum;
+            }
 
-			if ((int)this.ctl4_UpDown.Value != this.ctl4.Value)
+            if (this.ctl4.Value > this.ctl4.Maximum)
+            {
+                this.ctl4.Value = this.ctl4.Maximum;
+            }
+
+            if ((int)this.ctl4_UpDown.Value != this.ctl4.Value)
 			{
 				this.ctl4_UpDown.Value = this.ctl4.Value;
 			}
@@ -1952,17 +2029,32 @@ namespace PdnFF
 
 		private void ctl5_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl5_UpDown.Value < this.ctl5_UpDown.Minimum) this.ctl5_UpDown.Value = (int)this.ctl5_UpDown.Minimum;
-			if (this.ctl5_UpDown.Value > this.ctl5_UpDown.Maximum) this.ctl5_UpDown.Value = (int)this.ctl5_UpDown.Maximum;
-			this.ctl5.Value = (int)this.ctl5_UpDown.Value;
+			if (this.ctl5_UpDown.Value < this.ctl5_UpDown.Minimum)
+            {
+                this.ctl5_UpDown.Value = (int)this.ctl5_UpDown.Minimum;
+            }
+
+            if (this.ctl5_UpDown.Value > this.ctl5_UpDown.Maximum)
+            {
+                this.ctl5_UpDown.Value = (int)this.ctl5_UpDown.Maximum;
+            }
+
+            this.ctl5.Value = (int)this.ctl5_UpDown.Value;
 		}
 
 		private void ctl5_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl5.Value < this.ctl5.Minimum) this.ctl5.Value = this.ctl5.Minimum;
-			if (this.ctl5.Value > this.ctl5.Maximum) this.ctl5.Value = this.ctl5.Maximum;
+			if (this.ctl5.Value < this.ctl5.Minimum)
+            {
+                this.ctl5.Value = this.ctl5.Minimum;
+            }
 
-			if ((int)this.ctl5_UpDown.Value != this.ctl5.Value)
+            if (this.ctl5.Value > this.ctl5.Maximum)
+            {
+                this.ctl5.Value = this.ctl5.Maximum;
+            }
+
+            if ((int)this.ctl5_UpDown.Value != this.ctl5.Value)
 			{
 				this.ctl5_UpDown.Value = this.ctl5.Value;
 			}
@@ -1976,17 +2068,32 @@ namespace PdnFF
 		}
 		private void ctl6_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl6_UpDown.Value < this.ctl6_UpDown.Minimum) this.ctl6_UpDown.Value = (int)this.ctl6_UpDown.Minimum;
-			if (this.ctl6_UpDown.Value > this.ctl6_UpDown.Maximum) this.ctl6_UpDown.Value = (int)this.ctl6_UpDown.Maximum;
-			this.ctl6.Value = (int)this.ctl6_UpDown.Value;
+			if (this.ctl6_UpDown.Value < this.ctl6_UpDown.Minimum)
+            {
+                this.ctl6_UpDown.Value = (int)this.ctl6_UpDown.Minimum;
+            }
+
+            if (this.ctl6_UpDown.Value > this.ctl6_UpDown.Maximum)
+            {
+                this.ctl6_UpDown.Value = (int)this.ctl6_UpDown.Maximum;
+            }
+
+            this.ctl6.Value = (int)this.ctl6_UpDown.Value;
 		}
 
 		private void ctl6_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl6.Value < this.ctl6.Minimum) this.ctl6.Value = this.ctl6.Minimum;
-			if (this.ctl6.Value > this.ctl6.Maximum) this.ctl6.Value = this.ctl6.Maximum;
+			if (this.ctl6.Value < this.ctl6.Minimum)
+            {
+                this.ctl6.Value = this.ctl6.Minimum;
+            }
 
-			if ((int)this.ctl6_UpDown.Value != this.ctl6.Value)
+            if (this.ctl6.Value > this.ctl6.Maximum)
+            {
+                this.ctl6.Value = this.ctl6.Maximum;
+            }
+
+            if ((int)this.ctl6_UpDown.Value != this.ctl6.Value)
 			{
 				this.ctl6_UpDown.Value = this.ctl6.Value;
 			}
@@ -1999,18 +2106,33 @@ namespace PdnFF
 		}
 		private void ctl7_UpDown_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl7_UpDown.Value < this.ctl7_UpDown.Minimum) this.ctl7_UpDown.Value = (int)this.ctl7_UpDown.Minimum;
-			if (this.ctl7_UpDown.Value > this.ctl7_UpDown.Maximum) this.ctl7_UpDown.Value = (int)this.ctl7_UpDown.Maximum;
-			this.ctl7.Value = (int)this.ctl7_UpDown.Value;
+			if (this.ctl7_UpDown.Value < this.ctl7_UpDown.Minimum)
+            {
+                this.ctl7_UpDown.Value = (int)this.ctl7_UpDown.Minimum;
+            }
+
+            if (this.ctl7_UpDown.Value > this.ctl7_UpDown.Maximum)
+            {
+                this.ctl7_UpDown.Value = (int)this.ctl7_UpDown.Maximum;
+            }
+
+            this.ctl7.Value = (int)this.ctl7_UpDown.Value;
 
 		}
 
 		private void ctl7_ValueChanged(object sender, EventArgs e)
 		{
-			if (this.ctl7.Value < this.ctl7.Minimum) this.ctl7.Value = this.ctl7.Minimum;
-			if (this.ctl7.Value > this.ctl7.Maximum) this.ctl7.Value = this.ctl7.Maximum;
+			if (this.ctl7.Value < this.ctl7.Minimum)
+            {
+                this.ctl7.Value = this.ctl7.Minimum;
+            }
 
-			if ((int)this.ctl7_UpDown.Value != this.ctl7.Value)
+            if (this.ctl7.Value > this.ctl7.Maximum)
+            {
+                this.ctl7.Value = this.ctl7.Maximum;
+            }
+
+            if ((int)this.ctl7_UpDown.Value != this.ctl7.Value)
 			{
 				this.ctl7_UpDown.Value = this.ctl7.Value;
 			}
@@ -3546,10 +3668,15 @@ namespace PdnFF
 				{
 					string FileName = string.Empty;
 					if (!string.IsNullOrEmpty(Filenametxt.Text))
-						FileName = Path.GetFileNameWithoutExtension(Filenametxt.Text);
-					else
-						FileName = Path.GetFileName(TitleBox.Text);
-					FileName += ".dll";
+                    {
+                        FileName = Path.GetFileNameWithoutExtension(Filenametxt.Text);
+                    }
+                    else
+                    {
+                        FileName = Path.GetFileName(TitleBox.Text);
+                    }
+
+                    FileName += ".dll";
 
 					using (FilterBuilder builder = new FilterBuilder(this.data))
 					{

@@ -129,7 +129,9 @@ namespace PdnFF
             internal set
             {
                 if (value == null || value.Length == 0)
+                {
                     throw new ArgumentException("value is null or empty.", "value");
+                }
 
                 mapEnable = value;
             }
@@ -143,7 +145,9 @@ namespace PdnFF
             internal set
             {
                 if (value == null || value.Length == 0)
+                {
                     throw new ArgumentException("value is null or empty.", "value");
+                }
 
                 mapLabel = value;
             }
@@ -157,7 +161,10 @@ namespace PdnFF
             internal set
             {
                 if (value == null || value.Length == 0)
+                {
                     throw new ArgumentException("value is null or empty.", "value");
+                }
+
                 controlEnable = value;
             }
         }
@@ -170,7 +177,10 @@ namespace PdnFF
             internal set
             {
                 if (value == null || value.Length == 0)
+                {
                     throw new ArgumentException("value is null or empty.", "value");
+                }
+
                 controlLabel = value;
             }
         }
@@ -183,7 +193,10 @@ namespace PdnFF
             internal set
             {
                 if (value == null || value.Length == 0)
+                {
                     throw new ArgumentException("value is null or empty.", "value");
+                }
+
                 controlValue = value;
             }
         }
@@ -196,7 +209,10 @@ namespace PdnFF
             internal set
             {
                 if (value == null || value.Length == 0)
+                {
                     throw new ArgumentException("value is null or empty.", "value");
+                }
+
                 source = value;
             }
         }

@@ -352,7 +352,10 @@ namespace PdnFF
                             int n = res.Read(bytes, numBytesRead, numBytesToRead);
                             // The end of the file is reached.
                             if (n == 0)
+                            {
                                 break;
+                            }
+
                             numBytesRead += n;
                             numBytesToRead -= n;
                         }
