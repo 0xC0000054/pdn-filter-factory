@@ -3528,7 +3528,7 @@ namespace PdnFF
 
 			}
 
-			if (FormClosePending)
+			if (formClosePending)
 			{
 				this.Close(); // close the form
 			}
@@ -3543,14 +3543,14 @@ namespace PdnFF
 			fltrmgrprogress.PerformStep();
 		}
 
-		private bool FormClosePending;
+		private bool formClosePending;
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
 			if (UpdateFilterListbw.IsBusy && searchDirectories.Count > 0) // don't hold the form open if there are no search Dirs
 			{
 				UpdateFilterListbw.CancelAsync();
 				e.Cancel = true;
-				FormClosePending = true;
+				formClosePending = true;
 			}
 
 			if (!e.Cancel)
