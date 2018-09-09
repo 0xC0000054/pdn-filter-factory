@@ -3555,10 +3555,7 @@ namespace PdnFF
 
 			if (!e.Cancel)
 			{
-				if (settings != null)
-				{
-					settings.Flush();
-				}
+				settings?.Flush();
 			}
 
 			base.OnFormClosing(e);

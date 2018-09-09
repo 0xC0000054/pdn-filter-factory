@@ -360,10 +360,7 @@ namespace PdnFF
 			}
 			finally
 			{
-				if (ms != null)
-				{
-					ms.Close();
-				}
+				ms?.Close();
 			}
 
 			return data;
@@ -945,10 +942,7 @@ namespace PdnFF
 			}
 			finally
 			{
-				if (fs != null)
-				{
-					fs.Close();
-				}
+				fs?.Close();
 			}
 			return loaded;
 		}
