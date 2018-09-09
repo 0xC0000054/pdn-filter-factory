@@ -19,7 +19,6 @@
 *
 */
 
-using PaintDotNet;
 using PaintDotNet.Effects;
 using System;
 using System.Collections.Generic;
@@ -31,9 +30,6 @@ namespace PdnFF
 {
     internal static class PluginThemingUtil
     {
-        // Paint.NET added theming support for plug-ins in 4.20.
-        private static readonly Version PluginThemingMinVersion = new Version("4.20");
-
         private static Action<EffectConfigDialog, bool> useAppThemeSetter;
         private static bool initAppThemeSetter = false;
 
@@ -41,25 +37,20 @@ namespace PdnFF
         {
             try
             {
-                Version pdnVersion = dialog.Services.GetService<PaintDotNet.AppModel.IAppInfoService>().AppVersion;
-
-                if (pdnVersion >= PluginThemingMinVersion)
+                if (!initAppThemeSetter)
                 {
-                    if (!initAppThemeSetter)
-                    {
-                        initAppThemeSetter = true;
+                    initAppThemeSetter = true;
 
-                        PropertyInfo propertyInfo = typeof(EffectConfigDialog).GetProperty("UseAppThemeColors");
-                        if (propertyInfo != null)
-                        {
-                            useAppThemeSetter = (Action<EffectConfigDialog, bool>)Delegate.CreateDelegate(typeof(Action<EffectConfigDialog, bool>), propertyInfo.GetSetMethod());
-                        }
-                    }
-
-                    if (useAppThemeSetter != null)
+                    PropertyInfo propertyInfo = typeof(EffectConfigDialog).GetProperty("UseAppThemeColors");
+                    if (propertyInfo != null)
                     {
-                        useAppThemeSetter.Invoke(dialog, true);
+                        useAppThemeSetter = (Action<EffectConfigDialog, bool>)Delegate.CreateDelegate(typeof(Action<EffectConfigDialog, bool>), propertyInfo.GetSetMethod());
                     }
+                }
+
+                if (useAppThemeSetter != null)
+                {
+                    useAppThemeSetter.Invoke(dialog, true);
                 }
             }
             catch
