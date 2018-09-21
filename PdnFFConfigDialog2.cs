@@ -3573,7 +3573,7 @@ namespace PdnFF
 				{
 					TreeNode child = item.Key;
 					string Title = child.Text;
-					if ((string.IsNullOrEmpty(filtertext)) || Title.ToUpperInvariant().Contains(filtertext.ToUpperInvariant()))
+					if ((string.IsNullOrEmpty(filtertext)) || Title.Contains(filtertext, StringComparison.OrdinalIgnoreCase))
 					{
 						if (nodes.ContainsKey(item.Value))
 						{
