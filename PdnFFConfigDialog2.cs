@@ -238,9 +238,9 @@ namespace PdnFF
 			((PdnFFConfigToken)theEffectToken).ResetData = resetData;
 		}
 
-		protected override void InitDialogFromToken(EffectConfigToken effectToken)
+		protected override void InitDialogFromToken(EffectConfigToken effectTokenCopy)
 		{
-			PdnFFConfigToken token = (PdnFFConfigToken)effectToken;
+			PdnFFConfigToken token = (PdnFFConfigToken)effectTokenCopy;
 			this.data = token.Data;
 			this.resetData = token.ResetData;
 		}
