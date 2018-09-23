@@ -15,4 +15,4 @@ csharp_new_line_before_finally = true
 csharp_new_line_before_members_in_anonymous_types = true
 csharp_new_line_before_members_in_object_initializers = true
 csharp_new_line_before_open_brace = all
-csharp_prefer_braces = true
+csharp_prefer_braces = true : warning
