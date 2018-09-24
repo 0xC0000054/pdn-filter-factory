@@ -2519,13 +2519,25 @@ namespace PdnFF
 					{
 						Directory.CreateDirectory(dir);
 					}
-				}
-				catch (Exception)
-				{
-					// Ignore it
-				}
 
-				settings = new PdnFFSettings(Path.Combine(dir, @"PdnFF.xml"));
+					settings = new PdnFFSettings(Path.Combine(dir, @"PdnFF.xml"));
+				}
+				catch (ArgumentException ex)
+				{
+					ShowErrorMessage(ex.Message);
+				}
+				catch (IOException ex)
+				{
+					ShowErrorMessage(ex.Message);
+				}
+				catch (NotSupportedException ex)
+				{
+					ShowErrorMessage(ex.Message);
+				}
+				catch (UnauthorizedAccessException ex)
+				{
+					ShowErrorMessage(ex.Message);
+				}
 			}
 		}
 
