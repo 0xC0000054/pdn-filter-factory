@@ -35,8 +35,10 @@ namespace PdnFF.Interop
         public uint nFileSizeLow;
         public uint dwReserved0;
         public uint dwReserved1;
+
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = NativeConstants.MAX_PATH)]
         public string cFileName;
+
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
         public string cAlternateFileName;
     }

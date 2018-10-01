@@ -32,8 +32,10 @@ namespace PdnFF
     {
         private readonly string path;
         private bool changed;
+
         [DataMember(Name = "SearchDirectories")]
         private HashSet<string> searchDirectories;
+
         [DataMember(Name = "SearchSubdirectories")]
         private bool searchSubdirectories;
 

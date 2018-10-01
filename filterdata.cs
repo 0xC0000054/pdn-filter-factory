@@ -87,6 +87,7 @@ namespace PdnFF
                 title = value;
             }
         }
+
         public string Category
         {
             get
@@ -98,6 +99,7 @@ namespace PdnFF
                 category = value;
             }
         }
+
         public string Copyright
         {
             get
@@ -109,6 +111,7 @@ namespace PdnFF
                 copyright = value;
             }
         }
+
         public string Author
         {
             get
@@ -120,6 +123,7 @@ namespace PdnFF
                 author = value;
             }
         }
+
         public bool[] MapEnable
         {
             get
@@ -136,6 +140,7 @@ namespace PdnFF
                 mapEnable = value;
             }
         }
+
         public string[] MapLabel
         {
             get
@@ -152,6 +157,7 @@ namespace PdnFF
                 mapLabel = value;
             }
         }
+
         public bool[] ControlEnable
         {
             get
@@ -168,6 +174,7 @@ namespace PdnFF
                 controlEnable = value;
             }
         }
+
         public string[] ControlLabel
         {
             get
@@ -184,6 +191,7 @@ namespace PdnFF
                 controlLabel = value;
             }
         }
+
         public int[] ControlValue
         {
             get
@@ -200,6 +208,7 @@ namespace PdnFF
                 controlValue = value;
             }
         }
+
         public string[] Source
         {
             get
@@ -228,6 +237,7 @@ namespace PdnFF
                 popDialog = value;
             }
         }
+
         /// <summary>
         /// The FileName for the FFL filters
         /// </summary>

@@ -213,6 +213,7 @@ namespace PdnFF
 			searchDirectories = new List<string>();
 			resetData = null;
 		}
+
 		private static FilterData NewFilterData()
 		{
 			FilterData d = new FilterData();
@@ -227,6 +228,7 @@ namespace PdnFF
 			}
 			return d;
 		}
+
 		protected override void InitialInitToken()
 		{
 			this.theEffectToken = new PdnFFConfigToken(null, null);
@@ -1731,6 +1733,7 @@ namespace PdnFF
 			DialogResult = DialogResult.OK;
 			this.Close();
 		}
+
 		private void buttonCancel_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
@@ -1738,6 +1741,7 @@ namespace PdnFF
 		}
 
 		private FilterData data = null;
+
 		private void Loadbtn_Click(object sender, EventArgs e)
 		{
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -1800,7 +1804,9 @@ namespace PdnFF
 				default_fltr_Click(null, null);
 			}
 		}
+
 		private ErrorProvider ep = new ErrorProvider();
+
 		/// <summary>
 		/// Validates the syntax of the Source code
 		/// </summary>
@@ -1912,6 +1918,7 @@ namespace PdnFF
 				FinishTokenUpdate();
 			}
 		}
+
 		private void ctl2_UpDown_ValueChanged(object sender, EventArgs e)
 		{
 			if (this.ctl2_UpDown.Value < this.ctl2_UpDown.Minimum)
@@ -1950,6 +1957,7 @@ namespace PdnFF
 				FinishTokenUpdate();
 			}
 		}
+
 		private void ctl3_UpDown_ValueChanged(object sender, EventArgs e)
 		{
 			if (this.ctl3_UpDown.Value < this.ctl3_UpDown.Minimum)
@@ -1988,6 +1996,7 @@ namespace PdnFF
 				FinishTokenUpdate();
 			}
 		}
+
 		private void ctl4_UpDown_ValueChanged(object sender, EventArgs e)
 		{
 			if (this.ctl4_UpDown.Value < this.ctl4_UpDown.Minimum)
@@ -2066,6 +2075,7 @@ namespace PdnFF
 			}
 
 		}
+
 		private void ctl6_UpDown_ValueChanged(object sender, EventArgs e)
 		{
 			if (this.ctl6_UpDown.Value < this.ctl6_UpDown.Minimum)
@@ -2104,6 +2114,7 @@ namespace PdnFF
 				FinishTokenUpdate();
 			}
 		}
+
 		private void ctl7_UpDown_ValueChanged(object sender, EventArgs e)
 		{
 			if (this.ctl7_UpDown.Value < this.ctl7_UpDown.Minimum)
@@ -2173,6 +2184,7 @@ namespace PdnFF
 			}
 
 		}
+
 		private void SetInfo(FilterData data)
 		{
 			RedBox.Text = data.Source[0];
@@ -2188,6 +2200,7 @@ namespace PdnFF
 				Filenametxt.Text = data.FileName;
 			}
 		}
+
 		/// <summary>
 		/// Set the control values
 		/// </summary>
@@ -2497,6 +2510,7 @@ namespace PdnFF
 			SetFilterInfoLabels(data);
 			FinishTokenUpdate();
 		}
+
 		/// <summary>
 		/// Clears the last loaded Filters
 		/// </summary>
@@ -2626,6 +2640,7 @@ namespace PdnFF
 				}
 			}
 		}
+
 		private TextBox GetErrorTextbox(int ch)
 		{
 			if (ch == 0)
@@ -2705,6 +2720,7 @@ namespace PdnFF
 			}
 
 		}
+
 		private void LoadFFLbtn_Click(object sender, EventArgs e)
 		{
 
@@ -2743,6 +2759,7 @@ namespace PdnFF
 				ffltreecopytxt.Text = data.Copyright;
 			}
 		}
+
 		private void SetEditControls(FilterData data, int index, bool setctlnum, bool ismaptxt)
 		{
 			#region map0 / ctl 0 / ctl 1
@@ -3311,6 +3328,7 @@ namespace PdnFF
 				settings.SearchDirectories = new HashSet<string>(searchDirectories, StringComparer.OrdinalIgnoreCase);
 			}
 		}
+
 		/// <summary>
 		/// The Parameter class for the UpdateFilterList Background Worker
 		/// </summary>
@@ -3320,14 +3338,17 @@ namespace PdnFF
 			/// The list of Search Directories
 			/// </summary>
 			public string[] dirlist;
+
 			/// <summary>
 			/// The output array of TreeNodes
 			/// </summary>
 			public TreeNode[] itemarr;
+
 			/// <summary>
 			/// The SearchOption to use on the directories
 			/// </summary>
 			public SearchOption options;
+
 			/// <summary>
 			/// The number of items in the list
 			/// </summary>
@@ -3424,6 +3445,7 @@ namespace PdnFF
 				UpdateFilterList();
 			}
 		}
+
 		/// <summary>
 		/// Clear all the Edit label textboxes
 		/// </summary>
@@ -3491,7 +3513,9 @@ namespace PdnFF
 
 			e.Result = uflp;
 		}
+
 		private Dictionary<TreeNode, string> FiltertreeviewItems = null; // used for the filter search list
+
 		private void UpdateFilterListbw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			if (e.Error != null)
@@ -3556,6 +3580,7 @@ namespace PdnFF
 		}
 
 		private bool formClosePending;
+
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
 			if (UpdateFilterListbw.IsBusy && searchDirectories.Count > 0) // don't hold the form open if there are no search Dirs
@@ -3572,6 +3597,7 @@ namespace PdnFF
 
 			base.OnFormClosing(e);
 		}
+
 		/// <summary>
 		/// Filters the filtertreeview Items by the specified text
 		/// </summary>
@@ -3649,6 +3675,7 @@ namespace PdnFF
 			string filtertext = filterSearchBox.Focused ? filterSearchBox.Text : string.Empty;
 			FilterTreeView(filtertext); // pass an empty string if the textbox is not focused
 		}
+
 		private void filterSearchBox_Enter(object sender, EventArgs e)
 		{
 			if (filterSearchBox.Text == Resources.ConfigDialog_FilterSearchBox_BackText)

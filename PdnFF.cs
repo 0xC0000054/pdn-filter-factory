@@ -36,6 +36,7 @@ namespace PdnFF
                 return "PDN FF";
             }
         }
+
         public static Bitmap StaticIcon
         {
             get
@@ -71,6 +72,7 @@ namespace PdnFF
         }
 
         private bool filterparsed = false;
+
         protected override void OnSetRenderInfo(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs)
         {
             PdnFFConfigToken token = (PdnFFConfigToken)parameters;
@@ -91,6 +93,7 @@ namespace PdnFF
 
             base.OnSetRenderInfo(parameters, dstArgs, srcArgs);
         }
+
         public override void Render(EffectConfigToken parameters, RenderArgs dstArgs, RenderArgs srcArgs, Rectangle[] rois, int startIndex, int length)
         {
             if (filterparsed)

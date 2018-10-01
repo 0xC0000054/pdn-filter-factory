@@ -64,6 +64,7 @@ namespace PdnFF.Interop
         {
             [MarshalAs(UnmanagedType.LPWStr)]
             public string pszName;
+
             [MarshalAs(UnmanagedType.LPWStr)]
             public string pszSpec;
         }

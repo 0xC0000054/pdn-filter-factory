@@ -86,6 +86,7 @@ namespace PdnFF
 		private const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
 		#region EnumRes
 		private delegate bool EnumResNameDelegate(IntPtr hModule, IntPtr lpszType, IntPtr lpszName, IntPtr lParam);
+
 		private static bool IS_INTRESOURCE(IntPtr value)
 		{
 			if (((uint)value) > ushort.MaxValue)
@@ -160,6 +161,7 @@ namespace PdnFF
 
 			return builder.ToString();
 		}
+
 		/// <summary>
 		/// Loads a Filter Factory file, automatically determining the type.
 		/// </summary>
@@ -283,6 +285,7 @@ namespace PdnFF
 			return result;
 
 		}
+
 		/// <summary>
 		/// Builds the filter_data values from the Filter Factory PARM ReSource
 		/// </summary>
@@ -365,6 +368,7 @@ namespace PdnFF
 
 			return data;
 		}
+
 		private static FilterData LoadTxt(Stream infile)
 		{
 			if (infile == null)
@@ -679,6 +683,7 @@ namespace PdnFF
 
 			return data;
 		}
+
 		private static void SaveAfs(Stream output, FilterData data)
 		{
 			if (output == null)
@@ -737,6 +742,7 @@ namespace PdnFF
 
 			}
 		}
+
 		private static void SaveTxt(Stream output, FilterData data)
 		{
 			if (output == null)
@@ -783,6 +789,7 @@ namespace PdnFF
 				}
 			}
 		}
+
 		/// <summary>
 		/// Saves a filter_data Source as either an .afs or .txt Source code
 		/// </summary>
@@ -812,6 +819,7 @@ namespace PdnFF
 				}
 			}
 		}
+
 		/// <summary>
 		/// Gets a FilterData set to the default values.
 		/// </summary>
@@ -845,6 +853,7 @@ namespace PdnFF
 
 			return data;
 		}
+
 		/// <summary>
 		/// Reads a string from a FFL file.
 		/// </summary>
@@ -877,6 +886,7 @@ namespace PdnFF
 			}
 			return sb.ToString().Trim();
 		}
+
 		/// <summary>
 		/// Loads A Filter Factory Library file
 		/// </summary>
@@ -946,6 +956,7 @@ namespace PdnFF
 			}
 			return loaded;
 		}
+
 		/// <summary>
 		/// Extracts a filter from the current location in the FFL
 		/// </summary>
@@ -1036,6 +1047,7 @@ namespace PdnFF
 
 			return (mapused | ctlused);
 		}
+
 		private static bool[] UsesMap(string[] Source)
 		{
 			bool[] mapsUsed = new bool[4] { false, false, false, false, };
@@ -1064,6 +1076,7 @@ namespace PdnFF
 
 			return mapsUsed;
 		}
+
 		private static bool[] UsesCtl(string[] Source)
 		{
 			bool[] controlsUsed = new bool[8] { false, false, false, false, false, false, false, false };
