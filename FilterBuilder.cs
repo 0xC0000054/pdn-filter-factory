@@ -43,9 +43,9 @@ namespace PdnFF
         public FilterBuilder(FilterData data)
         {
             this.data = data;
-            this.compilerParameters = new CompilerParameters();
-            this.tempFolder = new DirectoryInfo(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
-            this.disposed = false;
+            compilerParameters = new CompilerParameters();
+            tempFolder = new DirectoryInfo(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
+            disposed = false;
             tempFolder.Create();
         }
 
@@ -67,7 +67,7 @@ namespace PdnFF
 
                 using (CSharpCodeProvider cscp = new CSharpCodeProvider())
                 {
-                    CompilerResults cr = cscp.CompileAssemblyFromFile(this.compilerParameters, files);
+                    CompilerResults cr = cscp.CompileAssemblyFromFile(compilerParameters, files);
 
                     if (cr.Errors.HasErrors)
                     {

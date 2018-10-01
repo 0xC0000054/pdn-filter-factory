@@ -52,14 +52,14 @@ namespace PdnFF
 
         public PdnFFConfigToken(FilterData data, FilterData resetData) : base()
         {
-            this.Data = data;
+            Data = data;
             this.resetData = resetData;
         }
 
         private PdnFFConfigToken(PdnFFConfigToken copyMe) : base(copyMe)
         {
-            this.Data = copyMe.Data;
-            this.resetData = copyMe.resetData;
+            Data = copyMe.Data;
+            resetData = copyMe.resetData;
         }
 
         public override object Clone()

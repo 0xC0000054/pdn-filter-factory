@@ -52,9 +52,9 @@ namespace PdnFF
             }
 
             this.path = path;
-            this.changed = false;
-            this.searchSubdirectories = true;
-            this.searchDirectories = null;
+            changed = false;
+            searchSubdirectories = true;
+            searchDirectories = null;
 
             try
             {
@@ -80,7 +80,7 @@ namespace PdnFF
         {
             get
             {
-                return this.searchDirectories;
+                return searchDirectories;
             }
             set
             {
@@ -89,8 +89,8 @@ namespace PdnFF
                     throw new ArgumentNullException("value");
                 }
 
-                this.searchDirectories = value;
-                this.changed = true;
+                searchDirectories = value;
+                changed = true;
             }
         }
 
@@ -104,14 +104,14 @@ namespace PdnFF
         {
             get
             {
-                return this.searchSubdirectories;
+                return searchSubdirectories;
             }
             set
             {
-                if (this.searchSubdirectories != value)
+                if (searchSubdirectories != value)
                 {
-                    this.searchSubdirectories = value;
-                    this.changed = true;
+                    searchSubdirectories = value;
+                    changed = true;
                 }
             }
         }
@@ -121,10 +121,10 @@ namespace PdnFF
         /// </summary>
         public void Flush()
         {
-            if (this.changed)
+            if (changed)
             {
                 Save();
-                this.changed = false;
+                changed = false;
             }
         }
 
@@ -186,7 +186,7 @@ namespace PdnFF
 
                             if (directories.Count > 0)
                             {
-                                this.searchDirectories = new HashSet<string>(directories, StringComparer.OrdinalIgnoreCase);
+                                searchDirectories = new HashSet<string>(directories, StringComparer.OrdinalIgnoreCase);
                             }
                         }
                     }
@@ -196,19 +196,19 @@ namespace PdnFF
                         bool result;
                         if (bool.TryParse(searchSubDirNode.InnerText.Trim(), out result))
                         {
-                            this.searchSubdirectories = result;
+                            searchSubdirectories = result;
                         }
                     }
 
-                    this.changed = true;
+                    changed = true;
                 }
                 else
                 {
                     DataContractSerializer serializer = new DataContractSerializer(typeof(PdnFFSettings));
                     PdnFFSettings settings = (PdnFFSettings)serializer.ReadObject(xmlReader);
 
-                    this.searchDirectories = settings.searchDirectories;
-                    this.searchSubdirectories = settings.searchSubdirectories;
+                    searchDirectories = settings.searchDirectories;
+                    searchSubdirectories = settings.searchSubdirectories;
                 }
             }
         }
@@ -220,7 +220,7 @@ namespace PdnFF
                 Indent = true
             };
 
-            using (XmlWriter writer = XmlWriter.Create(this.path, writerSettings))
+            using (XmlWriter writer = XmlWriter.Create(path, writerSettings))
             {
                 DataContractSerializer serializer = new DataContractSerializer(typeof(PdnFFSettings));
                 serializer.WriteObject(writer, this);
