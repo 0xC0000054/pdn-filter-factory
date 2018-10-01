@@ -165,7 +165,7 @@ namespace PdnFF
 		/// <summary>
 		/// Loads a Filter Factory file, automatically determining the type.
 		/// </summary>
-		/// <param name="FileName">The FileName to load.</param>
+		/// <param name="fileName">The FileName to load.</param>
 		/// <param name="data">The output filter_data</param>
 		/// <returns>True if successful otherwise false.</returns>
 		/// <exception cref="System.ArgumentNullException">The FileName is null.</exception>
