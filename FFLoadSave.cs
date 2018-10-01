@@ -176,12 +176,12 @@ namespace PdnFF
 
 			if (fileName == null)
 			{
-				throw new ArgumentNullException("fileName");
+				throw new ArgumentNullException(nameof(fileName));
 			}
 
 			if (string.IsNullOrEmpty(fileName))
 			{
-				throw new ArgumentException("fileName must not be empty", "fileName");
+				throw new ArgumentException("fileName must not be empty", nameof(fileName));
 			}
 
 			data = null;
@@ -241,7 +241,7 @@ namespace PdnFF
 		{
 			if (String.IsNullOrEmpty(fileName))
 			{
-				throw new ArgumentException("fileName is null or empty.", "fileName");
+				throw new ArgumentException("fileName is null or empty.", nameof(fileName));
 			}
 
 			data = null;
@@ -295,7 +295,7 @@ namespace PdnFF
 		{
 			if (parmbytes == null || parmbytes.Length == 0)
 			{
-				throw new ArgumentException("parmbytes is null or empty.", "parmbytes");
+				throw new ArgumentException("parmbytes is null or empty.", nameof(parmbytes));
 			}
 
 			MemoryStream ms = null;
@@ -373,7 +373,7 @@ namespace PdnFF
 		{
 			if (infile == null)
 			{
-				throw new ArgumentNullException("infile");
+				throw new ArgumentNullException(nameof(infile));
 			}
 
 			FilterData data = new FilterData();
@@ -594,7 +594,7 @@ namespace PdnFF
 		{
 			if (infile == null)
 			{
-				throw new ArgumentNullException("infile");
+				throw new ArgumentNullException(nameof(infile));
 			}
 
 			FilterData data = new FilterData();
@@ -688,12 +688,12 @@ namespace PdnFF
 		{
 			if (output == null)
 			{
-				throw new ArgumentNullException("output");
+				throw new ArgumentNullException(nameof(output));
 			}
 
 			if (data == null)
 			{
-				throw new ArgumentNullException("data");
+				throw new ArgumentNullException(nameof(data));
 			}
 
 			using (StreamWriter sw = new StreamWriter(output, Windows1252))
@@ -747,12 +747,12 @@ namespace PdnFF
 		{
 			if (output == null)
 			{
-				throw new ArgumentNullException("output");
+				throw new ArgumentNullException(nameof(output));
 			}
 
 			if (data == null)
 			{
-				throw new ArgumentNullException("data");
+				throw new ArgumentNullException(nameof(data));
 			}
 
 			using (StreamWriter sw = new StreamWriter(output, Windows1252))
@@ -799,12 +799,12 @@ namespace PdnFF
 		{
 			if (String.IsNullOrEmpty(FileName))
 			{
-				throw new ArgumentException("FileName is null or empty.", "FileName");
+				throw new ArgumentException("FileName is null or empty.", nameof(FileName));
 			}
 
 			if (data == null)
 			{
-				throw new ArgumentNullException("data");
+				throw new ArgumentNullException(nameof(data));
 			}
 
 			using (FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write))
@@ -903,12 +903,12 @@ namespace PdnFF
 			{
 				if (fn == null)
 				{
-					throw new ArgumentNullException("fn");
+					throw new ArgumentNullException(nameof(fn));
 				}
 
 				if (string.IsNullOrEmpty(fn))
 				{
-					throw new ArgumentException("Filename must not be empty", "fn");
+					throw new ArgumentException("Filename must not be empty", nameof(fn));
 				}
 
 				items = new List<FilterData>();

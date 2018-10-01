@@ -2661,7 +2661,7 @@ namespace PdnFF
 			}
 			else
 			{
-				throw new ArgumentOutOfRangeException("ch", Resources.ChannelValuesOutofRangeError);
+				throw new ArgumentOutOfRangeException(nameof(ch), Resources.ChannelValuesOutofRangeError);
 			}
 
 		}
