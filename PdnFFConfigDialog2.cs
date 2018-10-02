@@ -1724,7 +1724,6 @@ namespace PdnFF
 			tabControl1.ResumeLayout(false);
 			ResumeLayout(false);
 			PerformLayout();
-
 		}
 
 		private void buttonOK_Click(object sender, EventArgs e)
@@ -1777,7 +1776,6 @@ namespace PdnFF
 		{
 			try
 			{
-
 				data = NewFilterData();
 				SetControls(data); // set the edit controls to the empty data to force all the checkboxes to be unchecked
 				ClearEditControls();
@@ -2073,7 +2071,6 @@ namespace PdnFF
 				data.ControlValue[5] = ctl5.Value;
 				FinishTokenUpdate();
 			}
-
 		}
 
 		private void ctl6_UpDown_ValueChanged(object sender, EventArgs e)
@@ -2128,7 +2125,6 @@ namespace PdnFF
 			}
 
 			ctl7.Value = (int)ctl7_UpDown.Value;
-
 		}
 
 		private void ctl7_ValueChanged(object sender, EventArgs e)
@@ -2182,7 +2178,6 @@ namespace PdnFF
 			{
 				data.PopDialog = false;
 			}
-
 		}
 
 		private void SetInfo(FilterData data)
@@ -2599,7 +2594,6 @@ namespace PdnFF
 
 		private void SrcTextBoxes_TextChanged(object sender, EventArgs e)
 		{
-
 			TextBox tb = sender as TextBox;
 			string name = tb.Name.Substring(0, 1);
 
@@ -2663,7 +2657,6 @@ namespace PdnFF
 			{
 				throw new ArgumentOutOfRangeException(nameof(ch), Resources.ChannelValuesOutofRangeError);
 			}
-
 		}
 
 		/// <summary>
@@ -2713,20 +2706,16 @@ namespace PdnFF
 
 				fflnametxt.Text = Path.GetFileName(FileName);
 
-
 				FFLfltrnumtxt.Text = filters.Count.ToString(CultureInfo.CurrentCulture);
 
 				SetFilterInfoLabels(data);
 			}
-
 		}
 
 		private void LoadFFLbtn_Click(object sender, EventArgs e)
 		{
-
 			try
 			{
-
 				using (OpenFileDialog fflDialog = new OpenFileDialog())
 				{
 					fflDialog.Multiselect = false;
@@ -2741,7 +2730,6 @@ namespace PdnFF
 			{
 				ShowErrorMessage(ex.Message);
 			}
-
 		}
 
 		private void FFLtreeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -2786,7 +2774,6 @@ namespace PdnFF
 				{
 					map0_lbl.Text = data.MapLabel[0] = map0txt.Text;
 				}
-
 			}
 			else
 			{
@@ -2831,8 +2818,6 @@ namespace PdnFF
 							{
 								ctllbl0.Text = data.ControlLabel[0] = ctl0txt.Text;
 							}
-
-
 						}
 						else
 						{
@@ -2865,7 +2850,6 @@ namespace PdnFF
 							{
 								ctllbl1.Text = data.ControlLabel[1] = ctl1txt.Text;
 							}
-
 						}
 						else
 						{
@@ -2910,7 +2894,6 @@ namespace PdnFF
 				{
 					map1_lbl.Text = data.MapLabel[1] = map1txt.Text;
 				}
-
 			}
 			else
 			{
@@ -2956,7 +2939,6 @@ namespace PdnFF
 							{
 								ctllbl2.Text = data.ControlLabel[2] = ctl2txt.Text;
 							}
-
 						}
 						else
 						{
@@ -2989,7 +2971,6 @@ namespace PdnFF
 							{
 								ctllbl3.Text = data.ControlLabel[3] = ctl3txt.Text;
 							}
-
 						}
 						else
 						{
@@ -3075,7 +3056,6 @@ namespace PdnFF
 							{
 								ctllbl4.Text = data.ControlLabel[4] = ctl4txt.Text;
 							}
-
 						}
 						else
 						{
@@ -3109,7 +3089,6 @@ namespace PdnFF
 							{
 								ctllbl5.Text = data.ControlLabel[5] = ctl5txt.Text;
 							}
-
 						}
 						else
 						{
@@ -3126,7 +3105,6 @@ namespace PdnFF
 						}
 					}
 				}
-
 			}
 			#endregion
 			#region map 3 /ctl 6 / ctl 7
@@ -3154,7 +3132,6 @@ namespace PdnFF
 				{
 					map3_lbl.Text = data.MapLabel[3] = map3txt.Text;
 				}
-
 			}
 			else
 			{
@@ -3199,7 +3176,6 @@ namespace PdnFF
 							{
 								ctllbl6.Text = data.ControlLabel[6] = ctl6txt.Text;
 							}
-
 						}
 						else
 						{
@@ -3232,7 +3208,6 @@ namespace PdnFF
 							{
 								ctllbl7.Text = data.ControlLabel[7] = ctl7txt.Text;
 							}
-
 						}
 						else
 						{
@@ -3248,7 +3223,6 @@ namespace PdnFF
 							data.ControlValue[7] = 0;
 						}
 					}
-
 				}
 			}
 			#endregion
@@ -3318,7 +3292,6 @@ namespace PdnFF
 						break;
 				}
 			}
-
 		}
 
 		private void UpdateSearchList()
@@ -3388,7 +3361,6 @@ namespace PdnFF
 					UpdateFilterListbw.RunWorkerAsync(uflp);
 				}
 			}
-
 		}
 
 		private void adddirbtn_Click(object sender, EventArgs e)
@@ -3501,7 +3473,6 @@ namespace PdnFF
 						}
 					}
 				}
-
 			}
 
 #if DEBUG
@@ -3556,9 +3527,7 @@ namespace PdnFF
 #if DEBUG
 				else
 				{
-
 					System.Diagnostics.Debug.WriteLine("canceled");
-
 				}
 #endif
 
@@ -3627,7 +3596,6 @@ namespace PdnFF
 
 							nodes.Add(item.Value, node);
 						}
-
 					}
 				}
 
@@ -3645,7 +3613,6 @@ namespace PdnFF
 				}
 				filtertreeview.TreeViewNodeSorter = TreeNodeItemComparer.Instance;
 				filtertreeview.EndUpdate();
-
 			}
 		}
 
@@ -3740,7 +3707,6 @@ namespace PdnFF
 
 				}
 			}
-
 		}
 
 		private void RedBox_KeyDown(object sender, KeyEventArgs e)
@@ -3811,7 +3777,6 @@ namespace PdnFF
 					RedBox.SelectionStart = RedBox.Text.Length;
 					break;
 			}
-
 		}
 
 		private void DirlistView1_CacheVirtualItems(object sender, CacheVirtualItemsEventArgs e)
@@ -3838,7 +3803,6 @@ namespace PdnFF
 
 		private void DirlistView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
 		{
-
 			if (searchDirListViewCache != null && e.ItemIndex >= cacheStartIndex && e.ItemIndex < cacheStartIndex + searchDirListViewCache.Length)
 			{
 				e.Item = searchDirListViewCache[e.ItemIndex - cacheStartIndex];

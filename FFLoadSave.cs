@@ -45,7 +45,6 @@ namespace PdnFF
 			}
 		}
 
-
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		private static class UnsafeNativeMethods
 		{
@@ -207,7 +206,6 @@ namespace PdnFF
 						data = LoadTxt(fs);
 						loaded = true;
 					}
-
 				}
 			}
 
@@ -277,13 +275,10 @@ namespace PdnFF
 							hm.DangerousRelease();
 						}
 					}
-
 				}
 			}
 
-
 			return result;
-
 		}
 
 		/// <summary>
@@ -358,7 +353,6 @@ namespace PdnFF
 					{
 						data.Source[i] = StringFromASCIIBytes(br.ReadBytes(1024));
 					}
-
 				}
 			}
 			finally
@@ -417,7 +411,6 @@ namespace PdnFF
 										}
 									}
 									line = sr.ReadLine();
-
 								}
 								else
 								{
@@ -464,8 +457,6 @@ namespace PdnFF
 													break;
 											}
 										}
-
-
 									}
 									else
 									{
@@ -479,7 +470,6 @@ namespace PdnFF
 							{
 								if (!ctlread)
 								{
-
 									while (!string.IsNullOrEmpty(line) && line.StartsWith("ctl", StringComparison.Ordinal))
 									{
 										string lbl = line.Substring(7, (line.Length - 7)).Trim();
@@ -504,7 +494,6 @@ namespace PdnFF
 								}
 								else
 								{
-
 									while (!string.IsNullOrEmpty(line) && line.StartsWith("val", StringComparison.Ordinal))
 									{
 										string lbl = line.Substring(7, (line.Length - 7)).Trim();
@@ -519,7 +508,6 @@ namespace PdnFF
 								}
 							}
 						}
-
 					}
 				}
 			}
@@ -644,13 +632,10 @@ namespace PdnFF
 								builder.Append(line);
 							}
 						}
-
 					}
 
 					srcread = true;
 				}
-
-
 			}
 
 			data.Category = "Filter Factory";
@@ -731,15 +716,12 @@ namespace PdnFF
 						{
 							sw.WriteLine(item);
 						}
-
 					}
 					else
 					{
 						sw.WriteLine(data.Source[i] + "\r"); // add an extra return to write an extra line
 					}
-
 				}
-
 			}
 		}
 
@@ -940,11 +922,8 @@ namespace PdnFF
 
 							loaded = true;
 						}
-
 					}
-
 				}
-
 			}
 			catch (Exception)
 			{

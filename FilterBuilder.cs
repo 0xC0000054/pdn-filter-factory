@@ -367,7 +367,6 @@ namespace PdnFF
                         files.Add(outfile);
                     }
                 }
-
             }
             string outpath = Path.Combine(dir, "ffeffect.cs");
             using (StreamWriter writer = new StreamWriter(outpath))

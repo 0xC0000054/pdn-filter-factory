@@ -28,7 +28,6 @@ namespace PdnFF
     [PluginSupportInfo(typeof(PluginSupportInfo))]
     public sealed class PdnFFEffect : Effect
     {
-
         public static string StaticName
         {
             get
@@ -104,8 +103,6 @@ namespace PdnFF
             {
                 dstArgs.Surface.CopySurface(srcArgs.Surface, rois, startIndex, length);
             }
-
         }
-
     }
 }

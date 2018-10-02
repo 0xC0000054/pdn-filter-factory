@@ -65,7 +65,6 @@ namespace PdnFF
             [DllImport("ffparse_x86.dll", BestFitMapping = false, CharSet = CharSet.Ansi, ExactSpelling = true)]
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool ValidateSrc([MarshalAs(UnmanagedType.LPStr)] string src);
-
         }
 
         [System.Security.SuppressUnmanagedCodeSecurity]

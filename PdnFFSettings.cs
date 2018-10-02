@@ -177,7 +177,6 @@ namespace PdnFF
 
                                         directories[index] = lastPath + "," + dir;
                                     }
-
                                 }
                                 catch (ArgumentException)
                                 {
