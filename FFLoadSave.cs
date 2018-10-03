@@ -386,7 +386,8 @@ namespace PdnFF
 					{
 						if (!inforead)
 						{
-							for (int i = 0; i < 4; i++)
+							int i = 0;
+							while (i < 4)
 							{
 								if (!string.IsNullOrEmpty(line))
 								{
@@ -411,10 +412,7 @@ namespace PdnFF
 										}
 									}
 									line = sr.ReadLine();
-								}
-								else
-								{
-									i = (i - 1);
+									i++;
 								}
 							}
 							inforead = true;
@@ -427,7 +425,8 @@ namespace PdnFF
 						{
 							if (!srcread)
 							{
-								for (int i = 0; i < 4; i++)
+								int i = 0;
+								while (i < 4)
 								{
 									if (!string.IsNullOrEmpty(line))
 									{
@@ -457,11 +456,9 @@ namespace PdnFF
 													break;
 											}
 										}
+										i++;
 									}
-									else
-									{
-										i = (i - 1);
-									}
+
 									line = sr.ReadLine();
 								}
 								srcread = true;
