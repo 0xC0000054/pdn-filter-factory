@@ -1846,7 +1846,7 @@ namespace PdnFF
 				ctl0_UpDown.Value = (int)ctl0_UpDown.Minimum;
 			}
 
-			if (ctl3_UpDown.Value > ctl0_UpDown.Maximum)
+			if (ctl0_UpDown.Value > ctl0_UpDown.Maximum)
 			{
 				ctl0_UpDown.Value = (int)ctl0_UpDown.Maximum;
 			}

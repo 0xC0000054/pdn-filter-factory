@@ -764,7 +764,7 @@ namespace FFEffect
         private void ctl0_UpDown_ValueChanged(object sender, System.EventArgs e)
         {
             if (this.ctl0_UpDown.Value < this.ctl0_UpDown.Minimum) this.ctl0_UpDown.Value = (int)this.ctl0_UpDown.Minimum;
-            if (this.ctl3_UpDown.Value > this.ctl0_UpDown.Maximum) this.ctl0_UpDown.Value = (int)this.ctl0_UpDown.Maximum;
+            if (this.ctl0_UpDown.Value > this.ctl0_UpDown.Maximum) this.ctl0_UpDown.Value = (int)this.ctl0_UpDown.Maximum;
             this.ctl0.Value = (int)this.ctl0_UpDown.Value;
         }
 
