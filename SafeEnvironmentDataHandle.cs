@@ -2,7 +2,7 @@
 *  This file is part of pdn-filter-factory, a Paint.NET Effect that
 *  interprets Filter Factory-based Adobe Photoshop filters.
 *
-*  Copyright (C) 2010, 2011, 2012, 2015, 2018 Nicholas Hayes
+*  Copyright (C) 2010, 2011, 2012, 2015, 2018, 2020 Nicholas Hayes
 *
 *  This program is free software: you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
