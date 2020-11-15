@@ -3681,7 +3681,9 @@ namespace PdnFF
 
 					FileName += ".dll";
 
-					using (FilterBuilder builder = new FilterBuilder(data))
+					Version pdnVersion = Services.GetService<PaintDotNet.AppModel.IAppInfoService>().AppVersion;
+
+					using (FilterBuilder builder = new FilterBuilder(data, pdnVersion))
 					{
 						string fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), FileName);
 

@@ -36,13 +36,17 @@ namespace PdnFF
     {
         private readonly FilterData data;
         private readonly DirectoryInfo tempFolder;
+        private readonly Version pdnVersion;
 
         private CompilerParameters compilerParameters;
         private bool disposed;
 
-        public FilterBuilder(FilterData data)
+        private static readonly Version EffectOptionsRequiredVersion = new Version(4, 200);
+
+        public FilterBuilder(FilterData data, Version pdnVersion)
         {
             this.data = data;
+            this.pdnVersion = pdnVersion;
             compilerParameters = new CompilerParameters();
             tempFolder = new DirectoryInfo(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
             disposed = false;
@@ -250,8 +254,16 @@ namespace PdnFF
             writer.WriteLine("Common com = new Common();");
             // Constructor
             string Category = GetSubmenuCategory(data);
-            writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})",
-                classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
+            if (pdnVersion >= EffectOptionsRequiredVersion)
+            {
+                writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, new EffectOptions {{ Flags = EffectFlags.{3} }})",
+                   classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
+            }
+            else
+            {
+                writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "public {0}() : base(\"{1}\", null, {2}, EffectFlags.{3})",
+                    classname, data.Title, Category, data.PopDialog ? "Configurable" : "None"));
+            }
             writer.WriteLine("{");
             writer.WriteLine("data = {0}", BuildFilterData(data));
             writer.WriteLine("}");
